@@ -1,0 +1,14 @@
+.env
+Logs
+.nyc_output/
+coverage
+build
+
+# ignore node modules
+node_modules
+# ignore log files
+logs.log
+http.log
+# ignore compiled files
+dist/
+dist_other/
