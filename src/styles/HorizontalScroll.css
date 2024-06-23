@@ -1,4 +1,4 @@
-.roundeddivs {
+.hs_roundeddivs {
 	white-space: nowrap;
 	padding: 5px;
 	border-radius: 50px;
@@ -10,41 +10,41 @@
 	display: inline-block;
 }
 
-.block {
+.hs_block {
 	padding: 1rem 0rem;
 	width: 7-vw;
 	overflow: hidden;
 }
 
-.marquees {
+.hs_marquees {
 	white-space: nowrap;
 	overflow: hidden;
 }
 
-.marquees > * {
+.hs_marquees > * {
 	white-space: nowrap;
 	display: flex;
 	width: fit-content;
 	animation: move linear infinite;
 }
 
-.marquees > *:nth-child(1) {
+.hs_marquees > *:nth-child(1) {
 	animation-duration: 9s;
 }
 
-.marquees > *:nth-child(2) {
+.hs_marquees > *:nth-child(2) {
 	animation-duration: 15s;
 }
 
-.marquees > *:nth-child(3) {
+.hs_marquees > *:nth-child(3) {
 	animation-duration: 8s;
 }
 
-.marquees > *:nth-child(4) {
+.hs_marquees > *:nth-child(4) {
 	animation-duration: 15s;
 }
 
-.roundeddivs img {
+.hs_roundeddivs img {
 	height: 100vh;
 	max-height: 40px;
 	width: 100%;

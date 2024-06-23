@@ -99,6 +99,10 @@ module.exports = {
 					},
 				},
 			}),
+			borderRadius: {
+				"br-4xl": "2rem",
+				"tl-4xl": "2rem",
+			},
 		},
 	},
 	plugins: [

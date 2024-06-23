@@ -21,11 +21,11 @@ const brands = [
 const HorizontalScrollCards = () => {
 	return (
 		<section>
-			<div className="block">
-				<div className="marquees">
+			<div className="hs_block">
+				<div className="hs_marquees">
 					<div>
 						{brands.map((brand, index) => (
-							<span key={index} className="roundeddivs">
+							<span key={index} className="hs_roundeddivs">
 								<img
 									src={`/assets/images/brands/${brand}`}
 									alt={`Logo of ${brand}`}
