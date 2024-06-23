@@ -7,6 +7,8 @@ import Navbar from "../components/HomePage/Navbar";
 import Typewriter from "typewriter-effect";
 import HorizontalScrollCards from "../components/HomePage/ScrollingBrands";
 import FeaturesSection from "../components/HomePage/Featuresection";
+import ContactUs from "../components/HomePage/ContactUs";
+import Footer from "../components/HomePage/Footer";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -106,7 +108,6 @@ const HomePage = () => {
 				<section className="p-4 text-center">
 					<h2 className="text-2xl font-bold mb-2">Organization Partners</h2>
 					<div className="flex justify-center space-x-8">
-						{/* Logos of partners can be added here */}
 						<HorizontalScrollCards />
 					</div>
 				</section>
@@ -139,13 +140,9 @@ const HomePage = () => {
 					/>
 				</section>
 
-				<footer className="bg-cdms_primary text-2xl text-white p-12 text-center">
-					<p>
-						Are you a public institution in Rwanda or working there? Join us on
-						this transformative journey where learning meets innovation, and
-						capacity-building becomes a catalyst for positive change.
-					</p>
-				</footer>
+				<ContactUs />
+
+				<Footer />
 			</div>
 		</div>
 	);
