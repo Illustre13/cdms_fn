@@ -315,7 +315,7 @@ const Header = () => {
 													type="button"
 													className={`flex w-full hover:text-primary rounded-lg ${
 														i18next.language === item.code
-															? "bg-primary/10 text-primary"
+															? "bg-cdms_primary/10 text-primary"
 															: ""
 													}`}
 													onClick={() => {
@@ -443,7 +443,7 @@ const Header = () => {
 										<div className="flex items-center px-4 py-2 justify-between font-semibold">
 											<h4 className="text-lg">Notification</h4>
 											{notifications.length ? (
-												<span className="badge bg-primary/80">
+												<span className="badge bg-cdms_primary/80">
 													{notifications.length}New
 												</span>
 											) : (

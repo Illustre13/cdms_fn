@@ -37,22 +37,20 @@ const Index = () => {
 
 	const [loading] = useState(false);
 
-	//Revenue Chart
-	const revenueChart: any = {
+	//Capacity Need Assessement
+	const assessmentChart: any = {
 		series: [
 			{
-				name: "Income",
-				data: [
-					16800, 16800, 15500, 17800, 15500, 17000, 19000, 16000, 15000, 17000,
-					14000, 17000,
-				],
+				name: "Sent",
+				data: [5, 450, 320, 12, 15, 17, 19, 16, 15, 170, 14, 47],
 			},
 			{
-				name: "Expenses",
-				data: [
-					16500, 17500, 16200, 17300, 16000, 19500, 16000, 17000, 16000, 19000,
-					18000, 19000,
-				],
+				name: "Under Review",
+				data: [165, 175, 162, 173, 16, 195, 76, 17, 16, 90, 18, 19],
+			},
+			{
+				name: "Reviewed",
+				data: [165, 175, 162, 173, 16, 195, 36, 17, 16, 19, 180, 19],
 			},
 		],
 		options: {
@@ -84,7 +82,9 @@ const Index = () => {
 				left: -7,
 				top: 22,
 			},
-			colors: isDark ? ["#2196F3", "#E7515A"] : ["#1B55E2", "#E7515A"],
+			colors: isDark
+				? ["#2196F3", "#E7515A", "#FF99A5"]
+				: ["#1B55E2", "#E7515A", "#FF99A5"],
 			markers: {
 				discrete: [
 					{
@@ -137,10 +137,10 @@ const Index = () => {
 				},
 			},
 			yaxis: {
-				tickAmount: 7,
+				tickAmount: 10,
 				labels: {
 					formatter: (value: number) => {
-						return value / 1000 + "K";
+						return value;
 					},
 					offsetX: isRtl ? -30 : -10,
 					offsetY: 0,
@@ -206,9 +206,9 @@ const Index = () => {
 		},
 	};
 
-	//Sales By Category
-	const salesByCategory: any = {
-		series: [985, 737, 270],
+	//Trainings
+	const cdmsTrainings: any = {
+		series: [345, 900, 299, 760],
 		options: {
 			chart: {
 				type: "donut",
@@ -225,7 +225,7 @@ const Index = () => {
 			},
 			colors: isDark
 				? ["#5c1ac3", "#e2a03f", "#e7515a", "#e2a03f"]
-				: ["#e2a03f", "#5c1ac3", "#e7515a"],
+				: ["#e2a03f", "#5c1ac3", "#e7515a", "#e2a03f"],
 			legend: {
 				position: "bottom",
 				horizontalAlign: "center",
@@ -278,7 +278,7 @@ const Index = () => {
 					},
 				},
 			},
-			labels: ["Apparel", "Sports", "Others"],
+			labels: ["Pending", "Approved", "Rejected", "Finished"],
 			states: {
 				hover: {
 					filter: {
@@ -296,16 +296,20 @@ const Index = () => {
 		},
 	};
 
-	//Daily Sales
-	const dailySales: any = {
+	// Capacity Plan Statistics
+	const cPlanStatistics: any = {
 		series: [
 			{
-				name: "Sales",
-				data: [44, 55, 41, 67, 22, 43, 21],
+				name: "Allocated",
+				data: [
+					12000000, 27800000, 16000000, 29000000, 10000000, 23700000, 34000000,
+				],
 			},
 			{
-				name: "Last Week",
-				data: [13, 23, 20, 8, 13, 27, 33],
+				name: "Requested",
+				data: [
+					45000000, 41800000, 23000000, 29000000, 15000000, 19700000, 30000000,
+				],
 			},
 		],
 		options: {
@@ -343,7 +347,7 @@ const Index = () => {
 				labels: {
 					show: false,
 				},
-				categories: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"],
+				categories: ["2023", "2022", "2021", "2020", "2019", "2018", "2017"],
 			},
 			yaxis: {
 				show: false,
@@ -436,101 +440,40 @@ const Index = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="/" className="text-primary hover:underline">
+					<Link to="/dashboard" className="text-primary hover:underline">
 						Dashboard
 					</Link>
 				</li>
-				<li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+				{/* <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
 					<span>Sales</span>
-				</li>
+				</li> */}
 			</ul>
 
 			<div className="pt-5">
-				<div className="grid xl:grid-cols-3 gap-6 mb-6">
-					<div className="panel h-full xl:col-span-2">
-						<div className="flex items-center justify-between dark:text-white-light mb-5">
-							<h5 className="font-semibold text-lg">Revenue</h5>
-							<div className="dropdown">
-								<Dropdown
-									offset={[0, 1]}
-									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-									button={
-										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-primary" />
-									}
-								>
-									<ul>
-										<li>
-											<button type="button">Weekly</button>
-										</li>
-										<li>
-											<button type="button">Monthly</button>
-										</li>
-										<li>
-											<button type="button">Yearly</button>
-										</li>
-									</ul>
-								</Dropdown>
-							</div>
-						</div>
-						<p className="text-lg dark:text-white-light/90">
-							Total Profit <span className="text-primary ml-2">$10,840</span>
-						</p>
-						<div className="relative">
-							<div className="bg-white dark:bg-black rounded-lg overflow-hidden">
-								{loading ? (
-									<div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] ">
-										<span className="animate-spin border-2 border-black dark:border-white !border-l-transparent  rounded-full w-5 h-5 inline-flex"></span>
-									</div>
-								) : (
-									<ReactApexChart
-										series={revenueChart.series}
-										options={revenueChart.options}
-										type="area"
-										height={325}
-									/>
-								)}
-							</div>
-						</div>
-					</div>
-
-					<div className="panel h-full">
-						<div className="flex items-center mb-5">
-							<h5 className="font-semibold text-lg dark:text-white-light">
-								Sales By Category
-							</h5>
-						</div>
-						<div>
-							<div className="bg-white dark:bg-black rounded-lg overflow-hidden">
-								{loading ? (
-									<div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] ">
-										<span className="animate-spin border-2 border-black dark:border-white !border-l-transparent  rounded-full w-5 h-5 inline-flex"></span>
-									</div>
-								) : (
-									<ReactApexChart
-										series={salesByCategory.series}
-										options={salesByCategory.options}
-										type="donut"
-										height={460}
-									/>
-								)}
-							</div>
-						</div>
-					</div>
-				</div>
-
+				{/**
+				 *
+				 * Section 1
+				 *
+				 */}
 				<div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
+					{/**
+					 *
+					 * Capacity Plan Stats
+					 *
+					 */}
+
 					<div className="panel h-full sm:col-span-2 xl:col-span-1">
 						<div className="flex items-center mb-5">
 							<h5 className="font-semibold text-lg dark:text-white-light">
-								Daily Sales
+								Capacity Plan
 								<span className="block text-white-dark text-sm font-normal">
-									Go to columns for details.
+									Requested Vs Allocated Capacity Plan Budget
 								</span>
 							</h5>
 							<div className="ltr:ml-auto rtl:mr-auto relative">
-								<div className="w-11 h-11 text-warning bg-[#ffeccb] dark:bg-warning dark:text-[#ffeccb] grid place-content-center rounded-full">
+								{/* <div className="w-11 h-11 text-warning bg-[#ffeccb] dark:bg-warning dark:text-[#ffeccb] grid place-content-center rounded-full">
 									<IconDollarSign />
-								</div>
+								</div> */}
 							</div>
 						</div>
 						<div>
@@ -541,8 +484,8 @@ const Index = () => {
 									</div>
 								) : (
 									<ReactApexChart
-										series={dailySales.series}
-										options={dailySales.options}
+										series={cPlanStatistics.series}
+										options={cPlanStatistics.options}
 										type="bar"
 										height={160}
 									/>
@@ -550,9 +493,15 @@ const Index = () => {
 							</div>
 						</div>
 					</div>
+
+					{/**
+					 *
+					 * CDMS Users Stats
+					 *
+					 */}
 					<div className="panel h-full">
 						<div className="flex items-center justify-between dark:text-white-light mb-5">
-							<h5 className="font-semibold text-lg">Summary</h5>
+							<h5 className="font-semibold text-lg">CDMS Users</h5>
 							<div className="dropdown">
 								<Dropdown
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
@@ -562,13 +511,7 @@ const Index = () => {
 								>
 									<ul>
 										<li>
-											<button type="button">View Report</button>
-										</li>
-										<li>
-											<button type="button">Edit Report</button>
-										</li>
-										<li>
-											<button type="button">Mark as Done</button>
+											<button type="button">View All Users</button>
 										</li>
 									</ul>
 								</Dropdown>
@@ -577,14 +520,14 @@ const Index = () => {
 						<div className="space-y-9">
 							<div className="flex items-center">
 								<div className="w-9 h-9 ltr:mr-3 rtl:ml-3">
-									<div className="bg-secondary-light dark:bg-secondary text-secondary dark:text-secondary-light  rounded-full w-9 h-9 grid place-content-center">
+									<div className="bg-cdms_secondary-light dark:bg-cdms_secondary text-secondary dark:text-secondary-light  rounded-full w-9 h-9 grid place-content-center">
 										<IconInbox />
 									</div>
 								</div>
 								<div className="flex-1">
 									<div className="flex font-semibold text-white-dark mb-2">
-										<h6>Income</h6>
-										<p className="ltr:ml-auto rtl:mr-auto">$92,600</p>
+										<h6>Active Users</h6>
+										<p className="ltr:ml-auto rtl:mr-auto">2467</p>
 									</div>
 									<div className="rounded-full h-2 bg-dark-light dark:bg-[#1b2e4b] shadow">
 										<div className="bg-gradient-to-r from-[#7579ff] to-[#b224ef] w-11/12 h-full rounded-full"></div>
@@ -599,13 +542,13 @@ const Index = () => {
 								</div>
 								<div className="flex-1">
 									<div className="flex font-semibold text-white-dark mb-2">
-										<h6>Profit</h6>
-										<p className="ltr:ml-auto rtl:mr-auto">$37,515</p>
+										<h6>Pending Users</h6>
+										<p className="ltr:ml-auto rtl:mr-auto">567</p>
 									</div>
 									<div className="w-full rounded-full h-2 bg-dark-light dark:bg-[#1b2e4b] shadow">
 										<div
 											className="bg-gradient-to-r from-[#3cba92] to-[#0ba360] w-full h-full rounded-full"
-											style={{ width: "65%" }}
+											style={{ width: "17%" }}
 										></div>
 									</div>
 								</div>
@@ -618,13 +561,13 @@ const Index = () => {
 								</div>
 								<div className="flex-1">
 									<div className="flex font-semibold text-white-dark mb-2">
-										<h6>Expenses</h6>
-										<p className="ltr:ml-auto rtl:mr-auto">$55,085</p>
+										<h6>Suspended Users</h6>
+										<p className="ltr:ml-auto rtl:mr-auto">45</p>
 									</div>
 									<div className="w-full rounded-full h-2 bg-dark-light dark:bg-[#1b2e4b] shadow">
 										<div
 											className="bg-gradient-to-r from-[#f09819] to-[#ff5858] w-full h-full rounded-full"
-											style={{ width: "80%" }}
+											style={{ width: "6%" }}
 										></div>
 									</div>
 								</div>
@@ -661,6 +604,92 @@ const Index = () => {
 						</div>
 					</div>
 				</div>
+
+				<div className="grid xl:grid-cols-3 gap-6 mb-6">
+					{/*
+					 *
+					 * Capacity Need Assessment
+					 *
+					 */}
+					<div className="panel h-full xl:col-span-2">
+						<div className="flex items-center justify-between dark:text-white-light mb-5">
+							<h5 className="font-semibold text-lg">
+								Capacity Need Assessement
+							</h5>
+							<div className="dropdown">
+								<Dropdown
+									offset={[0, 1]}
+									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
+									button={
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-primary" />
+									}
+								>
+									<ul>
+										<li>
+											<button type="button">2023</button>
+										</li>
+										<li>
+											<button type="button">2022</button>
+										</li>
+										<li>
+											<button type="button">2021</button>
+										</li>
+									</ul>
+								</Dropdown>
+							</div>
+						</div>
+						<p className="text-lg dark:text-white-light/90">
+							Total <span className="text-primary ml-2">12,345</span>
+						</p>
+						<div className="relative">
+							<div className="bg-white dark:bg-black rounded-lg overflow-hidden">
+								{loading ? (
+									<div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] ">
+										<span className="animate-spin border-2 border-black dark:border-white !border-l-transparent  rounded-full w-5 h-5 inline-flex"></span>
+									</div>
+								) : (
+									<ReactApexChart
+										series={assessmentChart.series}
+										options={assessmentChart.options}
+										type="area"
+										height={325}
+									/>
+								)}
+							</div>
+						</div>
+					</div>
+
+					{/*
+					 *
+					 * Trainings
+					 *
+					 */}
+
+					<div className="panel h-full">
+						<div className="flex items-center mb-5">
+							<h5 className="font-semibold text-lg dark:text-white-light">
+								Trainings Statistics
+							</h5>
+						</div>
+						<div>
+							<div className="bg-white dark:bg-black rounded-lg overflow-hidden">
+								{loading ? (
+									<div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] ">
+										<span className="animate-spin border-2 border-black dark:border-white !border-l-transparent  rounded-full w-5 h-5 inline-flex"></span>
+									</div>
+								) : (
+									<ReactApexChart
+										series={cdmsTrainings.series}
+										options={cdmsTrainings.options}
+										type="donut"
+										height={460}
+									/>
+								)}
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
 					<div className="panel h-full sm:col-span-2 xl:col-span-1 pb-0">
 						<h5 className="font-semibold text-lg dark:text-white-light mb-5">
@@ -669,13 +698,13 @@ const Index = () => {
 						<PerfectScrollbar className="relative h-[290px] ltr:pr-3 rtl:pl-3 ltr:-mr-3 rtl:-ml-3 mb-4">
 							<div className="text-sm cursor-pointer">
 								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-primary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
+									<div className="bg-cdms_primary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
 									<div className="flex-1">Updated Server Logs</div>
 									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
 										Just Now
 									</div>
 
-									<span className="badge badge-outline-primary absolute ltr:right-0 rtl:left-0 text-xs bg-primary-light dark:bg-black opacity-0 group-hover:opacity-100">
+									<span className="badge badge-outline-primary absolute ltr:right-0 rtl:left-0 text-xs bg-cdms_primary-light dark:bg-black opacity-0 group-hover:opacity-100">
 										Pending
 									</span>
 								</div>
@@ -737,7 +766,7 @@ const Index = () => {
 									</span>
 								</div>
 								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-secondary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
+									<div className="bg-cdms_secondary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
 									<div className="flex-1">
 										Send contract details to Freelancer
 									</div>
@@ -745,18 +774,18 @@ const Index = () => {
 										18:00
 									</div>
 
-									<span className="badge badge-outline-secondary absolute ltr:right-0 rtl:left-0 text-xs bg-secondary-light dark:bg-black opacity-0 group-hover:opacity-100">
+									<span className="badge badge-outline-secondary absolute ltr:right-0 rtl:left-0 text-xs bg-cdms_secondary-light dark:bg-black opacity-0 group-hover:opacity-100">
 										Pending
 									</span>
 								</div>
 								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-primary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
+									<div className="bg-cdms_primary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
 									<div className="flex-1">Updated Server Logs</div>
 									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
 										Just Now
 									</div>
 
-									<span className="badge badge-outline-primary absolute ltr:right-0 rtl:left-0 text-xs bg-primary-light dark:bg-black opacity-0 group-hover:opacity-100">
+									<span className="badge badge-outline-primary absolute ltr:right-0 rtl:left-0 text-xs bg-cdms_primary-light dark:bg-black opacity-0 group-hover:opacity-100">
 										Pending
 									</span>
 								</div>
@@ -818,7 +847,7 @@ const Index = () => {
 									</span>
 								</div>
 								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-secondary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
+									<div className="bg-cdms_secondary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
 									<div className="flex-1">
 										Send contract details to Freelancer
 									</div>
@@ -826,7 +855,7 @@ const Index = () => {
 										18:00
 									</div>
 
-									<span className="badge badge-outline-secondary absolute ltr:right-0 rtl:left-0 text-xs bg-secondary-light dark:bg-black opacity-0 group-hover:opacity-100">
+									<span className="badge badge-outline-secondary absolute ltr:right-0 rtl:left-0 text-xs bg-cdms_secondary-light dark:bg-black opacity-0 group-hover:opacity-100">
 										Pending
 									</span>
 								</div>
@@ -911,7 +940,7 @@ const Index = () => {
 									</span>
 								</div>
 								<div className="flex">
-									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-secondary-light dark:bg-secondary text-secondary dark:text-secondary-light">
+									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_secondary-light dark:bg-cdms_secondary text-secondary dark:text-secondary-light">
 										<IconNetflix />
 									</span>
 									<div className="px-3 flex-1">
@@ -939,7 +968,7 @@ const Index = () => {
 									</span>
 								</div>
 								<div className="flex">
-									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-primary-light dark:bg-primary text-primary dark:text-primary-light">
+									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_primary-light dark:bg-cdms_primary text-primary dark:text-primary-light">
 										<IconBolt />
 									</span>
 									<div className="px-3 flex-1">
@@ -1098,7 +1127,7 @@ const Index = () => {
 										</td>
 										<td>$126.04</td>
 										<td>
-											<span className="badge bg-secondary shadow-md dark:group-hover:bg-transparent">
+											<span className="badge bg-cdms_secondary shadow-md dark:group-hover:bg-transparent">
 												Shipped
 											</span>
 										</td>
@@ -1142,7 +1171,7 @@ const Index = () => {
 										</td>
 										<td>$110.00</td>
 										<td>
-											<span className="badge bg-secondary shadow-md dark:group-hover:bg-transparent">
+											<span className="badge bg-cdms_secondary shadow-md dark:group-hover:bg-transparent">
 												Shipped
 											</span>
 										</td>

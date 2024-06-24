@@ -96,7 +96,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
 					{showTopButton && (
 						<button
 							type="button"
-							className="btn btn-outline-primary rounded-full p-2 animate-pulse bg-[#fafafa] dark:bg-[#060818] dark:hover:bg-primary"
+							className="btn btn-outline-primary rounded-full p-2 animate-pulse bg-[#fafafa] dark:bg-[#060818] dark:hover:bg-cdms_primary"
 							onClick={goToTop}
 						>
 							<svg
