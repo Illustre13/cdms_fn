@@ -275,7 +275,7 @@ const SweetAlert = () => {
 				<li>
 					<Link
 						to="/components/sweetalert"
-						className="text-primary hover:underline"
+						className="text-cdms_primary hover:underline"
 					>
 						Components
 					</Link>
@@ -285,7 +285,7 @@ const SweetAlert = () => {
 				</li>
 			</ul>
 			<div className="sweet-alerts space-y-8 pt-5">
-				<div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
+				<div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-cdms_primary">
 					<div className="rounded-full bg-cdms_primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
 						<IconBell />
 					</div>

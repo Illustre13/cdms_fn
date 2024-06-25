@@ -101,10 +101,10 @@ const Faq = () => {
 			<div className="mb-12 flex items-center rounded-b-md bg-[#DBE7FF] dark:bg-[#141F31]">
 				<ul className="mx-auto flex items-center gap-5 overflow-auto whitespace-nowrap px-3 py-4.5 xl:gap-8">
 					<li
-						className={`group flex min-w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md px-8 py-2.5 text-center text-[#506690] duration-300 hover:bg-white hover:text-primary dark:hover:bg-[#1B2E4B]
+						className={`group flex min-w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md px-8 py-2.5 text-center text-[#506690] duration-300 hover:bg-white hover:text-cdms_primary dark:hover:bg-[#1B2E4B]
                     ${
 											activeTab === "general"
-												? "bg-white text-primary dark:bg-[#1B2E4B]"
+												? "bg-white text-cdms_primary dark:bg-[#1B2E4B]"
 												: ""
 										}`}
 						onClick={() => setActiveTab("general")}
@@ -114,10 +114,10 @@ const Faq = () => {
 						<h5 className="font-bold text-black dark:text-white">General</h5>
 					</li>
 					<li
-						className={`group flex min-w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md px-8 py-2.5 text-center text-[#506690] duration-300 hover:bg-white hover:text-primary dark:hover:bg-[#1B2E4B]
+						className={`group flex min-w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md px-8 py-2.5 text-center text-[#506690] duration-300 hover:bg-white hover:text-cdms_primary dark:hover:bg-[#1B2E4B]
                     ${
 											activeTab === "quick-support"
-												? "bg-white text-primary dark:bg-[#1B2E4B]"
+												? "bg-white text-cdms_primary dark:bg-[#1B2E4B]"
 												: ""
 										}`}
 						onClick={() => setActiveTab("quick-support")}
@@ -129,10 +129,10 @@ const Faq = () => {
 						</h5>
 					</li>
 					<li
-						className={`group flex min-w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md px-8 py-2.5 text-center text-[#506690] duration-300 hover:bg-white hover:text-primary dark:hover:bg-[#1B2E4B]
+						className={`group flex min-w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md px-8 py-2.5 text-center text-[#506690] duration-300 hover:bg-white hover:text-cdms_primary dark:hover:bg-[#1B2E4B]
                     ${
 											activeTab === "free-updates"
-												? "bg-white text-primary dark:bg-[#1B2E4B]"
+												? "bg-white text-cdms_primary dark:bg-[#1B2E4B]"
 												: ""
 										}`}
 						onClick={() => setActiveTab("free-updates")}
@@ -144,10 +144,10 @@ const Faq = () => {
 						</h5>
 					</li>
 					<li
-						className={`group flex min-w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md px-8 py-2.5 text-center text-[#506690] duration-300 hover:bg-white hover:text-primary dark:hover:bg-[#1B2E4B]
+						className={`group flex min-w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md px-8 py-2.5 text-center text-[#506690] duration-300 hover:bg-white hover:text-cdms_primary dark:hover:bg-[#1B2E4B]
                     ${
 											activeTab === "pricing"
-												? "bg-white text-primary dark:bg-[#1B2E4B]"
+												? "bg-white text-cdms_primary dark:bg-[#1B2E4B]"
 												: ""
 										}`}
 						onClick={() => setActiveTab("pricing")}
@@ -157,10 +157,10 @@ const Faq = () => {
 						<h5 className="font-bold text-black dark:text-white">Pricing</h5>
 					</li>
 					<li
-						className={`group flex min-w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md px-8 py-2.5 text-center text-[#506690] duration-300 hover:bg-white hover:text-primary dark:hover:bg-[#1B2E4B]
+						className={`group flex min-w-[120px] cursor-pointer flex-col items-center justify-center gap-4 rounded-md px-8 py-2.5 text-center text-[#506690] duration-300 hover:bg-white hover:text-cdms_primary dark:hover:bg-[#1B2E4B]
                     ${
 											activeTab === "hosting"
-												? "bg-white text-primary dark:bg-[#1B2E4B]"
+												? "bg-white text-cdms_primary dark:bg-[#1B2E4B]"
 												: ""
 										}`}
 						onClick={() => setActiveTab("hosting")}
@@ -172,7 +172,7 @@ const Faq = () => {
 				</ul>
 			</div>
 			<h3 className="mb-8 text-center text-xl font-semibold md:text-2xl">
-				Frequently asked <span className="text-primary">questions</span>
+				Frequently asked <span className="text-cdms_primary">questions</span>
 			</h3>
 			<div className="mb-10 grid grid-cols-1 gap-10 md:grid-cols-2">
 				<div className="rounded-md bg-white dark:bg-black">
@@ -182,10 +182,10 @@ const Faq = () => {
 					<div className="divide-y divide-white-light px-6 py-4.5 dark:divide-dark">
 						<div>
 							<div
-								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
+								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-cdms_primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-cdms_primary
                             ${
 															active1 === 1
-																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-primary"
+																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-cdms_primary"
 																: ""
 														}`}
 								onClick={() => setActive1(active1 === 1 ? null : 1)}
@@ -221,10 +221,10 @@ const Faq = () => {
 						</div>
 						<div>
 							<div
-								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
+								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-cdms_primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-cdms_primary
                             ${
 															active1 === 2
-																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-primary"
+																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-cdms_primary"
 																: ""
 														}`}
 								onClick={() => setActive1(active1 === 2 ? null : 2)}
@@ -260,10 +260,10 @@ const Faq = () => {
 						</div>
 						<div>
 							<div
-								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
+								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-cdms_primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-cdms_primary
                             ${
 															active1 === 3
-																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-primary"
+																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-cdms_primary"
 																: ""
 														}`}
 								onClick={() => setActive1(active1 === 3 ? null : 3)}
@@ -299,10 +299,10 @@ const Faq = () => {
 						</div>
 						<div>
 							<div
-								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
+								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-cdms_primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-cdms_primary
                             ${
 															active1 === 5
-																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-primary"
+																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-cdms_primary"
 																: ""
 														}`}
 								onClick={() => setActive1(active1 === 5 ? null : 5)}
@@ -345,10 +345,10 @@ const Faq = () => {
 					<div className="divide-y divide-white-light px-6 py-4.5 dark:divide-dark">
 						<div>
 							<div
-								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
+								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-cdms_primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-cdms_primary
                             ${
 															active2 === 1
-																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-primary"
+																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-cdms_primary"
 																: ""
 														}`}
 								onClick={() => setActive2(active2 === 1 ? null : 1)}
@@ -384,10 +384,10 @@ const Faq = () => {
 						</div>
 						<div>
 							<div
-								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
+								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-cdms_primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-cdms_primary
                             ${
 															active2 === 2
-																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-primary"
+																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-cdms_primary"
 																: ""
 														}`}
 								onClick={() => setActive2(active2 === 2 ? null : 2)}
@@ -423,10 +423,10 @@ const Faq = () => {
 						</div>
 						<div>
 							<div
-								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
+								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-cdms_primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-cdms_primary
                             ${
 															active2 === 3
-																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-primary"
+																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-cdms_primary"
 																: ""
 														}`}
 								onClick={() => setActive2(active2 === 3 ? null : 3)}
@@ -462,10 +462,10 @@ const Faq = () => {
 						</div>
 						<div>
 							<div
-								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-primary
+								className={`flex cursor-pointer items-center justify-between gap-10 px-2.5 py-2 text-base font-semibold hover:bg-cdms_primary-light hover:text-cdms_primary dark:text-white dark:hover:bg-[#1B2E4B] dark:hover:text-cdms_primary
                             ${
 															active2 === 5
-																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-primary"
+																? "bg-cdms_primary-light dark:bg-[#1B2E4B] !text-cdms_primary"
 																: ""
 														}`}
 								onClick={() => setActive2(active2 === 5 ? null : 5)}

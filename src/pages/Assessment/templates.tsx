@@ -361,12 +361,15 @@ const Templates = () => {
 			<div>
 				<ul className="flex space-x-2 rtl:space-x-reverse">
 					<li>
-						<Link to="/dashboard" className="text-primary hover:underline">
+						<Link to="/dashboard" className="text-cdms_primary hover:underline">
 							Dashboard
 						</Link>
 					</li>
 					<li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-						<Link to="/cna/overview" className="text-primary hover:underline">
+						<Link
+							to="/cna/overview"
+							className="text-cdms_primary hover:underline"
+						>
 							CNA
 						</Link>
 					</li>
@@ -382,7 +385,7 @@ const Templates = () => {
 			 *
 			 */}
 
-			<div className="flex justify-end sm:flex-row flex-col sm:items-center sm:gap-3 gap-4 w-full sm:w-auto">
+			<div className="flex flex-col justify-end item-center sm:flex-row flex-col sm:items-center sm:gap-3 gap-4 w-full sm:w-auto">
 				<div className="flex gap-3">
 					<div>
 						<button
@@ -405,7 +408,7 @@ const Templates = () => {
 						<button
 							type="button"
 							className={`btn btn-outline-primary p-2 ${
-								value === "list" && "bg-primary text-white"
+								value === "list" && "cdms_primary"
 							}`}
 							onClick={() => setValue("list")}
 						>
@@ -416,7 +419,7 @@ const Templates = () => {
 						<button
 							type="button"
 							className={`btn btn-outline-primary p-2 ${
-								value === "grid" && "bg-primary text-white"
+								value === "grid" && "cdms_primary text-white"
 							}`}
 							onClick={() => setValue("grid")}
 						>
@@ -424,7 +427,7 @@ const Templates = () => {
 						</button>
 					</div>
 				</div>
-				<div className="relative">
+				<div className="relative -mt-6">
 					<input
 						type="text"
 						placeholder="Search Templates..."
@@ -434,7 +437,7 @@ const Templates = () => {
 					/>
 					<button
 						type="button"
-						className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-primary"
+						className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary"
 					>
 						<IconSearch className="mx-auto" />
 					</button>

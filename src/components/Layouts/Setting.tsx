@@ -154,7 +154,7 @@ const Setting = () => {
 								Collapsible
 							</button>
 						</div>
-						<div className="mt-5 text-primary">
+						<div className="mt-5 text-cdms_primary">
 							<label className="inline-flex mb-0">
 								<input
 									type="checkbox"
@@ -243,7 +243,7 @@ const Setting = () => {
 							Navbar Type
 						</h5>
 						<p className="text-white-dark text-xs">Sticky or Floating.</p>
-						<div className="mt-3 flex items-center gap-3 text-primary">
+						<div className="mt-3 flex items-center gap-3 text-cdms_primary">
 							<label className="inline-flex mb-0">
 								<input
 									type="radio"
@@ -286,7 +286,7 @@ const Setting = () => {
 						</p>
 						<div className="mt-3">
 							<select
-								className="form-select border-primary text-primary"
+								className="form-select border-cdms_primary text-cdms_primary"
 								value={themeConfig.animation}
 								onChange={(e) => dispatch(toggleAnimation(e.target.value))}
 							>

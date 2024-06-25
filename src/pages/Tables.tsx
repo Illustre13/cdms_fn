@@ -128,7 +128,7 @@ const Tables = () => {
 													data.status === "completed"
 														? "text-success"
 														: data.status === "Pending"
-														? "text-secondary"
+														? "text-cdms_secondary"
 														: data.status === "In Progress"
 														? "text-info"
 														: data.status === "Canceled"
@@ -235,7 +235,7 @@ const tableData = [
                                     data.status === 'completed'
                                         ? 'text-success'
                                         : data.status === 'Pending'
-                                        ? 'text-secondary'
+                                        ? 'text-cdms_secondary'
                                         : data.status === 'In Progress'
                                         ? 'text-info'
                                         : data.status === 'Canceled'
@@ -307,7 +307,7 @@ const tableData = [
 													data.status === "completed"
 														? "text-success"
 														: data.status === "Pending"
-														? "text-secondary"
+														? "text-cdms_secondary"
 														: data.status === "In Progress"
 														? "text-info"
 														: data.status === "Canceled"
@@ -414,7 +414,7 @@ const tableData = [
                                     data.status === 'completed'
                                         ? 'text-success'
                                         : data.status === 'Pending'
-                                        ? 'text-secondary'
+                                        ? 'text-cdms_secondary'
                                         : data.status === 'In Progress'
                                         ? 'text-info'
                                         : data.status === 'Canceled'
@@ -957,7 +957,7 @@ const tableData = [
 													data.status === "completed"
 														? "text-success"
 														: data.status === "Pending"
-														? "text-secondary"
+														? "text-cdms_secondary"
 														: data.status === "In Progress"
 														? "text-info"
 														: data.status === "Canceled"
@@ -1086,7 +1086,7 @@ const tableData = [
                                     data.status === 'completed'
                                         ? 'text-success'
                                         : data.status === 'Pending'
-                                        ? 'text-secondary'
+                                        ? 'text-cdms_secondary'
                                         : data.status === 'In Progress'
                                         ? 'text-info'
                                         : data.status === 'Canceled'
@@ -1154,13 +1154,13 @@ const tableData = [
 								<td>Doe</td>
 								<td>johndoe@yahoo.com</td>
 							</tr>
-							<tr className="bg-cdms_primary/20 border-primary/20">
+							<tr className="bg-cdms_primary/20 border-cdms_primary/20">
 								<td>2</td>
 								<td>Andy</td>
 								<td>King</td>
 								<td>andyking@gmail.com</td>
 							</tr>
-							<tr className="bg-cdms_secondary/20 border-secondary/20">
+							<tr className="bg-cdms_secondary/20 border-cdms_secondary/20">
 								<td>3</td>
 								<td>Lisa</td>
 								<td>Doe</td>
@@ -1270,13 +1270,13 @@ const tableData = [
                 <td>Doe</td>
                 <td>johndoe@yahoo.com</td>
             </tr>
-            <tr className="bg-cdms_primary/20 border-primary/20">
+            <tr className="bg-cdms_primary/20 border-cdms_primary/20">
                 <td>2</td>
                 <td>Andy</td>
                 <td>King</td>
                 <td>andyking@gmail.com</td>
             </tr>
-            <tr className="bg-cdms_secondary/20 border-secondary/20">
+            <tr className="bg-cdms_secondary/20 border-cdms_secondary/20">
                 <td>3</td>
                 <td>Lisa</td>
                 <td>Doe</td>
@@ -1577,7 +1577,7 @@ const tableData = [
 												<li>
 													<Tippy content="Edit">
 														<button type="button">
-															<IconCircleCheck className="w-5 h-5 text-primary" />
+															<IconCircleCheck className="w-5 h-5 text-cdms_primary" />
 														</button>
 													</Tippy>
 												</li>
@@ -1764,7 +1764,7 @@ const tableData = [
 												<li>
 													<Tippy content="Settings">
 														<button type="button">
-															<IconSettings className="w-5 h-5 text-primary" />
+															<IconSettings className="w-5 h-5 text-cdms_primary" />
 														</button>
 													</Tippy>
 												</li>

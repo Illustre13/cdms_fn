@@ -9,11 +9,6 @@ import { useState, useEffect } from "react";
 import IconCaretsDown from "../Icon/IconCaretsDown";
 import IconCaretDown from "../Icon/IconCaretDown";
 import IconMenuDashboard from "../Icon/Menu/IconMenuDashboard";
-import IconMenuChat from "../Icon/Menu/IconMenuChat";
-import IconMenuMailbox from "../Icon/Menu/IconMenuMailbox";
-import IconMenuTodo from "../Icon/Menu/IconMenuTodo";
-import IconMenuNotes from "../Icon/Menu/IconMenuNotes";
-import IconMenuScrumboard from "../Icon/Menu/IconMenuScrumboard";
 import IconMenuContacts from "../Icon/Menu/IconMenuContacts";
 import IconMenuInvoice from "../Icon/Menu/IconMenuInvoice";
 import IconMenuCalendar from "../Icon/Menu/IconMenuCalendar";
@@ -73,13 +68,10 @@ const Sidebar = () => {
 					<div className="flex justify-between items-center px-4 py-3">
 						<NavLink to="/" className="main-logo flex items-center shrink-0">
 							<img
-								className="w-8 ml-[5px] flex-none"
-								src="/assets/images/logo_001.svg"
+								className="w-16 ltr:-ml-1 rtl:-mr-1 inline"
+								src="/assets/images/cdms_logo_002.png"
 								alt="logo"
 							/>
-							<span className="text-2xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">
-								CDMS
-							</span>
 						</NavLink>
 
 						<button
@@ -95,7 +87,7 @@ const Sidebar = () => {
 							<li className="nav-item">
 								<NavLink to="/homepage" className="group">
 									<div className="flex items-center">
-										<IconMenuCalendar className="group-hover:!text-primary shrink-0" />
+										<IconMenuCalendar className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
 											{t("Homepage")}
 										</span>
@@ -105,7 +97,7 @@ const Sidebar = () => {
 							<li className="menu nav-item">
 								<NavLink to="/dashboard" className="group">
 									<div className="flex items-center">
-										<IconMenuDashboard className="group-hover:!text-primary shrink-0" />
+										<IconMenuDashboard className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
 											{t("dashboard")}
 										</span>
@@ -121,7 +113,7 @@ const Sidebar = () => {
 									onClick={() => toggleMenu("organization")}
 								>
 									<div className="flex items-center">
-										<IconMenuInvoice className="group-hover:!text-primary shrink-0" />
+										<IconMenuInvoice className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
 											{t("Organization")}
 										</span>
@@ -157,7 +149,7 @@ const Sidebar = () => {
 							{/* <li className="nav-item">
 								<NavLink to="/organization" className="group">
 									<div className="flex items-center">
-										<IconMenuContacts className="group-hover:!text-primary shrink-0" />
+										<IconMenuContacts className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
 											{t("Organization")}
 										</span>
@@ -168,7 +160,7 @@ const Sidebar = () => {
 							<li className="nav-item">
 								<NavLink to="/employees" className="group">
 									<div className="flex items-center">
-										<IconMenuContacts className="group-hover:!text-primary shrink-0" />
+										<IconMenuContacts className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
 											{t("Employees")}
 										</span>
@@ -179,7 +171,7 @@ const Sidebar = () => {
 							{/* <li className="nav-item">
 								<NavLink to="/assessment" className="group">
 									<div className="flex items-center">
-										<IconMenuChat className="group-hover:!text-primary shrink-0" />
+										<IconMenuChat className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
 											{t("Assememtents")}
 										</span>
@@ -196,7 +188,7 @@ const Sidebar = () => {
 									onClick={() => toggleMenu("cna")}
 								>
 									<div className="flex items-center">
-										<IconMessagesDot className="group-hover:!text-primary shrink-0" />
+										<IconMessagesDot className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
 											{t("CNA")}
 										</span>
@@ -224,106 +216,6 @@ const Sidebar = () => {
 										</li>
 										<li>
 											<NavLink to="/cna/template">{t("Templates")}</NavLink>
-										</li>
-									</ul>
-								</AnimateHeight>
-							</li>
-
-							<li className="nav-item">
-								<NavLink to="/apps/mailbox" className="group">
-									<div className="flex items-center">
-										<IconMenuMailbox className="group-hover:!text-primary shrink-0" />
-										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-											{t("mailbox")}
-										</span>
-									</div>
-								</NavLink>
-							</li>
-							<li className="nav-item">
-								<NavLink to="/apps/todolist" className="group">
-									<div className="flex items-center">
-										<IconMenuTodo className="group-hover:!text-primary shrink-0" />
-										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-											{t("todo_list")}
-										</span>
-									</div>
-								</NavLink>
-							</li>
-							<li className="nav-item">
-								<NavLink to="/apps/notes" className="group">
-									<div className="flex items-center">
-										<IconMenuNotes className="group-hover:!text-primary shrink-0" />
-										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-											{t("notes")}
-										</span>
-									</div>
-								</NavLink>
-							</li>
-							<li className="nav-item">
-								<NavLink to="/apps/scrumboard" className="group">
-									<div className="flex items-center">
-										<IconMenuScrumboard className="group-hover:!text-primary shrink-0" />
-										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-											{t("scrumboard")}
-										</span>
-									</div>
-								</NavLink>
-							</li>
-							<li className="nav-item">
-								<NavLink to="/apps/contacts" className="group">
-									<div className="flex items-center">
-										<IconMenuContacts className="group-hover:!text-primary shrink-0" />
-										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-											{t("contacts")}
-										</span>
-									</div>
-								</NavLink>
-							</li>
-
-							<li className="menu nav-item">
-								<button
-									type="button"
-									className={`${
-										currentMenu === "invoice" ? "active" : ""
-									} nav-link group w-full`}
-									onClick={() => toggleMenu("invoice")}
-								>
-									<div className="flex items-center">
-										<IconMenuInvoice className="group-hover:!text-primary shrink-0" />
-										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-											{t("invoice")}
-										</span>
-									</div>
-
-									<div
-										className={
-											currentMenu !== "invoice"
-												? "rtl:rotate-90 -rotate-90"
-												: ""
-										}
-									>
-										<IconCaretDown />
-									</div>
-								</button>
-
-								<AnimateHeight
-									duration={300}
-									height={currentMenu === "invoice" ? "auto" : 0}
-								>
-									<ul className="sub-menu text-gray-500">
-										<li>
-											<NavLink to="/apps/invoice/list">{t("list")}</NavLink>
-										</li>
-										<li>
-											<NavLink to="/apps/invoice/preview">
-												{t("preview")}
-											</NavLink>
-										</li>
-										<li>
-											<NavLink to="/apps/invoice/add">{t("add")}</NavLink>
-										</li>
-										<li>
-											<NavLink to="/apps/invoice/edit">{t("edit")}</NavLink>
 										</li>
 									</ul>
 								</AnimateHeight>

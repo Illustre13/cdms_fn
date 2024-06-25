@@ -1338,9 +1338,9 @@ const Mailbox = () => {
 							<div className="space-y-1">
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										!isEdit && selectedTab === "inbox"
-											? "bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+											? "bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 											: ""
 									}`}
 									onClick={() => {
@@ -1360,9 +1360,9 @@ const Mailbox = () => {
 
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										!isEdit && selectedTab === "star"
-											? "bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+											? "bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 											: ""
 									}`}
 									onClick={() => {
@@ -1378,9 +1378,9 @@ const Mailbox = () => {
 
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										!isEdit && selectedTab === "sent_mail"
-											? "bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+											? "bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 											: ""
 									}`}
 									onClick={() => {
@@ -1397,9 +1397,9 @@ const Mailbox = () => {
 
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										!isEdit && selectedTab === "spam"
-											? "bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+											? "bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 											: ""
 									}`}
 									onClick={() => {
@@ -1415,9 +1415,9 @@ const Mailbox = () => {
 
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										!isEdit && selectedTab === "draft"
-											? "bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+											? "bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 											: ""
 									}`}
 									onClick={() => {
@@ -1437,9 +1437,9 @@ const Mailbox = () => {
 
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										!isEdit && selectedTab === "trash"
-											? "bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+											? "bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 											: ""
 									}`}
 									onClick={() => {
@@ -1456,7 +1456,7 @@ const Mailbox = () => {
 								<Disclosure as="div">
 									{({ open }) => (
 										<>
-											<Disclosure.Button className="w-full flex items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10">
+											<Disclosure.Button className="w-full flex items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10">
 												<IconCaretDown
 													className={`w-5 h-5 shrink-0 ${open && "rotate-180"}`}
 												/>
@@ -1474,9 +1474,9 @@ const Mailbox = () => {
 												<li>
 													<button
 														type="button"
-														className={`w-full flex items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+														className={`w-full flex items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 															!isEdit && selectedTab === "archive"
-																? "bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+																? "bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 																: ""
 														}`}
 														onClick={() => {
@@ -1491,9 +1491,9 @@ const Mailbox = () => {
 												<li>
 													<button
 														type="button"
-														className={`w-full flex items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+														className={`w-full flex items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 															!isEdit && selectedTab === "important"
-																? "bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+																? "bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 																: ""
 														}`}
 														onClick={() => {
@@ -1514,7 +1514,7 @@ const Mailbox = () => {
 
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10`}
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10`}
 								>
 									<div className="flex items-center">
 										<IconVideo className="shrink-0" />
@@ -1523,7 +1523,7 @@ const Mailbox = () => {
 								</button>
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10`}
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10`}
 								>
 									<div className="flex items-center">
 										<IconChartSquare className="shrink-0 rotate-180" />
@@ -1537,7 +1537,7 @@ const Mailbox = () => {
 						<div className="ltr:left-0 rtl:right-0 absolute bottom-0 p-4 w-full">
 							<button
 								type="button"
-								className="w-full flex p-2 justify-between items-center hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium group"
+								className="w-full flex p-2 justify-between items-center hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium group"
 								onClick={() => setIsShowMailMenu(false)}
 							>
 								<div className="flex items-center">
@@ -1581,7 +1581,7 @@ const Mailbox = () => {
 										<Tippy content="Refresh">
 											<button
 												type="button"
-												className="hover:text-primary flex items-center"
+												className="hover:text-cdms_primary flex items-center"
 												onClick={() => refreshMails()}
 											>
 												<IconRefresh />
@@ -1596,7 +1596,7 @@ const Mailbox = () => {
 													<Tippy content="Archive">
 														<button
 															type="button"
-															className="hover:text-primary flex items-center"
+															className="hover:text-cdms_primary flex items-center"
 															onClick={setArchive}
 														>
 															<IconArchive />
@@ -1609,7 +1609,7 @@ const Mailbox = () => {
 													<Tippy content="Spam">
 														<button
 															type="button"
-															className="hover:text-primary flex items-center"
+															className="hover:text-cdms_primary flex items-center"
 															onClick={setSpam}
 														>
 															<IconInfoHexagon />
@@ -1624,7 +1624,7 @@ const Mailbox = () => {
 														placement={`${
 															isRtl ? "bottom-start" : "bottom-end"
 														}`}
-														btnClassName="hover:text-primary flex items-center"
+														btnClassName="hover:text-cdms_primary flex items-center"
 														button={
 															<Tippy content="Group">
 																<span>
@@ -1681,7 +1681,7 @@ const Mailbox = () => {
 														placement={`${
 															isRtl ? "bottom-start" : "bottom-end"
 														}`}
-														btnClassName="hover:text-primary flex items-center"
+														btnClassName="hover:text-cdms_primary flex items-center"
 														button={
 															<IconHorizontalDots className="rotate-90 opacity-70" />
 														}
@@ -1728,7 +1728,7 @@ const Mailbox = () => {
 													<Tippy content="Permanently Delete">
 														<button
 															type="button"
-															className="block hover:text-primary"
+															className="block hover:text-cdms_primary"
 															onClick={() => setAction("delete")}
 														>
 															<IconTrash />
@@ -1741,7 +1741,7 @@ const Mailbox = () => {
 													<Tippy content="Restore">
 														<button
 															type="button"
-															className="block hover:text-primary"
+															className="block hover:text-cdms_primary"
 															onClick={() => setAction("restore")}
 														>
 															<IconRestore />
@@ -1757,7 +1757,7 @@ const Mailbox = () => {
 									<div className="flex items-center ltr:mr-4 rtl:ml-4">
 										<button
 											type="button"
-											className="xl:hidden hover:text-primary block ltr:mr-3 rtl:ml-3"
+											className="xl:hidden hover:text-cdms_primary block ltr:mr-3 rtl:ml-3"
 											onClick={() => setIsShowMailMenu(!isShowMailMenu)}
 										>
 											<IconMenu />
@@ -1771,7 +1771,7 @@ const Mailbox = () => {
 												onChange={(e) => setSearchText(e.target.value)}
 												onKeyUp={() => searchMails()}
 											/>
-											<div className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-primary">
+											<div className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary">
 												<IconSearch />
 											</div>
 										</div>
@@ -1779,14 +1779,20 @@ const Mailbox = () => {
 									<div className="flex items-center">
 										<div className="ltr:mr-4 rtl:ml-4">
 											<Tippy content="Settings">
-												<button type="button" className="hover:text-primary">
+												<button
+													type="button"
+													className="hover:text-cdms_primary"
+												>
 													<IconSettings />
 												</button>
 											</Tippy>
 										</div>
 										<div>
 											<Tippy content="Help">
-												<button type="button" className="hover:text-primary">
+												<button
+													type="button"
+													className="hover:text-cdms_primary"
+												>
 													<IconHelpCircle className="w-6 h-6" />
 												</button>
 											</Tippy>
@@ -1950,8 +1956,10 @@ const Mailbox = () => {
 																	<Tippy content="Important">
 																		<button
 																			type="button"
-																			className={`enabled:hover:text-primary disabled:opacity-60 rotate-90 flex items-center ${
-																				mail.isImportant ? "text-primary" : ""
+																			className={`enabled:hover:text-cdms_primary disabled:opacity-60 rotate-90 flex items-center ${
+																				mail.isImportant
+																					? "text-cdms_primary"
+																					: ""
 																			}`}
 																			onClick={(e) => {
 																				e.stopPropagation();
@@ -2036,7 +2044,7 @@ const Mailbox = () => {
 								<div className="flex items-center">
 									<button
 										type="button"
-										className="ltr:mr-2 rtl:ml-2 hover:text-primary"
+										className="ltr:mr-2 rtl:ml-2 hover:text-cdms_primary"
 										onClick={() => setSelectedMail(null)}
 									>
 										<IconArrowLeft className="w-5 h-5 rotate-180" />
@@ -2114,7 +2122,7 @@ const Mailbox = () => {
 												<Dropdown
 													offset={[0, 5]}
 													placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-													btnClassName="hover:text-primary flex items-center"
+													btnClassName="hover:text-cdms_primary flex items-center"
 													button={<IconCaretDown className="w-5 h-5" />}
 												>
 													<ul className="sm:w-56">
@@ -2189,8 +2197,8 @@ const Mailbox = () => {
 											<Tippy content="Important">
 												<button
 													type="button"
-													className={`enabled:hover:text-primary disabled:opacity-60 ${
-														selectedMail.isImportant ? "text-primary" : ""
+													className={`enabled:hover:text-cdms_primary disabled:opacity-60 ${
+														selectedMail.isImportant ? "text-cdms_primary" : ""
 													}`}
 													onClick={() => setImportant(selectedMail.id)}
 													disabled={selectedTab === "trash"}
@@ -2245,7 +2253,7 @@ const Mailbox = () => {
 														<button
 															key={i}
 															type="button"
-															className="flex items-center ltr:mr-4 rtl:ml-4 mb-4 border border-white-light dark:border-[#1b2e4b] rounded-md hover:text-primary hover:border-primary transition-all duration-300 px-4 py-2.5 relative group"
+															className="flex items-center ltr:mr-4 rtl:ml-4 mb-4 border border-white-light dark:border-[#1b2e4b] rounded-md hover:text-cdms_primary hover:border-cdms_primary transition-all duration-300 px-4 py-2.5 relative group"
 														>
 															{attachment.type === "image" && <IconGallery />}
 															{attachment.type === "folder" && <IconFolder />}
@@ -2257,7 +2265,7 @@ const Mailbox = () => {
 																)}
 
 															<div className="ltr:ml-3 rtl:mr-3">
-																<p className="text-xs text-primary font-semibold">
+																<p className="text-xs text-cdms_primary font-semibold">
 																	{attachment.name}
 																</p>
 																<p className="text-[11px] text-gray-400 dark:text-gray-600">
@@ -2284,7 +2292,7 @@ const Mailbox = () => {
 							<div className="py-4 px-6 flex items-center">
 								<button
 									type="button"
-									className="xl:hidden hover:text-primary block ltr:mr-3 rtl:ml-3"
+									className="xl:hidden hover:text-cdms_primary block ltr:mr-3 rtl:ml-3"
 									onClick={() => setIsShowMailMenu(!isShowMailMenu)}
 								>
 									<IconMenu />

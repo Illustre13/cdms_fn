@@ -167,7 +167,7 @@ const Notification = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Components
 					</Link>
 				</li>
@@ -176,7 +176,7 @@ const Notification = () => {
 				</li>
 			</ul>
 			<div className="pt-5 space-y-8">
-				<div className="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
+				<div className="panel p-3 flex items-center text-cdms_primary overflow-x-auto whitespace-nowrap">
 					<div className="ring-2 ring-primary/30 rounded-full bg-cdms_primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
 						<IconBell />
 					</div>

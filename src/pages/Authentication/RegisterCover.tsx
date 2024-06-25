@@ -102,7 +102,7 @@ const RegisterCover = () => {
 								<Dropdown
 									offset={[0, 8]}
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-									btnClassName="flex items-center gap-2.5 rounded-lg border border-white-dark/30 bg-white px-2 py-1.5 text-white-dark hover:border-primary hover:text-primary dark:bg-black"
+									btnClassName="flex items-center gap-2.5 rounded-lg border border-white-dark/30 bg-white px-2 py-1.5 text-white-dark hover:border-cdms_primary hover:text-cdms_primary dark:bg-black"
 									button={
 										<>
 											<div>
@@ -127,9 +127,9 @@ const RegisterCover = () => {
 												<li key={item.code}>
 													<button
 														type="button"
-														className={`flex w-full hover:text-primary rounded-lg ${
+														className={`flex w-full hover:text-cdms_primary rounded-lg ${
 															flag === item.code
-																? "bg-cdms_primary/10 text-primary"
+																? "bg-cdms_primary/10 text-cdms_primary"
 																: ""
 														}`}
 														onClick={() => {
@@ -156,7 +156,7 @@ const RegisterCover = () => {
 						</div>
 						<div className="w-full max-w-[440px] lg:mt-16">
 							<div className="mb-10">
-								<h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">
+								<h1 className="text-3xl font-extrabold uppercase !leading-snug text-cdms_primary md:text-4xl">
 									Sign Up
 								</h1>
 								<p className="text-base font-bold leading-normal text-white-dark">
@@ -287,7 +287,7 @@ const RegisterCover = () => {
 								Already have an account ?&nbsp;
 								<Link
 									to="/auth/cover-login"
-									className="uppercase text-primary underline transition hover:text-black dark:hover:text-white"
+									className="uppercase text-cdms_primary underline transition hover:text-black dark:hover:text-white"
 								>
 									SIGN IN
 								</Link>

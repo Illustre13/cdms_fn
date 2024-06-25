@@ -29,7 +29,7 @@ const Counter = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Components
 					</Link>
 				</li>
@@ -38,7 +38,7 @@ const Counter = () => {
 				</li>
 			</ul>
 			<div className="pt-5 space-y-8">
-				<div className="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
+				<div className="panel p-3 flex items-center text-cdms_primary overflow-x-auto whitespace-nowrap">
 					<div className="ring-2 ring-primary/30 rounded-full bg-cdms_primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
 						<IconBell />
 					</div>
@@ -76,7 +76,7 @@ const Counter = () => {
 										start={0}
 										end={710}
 										duration={7}
-										className="text-primary text-xl sm:text-3xl text-center"
+										className="text-cdms_primary text-xl sm:text-3xl text-center"
 									></CountUp>
 								</div>
 								<h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
@@ -89,7 +89,7 @@ const Counter = () => {
 										start={0}
 										end={915}
 										duration={7}
-										className="text-primary text-xl sm:text-3xl text-center"
+										className="text-cdms_primary text-xl sm:text-3xl text-center"
 									></CountUp>
 								</div>
 								<h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
@@ -102,7 +102,7 @@ const Counter = () => {
 										start={0}
 										end={580}
 										duration={7}
-										className="text-primary text-xl sm:text-3xl text-center"
+										className="text-cdms_primary text-xl sm:text-3xl text-center"
 									></CountUp>
 								</div>
 								<h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
@@ -118,19 +118,19 @@ const Counter = () => {
 <div className="mb-5 grid grid-cols-3 justify-items-center gap-3 max-w-[900px] mx-auto">
     <div>
         <div className="w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-white-light dark:border-[#1b2e4b] flex justify-center flex-col">
-            <CountUp start={0} end={710} duration={7} className="text-primary text-xl sm:text-3xl text-center"></CountUp>
+            <CountUp start={0} end={710} duration={7} className="text-cdms_primary text-xl sm:text-3xl text-center"></CountUp>
         </div>
         <h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">HOURS</h4>
     </div>
     <div>
         <div className="w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-white-light dark:border-[#1b2e4b] flex justify-center flex-col">
-            <CountUp start={0} end={915} duration={7} className="text-primary text-xl sm:text-3xl text-center"></CountUp>
+            <CountUp start={0} end={915} duration={7} className="text-cdms_primary text-xl sm:text-3xl text-center"></CountUp>
         </div>
         <h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">TICKETS</h4>
     </div>
     <div>
         <div className="w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-white-light dark:border-[#1b2e4b] flex justify-center flex-col">
-            <CountUp start={0} end={580} duration={7} className="text-primary text-xl sm:text-3xl text-center"></CountUp>
+            <CountUp start={0} end={580} duration={7} className="text-cdms_primary text-xl sm:text-3xl text-center"></CountUp>
         </div>
         <h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">CUSTOMERS</h4>
     </div>
@@ -163,11 +163,11 @@ const Counter = () => {
 										start={0}
 										end={105}
 										duration={7}
-										className="text-primary text-xl sm:text-3xl text-center"
+										className="text-cdms_primary text-xl sm:text-3xl text-center"
 									></CountUp>
 								</div>
 								<h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
-									<IconUsers className="sm:w-6 sm:h-6 text-primary mx-auto mb-2" />
+									<IconUsers className="sm:w-6 sm:h-6 text-cdms_primary mx-auto mb-2" />
 									Clients
 								</h4>
 							</div>
@@ -177,11 +177,11 @@ const Counter = () => {
 										start={0}
 										end={300}
 										duration={7}
-										className="text-primary text-xl sm:text-3xl text-center"
+										className="text-cdms_primary text-xl sm:text-3xl text-center"
 									></CountUp>
 								</div>
 								<h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
-									<IconCloudDownload className="sm:w-6 sm:h-6 text-primary mx-auto mb-2" />
+									<IconCloudDownload className="sm:w-6 sm:h-6 text-cdms_primary mx-auto mb-2" />
 									Downloads
 								</h4>
 							</div>
@@ -191,11 +191,11 @@ const Counter = () => {
 										start={0}
 										end={58}
 										duration={7}
-										className="text-primary text-xl sm:text-3xl text-center"
+										className="text-cdms_primary text-xl sm:text-3xl text-center"
 									></CountUp>
 								</div>
 								<h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
-									<IconAward className="sm:w-6 sm:h-6 text-primary mx-auto mb-2" />
+									<IconAward className="sm:w-6 sm:h-6 text-cdms_primary mx-auto mb-2" />
 									Awards
 								</h4>
 							</div>
@@ -208,7 +208,7 @@ const Counter = () => {
 <div className="mb-5 grid grid-cols-3 justify-items-center gap-3 max-w-[900px] mx-auto">
     <div>
         <div className="w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-white-light dark:border-[#1b2e4b] flex justify-center flex-col">
-            <CountUp start={0} end={105} duration={7} className="text-primary text-xl sm:text-3xl text-center"></CountUp>
+            <CountUp start={0} end={105} duration={7} className="text-cdms_primary text-xl sm:text-3xl text-center"></CountUp>
         </div>
         <h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
             <svg>...</svg>
@@ -217,7 +217,7 @@ const Counter = () => {
     </div>
     <div>
         <div className="w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-white-light dark:border-[#1b2e4b] flex justify-center flex-col">
-            <CountUp start={0} end={300} duration={7} className="text-primary text-xl sm:text-3xl text-center"></CountUp>
+            <CountUp start={0} end={300} duration={7} className="text-cdms_primary text-xl sm:text-3xl text-center"></CountUp>
         </div>
         <h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
         <svg>...</svg>
@@ -226,7 +226,7 @@ const Counter = () => {
     </div>
     <div>
         <div className="w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-white-light dark:border-[#1b2e4b] flex justify-center flex-col">
-            <CountUp start={0} end={58} duration={7} className="text-primary text-xl sm:text-3xl text-center"></CountUp>
+            <CountUp start={0} end={58} duration={7} className="text-cdms_primary text-xl sm:text-3xl text-center"></CountUp>
         </div>
         <h4 className="text-[#3b3f5c] text-xs sm:text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
         <svg>...</svg>

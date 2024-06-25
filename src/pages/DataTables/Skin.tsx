@@ -681,7 +681,7 @@ const Skin = () => {
 
 	return (
 		<div className="space-y-6">
-			<div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
+			<div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-cdms_primary">
 				<div className="rounded-full bg-cdms_primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
 					<IconBell />
 				</div>

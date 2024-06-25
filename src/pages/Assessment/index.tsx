@@ -468,12 +468,15 @@ const Assessment = () => {
 			<div>
 				<ul className="flex space-x-2 rtl:space-x-reverse">
 					<li>
-						<Link to="/dashboard" className="text-primary hover:underline">
+						<Link to="/dashboard" className="text-cdms_primary hover:underline">
 							Dashboard
 						</Link>
 					</li>
 					<li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-						<Link to="/cna/overview" className="text-primary hover:underline">
+						<Link
+							to="/cna/overview"
+							className="text-cdms_primary hover:underline"
+						>
 							CNA
 						</Link>
 					</li>
@@ -495,8 +498,10 @@ const Assessment = () => {
 						<li className="inline-block">
 							<button
 								onClick={() => toggleTabs("home")}
-								className={`flex gap-2 p-4 border-b border-transparent hover:border-primary hover:text-primary ${
-									tabs === "home" ? "!border-primary text-primary" : ""
+								className={`flex gap-2 p-4 border-b border-transparent hover:border-cdms_primary hover:text-cdms_primary ${
+									tabs === "home"
+										? "!border-cdms_primary text-cdms_primary"
+										: ""
 								}`}
 							>
 								<IconHome />
@@ -506,9 +511,9 @@ const Assessment = () => {
 						<li className="inline-block">
 							<button
 								onClick={() => toggleTabs("payment-details")}
-								className={`flex gap-2 p-4 border-b border-transparent hover:border-primary hover:text-primary ${
+								className={`flex gap-2 p-4 border-b border-transparent hover:border-cdms_primary hover:text-cdms_primary ${
 									tabs === "payment-details"
-										? "!border-primary text-primary"
+										? "!border-cdms_primary text-cdms_primary"
 										: ""
 								}`}
 							>
@@ -536,7 +541,7 @@ const Assessment = () => {
 									<button
 										type="button"
 										className={`btn btn-outline-primary p-2 ${
-											value === "list" && "bg-primary text-white"
+											value === "list" && "cdms_primary"
 										}`}
 										onClick={() => setValue("list")}
 									>
@@ -547,7 +552,7 @@ const Assessment = () => {
 									<button
 										type="button"
 										className={`btn btn-outline-primary p-2 ${
-											value === "grid" && "bg-primary text-white"
+											value === "grid" && "cdms_primary text-white"
 										}`}
 										onClick={() => setValue("grid")}
 									>
@@ -565,7 +570,7 @@ const Assessment = () => {
 								/>
 								<button
 									type="button"
-									className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-primary"
+									className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary"
 								>
 									<IconSearch className="mx-auto" />
 								</button>
@@ -580,11 +585,11 @@ const Assessment = () => {
 										<button
 											type="button"
 											className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-												active === "1" ? "!text-primary" : ""
+												active === "1" ? "!text-cdms_primary" : ""
 											}`}
 											onClick={() => togglePara2("1")}
 										>
-											<IconAirplay className="ltr:mr-2 rtl:ml-2 text-primary shrink-0" />
+											<IconAirplay className="ltr:mr-2 rtl:ml-2 text-cdms_primary shrink-0" />
 											Upcoming Assessment
 											<div
 												className={`ltr:ml-auto rtl:mr-auto ${
@@ -612,11 +617,11 @@ const Assessment = () => {
 										<button
 											type="button"
 											className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-												active === "2" ? "!text-primary" : ""
+												active === "2" ? "!text-cdms_primary" : ""
 											}`}
 											onClick={() => togglePara2("2")}
 										>
-											<IconBox className="ltr:mr-2 rtl:ml-2 text-primary shrink-0" />
+											<IconBox className="ltr:mr-2 rtl:ml-2 text-cdms_primary shrink-0" />
 											Ongoing Assessment
 											<div
 												className={`ltr:ml-auto rtl:mr-auto ${
@@ -643,11 +648,11 @@ const Assessment = () => {
 										<button
 											type="button"
 											className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-												active === "3" ? "!text-primary" : ""
+												active === "3" ? "!text-cdms_primary" : ""
 											}`}
 											onClick={() => togglePara2("3")}
 										>
-											<IconLayout className="ltr:mr-2 rtl:ml-2 text-primary shrink-0" />
+											<IconLayout className="ltr:mr-2 rtl:ml-2 text-cdms_primary shrink-0" />
 											Past Assessement
 											<div
 												className={`ltr:ml-auto rtl:mr-auto ${
@@ -685,7 +690,7 @@ const Assessment = () => {
 									<button
 										type="button"
 										className={`btn btn-outline-primary p-2 ${
-											value === "list" && "bg-primary text-white"
+											value === "list" && "cdms_primary text-white"
 										}`}
 										onClick={() => setValue("list")}
 									>
@@ -696,7 +701,7 @@ const Assessment = () => {
 									<button
 										type="button"
 										className={`btn btn-outline-primary p-2 ${
-											value === "grid" && "bg-primary text-white"
+											value === "grid" && "cdms_primary text-white"
 										}`}
 										onClick={() => setValue("grid")}
 									>
@@ -714,7 +719,7 @@ const Assessment = () => {
 								/>
 								<button
 									type="button"
-									className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-primary"
+									className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary"
 								>
 									<IconSearch className="mx-auto" />
 								</button>
@@ -729,11 +734,11 @@ const Assessment = () => {
 										<button
 											type="button"
 											className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-												active === "1" ? "!text-primary" : ""
+												active === "1" ? "!text-cdms_primary" : ""
 											}`}
 											onClick={() => togglePara2("1")}
 										>
-											<IconAirplay className="ltr:mr-2 rtl:ml-2 text-primary shrink-0" />
+											<IconAirplay className="ltr:mr-2 rtl:ml-2 text-cdms_primary shrink-0" />
 											Upcoming Assessment
 											<div
 												className={`ltr:ml-auto rtl:mr-auto ${
@@ -761,11 +766,11 @@ const Assessment = () => {
 										<button
 											type="button"
 											className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-												active === "2" ? "!text-primary" : ""
+												active === "2" ? "!text-cdms_primary" : ""
 											}`}
 											onClick={() => togglePara2("2")}
 										>
-											<IconBox className="ltr:mr-2 rtl:ml-2 text-primary shrink-0" />
+											<IconBox className="ltr:mr-2 rtl:ml-2 text-cdms_primary shrink-0" />
 											Ongoing Assessment
 											<div
 												className={`ltr:ml-auto rtl:mr-auto ${
@@ -792,11 +797,11 @@ const Assessment = () => {
 										<button
 											type="button"
 											className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-												active === "3" ? "!text-primary" : ""
+												active === "3" ? "!text-cdms_primary" : ""
 											}`}
 											onClick={() => togglePara2("3")}
 										>
-											<IconLayout className="ltr:mr-2 rtl:ml-2 text-primary shrink-0" />
+											<IconLayout className="ltr:mr-2 rtl:ml-2 text-cdms_primary shrink-0" />
 											Past Assessement
 											<div
 												className={`ltr:ml-auto rtl:mr-auto ${

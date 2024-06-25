@@ -501,12 +501,15 @@ const OverView = () => {
 			<div>
 				<ul className="flex space-x-2 rtl:space-x-reverse">
 					<li>
-						<Link to="/dashboard" className="text-primary hover:underline">
+						<Link to="/dashboard" className="text-cdms_primary hover:underline">
 							Dashboard
 						</Link>
 					</li>
 					<li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-						<Link to="/cna/overview" className="text-primary hover:underline">
+						<Link
+							to="/cna/overview"
+							className="text-cdms_primary hover:underline"
+						>
 							CNA
 						</Link>
 					</li>

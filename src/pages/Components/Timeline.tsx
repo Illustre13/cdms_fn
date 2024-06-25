@@ -27,7 +27,7 @@ const Timeline = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Components
 					</Link>
 				</li>
@@ -63,7 +63,7 @@ const Timeline = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="text-primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">
+								<h4 className="text-cdms_primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">
 									Laurie Fox
 								</h4>
 								<p className="text-center ltr:sm:text-left rtl:sm:text-right">
@@ -119,7 +119,7 @@ const Timeline = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="text-primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">
+								<h4 className="text-cdms_primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">
 									Justin Cross
 								</h4>
 								<p className="text-center ltr:sm:text-left rtl:sm:text-right">
@@ -165,7 +165,7 @@ const Timeline = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="text-primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">
+								<h4 className="text-cdms_primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">
 									Laurie Fox
 								</h4>
 								<p className="text-center ltr:sm:text-left rtl:sm:text-right">
@@ -223,7 +223,7 @@ const Timeline = () => {
             <img src="/assets/images/profile-16.jpeg" alt="img" className="w-12 h-12 mx-auto rounded-full shadow-[0_4px_9px_0_rgba(31,45,61,0.31)]" />
         </div>
         <div className="flex-1">
-            <h4 className="text-primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">Laurie Fox</h4>
+            <h4 className="text-cdms_primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">Laurie Fox</h4>
             <p className="text-center ltr:sm:text-left rtl:sm:text-right">5 sec</p>
             <div className="mt-4 sm:mt-7 mb-16">
                 <svg>...</svg>
@@ -267,7 +267,7 @@ const Timeline = () => {
             <img src="/assets/images/profile-7.jpeg" alt="img" className="w-12 h-12 mx-auto rounded-full shadow-[0_4px_9px_0_rgba(31,45,61,0.31)]" />
         </div>
         <div className="flex-1">
-            <h4 className="text-primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">Justin Cross</h4>
+            <h4 className="text-cdms_primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">Justin Cross</h4>
             <p className="text-center ltr:sm:text-left rtl:sm:text-right">45 min</p>
             <div className="mt-4 sm:mt-7 mb-16">
                 <svg>...</svg>
@@ -301,7 +301,7 @@ const Timeline = () => {
             <img src="/assets/images/profile-16.jpeg" alt="img" className="w-12 h-12 mx-auto rounded-full shadow-[0_4px_9px_0_rgba(31,45,61,0.31)]" />
         </div>
         <div className="flex-1">
-            <h4 className="text-primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">Laurie Fox</h4>
+            <h4 className="text-cdms_primary text-xl font-bold text-center ltr:sm:text-left rtl:sm:text-right">Laurie Fox</h4>
             <p className="text-center ltr:sm:text-left rtl:sm:text-right">5 sec</p>
             <div className="mt-4 sm:mt-7 mb-16">
                 <svg>...</svg>
@@ -402,7 +402,7 @@ const Timeline = () => {
 										/>
 									</div>
 									<div className="p-5">
-										<h4 className="mb-3 text-primary text-lg font-semibold">
+										<h4 className="mb-3 text-cdms_primary text-lg font-semibold">
 											Web Development
 										</h4>
 										<p className="mb-3 text-white-dark">
@@ -505,7 +505,7 @@ const Timeline = () => {
                 <img src="/assets/images/menu-heade.jpg" alt="timeline" className="w-full rounded-t-md" />
             </div>
             <div className="p-5">
-                <h4 className="mb-3 text-primary text-lg font-semibold">Web Development</h4>
+                <h4 className="mb-3 text-cdms_primary text-lg font-semibold">Web Development</h4>
                 <p className="mb-3 text-white-dark">
                     Map where your photos were taken and discover local points of interest. Map where your photos. Map where your photos were taken and discover.
                 </p>
@@ -584,7 +584,7 @@ const Timeline = () => {
 								<p className="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">
 									10:00
 								</p>
-								<div className="relative before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-primary before:rounded-full after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-primary after:rounded-full"></div>
+								<div className="relative before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-cdms_primary before:rounded-full after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-cdms_primary after:rounded-full"></div>
 								<div className="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
 									<p className="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">
 										Updated Server Logs
@@ -598,7 +598,7 @@ const Timeline = () => {
 								<p className="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">
 									12:45
 								</p>
-								<div className="relative before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-secondary before:rounded-full after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-secondary after:rounded-full"></div>
+								<div className="relative before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-cdms_secondary before:rounded-full after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-cdms_secondary after:rounded-full"></div>
 								<div className="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
 									<p className="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">
 										Backup Files EOD
@@ -673,7 +673,7 @@ const Timeline = () => {
     <div className="max-w-[900px] mx-auto">
         <div className="flex">
             <p className="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">10:00</p>
-            <div className="relative before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-primary before:rounded-full after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-primary after:rounded-full"></div>
+            <div className="relative before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-cdms_primary before:rounded-full after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-cdms_primary after:rounded-full"></div>
             <div className="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
                 <p className="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">Updated Server Logs</p>
                 <p className="text-white-dark text-xs font-bold self-center min-w-[100px] max-w-[100px]">25 mins ago</p>
@@ -681,7 +681,7 @@ const Timeline = () => {
         </div>
         <div className="flex">
             <p className="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">12:45</p>
-            <div className="relative before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-secondary before:rounded-full after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-secondary after:rounded-full"></div>
+            <div className="relative before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-cdms_secondary before:rounded-full after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-cdms_secondary after:rounded-full"></div>
             <div className="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
                 <p className="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">Backup Files EOD</p>
                 <p className="text-white-dark text-xs font-bold self-center min-w-[100px] max-w-[100px]">2 hrs ago</p>

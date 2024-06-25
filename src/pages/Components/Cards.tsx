@@ -27,7 +27,7 @@ const Cards = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Components
 					</Link>
 				</li>
@@ -506,7 +506,7 @@ const Cards = () => {
 								<h6 className="text-black font-semibold text-base dark:text-white-light">
 									Placed Order
 								</h6>
-								<span className="badge bg-cdms_primary/10 text-primary py-1.5 dark:bg-cdms_primary dark:text-white">
+								<span className="badge bg-cdms_primary/10 text-cdms_primary py-1.5 dark:bg-cdms_primary dark:text-white">
 									IN PROGRESS
 								</span>
 							</div>
@@ -526,12 +526,12 @@ const Cards = () => {
 									src="/assets/images/profile-34.jpeg"
 									alt="profile"
 								/>
-								<span className="bg-white rounded-full px-2 py-1 text-primary text-xs shadow-[0_0_20px_0_#d0d0d0] dark:shadow-none dark:bg-black dark:text-white">
+								<span className="bg-white rounded-full px-2 py-1 text-cdms_primary text-xs shadow-[0_0_20px_0_#d0d0d0] dark:shadow-none dark:bg-black dark:text-white">
 									+5 more
 								</span>
 							</div>
 							<div className="text-right">
-								<span className="text-primary font-semibold">60%</span>
+								<span className="text-cdms_primary font-semibold">60%</span>
 								<div className="bg-[#ebedf2] dark:bg-black rounded-full w-full h-1.5 mt-1.5">
 									<div
 										className="rounded-full bg-cdms_primary h-full"
@@ -548,7 +548,7 @@ const Cards = () => {
 <div className="max-w-[24rem] w-full bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-white-light dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none p-5">
     <div className="flex justify-between mb-5">
         <h6 className="text-black font-semibold text-base dark:text-white-light">Placed Order</h6>
-        <span className="badge bg-cdms_primary/10 text-primary py-1.5 dark:bg-cdms_primary dark:text-white">IN PROGRESS</span>
+        <span className="badge bg-cdms_primary/10 text-cdms_primary py-1.5 dark:bg-cdms_primary dark:text-white">IN PROGRESS</span>
     </div>
     <div className="flex items-center justify-start -space-x-3 rtl:space-x-reverse mb-5">
         <img
@@ -566,10 +566,10 @@ const Cards = () => {
             src="/assets/images/profile-34.jpeg"
             alt="profile"
         />
-        <span className="bg-white rounded-full px-2 py-1 text-primary text-xs shadow-[0_0_20px_0_#d0d0d0] dark:shadow-none dark:bg-black dark:text-white">+5 more</span>
+        <span className="bg-white rounded-full px-2 py-1 text-cdms_primary text-xs shadow-[0_0_20px_0_#d0d0d0] dark:shadow-none dark:bg-black dark:text-white">+5 more</span>
     </div>
     <div className="text-right">
-        <span className="text-primary font-semibold">60%</span>
+        <span className="text-cdms_primary font-semibold">60%</span>
         <div className="bg-[#ebedf2] dark:bg-black rounded-full w-full h-1.5 mt-1.5">
             <div className="rounded-full bg-cdms_primary h-full" style={{ width: '60%' }}></div>
         </div>
@@ -607,7 +607,7 @@ const Cards = () => {
 										className="w-full h-full object-cover"
 									/>
 								</div>
-								<p className="text-primary text-xs mb-1.5 font-bold">
+								<p className="text-cdms_primary text-xs mb-1.5 font-bold">
 									25 Sep 2020
 								</p>
 								<h5 className="text-[#3b3f5c] text-[15px] font-bold mb-4 dark:text-white-light">
@@ -629,11 +629,11 @@ const Cards = () => {
 										</div>
 									</div>
 									<div className="flex font-semibold">
-										<div className="text-primary flex items-center ltr:mr-3 rtl:ml-3">
+										<div className="text-cdms_primary flex items-center ltr:mr-3 rtl:ml-3">
 											<IconHeart className="w-4 h-4 ltr:mr-1 rtl:ml-1" />
 											51
 										</div>
-										<div className="text-primary flex items-center">
+										<div className="text-cdms_primary flex items-center">
 											<IconEye className="w-4 h-4 ltr:mr-1 rtl:ml-1" />
 											250
 										</div>
@@ -651,7 +651,7 @@ const Cards = () => {
             <div className="-mt-7 mb-7 -mx-6 rounded-tl rounded-tr h-[260px] overflow-hidden">
                 <img src="/assets/images/profile-28.jpeg" alt="profile" className="w-full h-full object-cover" />
             </div>
-            <p className="text-primary text-xs mb-1.5 font-bold">25 Sep 2020</p>
+            <p className="text-cdms_primary text-xs mb-1.5 font-bold">25 Sep 2020</p>
             <h5 className="text-[#3b3f5c] text-[15px] font-bold mb-4 dark:text-white-light">How to Start a Blog in 5 Easy Steps.</h5>
             <p className="text-white-dark ">Vestibulum vestibulum tortor ut eros tincidunt, ut rutrum elit volutpat.</p>
             <div className="relative flex justify-between mt-6 pt-4 before:w-[250px] before:h-[1px] before:bg-white-light before:inset-x-0 before:top-0 before:absolute before:mx-auto dark:before:bg-[#1b2e4b]">
@@ -662,11 +662,11 @@ const Cards = () => {
                     <div className="text-[#515365] dark:text-white-dark">Luke Ivory</div>
                 </div>
                 <div className="flex font-semibold">
-                    <div className="text-primary flex items-center ltr:mr-3 rtl:ml-3">
+                    <div className="text-cdms_primary flex items-center ltr:mr-3 rtl:ml-3">
                         <svg>...</svg>
                         51
                     </div>
-                    <div className="text-primary flex items-center">
+                    <div className="text-cdms_primary flex items-center">
                         <svg>...</svg>
                         250
                     </div>

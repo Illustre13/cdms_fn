@@ -70,7 +70,7 @@ const LightBox = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Components
 					</Link>
 				</li>
@@ -79,7 +79,7 @@ const LightBox = () => {
 				</li>
 			</ul>
 			<div className="pt-5 space-y-8">
-				<div className="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
+				<div className="panel p-3 flex items-center text-cdms_primary overflow-x-auto whitespace-nowrap">
 					<div className="ring-2 ring-primary/30 rounded-full bg-cdms_primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
 						<IconBell />
 					</div>
@@ -112,7 +112,7 @@ const LightBox = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg text-primary">
+								<h4 className="font-semibold text-lg text-cdms_primary">
 									All controls
 								</h4>
 								<p className="media-text">
@@ -133,7 +133,9 @@ const LightBox = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg text-primary">Minimal</h4>
+								<h4 className="font-semibold text-lg text-cdms_primary">
+									Minimal
+								</h4>
 								<p className="media-text">
 									No caption, no slideshow, no thumbnails, no fullscreen, tap to
 									close

@@ -770,7 +770,7 @@ const Charts = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse mb-6">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Dashboard
 					</Link>
 				</li>
@@ -780,7 +780,7 @@ const Charts = () => {
 			</ul>
 
 			<div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-				<div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary lg:col-span-2">
+				<div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-cdms_primary lg:col-span-2">
 					<div className="rounded-full bg-cdms_primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
 						<IconBell />
 					</div>

@@ -333,7 +333,7 @@ const Contacts = () => {
 						/>
 						<button
 							type="button"
-							className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-primary"
+							className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary"
 						>
 							<IconSearch className="mx-auto" />
 						</button>

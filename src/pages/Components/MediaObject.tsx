@@ -40,7 +40,7 @@ const MediaObject = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Components
 					</Link>
 				</li>
@@ -76,7 +76,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text">
@@ -97,7 +97,7 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-16 h-16 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -130,7 +130,7 @@ const MediaObject = () => {
 					<div className="mb-5">
 						<div className="flex">
 							<div className="flex-1 ltr:mr-4 rtl:ml-4">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text">
@@ -155,7 +155,7 @@ const MediaObject = () => {
 								{`<div className="mb-5">
     <div className="flex">
         <div className="flex-1 ltr:mr-4 rtl:ml-4">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -199,7 +199,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text">
@@ -223,7 +223,7 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-16 h-16 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque. Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus
@@ -263,7 +263,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text">
@@ -287,7 +287,7 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-16 h-16 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque. Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus
@@ -326,7 +326,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text">
@@ -350,7 +350,7 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-16 h-16 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque. Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus
@@ -382,7 +382,7 @@ const MediaObject = () => {
 					<div className="mb-5">
 						<div className="flex">
 							<div className="flex-1 ltr:mr-4 rtl:ml-4 ltr:text-right rtl:text-left">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text">
@@ -410,7 +410,7 @@ const MediaObject = () => {
 								{`<div className="mb-5">
     <div className="flex">
         <div className="flex-1 ltr:mr-4 rtl:ml-4 ltr:text-right rtl:text-left">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque. Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus
@@ -454,7 +454,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text">
@@ -474,7 +474,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text">
@@ -494,7 +494,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text">
@@ -515,7 +515,7 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-14 h-14 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -527,7 +527,7 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-14 h-14 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -539,7 +539,7 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-14 h-14 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -579,7 +579,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text mb-5">
@@ -597,7 +597,7 @@ const MediaObject = () => {
 										/>
 									</div>
 									<div className="flex-1">
-										<h4 className="font-semibold text-lg mb-2 text-primary">
+										<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 											Heading
 										</h4>
 										<p className="media-text">
@@ -620,7 +620,7 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-14 h-14 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text mb-5">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -630,7 +630,7 @@ const MediaObject = () => {
                     <img src="/assets/images/profile-5.jpeg" alt="img" className="w-14 h-14 rounded" />
                 </div>
                 <div className="flex-1">
-                    <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+                    <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
                     <p className="media-text">
                         Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum,
                         rutrum neque eu, gravida neque.
@@ -672,7 +672,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text mb-4">
@@ -683,17 +683,17 @@ const MediaObject = () => {
 								</p>
 								<ul className="flex space-x-4 rtl:space-x-reverse font-bold">
 									<li>
-										<button type="button" className="hover:text-primary">
+										<button type="button" className="hover:text-cdms_primary">
 											Reply
 										</button>
 									</li>
 									<li>
-										<button type="button" className="hover:text-primary">
+										<button type="button" className="hover:text-cdms_primary">
 											Edit
 										</button>
 									</li>
 									<li>
-										<button type="button" className="hover:text-primary">
+										<button type="button" className="hover:text-cdms_primary">
 											Delete
 										</button>
 									</li>
@@ -710,24 +710,24 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-14 h-14 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text mb-4">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
             </p>
             <ul className="flex space-x-4 rtl:space-x-reverse font-bold">
                 <li>
-                    <button type="button" className="hover:text-primary">
+                    <button type="button" className="hover:text-cdms_primary">
                         Reply
                     </button>
                 </li>
                 <li>
-                    <button type="button" className="hover:text-primary">
+                    <button type="button" className="hover:text-cdms_primary">
                         Edit
                     </button>
                 </li>
                 <li>
-                    <button type="button" className="hover:text-primary">
+                    <button type="button" className="hover:text-cdms_primary">
                         Delete
                     </button>
                 </li>
@@ -767,7 +767,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 								</h4>
 								<p className="media-text mb-4">
@@ -780,7 +780,7 @@ const MediaObject = () => {
 									<li>
 										<button
 											type="button"
-											className="flex items-center hover:text-primary"
+											className="flex items-center hover:text-cdms_primary"
 										>
 											<IconMessageDots className="w-4 h-4 ltr:mr-1 rtl:ml-1" />
 											Reply
@@ -789,7 +789,7 @@ const MediaObject = () => {
 									<li>
 										<button
 											type="button"
-											className="flex items-center hover:text-primary"
+											className="flex items-center hover:text-cdms_primary"
 										>
 											<IconPencil className="w-3.5 h-3.5 ltr:mr-1 rtl:ml-1" />
 											Edit
@@ -798,7 +798,7 @@ const MediaObject = () => {
 									<li>
 										<button
 											type="button"
-											className="flex items-center hover:text-primary"
+											className="flex items-center hover:text-cdms_primary"
 										>
 											<IconTrashLines className="w-4 h-4 ltr:mr-1 rtl:ml-1" />
 											Delete
@@ -817,26 +817,26 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-14 h-14 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">Heading</h4>
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">Heading</h4>
             <p className="media-text mb-4">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
             </p>
             <ul className="flex space-x-4 rtl:space-x-reverse font-bold">
                 <li>
-                    <button type="button" className="flex items-center hover:text-primary">
+                    <button type="button" className="flex items-center hover:text-cdms_primary">
                         <svg>...</svg>
                         Reply
                     </button>
                 </li>
                 <li>
-                    <button type="button" className="flex items-center hover:text-primary">
+                    <button type="button" className="flex items-center hover:text-cdms_primary">
                         <svg>...</svg>
                         Edit
                     </button>
                 </li>
                 <li>
-                    <button type="button" className="flex items-center hover:text-primary">
+                    <button type="button" className="flex items-center hover:text-cdms_primary">
                         <svg>...</svg>
                         Delete
                     </button>
@@ -877,7 +877,7 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg mb-2 text-primary">
+								<h4 className="font-semibold text-lg mb-2 text-cdms_primary">
 									Heading
 									<span className="badge bg-cdms_primary ltr:float-right rtl:float-left">
 										Web Designer
@@ -901,7 +901,7 @@ const MediaObject = () => {
             <img src="/assets/images/profile-5.jpeg" alt="img" className="w-14 h-14 rounded" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg mb-2 text-primary">
+            <h4 className="font-semibold text-lg mb-2 text-cdms_primary">
                 Heading
                 <span className="badge bg-cdms_primary ltr:float-right rtl:float-left">Web Designer</span>
             </h4>
@@ -945,7 +945,7 @@ const MediaObject = () => {
 							</div>
 							<div className="flex-1">
 								<div className="flex justify-between mb-2">
-									<h4 className="font-semibold text-lg text-primary">
+									<h4 className="font-semibold text-lg text-cdms_primary">
 										Heading{" "}
 									</h4>
 									<div className="dropdown">
@@ -1001,7 +1001,7 @@ const MediaObject = () => {
         </div>
         <div className="flex-1">
             <div className="flex justify-between mb-2">
-                <h4 className="font-semibold text-lg text-primary">Heading </h4>
+                <h4 className="font-semibold text-lg text-cdms_primary">Heading </h4>
                 <div className="dropdown">
                     <Dropdown
                         offset={[0, 5]}
@@ -1069,7 +1069,9 @@ const MediaObject = () => {
 								<IconXCircle className="w-7 h-7 text-danger" />
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg text-primary">Heading </h4>
+								<h4 className="font-semibold text-lg text-cdms_primary">
+									Heading{" "}
+								</h4>
 								<p className="media-text">
 									Fusce condimentum cursus mauris et ornare. Mauris fermentum mi
 									id sollicitudin viverra. Aenean dignissim sed ante eget
@@ -1083,7 +1085,9 @@ const MediaObject = () => {
 								<IconInfoTriangle className="w-7 h-7 text-warning" />
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg text-primary">Heading </h4>
+								<h4 className="font-semibold text-lg text-cdms_primary">
+									Heading{" "}
+								</h4>
 								<p className="media-text">
 									Fusce condimentum cursus mauris et ornare. Mauris fermentum mi
 									id sollicitudin viverra. Aenean dignissim sed ante eget
@@ -1102,7 +1106,7 @@ const MediaObject = () => {
             <svg>...</svg>
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg text-primary">Heading </h4>
+            <h4 className="font-semibold text-lg text-cdms_primary">Heading </h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -1114,7 +1118,7 @@ const MediaObject = () => {
             <svg>...</svg>
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg text-primary">Heading </h4>
+            <h4 className="font-semibold text-lg text-cdms_primary">Heading </h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -1154,7 +1158,9 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg text-primary">Heading </h4>
+								<h4 className="font-semibold text-lg text-cdms_primary">
+									Heading{" "}
+								</h4>
 								<p className="media-text">
 									Fusce condimentum cursus mauris et ornare. Mauris fermentum mi
 									id sollicitudin viverra. Aenean dignissim sed ante eget
@@ -1168,7 +1174,9 @@ const MediaObject = () => {
 								<input type="checkbox" className="form-checkbox mt-1.5" />
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg text-primary">Heading </h4>
+								<h4 className="font-semibold text-lg text-cdms_primary">
+									Heading{" "}
+								</h4>
 								<p className="media-text">
 									Fusce condimentum cursus mauris et ornare. Mauris fermentum mi
 									id sollicitudin viverra. Aenean dignissim sed ante eget
@@ -1187,7 +1195,7 @@ const MediaObject = () => {
             <input type="checkbox" className="form-checkbox mt-1.5" defaultChecked />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg text-primary">Heading </h4>
+            <h4 className="font-semibold text-lg text-cdms_primary">Heading </h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -1199,7 +1207,7 @@ const MediaObject = () => {
             <input type="checkbox" className="form-checkbox mt-1.5" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg text-primary">Heading </h4>
+            <h4 className="font-semibold text-lg text-cdms_primary">Heading </h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -1240,7 +1248,9 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg text-primary">Heading </h4>
+								<h4 className="font-semibold text-lg text-cdms_primary">
+									Heading{" "}
+								</h4>
 								<p className="media-text">
 									Fusce condimentum cursus mauris et ornare. Mauris fermentum mi
 									id sollicitudin viverra. Aenean dignissim sed ante eget
@@ -1258,7 +1268,9 @@ const MediaObject = () => {
 								/>
 							</div>
 							<div className="flex-1">
-								<h4 className="font-semibold text-lg text-primary">Heading </h4>
+								<h4 className="font-semibold text-lg text-cdms_primary">
+									Heading{" "}
+								</h4>
 								<p className="media-text">
 									Fusce condimentum cursus mauris et ornare. Mauris fermentum mi
 									id sollicitudin viverra. Aenean dignissim sed ante eget
@@ -1277,7 +1289,7 @@ const MediaObject = () => {
             <input type="radio" className="form-radio mt-1.5" name="radio" defaultChecked />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg text-primary">Heading </h4>
+            <h4 className="font-semibold text-lg text-cdms_primary">Heading </h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.
@@ -1289,7 +1301,7 @@ const MediaObject = () => {
             <input type="radio" className="form-radio mt-1.5" name="radio" />
         </div>
         <div className="flex-1">
-            <h4 className="font-semibold text-lg text-primary">Heading </h4>
+            <h4 className="font-semibold text-lg text-cdms_primary">Heading </h4>
             <p className="media-text">
                 Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum
                 neque eu, gravida neque.

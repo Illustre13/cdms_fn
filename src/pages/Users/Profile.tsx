@@ -32,7 +32,7 @@ const Profile = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Users
 					</Link>
 				</li>
@@ -61,7 +61,7 @@ const Profile = () => {
 									alt="img"
 									className="w-24 h-24 rounded-full object-cover  mb-5"
 								/>
-								<p className="font-semibold text-primary text-xl">
+								<p className="font-semibold text-cdms_primary text-xl">
 									Jimmy Turner
 								</p>
 							</div>
@@ -81,7 +81,7 @@ const Profile = () => {
 								<li>
 									<button className="flex items-center gap-2">
 										<IconMail className="w-5 h-5 shrink-0" />
-										<span className="text-primary truncate">
+										<span className="text-cdms_primary truncate">
 											jimmy@gmail.com
 										</span>
 									</button>
@@ -217,7 +217,7 @@ const Profile = () => {
 						<div className="space-y-4">
 							<div className="border border-[#ebedf2] rounded dark:bg-[#1b2e4b] dark:border-0">
 								<div className="flex items-center justify-between p-4 py-2">
-									<div className="grid place-content-center w-9 h-9 rounded-md bg-cdms_secondary-light dark:bg-cdms_secondary text-secondary dark:text-secondary-light">
+									<div className="grid place-content-center w-9 h-9 rounded-md bg-cdms_secondary-light dark:bg-cdms_secondary text-cdms_secondary dark:text-cdms_secondary-light">
 										<IconShoppingBag />
 									</div>
 									<div className="ltr:ml-4 rtl:mr-4 flex items-start justify-between flex-auto font-semibold">
@@ -227,7 +227,7 @@ const Profile = () => {
 												$92,600
 											</span>
 										</h6>
-										<p className="ltr:ml-auto rtl:mr-auto text-secondary">
+										<p className="ltr:ml-auto rtl:mr-auto text-cdms_secondary">
 											90%
 										</p>
 									</div>
@@ -315,7 +315,7 @@ const Profile = () => {
 											<Dropdown
 												offset={[0, 5]}
 												placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-												btnClassName="hover:text-primary"
+												btnClassName="hover:text-cdms_primary"
 												button={
 													<IconHorizontalDots className="opacity-80 hover:opacity-100" />
 												}

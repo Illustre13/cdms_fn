@@ -25,7 +25,7 @@ const AccountSetting = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Users
 					</Link>
 				</li>
@@ -44,8 +44,10 @@ const AccountSetting = () => {
 						<li className="inline-block">
 							<button
 								onClick={() => toggleTabs("home")}
-								className={`flex gap-2 p-4 border-b border-transparent hover:border-primary hover:text-primary ${
-									tabs === "home" ? "!border-primary text-primary" : ""
+								className={`flex gap-2 p-4 border-b border-transparent hover:border-cdms_primary hover:text-cdms_primary ${
+									tabs === "home"
+										? "!border-cdms_primary text-cdms_primary"
+										: ""
 								}`}
 							>
 								<IconHome />
@@ -55,9 +57,9 @@ const AccountSetting = () => {
 						<li className="inline-block">
 							<button
 								onClick={() => toggleTabs("payment-details")}
-								className={`flex gap-2 p-4 border-b border-transparent hover:border-primary hover:text-primary ${
+								className={`flex gap-2 p-4 border-b border-transparent hover:border-cdms_primary hover:text-cdms_primary ${
 									tabs === "payment-details"
-										? "!border-primary text-primary"
+										? "!border-cdms_primary text-cdms_primary"
 										: ""
 								}`}
 							>
@@ -68,8 +70,10 @@ const AccountSetting = () => {
 						<li className="inline-block">
 							<button
 								onClick={() => toggleTabs("preferences")}
-								className={`flex gap-2 p-4 border-b border-transparent hover:border-primary hover:text-primary ${
-									tabs === "preferences" ? "!border-primary text-primary" : ""
+								className={`flex gap-2 p-4 border-b border-transparent hover:border-cdms_primary hover:text-cdms_primary ${
+									tabs === "preferences"
+										? "!border-cdms_primary text-cdms_primary"
+										: ""
 								}`}
 							>
 								<IconUser className="w-5 h-5" />
@@ -79,8 +83,10 @@ const AccountSetting = () => {
 						<li className="inline-block">
 							<button
 								onClick={() => toggleTabs("danger-zone")}
-								className={`flex gap-2 p-4 border-b border-transparent hover:border-primary hover:text-primary ${
-									tabs === "danger-zone" ? "!border-primary text-primary" : ""
+								className={`flex gap-2 p-4 border-b border-transparent hover:border-cdms_primary hover:text-cdms_primary ${
+									tabs === "danger-zone"
+										? "!border-cdms_primary text-cdms_primary"
+										: ""
 								}`}
 							>
 								<IconPhone />
@@ -257,9 +263,9 @@ const AccountSetting = () => {
 									</h5>
 									<p>
 										Changes to your{" "}
-										<span className="text-primary">Billing</span> information
-										will take effect starting with scheduled payment and will be
-										refelected on your next invoice.
+										<span className="text-cdms_primary">Billing</span>{" "}
+										information will take effect starting with scheduled payment
+										and will be refelected on your next invoice.
 									</p>
 								</div>
 								<div className="mb-5">
@@ -312,7 +318,7 @@ const AccountSetting = () => {
 									</h5>
 									<p>
 										Changes to your{" "}
-										<span className="text-primary">Payment Method</span>{" "}
+										<span className="text-cdms_primary">Payment Method</span>{" "}
 										information will take effect starting with scheduled payment
 										and will be refelected on your next invoice.
 									</p>
@@ -384,7 +390,8 @@ const AccountSetting = () => {
 									</h5>
 									<p>
 										Changes your New{" "}
-										<span className="text-primary">Billing</span> Information.
+										<span className="text-cdms_primary">Billing</span>{" "}
+										Information.
 									</p>
 								</div>
 								<div className="mb-5">
@@ -461,7 +468,7 @@ const AccountSetting = () => {
 									</h5>
 									<p>
 										Changes your New{" "}
-										<span className="text-primary">Payment Method </span>
+										<span className="text-cdms_primary">Payment Method </span>
 										Information.
 									</p>
 								</div>
@@ -590,8 +597,8 @@ const AccountSetting = () => {
 							<div className="panel space-y-5">
 								<h5 className="font-semibold text-lg mb-4">Public Profile</h5>
 								<p>
-									Your <span className="text-primary">Profile</span> will be
-									visible to anyone on the network.
+									Your <span className="text-cdms_primary">Profile</span> will
+									be visible to anyone on the network.
 								</p>
 								<label className="w-12 h-6 relative">
 									<input
@@ -605,7 +612,7 @@ const AccountSetting = () => {
 							<div className="panel space-y-5">
 								<h5 className="font-semibold text-lg mb-4">Show my email</h5>
 								<p>
-									Your <span className="text-primary">Email</span> will be
+									Your <span className="text-cdms_primary">Email</span> will be
 									visible to anyone on the network.
 								</p>
 								<label className="w-12 h-6 relative">
@@ -622,8 +629,8 @@ const AccountSetting = () => {
 									Enable keyboard shortcuts
 								</h5>
 								<p>
-									When enabled, press <span className="text-primary">ctrl</span>{" "}
-									for help
+									When enabled, press{" "}
+									<span className="text-cdms_primary">ctrl</span> for help
 								</p>
 								<label className="w-12 h-6 relative">
 									<input
@@ -639,8 +646,8 @@ const AccountSetting = () => {
 									Hide left navigation
 								</h5>
 								<p>
-									Sidebar will be <span className="text-primary">hidden</span>{" "}
-									by default
+									Sidebar will be{" "}
+									<span className="text-cdms_primary">hidden</span> by default
 								</p>
 								<label className="w-12 h-6 relative">
 									<input
@@ -654,7 +661,7 @@ const AccountSetting = () => {
 							<div className="panel space-y-5">
 								<h5 className="font-semibold text-lg mb-4">Advertisements</h5>
 								<p>
-									Display <span className="text-primary">Ads</span> on your
+									Display <span className="text-cdms_primary">Ads</span> on your
 									dashboard
 								</p>
 								<label className="w-12 h-6 relative">
@@ -669,7 +676,7 @@ const AccountSetting = () => {
 							<div className="panel space-y-5">
 								<h5 className="font-semibold text-lg mb-4">Social Profile</h5>
 								<p>
-									Enable your <span className="text-primary">social</span>{" "}
+									Enable your <span className="text-cdms_primary">social</span>{" "}
 									profiles on this network
 								</p>
 								<label className="w-12 h-6 relative">

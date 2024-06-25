@@ -70,7 +70,7 @@ const Modals = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Components
 					</Link>
 				</li>
@@ -79,7 +79,7 @@ const Modals = () => {
 				</li>
 			</ul>
 			<div className="space-y-8 pt-5">
-				<div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
+				<div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-cdms_primary">
 					<div className="rounded-full bg-cdms_primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
 						<IconBell />
 					</div>
@@ -2558,9 +2558,9 @@ const [modal16, setModal16] = useState(false);
 																					type="button"
 																					className={`${
 																						selected
-																							? "!border-white-light !border-b-white  text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
+																							? "!border-white-light !border-b-white  text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
 																							: ""
-																					} -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-primary dark:hover:border-b-black`}
+																					} -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-cdms_primary dark:hover:border-b-black`}
 																				>
 																					Home
 																				</button>
@@ -2572,9 +2572,9 @@ const [modal16, setModal16] = useState(false);
 																					type="button"
 																					className={`${
 																						selected
-																							? "!border-white-light !border-b-white  text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
+																							? "!border-white-light !border-b-white  text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
 																							: ""
-																					}-mb-[1px] block border border-transparent p-3.5 py-2 hover:text-primary dark:hover:border-b-black`}
+																					}-mb-[1px] block border border-transparent p-3.5 py-2 hover:text-cdms_primary dark:hover:border-b-black`}
 																				>
 																					Profile
 																				</button>
@@ -2586,9 +2586,9 @@ const [modal16, setModal16] = useState(false);
 																					type="button"
 																					className={`${
 																						selected
-																							? "!border-white-light !border-b-white  text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
+																							? "!border-white-light !border-b-white  text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
 																							: ""
-																					}-mb-[1px] block border border-transparent p-3.5 py-2 hover:text-primary dark:hover:border-b-black`}
+																					}-mb-[1px] block border border-transparent p-3.5 py-2 hover:text-cdms_primary dark:hover:border-b-black`}
 																				>
 																					Contact
 																				</button>
@@ -3094,13 +3094,13 @@ const [modal16, setModal16] = useState(false);
 														</div>
 														<button
 															type="button"
-															className="swiper-button-prev1 absolute top-1/2 z-[999] grid -translate-y-1/2 place-content-center rounded-full border border-primary p-1  text-primary transition hover:border-primary hover:bg-cdms_primary hover:text-white ltr:left-2 rtl:right-2"
+															className="swiper-button-prev1 absolute top-1/2 z-[999] grid -translate-y-1/2 place-content-center rounded-full border border-cdms_primary p-1  text-cdms_primary transition hover:border-cdms_primary hover:bg-cdms_primary hover:text-white ltr:left-2 rtl:right-2"
 														>
 															<IconCaretDown className="w-5 h-5 rtl:-rotate-90 rotate-90" />
 														</button>
 														<button
 															type="button"
-															className="swiper-button-next1 absolute top-1/2 z-[999] grid -translate-y-1/2 place-content-center rounded-full border border-primary p-1 text-primary transition hover:border-primary hover:bg-cdms_primary hover:text-white ltr:right-2 rtl:left-2"
+															className="swiper-button-next1 absolute top-1/2 z-[999] grid -translate-y-1/2 place-content-center rounded-full border border-cdms_primary p-1 text-cdms_primary transition hover:border-cdms_primary hover:bg-cdms_primary hover:text-white ltr:right-2 rtl:left-2"
 														>
 															<IconCaretDown className="w-5 h-5 rtl:rotate-90 -rotate-90" />
 														</button>
@@ -3238,9 +3238,9 @@ import { Navigation, Pagination } from 'swiper';
                                                             type="button"
                                                             className={\`\${
                                                                 selected
-                                                                    ? '!border-white-light !border-b-white  text-primary dark:!border-[#191e3a] dark:!border-b-black !outline-none '
+                                                                    ? '!border-white-light !border-b-white  text-cdms_primary dark:!border-[#191e3a] dark:!border-b-black !outline-none '
                                                                     : ''
-                                                            } p-3.5 py-2 -mb-[1px] block border border-transparent hover:text-primary dark:hover:border-b-black\`}
+                                                            } p-3.5 py-2 -mb-[1px] block border border-transparent hover:text-cdms_primary dark:hover:border-b-black\`}
                                                         >
                                                             Home
                                                         </button>
@@ -3252,9 +3252,9 @@ import { Navigation, Pagination } from 'swiper';
                                                             type="button"
                                                             className={\`\${
                                                                 selected
-                                                                    ? '!border-white-light !border-b-white  text-primary dark:!border-[#191e3a] dark:!border-b-black !outline-none '
+                                                                    ? '!border-white-light !border-b-white  text-cdms_primary dark:!border-[#191e3a] dark:!border-b-black !outline-none '
                                                                     : ''
-                                                            } p-3.5 py-2 -mb-[1px] block border border-transparent hover:text-primary dark:hover:border-b-black\`}
+                                                            } p-3.5 py-2 -mb-[1px] block border border-transparent hover:text-cdms_primary dark:hover:border-b-black\`}
                                                         >
                                                             Profile
                                                         </button>
@@ -3266,9 +3266,9 @@ import { Navigation, Pagination } from 'swiper';
                                                             type="button"
                                                             className={\`\${
                                                                 selected
-                                                                    ? '!border-white-light !border-b-white  text-primary dark:!border-[#191e3a] dark:!border-b-black !outline-none '
+                                                                    ? '!border-white-light !border-b-white  text-cdms_primary dark:!border-[#191e3a] dark:!border-b-black !outline-none '
                                                                     : ''
-                                                            } p-3.5 py-2 -mb-[1px] block border border-transparent hover:text-primary dark:hover:border-b-black\`}
+                                                            } p-3.5 py-2 -mb-[1px] block border border-transparent hover:text-cdms_primary dark:hover:border-b-black\`}
                                                         >
                                                             Contact
                                                         </button>
@@ -3621,13 +3621,13 @@ import { Navigation, Pagination } from 'swiper';
                                 </div>
                                 <button
                                     type="button"
-                                    className="swiper-button-prev-ex1 absolute top-1/2 z-[999] grid -translate-y-1/2 place-content-center rounded-full border border-primary p-1  text-primary transition hover:border-primary hover:bg-cdms_primary hover:text-white ltr:left-2 rtl:right-2"
+                                    className="swiper-button-prev-ex1 absolute top-1/2 z-[999] grid -translate-y-1/2 place-content-center rounded-full border border-cdms_primary p-1  text-cdms_primary transition hover:border-cdms_primary hover:bg-cdms_primary hover:text-white ltr:left-2 rtl:right-2"
                                 >
                                     <svg>...</svg>
                                 </button>
                                 <button
                                     type="button"
-                                    className="swiper-button-next-ex1 absolute top-1/2 z-[999] grid -translate-y-1/2 place-content-center rounded-full border border-primary p-1 text-primary transition hover:border-primary hover:bg-cdms_primary hover:text-white ltr:right-2 rtl:left-2"
+                                    className="swiper-button-next-ex1 absolute top-1/2 z-[999] grid -translate-y-1/2 place-content-center rounded-full border border-cdms_primary p-1 text-cdms_primary transition hover:border-cdms_primary hover:bg-cdms_primary hover:text-white ltr:right-2 rtl:left-2"
                                 >
                                     <svg>...</svg>
                                 </button>

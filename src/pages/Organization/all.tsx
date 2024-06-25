@@ -362,7 +362,7 @@ const Organization = () => {
 	return (
 		<div>
 			{/* Filters */}
-			<div className="flex flex-col items-start overflow-x-auto whitespace-nowrap p-3 text-primary relative z-10 w-full">
+			<div className="flex flex-col items-start overflow-x-auto whitespace-nowrap p-3 text-cdms_primary relative z-10 w-full">
 				<h5 className="font-bold text-gray-700 text-2xl dark:text-white-light">
 					Hello <br /> Mr Bertin NDAHAYO 👋
 				</h5>
@@ -371,14 +371,14 @@ const Organization = () => {
 					<div className="ltr:ml-auto rtl:mr-auto">
 						<input
 							type="text"
-							placeholder="Search an organization"
+							placeholder="Search an organization..."
 							className="form-input w-auto py-2 ltr:pr-11 rtl:pl-11 peer"
 							value={search2}
 							onChange={(e) => setSearch2(e.target.value)}
 						/>
 						<button
 							type="button"
-							className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-primary"
+							className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary"
 						>
 							<IconSearch className="mx-auto" />
 						</button>
@@ -477,6 +477,9 @@ const Organization = () => {
 								accessor: "status",
 								title: "Status",
 								sortable: true,
+								render: ({ status }) => (
+									<span className="badge bg-cdms_primary">{status}</span>
+								),
 							},
 							{
 								accessor: "tinNo",

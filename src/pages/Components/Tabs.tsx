@@ -30,7 +30,10 @@ const Tabs = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="/components/tabs" className="text-primary hover:underline">
+					<Link
+						to="/components/tabs"
+						className="text-cdms_primary hover:underline"
+					>
 						Components
 					</Link>
 				</li>
@@ -39,7 +42,7 @@ const Tabs = () => {
 				</li>
 			</ul>
 			<div className="space-y-8 pt-5">
-				<div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
+				<div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-cdms_primary">
 					<div className="rounded-full bg-cdms_primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
 						<IconBell />
 					</div>
@@ -79,10 +82,10 @@ const Tabs = () => {
 											<button
 												className={`${
 													selected
-														? "!border-white-light !border-b-white  text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
+														? "!border-white-light !border-b-white  text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
 														: ""
 												}
-                                                    dark:hover:border-b-black' -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-primary`}
+                                                    dark:hover:border-b-black' -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-cdms_primary`}
 											>
 												Home
 											</button>
@@ -93,10 +96,10 @@ const Tabs = () => {
 											<button
 												className={`${
 													selected
-														? "!border-white-light !border-b-white  text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
+														? "!border-white-light !border-b-white  text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
 														: ""
 												}
-                                                    dark:hover:border-b-black' -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-primary`}
+                                                    dark:hover:border-b-black' -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-cdms_primary`}
 											>
 												Profile
 											</button>
@@ -107,10 +110,10 @@ const Tabs = () => {
 											<button
 												className={`${
 													selected
-														? "!border-white-light !border-b-white  text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
+														? "!border-white-light !border-b-white  text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black "
 														: ""
 												}
-                                                    dark:hover:border-b-black' -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-primary`}
+                                                    dark:hover:border-b-black' -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-cdms_primary`}
 											>
 												Contact
 											</button>
@@ -197,8 +200,8 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? '!border-white-light !border-b-white  text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}
-                    dark:hover:border-b-black -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-primary\`}>
+                    className={\`\${selected ? '!border-white-light !border-b-white  text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}
+                    dark:hover:border-b-black -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-cdms_primary\`}>
                     Home
                 </button>
             )}
@@ -206,8 +209,8 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? '!border-white-light !border-b-white  text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}
-                    dark:hover:border-b-black -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-primary\`}>
+                    className={\`\${selected ? '!border-white-light !border-b-white  text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}
+                    dark:hover:border-b-black -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-cdms_primary\`}>
                     Profile
                 </button>
             )}
@@ -215,8 +218,8 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? '!border-white-light !border-b-white  text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}
-                    dark:hover:border-b-black -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-primary\`}>
+                    className={\`\${selected ? '!border-white-light !border-b-white  text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}
+                    dark:hover:border-b-black -mb-[1px] block border border-transparent p-3.5 py-2 hover:text-cdms_primary\`}>
                     Contact
                 </button>
             )}
@@ -1474,10 +1477,10 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "!border-secondary text-secondary !outline-none dark:!bg-[#191e3a]"
+														? "!border-cdms_secondary text-cdms_secondary !outline-none dark:!bg-[#191e3a]"
 														: ""
 												}
-                                                    ' flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 before:inline-block hover:border-secondary hover:text-secondary dark:bg-transparent dark:hover:bg-[#191e3a]`}
+                                                    ' flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 before:inline-block hover:border-cdms_secondary hover:text-cdms_secondary dark:bg-transparent dark:hover:bg-[#191e3a]`}
 											>
 												<IconHome className="ltr:mr-2 rtl:ml-2" />
 												Home
@@ -1489,10 +1492,10 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "!border-secondary text-secondary !outline-none dark:bg-[#191e3a]"
+														? "!border-cdms_secondary text-cdms_secondary !outline-none dark:bg-[#191e3a]"
 														: ""
 												}
-                                                before:inline-block' flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 hover:border-secondary hover:text-secondary dark:bg-transparent dark:hover:bg-[#191e3a]`}
+                                                before:inline-block' flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 hover:border-cdms_secondary hover:text-cdms_secondary dark:bg-transparent dark:hover:bg-[#191e3a]`}
 											>
 												<IconUser className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
 												Profile
@@ -1504,10 +1507,10 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "!border-secondary text-secondary !outline-none dark:bg-[#191e3a]"
+														? "!border-cdms_secondary text-cdms_secondary !outline-none dark:bg-[#191e3a]"
 														: ""
 												}
-                                                before:inline-block' flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 hover:border-secondary hover:text-secondary dark:bg-transparent dark:hover:bg-[#191e3a]`}
+                                                before:inline-block' flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 hover:border-cdms_secondary hover:text-cdms_secondary dark:bg-transparent dark:hover:bg-[#191e3a]`}
 											>
 												<IconPhone className="ltr:mr-2 rtl:ml-2" />
 												Contact
@@ -1519,10 +1522,10 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "!border-secondary text-secondary !outline-none dark:bg-[#191e3a]"
+														? "!border-cdms_secondary text-cdms_secondary !outline-none dark:bg-[#191e3a]"
 														: ""
 												}
-                                                before:inline-block' flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 hover:border-secondary hover:text-secondary dark:bg-transparent dark:hover:bg-[#191e3a]`}
+                                                before:inline-block' flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 hover:border-cdms_secondary hover:text-cdms_secondary dark:bg-transparent dark:hover:bg-[#191e3a]`}
 											>
 												<IconSettings className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
 												Settings
@@ -1619,7 +1622,7 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? '!border-secondary text-secondary !outline-none dark:!bg-[#191e3a]' : ''} flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 before:inline-block hover:border-secondary hover:text-secondary dark:bg-transparent dark:hover:bg-[#191e3a]\`}
+                    className={\`\${selected ? '!border-cdms_secondary text-cdms_secondary !outline-none dark:!bg-[#191e3a]' : ''} flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 before:inline-block hover:border-cdms_secondary hover:text-cdms_secondary dark:bg-transparent dark:hover:bg-[#191e3a]\`}
                 >
                     <svg>...</svg>
                     Home
@@ -1629,7 +1632,7 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? '!border-secondary text-secondary !outline-none dark:!bg-[#191e3a]' : ''} flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 before:inline-block hover:border-secondary hover:text-secondary dark:bg-transparent dark:hover:bg-[#191e3a]\`}
+                    className={\`\${selected ? '!border-cdms_secondary text-cdms_secondary !outline-none dark:!bg-[#191e3a]' : ''} flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 before:inline-block hover:border-cdms_secondary hover:text-cdms_secondary dark:bg-transparent dark:hover:bg-[#191e3a]\`}
                 >
                     <svg>...</svg>
                     Profile
@@ -1639,7 +1642,7 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? '!border-secondary text-secondary !outline-none dark:!bg-[#191e3a]' : ''} flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 before:inline-block hover:border-secondary hover:text-secondary dark:bg-transparent dark:hover:bg-[#191e3a]\`}
+                    className={\`\${selected ? '!border-cdms_secondary text-cdms_secondary !outline-none dark:!bg-[#191e3a]' : ''} flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 before:inline-block hover:border-cdms_secondary hover:text-cdms_secondary dark:bg-transparent dark:hover:bg-[#191e3a]\`}
                 >
                     <svg>...</svg>
                     Contact
@@ -1649,7 +1652,7 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? '!border-secondary text-secondary !outline-none dark:!bg-[#191e3a]' : ''} flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 before:inline-block hover:border-secondary hover:text-secondary dark:bg-transparent dark:hover:bg-[#191e3a]\`}
+                    className={\`\${selected ? '!border-cdms_secondary text-cdms_secondary !outline-none dark:!bg-[#191e3a]' : ''} flex items-center border-t-2 border-transparent bg-[#f6f7f8] p-7 py-3 before:inline-block hover:border-cdms_secondary hover:text-cdms_secondary dark:bg-transparent dark:hover:bg-[#191e3a]\`}
                 >
                     <svg>...</svg>
                     Settings
@@ -1743,10 +1746,10 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "border-b !border-secondary text-secondary !outline-none"
+														? "border-b !border-cdms_secondary text-cdms_secondary !outline-none"
 														: ""
 												}
-                                                    before:inline-block' -mb-[1px] flex items-center border-transparent p-5 py-3 hover:border-b hover:!border-secondary hover:text-secondary`}
+                                                    before:inline-block' -mb-[1px] flex items-center border-transparent p-5 py-3 hover:border-b hover:!border-cdms_secondary hover:text-cdms_secondary`}
 											>
 												<IconHome className="ltr:mr-2 rtl:ml-2" />
 												Home
@@ -1758,10 +1761,10 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "border-b !border-secondary text-secondary !outline-none"
+														? "border-b !border-cdms_secondary text-cdms_secondary !outline-none"
 														: ""
 												}
-                                                before:inline-block' -mb-[1px] flex items-center border-transparent p-5 py-3 hover:border-b hover:!border-secondary hover:text-secondary`}
+                                                before:inline-block' -mb-[1px] flex items-center border-transparent p-5 py-3 hover:border-b hover:!border-cdms_secondary hover:text-cdms_secondary`}
 											>
 												<IconUser className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
 												Profile
@@ -1773,10 +1776,10 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "border-b !border-secondary text-secondary !outline-none"
+														? "border-b !border-cdms_secondary text-cdms_secondary !outline-none"
 														: ""
 												}
-                                                before:inline-block' -mb-[1px] flex items-center border-transparent p-5 py-3 hover:border-b hover:!border-secondary hover:text-secondary`}
+                                                before:inline-block' -mb-[1px] flex items-center border-transparent p-5 py-3 hover:border-b hover:!border-cdms_secondary hover:text-cdms_secondary`}
 											>
 												<IconPhone className="ltr:mr-2 rtl:ml-2" />
 												Contact
@@ -1861,7 +1864,7 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? 'border-b !border-secondary text-secondary !outline-none' : ''} -mb-[1px] flex items-center border-transparent p-5 py-3 before:inline-block hover:border-b hover:!border-secondary hover:text-secondary\`}
+                    className={\`\${selected ? 'border-b !border-cdms_secondary text-cdms_secondary !outline-none' : ''} -mb-[1px] flex items-center border-transparent p-5 py-3 before:inline-block hover:border-b hover:!border-cdms_secondary hover:text-cdms_secondary\`}
                 >
                     <svg>...</svg>
                     Home
@@ -1871,7 +1874,7 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? 'border-b !border-secondary text-secondary !outline-none' : ''} -mb-[1px] flex items-center border-transparent p-5 py-3 before:inline-block hover:border-b hover:!border-secondary hover:text-secondary\`}
+                    className={\`\${selected ? 'border-b !border-cdms_secondary text-cdms_secondary !outline-none' : ''} -mb-[1px] flex items-center border-transparent p-5 py-3 before:inline-block hover:border-b hover:!border-cdms_secondary hover:text-cdms_secondary\`}
                 >
                     <svg>...</svg>
                     Profile
@@ -1881,7 +1884,7 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? 'border-b !border-secondary text-secondary !outline-none' : ''} -mb-[1px] flex items-center border-transparent p-5 py-3 before:inline-block hover:border-b hover:!border-secondary hover:text-secondary\`}
+                    className={\`\${selected ? 'border-b !border-cdms_secondary text-cdms_secondary !outline-none' : ''} -mb-[1px] flex items-center border-transparent p-5 py-3 before:inline-block hover:border-b hover:!border-cdms_secondary hover:text-cdms_secondary\`}
                 >
                     <svg>...</svg>
                     Contact
@@ -1965,10 +1968,10 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "text-secondary !outline-none before:!w-full"
+														? "text-cdms_secondary !outline-none before:!w-full"
 														: ""
 												}
-                                                    before:inline-block' relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:w-full`}
+                                                    before:inline-block' relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:w-full`}
 											>
 												<IconHome className="ltr:mr-2 rtl:ml-2" />
 												Home
@@ -1980,10 +1983,10 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "text-secondary !outline-none before:!w-full"
+														? "text-cdms_secondary !outline-none before:!w-full"
 														: ""
 												}
-                                                before:inline-block' relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:w-full`}
+                                                before:inline-block' relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:w-full`}
 											>
 												<IconUser className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
 												Profile
@@ -1995,10 +1998,10 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "text-secondary !outline-none before:!w-full"
+														? "text-cdms_secondary !outline-none before:!w-full"
 														: ""
 												}
-                                                before:inline-block' relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:w-full`}
+                                                before:inline-block' relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:w-full`}
 											>
 												<IconPhone className="ltr:mr-2 rtl:ml-2" />
 												Contact
@@ -2083,7 +2086,7 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? 'text-secondary !outline-none before:!w-full' : ''} relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:inline-block before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:w-full\`}
+                    className={\`\${selected ? 'text-cdms_secondary !outline-none before:!w-full' : ''} relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:inline-block before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:w-full\`}
                 >
                     <svg>...</svg>
                     Home
@@ -2093,7 +2096,7 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? 'text-secondary !outline-none before:!w-full' : ''} relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:inline-block before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:w-full\`}
+                    className={\`\${selected ? 'text-cdms_secondary !outline-none before:!w-full' : ''} relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:inline-block before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:w-full\`}
                 >
                     <svg>...</svg>
                     Profile
@@ -2103,7 +2106,7 @@ import { Fragment } from 'react';
         <Tab as={Fragment}>
             {({ selected }) => (
                 <button
-                    className={\`\${selected ? 'text-secondary !outline-none before:!w-full' : ''} relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:inline-block before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:w-full\`}
+                    className={\`\${selected ? 'text-cdms_secondary !outline-none before:!w-full' : ''} relative -mb-[1px] flex items-center p-5 py-3 before:absolute before:bottom-0 before:left-0 before:right-0 before:m-auto before:inline-block before:h-[1px] before:w-0 before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:w-full\`}
                 >
                     <svg>...</svg>
                     Contact
@@ -2188,10 +2191,10 @@ import { Fragment } from 'react';
 												<button
 													className={`${
 														selected
-															? "text-secondary !outline-none before:!h-[80%]"
+															? "text-cdms_secondary !outline-none before:!h-[80%]"
 															: ""
 													}
-                                                    before:inline-block' relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a]`}
+                                                    before:inline-block' relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a]`}
 													style={{
 														width: "100%",
 														display: "flex",
@@ -2208,10 +2211,10 @@ import { Fragment } from 'react';
 												<button
 													className={`${
 														selected
-															? "text-secondary !outline-none before:!h-[80%]"
+															? "text-cdms_secondary !outline-none before:!h-[80%]"
 															: ""
 													}
-                                                    before:inline-block' relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a]`}
+                                                    before:inline-block' relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a]`}
 													style={{
 														width: "100%",
 														display: "flex",
@@ -2228,10 +2231,10 @@ import { Fragment } from 'react';
 												<button
 													className={`${
 														selected
-															? "text-secondary !outline-none before:!h-[80%]"
+															? "text-cdms_secondary !outline-none before:!h-[80%]"
 															: ""
 													}
-                                                    before:inline-block' relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a]`}
+                                                    before:inline-block' relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a]`}
 													style={{
 														width: "100%",
 														display: "flex",
@@ -2248,10 +2251,10 @@ import { Fragment } from 'react';
 												<button
 													className={`${
 														selected
-															? "text-secondary !outline-none before:!h-[80%]"
+															? "text-cdms_secondary !outline-none before:!h-[80%]"
 															: ""
 													}
-                                                    before:inline-block' relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a]`}
+                                                    before:inline-block' relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a]`}
 													style={{
 														width: "100%",
 														display: "flex",
@@ -2351,7 +2354,7 @@ import { Fragment } from 'react';
                 <Tab as={Fragment}>
                     {({ selected }) => (
                         <button
-                            className={\`\${selected ? 'text-secondary !outline-none before:!h-[80%]' : ''} relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:inline-block before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a] w-full\`}
+                            className={\`\${selected ? 'text-cdms_secondary !outline-none before:!h-[80%]' : ''} relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:inline-block before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a] w-full\`}
                         >
                             Home
                         </button>
@@ -2360,7 +2363,7 @@ import { Fragment } from 'react';
                 <Tab as={Fragment}>
                     {({ selected }) => (
                         <button
-                            className={\`\${selected ? 'text-secondary !outline-none before:!h-[80%]' : ''} relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:inline-block before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a] w-full\`}
+                            className={\`\${selected ? 'text-cdms_secondary !outline-none before:!h-[80%]' : ''} relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:inline-block before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a] w-full\`}
                         >
                             Profile
                         </button>
@@ -2369,7 +2372,7 @@ import { Fragment } from 'react';
                 <Tab as={Fragment}>
                     {({ selected }) => (
                         <button
-                            className={\`\${selected ? 'text-secondary !outline-none before:!h-[80%]' : ''} relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:inline-block before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a] w-full\`}
+                            className={\`\${selected ? 'text-cdms_secondary !outline-none before:!h-[80%]' : ''} relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:inline-block before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a] w-full\`}
                         >
                             Contact
                         </button>
@@ -2378,7 +2381,7 @@ import { Fragment } from 'react';
                 <Tab as={Fragment}>
                     {({ selected }) => (
                         <button
-                            className={\`\${selected ? 'text-secondary !outline-none before:!h-[80%]' : ''} relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:inline-block before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a] w-full\`}
+                            className={\`\${selected ? 'text-cdms_secondary !outline-none before:!h-[80%]' : ''} relative -mb-[1px] block border-white-light p-3.5 py-4 before:absolute before:bottom-0 before:top-0 before:m-auto before:inline-block before:h-0 before:w-[1px] before:bg-cdms_secondary before:transition-all before:duration-700 hover:text-cdms_secondary hover:before:h-[80%] ltr:border-r ltr:before:-right-[1px] rtl:border-l rtl:before:-left-[1px] dark:border-[#191e3a] w-full\`}
                         >
                             Settings
                         </button>
@@ -2926,7 +2929,7 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
+														? "!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
 														: ""
 												} ' -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black`}
 											>
@@ -2939,7 +2942,7 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
+														? "!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
 														: ""
 												} dark:hover:border-b-black' -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a]`}
 											>
@@ -2952,7 +2955,7 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
+														? "!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
 														: ""
 												} ' -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black`}
 											>
@@ -3041,7 +3044,7 @@ import { Fragment } from 'react';
                     {({ selected }) => (
                         <div className="flex-auto text-center !outline-none">
                             <button
-                                className={\`\${selected ? '!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''} -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
+                                className={\`\${selected ? '!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''} -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
                             >
                                 Home
                             </button>
@@ -3051,7 +3054,7 @@ import { Fragment } from 'react';
                 <Tab as={Fragment}>
                     {({ selected }) => (
                         <button
-                        className={\`\${selected ? '!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''} -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
+                        className={\`\${selected ? '!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''} -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
                         >
                             Profile
                         </button>
@@ -3060,7 +3063,7 @@ import { Fragment } from 'react';
                 <Tab as={Fragment}>
                     {({ selected }) => (
                         <button
-                        className={\`\${selected ? '!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''} -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
+                        className={\`\${selected ? '!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''} -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
                         >
                             Contact
                         </button>
@@ -3361,7 +3364,7 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
+														? "!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
 														: ""
 												}
                                                     dark:hover:border-b-black' -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a]`}
@@ -3375,7 +3378,7 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
+														? "!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
 														: ""
 												}
                                                     dark:hover:border-b-black' -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a]`}
@@ -3389,7 +3392,7 @@ import { Fragment } from 'react';
 											<button
 												className={`${
 													selected
-														? "!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
+														? "!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black"
 														: ""
 												}
                                                     dark:hover:border-b-black' -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a]`}
@@ -3479,7 +3482,7 @@ import { Fragment } from 'react';
                     {({ selected }) => (
                         <div className="flex-auto text-center !outline-none">
                             <button
-                                className={\`\${selected ? '!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}  -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
+                                className={\`\${selected ? '!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}  -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
                             >
                                 Home
                             </button>
@@ -3489,7 +3492,7 @@ import { Fragment } from 'react';
                 <Tab as={Fragment}>
                     {({ selected }) => (
                         <button
-                        className={\`\${selected ? '!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}  -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
+                        className={\`\${selected ? '!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}  -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
                         >
                             Profile
                         </button>
@@ -3498,7 +3501,7 @@ import { Fragment } from 'react';
                 <Tab as={Fragment}>
                     {({ selected }) => (
                         <button
-                        className={\`\${selected ? '!border-white-light !border-b-white text-primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}  -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
+                        className={\`\${selected ? '!border-white-light !border-b-white text-cdms_primary !outline-none dark:!border-[#191e3a] dark:!border-b-black' : ''}  -mb-[1px] block border border-transparent p-3.5 py-2 hover:border-white-light hover:border-b-white dark:hover:border-[#191e3a] dark:hover:border-b-black\`}
                         >
                             Contact
                         </button>

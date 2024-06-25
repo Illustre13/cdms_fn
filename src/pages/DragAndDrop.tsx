@@ -125,7 +125,7 @@ const DragAndDrop = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse mb-6">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Dashboard
 					</Link>
 				</li>
@@ -135,7 +135,7 @@ const DragAndDrop = () => {
 			</ul>
 
 			<div className="dragndrop space-y-8">
-				<div className="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
+				<div className="panel p-3 flex items-center text-cdms_primary overflow-x-auto whitespace-nowrap">
 					<div className="ring-2 ring-primary/30 rounded-full bg-cdms_primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
 						<IconBell />
 					</div>
@@ -590,7 +590,7 @@ const DragAndDrop = () => {
 													</div>
 													<div className="ltr:md:text-right rtl:md:text-left text-center">
 														<span className="text-xs text-white-dark lg:pt-0 pt-2 block">
-															<button className="text-danger dark:text-primary font-semibold text-sm mr-1">
+															<button className="text-danger dark:text-cdms_primary font-semibold text-sm mr-1">
 																Vincent, Mary
 															</button>
 															and 19 other like this

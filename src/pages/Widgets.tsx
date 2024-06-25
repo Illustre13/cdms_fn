@@ -789,7 +789,7 @@ const Widgets = () => {
 									offset={[0, 1]}
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
 									button={
-										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -807,7 +807,8 @@ const Widgets = () => {
 							</div>
 						</div>
 						<p className="text-lg dark:text-white-light/90">
-							Total Profit <span className="text-primary ml-2">$10,840</span>
+							Total Profit{" "}
+							<span className="text-cdms_primary ml-2">$10,840</span>
 						</p>
 						<div className="relative">
 							<div className="bg-white dark:bg-black rounded-lg overflow-hidden">
@@ -891,7 +892,7 @@ const Widgets = () => {
 								<Dropdown
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
 									button={
-										<IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -911,7 +912,7 @@ const Widgets = () => {
 						<div className="space-y-9">
 							<div className="flex items-center">
 								<div className="w-9 h-9 ltr:mr-3 rtl:ml-3">
-									<div className="bg-cdms_secondary-light dark:bg-cdms_secondary text-secondary dark:text-secondary-light  rounded-full w-9 h-9 grid place-content-center">
+									<div className="bg-cdms_secondary-light dark:bg-cdms_secondary text-cdms_secondary dark:text-cdms_secondary-light  rounded-full w-9 h-9 grid place-content-center">
 										<IconInbox />
 									</div>
 								</div>
@@ -1169,7 +1170,7 @@ const Widgets = () => {
 						<div className="border-t border-white-light dark:border-white/10">
 							<Link
 								to="/"
-								className=" font-semibold group hover:text-primary p-4 flex items-center justify-center group"
+								className=" font-semibold group hover:text-cdms_primary p-4 flex items-center justify-center group"
 							>
 								View All
 								<IconArrowLeft className="rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition duration-300 ltr:ml-1 rtl:mr-1" />
@@ -1183,7 +1184,7 @@ const Widgets = () => {
 								<Dropdown
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
 									button={
-										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -1245,7 +1246,7 @@ const Widgets = () => {
 									</span>
 								</div>
 								<div className="flex">
-									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_secondary-light dark:bg-cdms_secondary text-secondary dark:text-secondary-light">
+									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_secondary-light dark:bg-cdms_secondary text-cdms_secondary dark:text-cdms_secondary-light">
 										<IconNetflix />
 									</span>
 									<div className="px-3 flex-1">
@@ -1273,7 +1274,7 @@ const Widgets = () => {
 									</span>
 								</div>
 								<div className="flex">
-									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_primary-light dark:bg-cdms_primary text-primary dark:text-primary-light">
+									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_primary-light dark:bg-cdms_primary text-cdms_primary dark:text-cdms_primary-light">
 										<IconBolt />
 									</span>
 									<div className="px-3 flex-1">
@@ -1404,7 +1405,7 @@ const Widgets = () => {
 												<span className="whitespace-nowrap">Luke Ivory</span>
 											</div>
 										</td>
-										<td className="text-primary">Headphone</td>
+										<td className="text-cdms_primary">Headphone</td>
 										<td>
 											<Link to="/apps/invoice/preview">#46894</Link>
 										</td>
@@ -1492,7 +1493,7 @@ const Widgets = () => {
 												<span className="whitespace-nowrap">Irene Collins</span>
 											</div>
 										</td>
-										<td className="text-secondary">Speakers</td>
+										<td className="text-cdms_secondary">Speakers</td>
 										<td>
 											<Link to="/apps/invoice/preview">#46894</Link>
 										</td>
@@ -1540,7 +1541,7 @@ const Widgets = () => {
 												/>
 												<p className="whitespace-nowrap">
 													Headphone
-													<span className="text-primary block text-xs">
+													<span className="text-cdms_primary block text-xs">
 														Digital
 													</span>
 												</p>
@@ -1618,7 +1619,7 @@ const Widgets = () => {
 												/>
 												<p className="whitespace-nowrap">
 													Laptop{" "}
-													<span className="text-primary block text-xs">
+													<span className="text-cdms_primary block text-xs">
 														Digital
 													</span>
 												</p>
@@ -1628,7 +1629,10 @@ const Widgets = () => {
 										<td>$33.00</td>
 										<td>35</td>
 										<td>
-											<Link className="text-secondary flex items-center" to="/">
+											<Link
+												className="text-cdms_secondary flex items-center"
+												to="/"
+											>
 												<IconMultipleForwardRight className="rtl:rotate-180 ltr:mr-1 rtl:ml-1" />
 												Email
 											</Link>
@@ -1644,7 +1648,7 @@ const Widgets = () => {
 												/>
 												<p className="whitespace-nowrap">
 													Camera{" "}
-													<span className="text-primary block text-xs">
+													<span className="text-cdms_primary block text-xs">
 														Digital
 													</span>
 												</p>
@@ -1654,7 +1658,10 @@ const Widgets = () => {
 										<td>$26.04</td>
 										<td>30</td>
 										<td>
-											<Link className="text-primary flex items-center" to="/">
+											<Link
+												className="text-cdms_primary flex items-center"
+												to="/"
+											>
 												<IconMultipleForwardRight className="rtl:rotate-180 ltr:mr-1 rtl:ml-1" />
 												Referral
 											</Link>
@@ -1677,9 +1684,9 @@ const Widgets = () => {
 								<Dropdown
 									offset={[0, 5]}
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-									btnClassName="hover:text-primary"
+									btnClassName="hover:text-cdms_primary"
 									button={
-										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -1740,9 +1747,9 @@ const Widgets = () => {
 								<Dropdown
 									offset={[0, 5]}
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-									btnClassName="hover:text-primary"
+									btnClassName="hover:text-cdms_primary"
 									button={
-										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -1831,9 +1838,9 @@ const Widgets = () => {
 								<Dropdown
 									offset={[0, 5]}
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-									btnClassName="hover:text-primary"
+									btnClassName="hover:text-cdms_primary"
 									button={
-										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -1867,9 +1874,9 @@ const Widgets = () => {
 								<Dropdown
 									offset={[0, 5]}
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-									btnClassName="hover:text-primary"
+									btnClassName="hover:text-cdms_primary"
 									button={
-										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -1992,7 +1999,7 @@ const Widgets = () => {
 						<div className="flex flex-col space-y-5">
 							<div className="flex items-center">
 								<div className="w-9 h-9">
-									<div className="bg-cdms_primary/10 text-primary rounded-xl w-9 h-9 flex justify-center items-center dark:bg-cdms_primary dark:text-white-light">
+									<div className="bg-cdms_primary/10 text-cdms_primary rounded-xl w-9 h-9 flex justify-center items-center dark:bg-cdms_primary dark:text-white-light">
 										<IconChrome className="w-5 h-5" />
 									</div>
 								</div>
@@ -2058,7 +2065,7 @@ const Widgets = () => {
 
 					<div className="panel h-full p-0">
 						<div className="flex p-5">
-							<div className="shrink-0 bg-cdms_primary/10 text-primary rounded-xl w-11 h-11 flex justify-center items-center dark:bg-cdms_primary dark:text-white-light">
+							<div className="shrink-0 bg-cdms_primary/10 text-cdms_primary rounded-xl w-11 h-11 flex justify-center items-center dark:bg-cdms_primary dark:text-white-light">
 								<IconUsersGroup className="w-5 h-5" />
 							</div>
 							<div className="ltr:ml-3 rtl:mr-3 font-semibold">
@@ -2176,7 +2183,7 @@ const Widgets = () => {
 							</div>
 						</div>
 						<div className="font-semibold text-center pb-8">
-							<div className="mb-4 text-primary">4 Members Going</div>
+							<div className="mb-4 text-cdms_primary">4 Members Going</div>
 							<div className="flex items-center justify-center gap-3 pb-8">
 								<img
 									className="w-10 h-10 ring-2 ring-white-light dark:ring-dark rounded-lg overflow-hidden object-cover"
@@ -2227,9 +2234,9 @@ const Widgets = () => {
 								<Dropdown
 									offset={[0, 5]}
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-									btnClassName="hover:text-primary"
+									btnClassName="hover:text-cdms_primary"
 									button={
-										<IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -2256,7 +2263,7 @@ const Widgets = () => {
 									<IconSquareCheck className="w-4 h-4 text-success" />
 									<div className="ltr:ml-2 rtl:mr-2 text-xs">5 Tasks</div>
 								</div>
-								<p className="text-primary">65%</p>
+								<p className="text-cdms_primary">65%</p>
 							</div>
 							<div className="rounded-full h-2.5 p-0.5 bg-dark-light dark:bg-dark-light/10 mb-5">
 								<div

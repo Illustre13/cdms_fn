@@ -347,7 +347,7 @@ const Chat = () => {
 							<Dropdown
 								offset={[0, 5]}
 								placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-								btnClassName="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light w-8 h-8 rounded-full !flex justify-center items-center hover:text-primary"
+								btnClassName="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light w-8 h-8 rounded-full !flex justify-center items-center hover:text-cdms_primary"
 								button={<IconHorizontalDots className="opacity-70" />}
 							>
 								<ul className="whitespace-nowrap">
@@ -381,27 +381,27 @@ const Chat = () => {
 							value={searchUser}
 							onChange={(e) => setSearchUser(e.target.value)}
 						/>
-						<div className="absolute ltr:right-2 rtl:left-2 top-1/2 -translate-y-1/2 peer-focus:text-primary">
+						<div className="absolute ltr:right-2 rtl:left-2 top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary">
 							<IconSearch />
 						</div>
 					</div>
 					<div className="flex justify-between items-center text-xs">
-						<button type="button" className="hover:text-primary">
+						<button type="button" className="hover:text-cdms_primary">
 							<IconMessagesDot className="mx-auto mb-1" />
 							Chats
 						</button>
 
-						<button type="button" className="hover:text-primary">
+						<button type="button" className="hover:text-cdms_primary">
 							<IconPhone className="mx-auto mb-1" />
 							Calls
 						</button>
 
-						<button type="button" className="hover:text-primary">
+						<button type="button" className="hover:text-cdms_primary">
 							<IconUserPlus className="mx-auto mb-1" />
 							Contacts
 						</button>
 
-						<button type="button" className="hover:text-primary group">
+						<button type="button" className="hover:text-cdms_primary group">
 							<IconBell className="w-5 h-5 mx-auto mb-1" />
 							Notification
 						</button>
@@ -414,9 +414,9 @@ const Chat = () => {
 									<div key={person.userId}>
 										<button
 											type="button"
-											className={`w-full flex justify-between items-center p-2 hover:bg-gray-100 dark:hover:bg-[#050b14] rounded-md dark:hover:text-primary hover:text-primary ${
+											className={`w-full flex justify-between items-center p-2 hover:bg-gray-100 dark:hover:bg-[#050b14] rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary ${
 												selectedUser && selectedUser.userId === person.userId
-													? "bg-gray-100 dark:bg-[#050b14] dark:text-primary text-primary"
+													? "bg-gray-100 dark:bg-[#050b14] dark:text-cdms_primary text-cdms_primary"
 													: ""
 											}`}
 											onClick={() => selectUser(person)}
@@ -467,7 +467,7 @@ const Chat = () => {
 							<button
 								type="button"
 								onClick={() => setIsShowChatMenu(!isShowChatMenu)}
-								className="xl:hidden absolute top-4 ltr:left-4 rtl:right-4 hover:text-primary"
+								className="xl:hidden absolute top-4 ltr:left-4 rtl:right-4 hover:text-cdms_primary"
 							>
 								<IconMenu />
 							</button>
@@ -645,7 +645,7 @@ const Chat = () => {
 								<div className="flex items-center space-x-2 rtl:space-x-reverse">
 									<button
 										type="button"
-										className="xl:hidden hover:text-primary"
+										className="xl:hidden hover:text-cdms_primary"
 										onClick={() => setIsShowChatMenu(!isShowChatMenu)}
 									>
 										<IconMenu />
@@ -671,18 +671,18 @@ const Chat = () => {
 								</div>
 								<div className="flex sm:gap-5 gap-3">
 									<button type="button">
-										<IconPhoneCall className="hover:text-primary" />
+										<IconPhoneCall className="hover:text-cdms_primary" />
 									</button>
 
 									<button type="button">
-										<IconVideo className="w-5 h-5 hover:text-primary" />
+										<IconVideo className="w-5 h-5 hover:text-cdms_primary" />
 									</button>
 									<div className="dropdown">
 										<Dropdown
 											placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
 											btnClassName="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light w-8 h-8 rounded-full !flex justify-center items-center"
 											button={
-												<IconHorizontalDots className="hover:text-primary rotate-90 opacity-70" />
+												<IconHorizontalDots className="hover:text-cdms_primary rotate-90 opacity-70" />
 											}
 										>
 											<ul className="text-black dark:text-white-dark">
@@ -788,7 +788,7 @@ const Chat = () => {
 																				: ""
 																		}`}
 																	>
-																		<IconMoodSmile className="hover:text-primary" />
+																		<IconMoodSmile className="hover:text-cdms_primary" />
 																	</div>
 																</div>
 																<div
@@ -823,13 +823,13 @@ const Chat = () => {
 										/>
 										<button
 											type="button"
-											className="absolute ltr:left-4 rtl:right-4 top-1/2 -translate-y-1/2 hover:text-primary"
+											className="absolute ltr:left-4 rtl:right-4 top-1/2 -translate-y-1/2 hover:text-cdms_primary"
 										>
 											<IconMoodSmile />
 										</button>
 										<button
 											type="button"
-											className="absolute ltr:right-4 rtl:left-4 top-1/2 -translate-y-1/2 hover:text-primary"
+											className="absolute ltr:right-4 rtl:left-4 top-1/2 -translate-y-1/2 hover:text-cdms_primary"
 											onClick={() => sendMessage()}
 										>
 											<IconSend />
@@ -838,25 +838,25 @@ const Chat = () => {
 									<div className="items-center space-x-3 rtl:space-x-reverse sm:py-0 py-3 hidden sm:block">
 										<button
 											type="button"
-											className="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light rounded-md p-2 hover:text-primary"
+											className="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light rounded-md p-2 hover:text-cdms_primary"
 										>
 											<IconMicrophoneOff />
 										</button>
 										<button
 											type="button"
-											className="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light rounded-md p-2 hover:text-primary"
+											className="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light rounded-md p-2 hover:text-cdms_primary"
 										>
 											<IconDownload />
 										</button>
 										<button
 											type="button"
-											className="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light rounded-md p-2 hover:text-primary"
+											className="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light rounded-md p-2 hover:text-cdms_primary"
 										>
 											<IconCamera />
 										</button>
 										<button
 											type="button"
-											className="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light rounded-md p-2 hover:text-primary"
+											className="bg-[#f4f4f4] dark:bg-[#1b2e4b] hover:bg-cdms_primary-light rounded-md p-2 hover:text-cdms_primary"
 										>
 											<IconHorizontalDots className="opacity-70" />
 										</button>

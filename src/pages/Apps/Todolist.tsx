@@ -662,9 +662,9 @@ const Todolist = () => {
 							<div className="space-y-1">
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										selectedTab === ""
-											? "bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+											? "bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 											: ""
 									}`}
 									onClick={() => {
@@ -683,9 +683,9 @@ const Todolist = () => {
 								</button>
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										selectedTab === "complete" &&
-										"bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+										"bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 									}`}
 									onClick={() => {
 										tabChanged();
@@ -703,9 +703,9 @@ const Todolist = () => {
 								</button>
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										selectedTab === "important" &&
-										"bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+										"bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 									}`}
 									onClick={() => {
 										tabChanged();
@@ -723,9 +723,9 @@ const Todolist = () => {
 								</button>
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										selectedTab === "trash" &&
-										"bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+										"bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 									}`}
 									onClick={() => {
 										tabChanged();
@@ -770,7 +770,7 @@ const Todolist = () => {
 
 								<button
 									type="button"
-									className={`w-full flex items-center h-10 p-1 hover:bg-white-dark/10 rounded-md dark:hover:bg-[#181F32] font-medium text-primary ltr:hover:pl-3 rtl:hover:pr-3 duration-300 ${
+									className={`w-full flex items-center h-10 p-1 hover:bg-white-dark/10 rounded-md dark:hover:bg-[#181F32] font-medium text-cdms_primary ltr:hover:pl-3 rtl:hover:pr-3 duration-300 ${
 										selectedTab === "medium" &&
 										"ltr:pl-3 rtl:pr-3 bg-gray-100 dark:bg-[#181F32]"
 									}`}
@@ -836,7 +836,7 @@ const Todolist = () => {
 							<div className="ltr:mr-3 rtl:ml-3 flex items-center">
 								<button
 									type="button"
-									className="xl:hidden hover:text-primary block ltr:mr-3 rtl:ml-3"
+									className="xl:hidden hover:text-cdms_primary block ltr:mr-3 rtl:ml-3"
 									onClick={() => setIsShowTaskMenu(!isShowTaskMenu)}
 								>
 									<IconMenu />
@@ -850,7 +850,7 @@ const Todolist = () => {
 										onChange={(e) => setSearchTask(e.target.value)}
 										onKeyUp={() => searchTasks()}
 									/>
-									<div className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-primary">
+									<div className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary">
 										<IconSearch />
 									</div>
 								</div>
@@ -917,7 +917,7 @@ const Todolist = () => {
 													<td>
 														<div onClick={() => viewTask(task)}>
 															<div
-																className={`group-hover:text-primary font-semibold text-base whitespace-nowrap ${
+																className={`group-hover:text-cdms_primary font-semibold text-base whitespace-nowrap ${
 																	task.status === "complete"
 																		? "line-through"
 																		: ""
@@ -986,7 +986,7 @@ const Todolist = () => {
 																			<li>
 																				<button
 																					type="button"
-																					className="w-full text-primary ltr:text-left rtl:text-right"
+																					className="w-full text-cdms_primary ltr:text-left rtl:text-right"
 																					onClick={() =>
 																						setPriority(task, "medium")
 																					}

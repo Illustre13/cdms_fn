@@ -440,7 +440,7 @@ const Index = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="/dashboard" className="text-primary hover:underline">
+					<Link to="/dashboard" className="text-cdms_primary hover:underline">
 						Dashboard
 					</Link>
 				</li>
@@ -506,7 +506,7 @@ const Index = () => {
 								<Dropdown
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
 									button={
-										<IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -520,7 +520,7 @@ const Index = () => {
 						<div className="space-y-9">
 							<div className="flex items-center">
 								<div className="w-9 h-9 ltr:mr-3 rtl:ml-3">
-									<div className="bg-cdms_secondary-light dark:bg-cdms_secondary text-secondary dark:text-secondary-light  rounded-full w-9 h-9 grid place-content-center">
+									<div className="bg-cdms_secondary-light dark:bg-cdms_secondary text-cdms_secondary dark:text-cdms_secondary-light  rounded-full w-9 h-9 grid place-content-center">
 										<IconInbox />
 									</div>
 								</div>
@@ -621,7 +621,7 @@ const Index = () => {
 									offset={[0, 1]}
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
 									button={
-										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -639,7 +639,7 @@ const Index = () => {
 							</div>
 						</div>
 						<p className="text-lg dark:text-white-light/90">
-							Total <span className="text-primary ml-2">12,345</span>
+							Total <span className="text-cdms_primary ml-2">12,345</span>
 						</p>
 						<div className="relative">
 							<div className="bg-white dark:bg-black rounded-lg overflow-hidden">
@@ -864,7 +864,7 @@ const Index = () => {
 						<div className="border-t border-white-light dark:border-white/10">
 							<Link
 								to="/"
-								className=" font-semibold group hover:text-primary p-4 flex items-center justify-center group"
+								className=" font-semibold group hover:text-cdms_primary p-4 flex items-center justify-center group"
 							>
 								View All
 								<IconArrowLeft className="rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition duration-300 ltr:ml-1 rtl:mr-1" />
@@ -878,7 +878,7 @@ const Index = () => {
 								<Dropdown
 									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
 									button={
-										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-primary" />
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
 									}
 								>
 									<ul>
@@ -940,7 +940,7 @@ const Index = () => {
 									</span>
 								</div>
 								<div className="flex">
-									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_secondary-light dark:bg-cdms_secondary text-secondary dark:text-secondary-light">
+									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_secondary-light dark:bg-cdms_secondary text-cdms_secondary dark:text-cdms_secondary-light">
 										<IconNetflix />
 									</span>
 									<div className="px-3 flex-1">
@@ -968,7 +968,7 @@ const Index = () => {
 									</span>
 								</div>
 								<div className="flex">
-									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_primary-light dark:bg-cdms_primary text-primary dark:text-primary-light">
+									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_primary-light dark:bg-cdms_primary text-cdms_primary dark:text-cdms_primary-light">
 										<IconBolt />
 									</span>
 									<div className="px-3 flex-1">
@@ -1099,7 +1099,7 @@ const Index = () => {
 												<span className="whitespace-nowrap">Luke Ivory</span>
 											</div>
 										</td>
-										<td className="text-primary">Headphone</td>
+										<td className="text-cdms_primary">Headphone</td>
 										<td>
 											<Link to="/apps/invoice/preview">#46894</Link>
 										</td>
@@ -1187,7 +1187,7 @@ const Index = () => {
 												<span className="whitespace-nowrap">Irene Collins</span>
 											</div>
 										</td>
-										<td className="text-secondary">Speakers</td>
+										<td className="text-cdms_secondary">Speakers</td>
 										<td>
 											<Link to="/apps/invoice/preview">#46894</Link>
 										</td>
@@ -1235,7 +1235,7 @@ const Index = () => {
 												/>
 												<p className="whitespace-nowrap">
 													Headphone
-													<span className="text-primary block text-xs">
+													<span className="text-cdms_primary block text-xs">
 														Digital
 													</span>
 												</p>
@@ -1313,7 +1313,7 @@ const Index = () => {
 												/>
 												<p className="whitespace-nowrap">
 													Laptop{" "}
-													<span className="text-primary block text-xs">
+													<span className="text-cdms_primary block text-xs">
 														Digital
 													</span>
 												</p>
@@ -1323,7 +1323,10 @@ const Index = () => {
 										<td>$33.00</td>
 										<td>35</td>
 										<td>
-											<Link className="text-secondary flex items-center" to="/">
+											<Link
+												className="text-cdms_secondary flex items-center"
+												to="/"
+											>
 												<IconMultipleForwardRight className="rtl:rotate-180 ltr:mr-1 rtl:ml-1" />
 												Email
 											</Link>
@@ -1339,7 +1342,7 @@ const Index = () => {
 												/>
 												<p className="whitespace-nowrap">
 													Camera{" "}
-													<span className="text-primary block text-xs">
+													<span className="text-cdms_primary block text-xs">
 														Digital
 													</span>
 												</p>
@@ -1349,7 +1352,10 @@ const Index = () => {
 										<td>$26.04</td>
 										<td>30</td>
 										<td>
-											<Link className="text-primary flex items-center" to="/">
+											<Link
+												className="text-cdms_primary flex items-center"
+												to="/"
+											>
 												<IconMultipleForwardRight className="rtl:rotate-180 ltr:mr-1 rtl:ml-1" />
 												Referral
 											</Link>

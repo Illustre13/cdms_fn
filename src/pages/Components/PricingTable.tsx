@@ -28,7 +28,7 @@ const PricingTable = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Components
 					</Link>
 				</li>
@@ -57,19 +57,19 @@ const PricingTable = () => {
 					<div className="mb-5">
 						<div className="max-w-[320px] md:max-w-[990px] mx-auto">
 							<div className="md:flex justify-between space-y-4 md:space-y-0 md:space-x-4 rtl:space-x-reverse">
-								<div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-primary">
+								<div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-cdms_primary">
 									<h3 className="text-xl lg:text-2xl">Beginner Savers</h3>
-									<div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-primary"></div>
+									<div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-cdms_primary"></div>
 									<p className="text-[15px]">
 										For people who are starting out in the water saving business
 									</p>
-									<div className="my-7 p-2.5 text-center text-lg group-hover:text-primary">
-										<strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-primary">
+									<div className="my-7 p-2.5 text-center text-lg group-hover:text-cdms_primary">
+										<strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-cdms_primary">
 											$19
 										</strong>{" "}
 										/ monthly
 									</div>
-									<ul className="space-y-2.5 mb-5 font-semibold group-hover:text-primary">
+									<ul className="space-y-2.5 mb-5 font-semibold group-hover:text-cdms_primary">
 										<li className="flex justify-center items-center">
 											<IconArrowLeft className="w-3.5 h-3.5 ltr:mr-1 rtl:ml-1 rtl:rotate-180 shrink-0" />
 											Free water saving e-book
@@ -85,24 +85,24 @@ const PricingTable = () => {
 									</ul>
 									<button
 										type="button"
-										className="btn text-black shadow-none group-hover:text-primary group-hover:border-primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
+										className="btn text-black shadow-none group-hover:text-cdms_primary group-hover:border-cdms_primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
 									>
 										Buy Now
 									</button>
 								</div>
-								<div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-primary">
+								<div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-cdms_primary">
 									<h3 className="text-xl lg:text-2xl">Advanced Savers</h3>
-									<div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-primary"></div>
+									<div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-cdms_primary"></div>
 									<p className="text-[15px] ">
 										For experienced water savers who'd like to push their limits
 									</p>
-									<div className="my-7 p-2.5 text-center text-lg group-hover:text-primary">
-										<strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-primary">
+									<div className="my-7 p-2.5 text-center text-lg group-hover:text-cdms_primary">
+										<strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-cdms_primary">
 											$29
 										</strong>{" "}
 										/ monthly
 									</div>
-									<ul className="space-y-2.5 mb-5 font-semibold group-hover:text-primary">
+									<ul className="space-y-2.5 mb-5 font-semibold group-hover:text-cdms_primary">
 										<li className="flex justify-center items-center">
 											<IconArrowLeft className="w-3.5 h-3.5 ltr:mr-1 rtl:ml-1 rtl:rotate-180 shrink-0" />
 											Free water saving e-book
@@ -118,24 +118,24 @@ const PricingTable = () => {
 									</ul>
 									<button
 										type="button"
-										className="btn text-black shadow-none group-hover:text-primary group-hover:border-primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
+										className="btn text-black shadow-none group-hover:text-cdms_primary group-hover:border-cdms_primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
 									>
 										Buy Now
 									</button>
 								</div>
-								<div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-primary">
+								<div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-cdms_primary">
 									<h3 className="text-xl lg:text-2xl">Pro Savers</h3>
-									<div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-primary"></div>
+									<div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-cdms_primary"></div>
 									<p className="text-[15px] ">
 										For all the professionals who'd like to educate others, too
 									</p>
-									<div className="my-7 p-2.5 text-center text-lg group-hover:text-primary">
-										<strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-primary">
+									<div className="my-7 p-2.5 text-center text-lg group-hover:text-cdms_primary">
+										<strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-cdms_primary">
 											$79
 										</strong>{" "}
 										/ monthly
 									</div>
-									<ul className="space-y-2.5 mb-5 font-semibold group-hover:text-primary">
+									<ul className="space-y-2.5 mb-5 font-semibold group-hover:text-cdms_primary">
 										<li className="flex justify-center items-center">
 											<IconArrowLeft className="w-3.5 h-3.5 ltr:mr-1 rtl:ml-1 rtl:rotate-180 shrink-0" />
 											Access to all books
@@ -151,7 +151,7 @@ const PricingTable = () => {
 									</ul>
 									<button
 										type="button"
-										className="btn text-black shadow-none group-hover:text-primary group-hover:border-primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
+										className="btn text-black shadow-none group-hover:text-cdms_primary group-hover:border-cdms_primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
 									>
 										Buy Now
 									</button>
@@ -165,14 +165,14 @@ const PricingTable = () => {
 								{`<div className="mb-5">
     <div className="max-w-[320px] md:max-w-[990px] mx-auto">
         <div className="md:flex justify-between space-y-4 md:space-y-0 md:space-x-4 rtl:space-x-reverse">
-            <div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-primary">
+            <div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-cdms_primary">
                 <h3 className="text-xl lg:text-2xl">Beginner Savers</h3>
-                <div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-primary"></div>
+                <div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-cdms_primary"></div>
                 <p className="text-[15px]">For people who are starting out in the water saving business</p>
-                <div className="my-7 p-2.5 text-center text-lg group-hover:text-primary">
-                    <strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-primary">$19</strong> / monthly
+                <div className="my-7 p-2.5 text-center text-lg group-hover:text-cdms_primary">
+                    <strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-cdms_primary">$19</strong> / monthly
                 </div>
-                <ul className="space-y-2.5 mb-5 font-semibold group-hover:text-primary">
+                <ul className="space-y-2.5 mb-5 font-semibold group-hover:text-cdms_primary">
                     <li className="flex justify-center items-center">
                         <svg>...</svg>
                         Free water saving e-book
@@ -188,19 +188,19 @@ const PricingTable = () => {
                 </ul>
                 <button
                     type="button"
-                    className="btn text-black shadow-none group-hover:text-primary group-hover:border-primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
+                    className="btn text-black shadow-none group-hover:text-cdms_primary group-hover:border-cdms_primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
                 >
                     Buy Now
                 </button>
             </div>
-            <div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-primary">
+            <div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-cdms_primary">
                 <h3 className="text-xl lg:text-2xl">Advanced Savers</h3>
-                <div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-primary"></div>
+                <div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-cdms_primary"></div>
                 <p className="text-[15px] ">For experienced water savers who'd like to push their limits</p>
-                <div className="my-7 p-2.5 text-center text-lg group-hover:text-primary">
-                    <strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-primary">$29</strong> / monthly
+                <div className="my-7 p-2.5 text-center text-lg group-hover:text-cdms_primary">
+                    <strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-cdms_primary">$29</strong> / monthly
                 </div>
-                <ul className="space-y-2.5 mb-5 font-semibold group-hover:text-primary">
+                <ul className="space-y-2.5 mb-5 font-semibold group-hover:text-cdms_primary">
                     <li className="flex justify-center items-center">
                         <svg>...</svg>
                         Free water saving e-book
@@ -216,19 +216,19 @@ const PricingTable = () => {
                 </ul>
                 <button
                     type="button"
-                    className="btn text-black shadow-none group-hover:text-primary group-hover:border-primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
+                    className="btn text-black shadow-none group-hover:text-cdms_primary group-hover:border-cdms_primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
                 >
                     Buy Now
                 </button>
             </div>
-            <div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-primary">
+            <div className="p-3 lg:p-5 border border-black dark:border-[#1b2e4b] text-center rounded group hover:border-cdms_primary">
                 <h3 className="text-xl lg:text-2xl">Pro Savers</h3>
-                <div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-primary"></div>
+                <div className="border-t border-black dark:border-white-dark w-1/5 mx-auto my-6 group-hover:border-cdms_primary"></div>
                 <p className="text-[15px] ">For all the professionals who'd like to educate others, too</p>
-                <div className="my-7 p-2.5 text-center text-lg group-hover:text-primary">
-                    <strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-primary">$79</strong> / monthly
+                <div className="my-7 p-2.5 text-center text-lg group-hover:text-cdms_primary">
+                    <strong className="text-[#3b3f5c] dark:text-white-dark text-3xl lg:text-5xl group-hover:text-cdms_primary">$79</strong> / monthly
                 </div>
-                <ul className="space-y-2.5 mb-5 font-semibold group-hover:text-primary">
+                <ul className="space-y-2.5 mb-5 font-semibold group-hover:text-cdms_primary">
                     <li className="flex justify-center items-center">
                         <svg>...</svg>
                         Access to all books
@@ -243,7 +243,7 @@ const PricingTable = () => {
                     </li>
                 </ul>
                 <button type="button"
-                    className="btn text-black shadow-none group-hover:text-primary group-hover:border-primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
+                    className="btn text-black shadow-none group-hover:text-cdms_primary group-hover:border-cdms_primary group-hover:bg-cdms_primary/10 dark:text-white-dark dark:border-white-dark/50 w-full"
                 >
                     Buy Now
                 </button>
@@ -278,7 +278,7 @@ const PricingTable = () => {
 							<div className="mt-5 md:mt-10 text-center flex justify-center space-x-4 rtl:space-x-reverse font-semibold text-base">
 								<span
 									className={`${
-										!yearlyPrice ? "text-primary" : "text-white-dark"
+										!yearlyPrice ? "text-cdms_primary" : "text-white-dark"
 									}`}
 								>
 									Monthly
@@ -291,11 +291,11 @@ const PricingTable = () => {
 										className="custom_switch absolute ltr:left-0 rtl:right-0 top-0 w-full h-full opacity-0 z-10 cursor-pointer peer"
 										onChange={() => setYearlyPrice(!yearlyPrice)}
 									/>
-									<span className="outline_checkbox bg-icon border-2 border-[#ebedf2] dark:border-white-dark block h-full rounded-full before:absolute ltr:before:left-1 rtl:before:right-1 before:bg-[#ebedf2] dark:before:bg-white-dark before:bottom-1 before:w-4 before:h-4 before:rounded-full before:bg-[url(/assets/images/close.svg)] before:bg-no-repeat before:bg-center ltr:peer-checked:before:left-7 rtl:peer-checked:before:right-7 peer-checked:before:bg-[url(/assets/images/checked.svg)] peer-checked:border-primary peer-checked:before:bg-cdms_primary before:transition-all before:duration-300"></span>
+									<span className="outline_checkbox bg-icon border-2 border-[#ebedf2] dark:border-white-dark block h-full rounded-full before:absolute ltr:before:left-1 rtl:before:right-1 before:bg-[#ebedf2] dark:before:bg-white-dark before:bottom-1 before:w-4 before:h-4 before:rounded-full before:bg-[url(/assets/images/close.svg)] before:bg-no-repeat before:bg-center ltr:peer-checked:before:left-7 rtl:peer-checked:before:right-7 peer-checked:before:bg-[url(/assets/images/checked.svg)] peer-checked:border-cdms_primary peer-checked:before:bg-cdms_primary before:transition-all before:duration-300"></span>
 								</label>
 								<span
 									className={`relative ${
-										yearlyPrice ? "text-primary" : " text-white-dark"
+										yearlyPrice ? "text-cdms_primary" : " text-white-dark"
 									}  `}
 								>
 									Yearly
@@ -343,7 +343,7 @@ const PricingTable = () => {
 										cPanel/WHM included. Intel Xeon E5 with guaranteed 4GB RAM.
 									</p>
 									<div className="my-7 p-2.5 text-center text-lg">
-										<strong className="text-primary text-xl lg:text-4xl">
+										<strong className="text-cdms_primary text-xl lg:text-4xl">
 											$70
 										</strong>{" "}
 										/ monthly
@@ -398,7 +398,7 @@ const PricingTable = () => {
 								{`<div className="mb-5">
     <div className="max-w-[320px] md:max-w-[1140px] mx-auto dark:text-white-dark">
         <div className="mt-5 md:mt-10 text-center flex justify-center space-x-4 rtl:space-x-reverse font-semibold text-base">
-            <span className={\`\${!yearlyPrice ? 'text-primary' : 'text-white-dark'}\`}>Monthly</span>
+            <span className={\`\${!yearlyPrice ? 'text-cdms_primary' : 'text-white-dark'}\`}>Monthly</span>
 
             <label className="w-12 h-6 relative">
                 <input
@@ -407,10 +407,10 @@ const PricingTable = () => {
                     className="custom_switch absolute ltr:left-0 rtl:right-0 top-0 w-full h-full opacity-0 z-10 cursor-pointer peer"
                     onChange={() => setYearlyPrice(!yearlyPrice)}
                 />
-                <span className="outline_checkbox bg-icon border-2 border-[#ebedf2] dark:border-white-dark block h-full rounded-full before:absolute ltr:before:left-1 rtl:before:right-1 before:bg-[#ebedf2] dark:before:bg-white-dark before:bottom-1 before:w-4 before:h-4 before:rounded-full before:bg-[url(/assets/images/close.svg)] before:bg-no-repeat before:bg-center ltr:peer-checked:before:left-7 rtl:peer-checked:before:right-7 peer-checked:before:bg-[url(/assets/images/checked.svg)] peer-checked:border-primary peer-checked:before:bg-cdms_primary before:transition-all before:duration-300"></span>
+                <span className="outline_checkbox bg-icon border-2 border-[#ebedf2] dark:border-white-dark block h-full rounded-full before:absolute ltr:before:left-1 rtl:before:right-1 before:bg-[#ebedf2] dark:before:bg-white-dark before:bottom-1 before:w-4 before:h-4 before:rounded-full before:bg-[url(/assets/images/close.svg)] before:bg-no-repeat before:bg-center ltr:peer-checked:before:left-7 rtl:peer-checked:before:right-7 peer-checked:before:bg-[url(/assets/images/checked.svg)] peer-checked:border-cdms_primary peer-checked:before:bg-cdms_primary before:transition-all before:duration-300"></span>
             </label>
             <span className={\`\relative ${
-							yearlyPrice ? "text-primary" : " text-white-dark"
+							yearlyPrice ? "text-cdms_primary" : " text-white-dark"
 						}\`}>
                 Yearly
                 <span className="badge bg-success rounded-full absolute ltr:left-full rtl:right-full whitespace-nowrap ltr:ml-2 rtl:mr-2 my-auto hidden">20% Off</span>
@@ -440,7 +440,7 @@ const PricingTable = () => {
                 <h3 className="text-xl mb-5 font-semibold text-black dark:text-white-light">VPS Hosting</h3>
                 <p>cPanel/WHM included. Intel Xeon E5 with guaranteed 4GB RAM.</p>
                 <div className="my-7 p-2.5 text-center text-lg">
-                    <strong className="text-primary text-xl lg:text-4xl">$70</strong> / monthly
+                    <strong className="text-cdms_primary text-xl lg:text-4xl">$70</strong> / monthly
                 </div>
                 <div className="mb-6">
                     <strong className="text-black dark:text-white-light text-[15px]  mb-3 inline-block">VPS Hosting Features</strong>
@@ -502,7 +502,7 @@ const PricingTable = () => {
 							<div className="md:flex justify-between space-y-14 md:space-y-0 md:space-x-4 rtl:space-x-reverse">
 								<div className="border border-white-light dark:border-[#1b2e4b] rounded transition-all duration-300 group">
 									<div className="border-b border-white-light dark:border-[#1b2e4b] p-5 pt-0">
-										<span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
+										<span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-cdms_primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
 											$49
 										</span>
 										<h3 className="text-xl lg:text-2xl mt-4 mb-2.5">
@@ -526,7 +526,7 @@ const PricingTable = () => {
 								</div>
 								<div className="border border-white-light dark:border-[#1b2e4b] rounded transition-all duration-300 group">
 									<div className="border-b border-white-light dark:border-[#1b2e4b] p-5 pt-0">
-										<span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
+										<span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-cdms_primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
 											$89
 										</span>
 										<h3 className="text-xl lg:text-2xl mt-4 mb-2.5">
@@ -550,7 +550,7 @@ const PricingTable = () => {
 								</div>
 								<div className="border border-white-light dark:border-[#1b2e4b] rounded transition-all duration-300 group">
 									<div className="border-b border-white-light dark:border-[#1b2e4b] p-5 pt-0">
-										<span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
+										<span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-cdms_primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
 											$129
 										</span>
 										<h3 className="text-xl lg:text-2xl mt-4 mb-2.5">
@@ -583,7 +583,7 @@ const PricingTable = () => {
         <div className="md:flex justify-between space-y-14 md:space-y-0 md:space-x-4 rtl:space-x-reverse">
             <div className="border border-white-light dark:border-[#1b2e4b] rounded transition-all duration-300 group">
                 <div className="border-b border-white-light dark:border-[#1b2e4b] p-5 pt-0">
-                    <span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
+                    <span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-cdms_primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
                         $49
                     </span>
                     <h3 className="text-xl lg:text-2xl mt-4 mb-2.5">Freelancer</h3>
@@ -603,7 +603,7 @@ const PricingTable = () => {
             </div>
             <div className="border border-white-light dark:border-[#1b2e4b] rounded transition-all duration-300 group">
                 <div className="border-b border-white-light dark:border-[#1b2e4b] p-5 pt-0">
-                    <span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
+                    <span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-cdms_primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
                         $89
                     </span>
                     <h3 className="text-xl lg:text-2xl mt-4 mb-2.5">Small business</h3>
@@ -623,7 +623,7 @@ const PricingTable = () => {
             </div>
             <div className="border border-white-light dark:border-[#1b2e4b] rounded transition-all duration-300 group">
                 <div className="border-b border-white-light dark:border-[#1b2e4b] p-5 pt-0">
-                    <span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
+                    <span className="bg-white dark:bg-black text-[#3b3f5c] dark:text-white-light border-2 border-cdms_primary w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] rounded flex justify-center items-center text-xl lg:text-3xl font-bold -mt-[30px] shadow-[0_0_15px_1px_rgba(113,106,202,0.20)] transition-all duration-300 group-hover:-translate-y-[10px]">
                         $129
                     </span>
                     <h3 className="text-xl lg:text-2xl mt-4 mb-2.5">Larger business</h3>

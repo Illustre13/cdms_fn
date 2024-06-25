@@ -35,7 +35,7 @@ const Carousel = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Components
 					</Link>
 				</li>
@@ -44,7 +44,7 @@ const Carousel = () => {
 				</li>
 			</ul>
 			<div className="pt-5 space-y-8">
-				<div className="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
+				<div className="panel p-3 flex items-center text-cdms_primary overflow-x-auto whitespace-nowrap">
 					<div className="ring-2 ring-primary/30 rounded-full bg-cdms_primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
 						<IconBell />
 					</div>
@@ -100,10 +100,10 @@ const Carousel = () => {
 									);
 								})}
 							</div>
-							<button className="swiper-button-prev-ex1 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+							<button className="swiper-button-prev-ex1 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
 								<IconCaretDown className="w-5 h-5 rtl:-rotate-90 rotate-90" />
 							</button>
-							<button className="swiper-button-next-ex1 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+							<button className="swiper-button-next-ex1 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
 								<IconCaretDown className="w-5 h-5 rtl:rotate-90 -rotate-90" />
 							</button>
 						</Swiper>
@@ -134,10 +134,10 @@ import { Navigation, Pagination, Autoplay } from 'swiper';
             );
         })}
     </div>
-    <button className="swiper-button-prev-ex1 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+    <button className="swiper-button-prev-ex1 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
         <svg>...</svg>
     </button>
-    <button className="swiper-button-next-ex1 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+    <button className="swiper-button-next-ex1 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
         <svg>...</svg>
     </button>
 </Swiper>`}
@@ -201,10 +201,10 @@ import { Navigation, Pagination, Autoplay } from 'swiper';
 									);
 								})}
 							</div>
-							<button className="swiper-button-prev-ex2 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+							<button className="swiper-button-prev-ex2 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
 								<IconCaretDown className="w-5 h-5 rtl:-rotate-90 rotate-90" />
 							</button>
-							<button className="swiper-button-next-ex2 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+							<button className="swiper-button-next-ex2 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
 								<IconCaretDown className="w-5 h-5 rtl:rotate-90 -rotate-90" />
 							</button>
 						</Swiper>
@@ -245,10 +245,10 @@ import { Navigation, Pagination, Autoplay } from 'swiper';
             );
         })}
     </div>
-    <button className="swiper-button-prev-ex2 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+    <button className="swiper-button-prev-ex2 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
         <svg>...</svg>
     </button>
-    <button className="swiper-button-next-ex2 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+    <button className="swiper-button-next-ex2 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
         <svg>...</svg>
     </button>
 </Swiper>`}
@@ -404,10 +404,10 @@ import { Navigation, Pagination, Autoplay } from 'swiper';
 									</SwiperSlide>
 								</Swiper>
 							</div>
-							<button className="swiper-button-prev-ex4 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+							<button className="swiper-button-prev-ex4 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
 								<IconCaretDown className="w-5 h-5 rtl:-rotate-90 rotate-90" />
 							</button>
-							<button className="swiper-button-next-ex4 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+							<button className="swiper-button-next-ex4 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
 								<IconCaretDown className="w-5 h-5 rtl:rotate-90 -rotate-90" />
 							</button>
 						</div>
@@ -461,10 +461,10 @@ import { Navigation, Pagination, Autoplay } from 'swiper';
             </SwiperSlide>
         </Swiper>
     </div>
-    <button className="swiper-button-prev-ex4 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+    <button className="swiper-button-prev-ex4 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
         <svg>...</svg>
     </button>
-    <button className="swiper-button-next-ex4 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
+    <button className="swiper-button-next-ex4 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-1/2 -translate-y-1/2">
         <svg>...</svg>
     </button>
 </div>`}
@@ -540,10 +540,10 @@ import { Navigation, Pagination, Autoplay } from 'swiper';
 									})}
 								</Swiper>
 							</div>
-							<button className="swiper-button-prev-ex5 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-[44%] -translate-y-1/2">
+							<button className="swiper-button-prev-ex5 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-[44%] -translate-y-1/2">
 								<IconCaretDown className="w-5 h-5 rtl:-rotate-90 rotate-90" />
 							</button>
-							<button className="swiper-button-next-ex5 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-[44%] -translate-y-1/2">
+							<button className="swiper-button-next-ex5 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-[44%] -translate-y-1/2">
 								<IconCaretDown className="w-5 h-5 rtl:rotate-90 -rotate-90" />
 							</button>
 						</div>
@@ -600,10 +600,10 @@ import { Navigation, Pagination } from 'swiper';
             })}
         </Swiper>
     </div>
-    <button className="swiper-button-prev-ex5 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-[44%] -translate-y-1/2">
+    <button className="swiper-button-prev-ex5 grid place-content-center ltr:left-2 rtl:right-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-[44%] -translate-y-1/2">
         <svg>...</svg>
     </button>
-    <button className="swiper-button-next-ex5 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-primary hover:text-white border border-primary  hover:border-primary hover:bg-cdms_primary rounded-full absolute z-[999] top-[44%] -translate-y-1/2">
+    <button className="swiper-button-next-ex5 grid place-content-center ltr:right-2 rtl:left-2 p-1 transition text-cdms_primary hover:text-white border border-cdms_primary  hover:border-cdms_primary hover:bg-cdms_primary rounded-full absolute z-[999] top-[44%] -translate-y-1/2">
         <svg>...</svg>
     </button>
 </div>`}

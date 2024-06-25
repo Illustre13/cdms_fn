@@ -21,7 +21,7 @@ const AccountSetting = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="/dashboard" className="text-primary hover:underline">
+					<Link to="/dashboard" className="text-cdms_primary hover:underline">
 						Dashboard
 					</Link>
 				</li>

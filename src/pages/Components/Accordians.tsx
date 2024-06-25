@@ -53,7 +53,7 @@ const Accordians = () => {
 		<div>
 			<ul className="flex space-x-2 rtl:space-x-reverse">
 				<li>
-					<Link to="#" className="text-primary hover:underline">
+					<Link to="#" className="text-cdms_primary hover:underline">
 						Components
 					</Link>
 				</li>
@@ -62,7 +62,7 @@ const Accordians = () => {
 				</li>
 			</ul>
 			<div className="pt-5 space-y-8">
-				<div className="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
+				<div className="panel p-3 flex items-center text-cdms_primary overflow-x-auto whitespace-nowrap">
 					<div className="ring-2 ring-primary/30 rounded-full bg-cdms_primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
 						<IconBell />
 					</div>
@@ -99,7 +99,7 @@ const Accordians = () => {
 									<button
 										type="button"
 										className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-											active === "1" ? "!text-primary" : ""
+											active === "1" ? "!text-cdms_primary" : ""
 										}`}
 										onClick={() => togglePara("1")}
 									>
@@ -140,7 +140,7 @@ const Accordians = () => {
 									<button
 										type="button"
 										className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-											active === "2" ? "!text-primary" : ""
+											active === "2" ? "!text-cdms_primary" : ""
 										}`}
 										onClick={() => togglePara("2")}
 									>
@@ -181,7 +181,7 @@ const Accordians = () => {
 									<button
 										type="button"
 										className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-											active === "3" ? "!text-primary" : ""
+											active === "3" ? "!text-cdms_primary" : ""
 										}`}
 										onClick={() => togglePara("3")}
 									>
@@ -242,7 +242,7 @@ const [active, setActive] = useState<string>('1');
             <button
                 type="button"
                 className={\`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-									active === "1" ? "!text-primary" : ""
+									active === "1" ? "!text-cdms_primary" : ""
 								}\`}
                 onClick={() => togglePara('1')}
             >
@@ -272,7 +272,7 @@ const [active, setActive] = useState<string>('1');
             <button
                 type="button"
                 className={\`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-									active === "2" ? "!text-primary" : ""
+									active === "2" ? "!text-cdms_primary" : ""
 								}\`}
                 onClick={() => togglePara('2')}
             >
@@ -308,7 +308,7 @@ const [active, setActive] = useState<string>('1');
             <button
                 type="button"
                 className={\`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-									active === "3" ? "!text-primary" : ""
+									active === "3" ? "!text-cdms_primary" : ""
 								}\`}
                 onClick={() => togglePara('3')}
             >
@@ -364,7 +364,7 @@ const [active, setActive] = useState<string>('1');
 									<button
 										type="button"
 										className={` ${
-											active1 === "1" ? "!text-primary" : ""
+											active1 === "1" ? "!text-cdms_primary" : ""
 										} p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]`}
 										onClick={() => togglePara1("1")}
 									>
@@ -406,7 +406,7 @@ const [active, setActive] = useState<string>('1');
 									<button
 										type="button"
 										className={` ${
-											active1 === "2" ? "!text-primary" : ""
+											active1 === "2" ? "!text-cdms_primary" : ""
 										} p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]`}
 										onClick={() => togglePara1("2")}
 									>
@@ -448,7 +448,7 @@ const [active, setActive] = useState<string>('1');
 									<button
 										type="button"
 										className={` ${
-											active1 === "3" ? "!text-primary" : ""
+											active1 === "3" ? "!text-cdms_primary" : ""
 										} p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]`}
 										onClick={() => togglePara1("3")}
 									>
@@ -509,7 +509,7 @@ const [active1, setActive1] = useState<string>('1');
             <button
                 type="button"
                 className={\`${
-									active1 === "1" ? "!text-primary" : ""
+									active1 === "1" ? "!text-cdms_primary" : ""
 								} p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]\`}
                 onClick={() => togglePara1('1')}
             >
@@ -540,7 +540,7 @@ const [active1, setActive1] = useState<string>('1');
             <button
                 type="button"
                 className={\`${
-									active1 === "2" ? "!text-primary" : ""
+									active1 === "2" ? "!text-cdms_primary" : ""
 								} p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]\`}
                 onClick={() => togglePara1('2')}
             >
@@ -577,7 +577,7 @@ const [active1, setActive1] = useState<string>('1');
             <button
                 type="button"
                 className={\`${
-									active1 === "3" ? "!text-primary" : ""
+									active1 === "3" ? "!text-cdms_primary" : ""
 								} p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]\`}
                 onClick={() => togglePara1('3')}
             >
@@ -633,11 +633,11 @@ const [active1, setActive1] = useState<string>('1');
 									<button
 										type="button"
 										className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-											active2 === "1" ? "!text-primary" : ""
+											active2 === "1" ? "!text-cdms_primary" : ""
 										}`}
 										onClick={() => togglePara2("1")}
 									>
-										<IconAirplay className="ltr:mr-2 rtl:ml-2 text-primary shrink-0" />
+										<IconAirplay className="ltr:mr-2 rtl:ml-2 text-cdms_primary shrink-0" />
 										Collapsible Group Item #1
 										<div
 											className={`ltr:ml-auto rtl:mr-auto ${
@@ -675,11 +675,11 @@ const [active1, setActive1] = useState<string>('1');
 									<button
 										type="button"
 										className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-											active2 === "2" ? "!text-primary" : ""
+											active2 === "2" ? "!text-cdms_primary" : ""
 										}`}
 										onClick={() => togglePara2("2")}
 									>
-										<IconBox className="ltr:mr-2 rtl:ml-2 text-primary shrink-0" />
+										<IconBox className="ltr:mr-2 rtl:ml-2 text-cdms_primary shrink-0" />
 										Collapsible Group Item #2
 										<div
 											className={`ltr:ml-auto rtl:mr-auto ${
@@ -717,11 +717,11 @@ const [active1, setActive1] = useState<string>('1');
 									<button
 										type="button"
 										className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-											active2 === "3" ? "!text-primary" : ""
+											active2 === "3" ? "!text-cdms_primary" : ""
 										}`}
 										onClick={() => togglePara2("3")}
 									>
-										<IconLayout className="ltr:mr-2 rtl:ml-2 text-primary shrink-0" />
+										<IconLayout className="ltr:mr-2 rtl:ml-2 text-cdms_primary shrink-0" />
 										Collapsible Group Item #3
 										<div
 											className={`ltr:ml-auto rtl:mr-auto ${
@@ -779,7 +779,7 @@ const [active2, setActive2] = useState<string>('1');
             <button
                 type="button"
                 className={\`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-									active2 === "1" ? "!text-primary" : ""
+									active2 === "1" ? "!text-cdms_primary" : ""
 								}\`}
                 onClick={() => togglePara2('1')}
             >
@@ -810,7 +810,7 @@ const [active2, setActive2] = useState<string>('1');
             <button
                 type="button"
                 className={\`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-									active2 === "2" ? "!text-primary" : ""
+									active2 === "2" ? "!text-cdms_primary" : ""
 								}\`}
                 onClick={() => togglePara2('2')}
             >
@@ -847,7 +847,7 @@ const [active2, setActive2] = useState<string>('1');
             <button
                 type="button"
                 className={\`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-									active2 === "3" ? "!text-primary" : ""
+									active2 === "3" ? "!text-cdms_primary" : ""
 								}\`}
                 onClick={() => togglePara2('3')}
             >
@@ -904,7 +904,7 @@ const [active2, setActive2] = useState<string>('1');
 									<button
 										type="button"
 										className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-											active3 === "1" ? "!text-primary" : ""
+											active3 === "1" ? "!text-cdms_primary" : ""
 										}`}
 										onClick={() => togglePara3("1")}
 									>
@@ -938,7 +938,7 @@ const [active2, setActive2] = useState<string>('1');
 									<button
 										type="button"
 										className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-											active3 === "2" ? "!text-primary" : ""
+											active3 === "2" ? "!text-cdms_primary" : ""
 										}`}
 										onClick={() => togglePara3("2")}
 									>
@@ -972,7 +972,7 @@ const [active2, setActive2] = useState<string>('1');
 									<button
 										type="button"
 										className={`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-											active3 === "3" ? "!text-primary" : ""
+											active3 === "3" ? "!text-cdms_primary" : ""
 										}`}
 										onClick={() => togglePara3("3")}
 									>
@@ -1026,7 +1026,7 @@ const [active3, setActive3] = useState<string>('1');
             <button
                 type="button"
                 className={\`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-									active3 === "1" ? "!text-primary" : ""
+									active3 === "1" ? "!text-cdms_primary" : ""
 								}\`}
                 onClick={() => togglePara3('1')}
             >
@@ -1051,7 +1051,7 @@ const [active3, setActive3] = useState<string>('1');
             <button
                 type="button"
                 className={\`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-									active3 === "2" ? "!text-primary" : ""
+									active3 === "2" ? "!text-cdms_primary" : ""
 								}\`}
                 onClick={() => togglePara3('2')}
             >
@@ -1082,7 +1082,7 @@ const [active3, setActive3] = useState<string>('1');
             <button
                 type="button"
                 className={\`p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b] ${
-									active3 === "3" ? "!text-primary" : ""
+									active3 === "3" ? "!text-cdms_primary" : ""
 								}\`}
                 onClick={() => togglePara3('3')}
             >

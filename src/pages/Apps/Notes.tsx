@@ -451,9 +451,9 @@ const Notes = () => {
 							<div className="space-y-1">
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										selectedTab === "all" &&
-										"bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+										"bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 									}`}
 									onClick={() => tabChanged("all")}
 								>
@@ -464,9 +464,9 @@ const Notes = () => {
 								</button>
 								<button
 									type="button"
-									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10 ${
+									className={`w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-cdms_primary hover:text-cdms_primary dark:hover:bg-[#181F32] font-medium h-10 ${
 										selectedTab === "fav" &&
-										"bg-gray-100 dark:text-primary text-primary dark:bg-[#181F32]"
+										"bg-gray-100 dark:text-cdms_primary text-cdms_primary dark:bg-[#181F32]"
 									}`}
 									onClick={() => tabChanged("fav")}
 								>
@@ -479,7 +479,7 @@ const Notes = () => {
 								<div className="px-1 py-3 text-white-dark">Tags</div>
 								<button
 									type="button"
-									className={`w-full flex items-center h-10 p-1 hover:bg-white-dark/10 rounded-md dark:hover:bg-[#181F32] font-medium text-primary ltr:hover:pl-3 rtl:hover:pr-3 duration-300 ${
+									className={`w-full flex items-center h-10 p-1 hover:bg-white-dark/10 rounded-md dark:hover:bg-[#181F32] font-medium text-cdms_primary ltr:hover:pl-3 rtl:hover:pr-3 duration-300 ${
 										selectedTab === "personal" &&
 										"ltr:pl-3 rtl:pr-3 bg-gray-100 dark:bg-[#181F32]"
 									}`}
@@ -539,7 +539,7 @@ const Notes = () => {
 					<div className="pb-5">
 						<button
 							type="button"
-							className="xl:hidden hover:text-primary"
+							className="xl:hidden hover:text-cdms_primary"
 							onClick={() => setIsShowNoteMenu(!isShowNoteMenu)}
 						>
 							<IconMenu />
@@ -604,7 +604,7 @@ const Notes = () => {
 															placement={`${
 																isRtl ? "bottom-start" : "bottom-end"
 															}`}
-															btnClassName="text-primary"
+															btnClassName="text-cdms_primary"
 															button={
 																<IconHorizontalDots className="rotate-90 opacity-70 hover:opacity-100" />
 															}
@@ -658,7 +658,7 @@ const Notes = () => {
 															}`}
 															btnClassName={`${
 																note.tag === "personal"
-																	? "text-primary"
+																	? "text-cdms_primary"
 																	: note.tag === "work"
 																	? "text-warning"
 																	: note.tag === "social"
@@ -691,7 +691,7 @@ const Notes = () => {
 																		type="button"
 																		onClick={() => setTag(note, "personal")}
 																	>
-																		<IconSquareRotated className="ltr:mr-2 rtl:ml-2 fill-primary text-primary" />
+																		<IconSquareRotated className="ltr:mr-2 rtl:ml-2 fill-primary text-cdms_primary" />
 																		Personal
 																	</button>
 																</li>
