@@ -1,32 +1,25 @@
 import { DataTable, DataTableSortStatus } from "mantine-datatable";
 import { useEffect, useState } from "react";
-import sortBy from "lodash/sortBy";
 import "tippy.js/dist/tippy.css";
 import { setPageTitle } from "../../store/themeConfigSlice";
 import { useDispatch } from "react-redux";
-
 import IconSearch from "../../components/Icon/IconSearch";
 import { Link } from "react-router-dom";
-
 import IconListCheck from "../../components/Icon/IconListCheck";
 import IconLayoutGrid from "../../components/Icon/IconLayoutGrid";
-import IconUserPlus from "../../components/Icon/IconUserPlus";
-import IconMenuDocumentation from "../../components/Icon/Menu/IconMenuDocumentation";
-import IconUser from "../../components/Icon/IconUser";
 import IconFacebook from "../../components/Icon/IconFacebook";
 import IconInstagram from "../../components/Icon/IconInstagram";
-import IconGithub from "../../components/Icon/IconGithub";
 import IconLinkedin from "../../components/Icon/IconLinkedin";
 import IconTwitter from "../../components/Icon/IconTwitter";
-import IconCode from "../../components/Icon/IconCode";
 import Select from "react-select";
 import Dropdown from "../../components/Dropdown";
 import IconHorizontalDots from "../../components/Icon/IconHorizontalDots";
-import IconPencil from "../../components/Icon/IconPencil";
 import IconEye from "../../components/Icon/IconEye";
 import IconShare from "../../components/Icon/IconShare";
 import IconArchive from "../../components/Icon/IconArchive";
 import IconEdit from "../../components/Icon/IconEdit";
+import IconTxtFile from "../../components/Icon/IconTxtFile";
+import IconPlus from "../../components/Icon/IconPlus";
 
 const Templates = () => {
 	const dispatch = useDispatch();
@@ -370,7 +363,7 @@ const Templates = () => {
 							to="/cna/overview"
 							className="text-cdms_primary hover:underline"
 						>
-							CNA
+							Capacity Need Assessment
 						</Link>
 					</li>
 					<li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
@@ -385,49 +378,8 @@ const Templates = () => {
 			 *
 			 */}
 
-			<div className="flex flex-col justify-end item-center sm:flex-row flex-col sm:items-center sm:gap-3 gap-4 w-full sm:w-auto">
-				<div className="flex gap-3">
-					<div>
-						<button
-							type="button"
-							className="btn btn-primary"
-							// onClick={() => editUser()}
-						>
-							<IconMenuDocumentation className="ltr:mr-2 rtl:ml-2" />
-							Create Template
-						</button>
-					</div>
-
-					{/* Searchable */}
-					<div className="flex items-center justify-between mb-5"></div>
-					<div className="mb-5">
-						<Select placeholder="Select status" options={options4} />
-					</div>
-
-					<div>
-						<button
-							type="button"
-							className={`btn btn-outline-primary p-2 ${
-								value === "list" && "cdms_primary"
-							}`}
-							onClick={() => setValue("list")}
-						>
-							<IconListCheck />
-						</button>
-					</div>
-					<div>
-						<button
-							type="button"
-							className={`btn btn-outline-primary p-2 ${
-								value === "grid" && "cdms_primary text-white"
-							}`}
-							onClick={() => setValue("grid")}
-						>
-							<IconLayoutGrid />
-						</button>
-					</div>
-				</div>
-				<div className="relative -mt-6">
+			<div className="flex flex-col justify-start mt-5 item-center sm:flex-row flex-col sm:items-center sm:gap-3 gap-40 w-full sm:w-auto">
+				<div className="relative">
 					<input
 						type="text"
 						placeholder="Search Templates..."
@@ -440,6 +392,57 @@ const Templates = () => {
 						className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary"
 					>
 						<IconSearch className="mx-auto" />
+					</button>
+				</div>
+
+				{/* Searchable Select*/}
+				<div className="flex items-center justify-between"></div>
+				<div className="">
+					<Select placeholder="Select status" options={options4} />
+				</div>
+
+				<div>
+					<button
+						type="button"
+						className={`btn btn-outline-primary p-2 ${
+							value === "list" && "cdms_primary"
+						}`}
+						onClick={() => setValue("list")}
+					>
+						<IconListCheck />
+					</button>
+				</div>
+				<div>
+					<button
+						type="button"
+						className={`btn btn-outline-primary p-2 ${
+							value === "grid" && "cdms_primary"
+						}`}
+						onClick={() => setValue("grid")}
+					>
+						<IconLayoutGrid />
+					</button>
+				</div>
+
+				<div>
+					<button
+						type="button"
+						className="btn btn-primary"
+						// onClick={() => editUser()}
+					>
+						<IconPlus className="ltr:mr-2 rtl:ml-2" />
+						Create Template
+					</button>
+				</div>
+
+				<div>
+					<button
+						type="button"
+						className="btn btn-primary"
+						// onClick={() => editUser()}
+					>
+						<IconTxtFile className="ltr:mr-2 rtl:ml-2" />
+						Bulk Import
 					</button>
 				</div>
 			</div>

@@ -510,7 +510,7 @@ const OverView = () => {
 							to="/cna/overview"
 							className="text-cdms_primary hover:underline"
 						>
-							CNA
+							Capacity Need Assessment
 						</Link>
 					</li>
 					<li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">

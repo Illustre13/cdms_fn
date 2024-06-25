@@ -10,6 +10,7 @@ import IconTrashLines from "../../components/Icon/IconTrashLines";
 import IconSearch from "../../components/Icon/IconSearch";
 import Select from "react-select";
 import IconPlus from "../../components/Icon/IconPlus";
+import IconTxtFile from "../../components/Icon/IconTxtFile";
 
 const employees = [
 	{
@@ -555,6 +556,16 @@ const Employees = () => {
 						<button type="button" className="btn btn-primary">
 							<IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
 							Add New Employee
+						</button>
+					</div>
+					<div>
+						<button
+							type="button"
+							className="btn btn-primary"
+							// onClick={() => editUser()}
+						>
+							<IconTxtFile className="ltr:mr-2 rtl:ml-2" />
+							Bulk Import
 						</button>
 					</div>
 				</div>

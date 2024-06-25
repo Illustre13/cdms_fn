@@ -32,6 +32,7 @@ import IconCode from "../../components/Icon/IconCode";
 import IconAirplay from "../../components/Icon/IconAirplay";
 import AnimateHeight from "react-animate-height";
 import IconBox from "../../components/Icon/IconBox";
+import IconTxtFile from "../../components/Icon/IconTxtFile";
 
 const employees = [
 	{
@@ -477,7 +478,7 @@ const Assessment = () => {
 							to="/cna/overview"
 							className="text-cdms_primary hover:underline"
 						>
-							CNA
+							Capacity Need Assessment
 						</Link>
 					</li>
 					<li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
@@ -525,41 +526,7 @@ const Assessment = () => {
 				</div>
 				{tabs === "home" ? (
 					<>
-						<div className="flex justify-end sm:flex-row flex-col sm:items-center sm:gap-3 gap-4 w-full sm:w-auto">
-							<div className="flex gap-3">
-								<div>
-									<button
-										type="button"
-										className="btn btn-primary"
-										// onClick={() => editUser()}
-									>
-										<IconUserPlus className="ltr:mr-2 rtl:ml-2" />
-										Create Assessment
-									</button>
-								</div>
-								<div>
-									<button
-										type="button"
-										className={`btn btn-outline-primary p-2 ${
-											value === "list" && "cdms_primary"
-										}`}
-										onClick={() => setValue("list")}
-									>
-										<IconListCheck />
-									</button>
-								</div>
-								<div>
-									<button
-										type="button"
-										className={`btn btn-outline-primary p-2 ${
-											value === "grid" && "cdms_primary text-white"
-										}`}
-										onClick={() => setValue("grid")}
-									>
-										<IconLayoutGrid />
-									</button>
-								</div>
-							</div>
+						<div className="flex justify-start sm:flex-row flex-col sm:items-center sm:gap-3 gap-4 w-full sm:w-auto">
 							<div className="relative">
 								<input
 									type="text"
@@ -575,9 +542,55 @@ const Assessment = () => {
 									<IconSearch className="mx-auto" />
 								</button>
 							</div>
+
+							<div className="flex gap-3">
+								{/* Icons */}
+								<div>
+									<button
+										type="button"
+										className={`btn btn-outline-primary p-2 ${
+											value === "list" && "cdms_primary"
+										}`}
+										onClick={() => setValue("list")}
+									>
+										<IconListCheck />
+									</button>
+								</div>
+								<div>
+									<button
+										type="button"
+										className={`btn btn-outline-primary p-2 ${
+											value === "grid" && "cdms_primary"
+										}`}
+										onClick={() => setValue("grid")}
+									>
+										<IconLayoutGrid />
+									</button>
+								</div>
+								<div>
+									<button
+										type="button"
+										className="btn btn-primary"
+										// onClick={() => editUser()}
+									>
+										<IconUserPlus className="ltr:mr-2 rtl:ml-2" />
+										Create Assessment
+									</button>
+								</div>
+
+								<div>
+									<button
+										type="button"
+										className="btn btn-primary"
+										// onClick={() => editUser()}
+									>
+										<IconTxtFile className="ltr:mr-2 rtl:ml-2" />
+										Bulk Import
+									</button>
+								</div>
+							</div>
 						</div>
 
-						{/* Icons */}
 						<div className="panel mt-5">
 							<div className="mb-5">
 								<div className="space-y-2 font-semibold">
@@ -690,7 +703,7 @@ const Assessment = () => {
 									<button
 										type="button"
 										className={`btn btn-outline-primary p-2 ${
-											value === "list" && "cdms_primary text-white"
+											value === "list" && "cdms_primary"
 										}`}
 										onClick={() => setValue("list")}
 									>
@@ -701,7 +714,7 @@ const Assessment = () => {
 									<button
 										type="button"
 										className={`btn btn-outline-primary p-2 ${
-											value === "grid" && "cdms_primary text-white"
+											value === "grid" && "cdms_primary"
 										}`}
 										onClick={() => setValue("grid")}
 									>

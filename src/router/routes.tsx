@@ -17,6 +17,7 @@ const AssessementOverview = lazy(() => import("../pages/Assessment/overview"));
 const AssessementTemplates = lazy(
 	() => import("../pages/Assessment/templates")
 );
+const CPOverview = lazy(() => import("../pages/CapacityPlan/index"));
 
 const routes = [
 	// dashboard
@@ -52,6 +53,24 @@ const routes = [
 	{
 		path: "/cna/template",
 		element: <AssessementTemplates />,
+	},
+
+	{
+		path: "/cp/overview",
+		element: <CPOverview />,
+	},
+
+	{
+		path: "/cp/overview",
+		element: <CPOverview />,
+	},
+	{
+		path: "/cp/overview",
+		element: <CPOverview />,
+	},
+	{
+		path: "/cp/overview",
+		element: <CPOverview />,
 	},
 
 	{

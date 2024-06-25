@@ -168,21 +168,6 @@ const AccountSetting = () => {
 										className="form-input"
 									/>
 								</div>
-								<div>
-									<label
-										htmlFor="isSuperAdmin"
-										className="inline-flex cursor-pointer"
-									>
-										<input
-											type="checkbox"
-											id="isSuperAdmin"
-											className="form-checkbox"
-										/>
-										<span className="text-white-dark relative checked:bg-none ml-2">
-											Is Super Admin
-										</span>
-									</label>
-								</div>
 								<div className="sm:col-span-2 mt-3">
 									<button type="button" className="btn btn-primary">
 										Edit

@@ -13,6 +13,7 @@ import IconMenuContacts from "../Icon/Menu/IconMenuContacts";
 import IconMenuInvoice from "../Icon/Menu/IconMenuInvoice";
 import IconMenuCalendar from "../Icon/Menu/IconMenuCalendar";
 import IconMessagesDot from "../Icon/IconMessagesDot";
+import IconLogout from "../Icon/IconLogout";
 
 const Sidebar = () => {
 	const [currentMenu, setCurrentMenu] = useState<string>("");
@@ -179,6 +180,55 @@ const Sidebar = () => {
 								</NavLink>
 							</li> */}
 
+							{/*
+							 *
+							 *Capacity Approval Process
+							 */}
+
+							<li className="menu nav-item">
+								<button
+									type="button"
+									className={`${
+										currentMenu === "cp" ? "active" : ""
+									} nav-link group w-full`}
+									onClick={() => toggleMenu("cp")}
+								>
+									<div className="flex items-center">
+										<IconMessagesDot className="group-hover:!text-cdms_primary shrink-0" />
+										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
+											{t("Capacity Plan")}
+										</span>
+									</div>
+
+									<div
+										className={
+											currentMenu !== "cp" ? "rtl:rotate-90 -rotate-90" : ""
+										}
+									>
+										<IconCaretDown />
+									</div>
+								</button>
+
+								<AnimateHeight
+									duration={300}
+									height={currentMenu === "cp" ? "auto" : 0}
+								>
+									<ul className="sub-menu text-gray-500">
+										<li>
+											<NavLink to="/cp/overview">{t("Overview")}</NavLink>
+										</li>
+										<li>
+											<NavLink to="/cp/assessment">{t("Assessment")}</NavLink>
+										</li>
+										<li>
+											<NavLink to="/cp/template">{t("Templates")}</NavLink>
+										</li>
+									</ul>
+								</AnimateHeight>
+							</li>
+
+							{/* Capacity Plan */}
+
 							<li className="menu nav-item">
 								<button
 									type="button"
@@ -190,7 +240,7 @@ const Sidebar = () => {
 									<div className="flex items-center">
 										<IconMessagesDot className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-											{t("CNA")}
+											{t("Capacity Need Assessment")}
 										</span>
 									</div>
 
@@ -219,6 +269,17 @@ const Sidebar = () => {
 										</li>
 									</ul>
 								</AnimateHeight>
+							</li>
+
+							<li className="nav-item">
+								<NavLink to="/logout" className="group">
+									<div className="flex items-center">
+										<IconLogout className="group-hover:!text-cdms_primary shrink-0" />
+										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
+											{t("Sign Out")}
+										</span>
+									</div>
+								</NavLink>
 							</li>
 						</ul>
 					</PerfectScrollbar>

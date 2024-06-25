@@ -16,6 +16,7 @@ import IconEye from "../../components/Icon/IconEye";
 import IconShare from "../../components/Icon/IconShare";
 import IconArchive from "../../components/Icon/IconArchive";
 import IconEdit from "../../components/Icon/IconEdit";
+import IconTxtFile from "../../components/Icon/IconTxtFile";
 
 const organizations = [
 	{
@@ -437,6 +438,17 @@ const Organization = () => {
 						<button type="button" className="btn btn-primary">
 							<IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
 							Add New Organization
+						</button>
+					</div>
+
+					<div>
+						<button
+							type="button"
+							className="btn btn-primary"
+							// onClick={() => editUser()}
+						>
+							<IconTxtFile className="ltr:mr-2 rtl:ml-2" />
+							Bulk Import
 						</button>
 					</div>
 				</div>

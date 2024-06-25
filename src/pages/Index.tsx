@@ -7,19 +7,13 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import Dropdown from "../components/Dropdown";
 import { setPageTitle } from "../store/themeConfigSlice";
 import IconHorizontalDots from "../components/Icon/IconHorizontalDots";
-import IconDollarSign from "../components/Icon/IconDollarSign";
 import IconInbox from "../components/Icon/IconInbox";
 import IconTag from "../components/Icon/IconTag";
 import IconCreditCard from "../components/Icon/IconCreditCard";
-import IconShoppingCart from "../components/Icon/IconShoppingCart";
 import IconArrowLeft from "../components/Icon/IconArrowLeft";
-import IconCashBanknotes from "../components/Icon/IconCashBanknotes";
-import IconUser from "../components/Icon/IconUser";
-import IconNetflix from "../components/Icon/IconNetflix";
-import IconBolt from "../components/Icon/IconBolt";
-import IconCaretDown from "../components/Icon/IconCaretDown";
-import IconPlus from "../components/Icon/IconPlus";
-import IconMultipleForwardRight from "../components/Icon/IconMultipleForwardRight";
+import IconUserPlus from "../components/Icon/IconUserPlus";
+import IconUsers from "../components/Icon/IconUsers";
+import IconMinusCircle from "../components/Icon/IconMinusCircle";
 
 const Index = () => {
 	const dispatch = useDispatch();
@@ -318,13 +312,13 @@ const Index = () => {
 				type: "bar",
 				fontFamily: "Nunito, sans-serif",
 				toolbar: {
-					show: false,
+					show: true,
 				},
 				stacked: true,
 				stackType: "100%",
 			},
 			dataLabels: {
-				enabled: false,
+				enabled: true,
 			},
 			stroke: {
 				show: true,
@@ -357,12 +351,16 @@ const Index = () => {
 			},
 			plotOptions: {
 				bar: {
-					horizontal: false,
+					horizontal: true,
 					columnWidth: "25%",
 				},
 			},
 			legend: {
-				show: false,
+				show: true,
+				itemMargin: {
+					horizontal: 10,
+					vertical: 10,
+				},
 			},
 			grid: {
 				show: false,
@@ -381,59 +379,113 @@ const Index = () => {
 		},
 	};
 
-	//Total Orders
-	const totalOrders: any = {
-		series: [
-			{
-				name: "Sales",
-				data: [28, 40, 36, 52, 38, 60, 38, 52, 36, 40],
-			},
-		],
-		options: {
-			chart: {
-				height: 290,
-				type: "area",
-				fontFamily: "Nunito, sans-serif",
-				sparkline: {
-					enabled: true,
-				},
-			},
-			stroke: {
-				curve: "smooth",
-				width: 2,
-			},
-			colors: isDark ? ["#00ab55"] : ["#00ab55"],
-			labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-			yaxis: {
-				min: 0,
-				show: false,
-			},
-			grid: {
-				padding: {
-					top: 125,
-					right: 0,
-					bottom: 0,
-					left: 0,
-				},
-			},
-			fill: {
-				opacity: 1,
-				type: "gradient",
-				gradient: {
-					type: "vertical",
-					shadeIntensity: 1,
-					inverseColors: !1,
-					opacityFrom: 0.3,
-					opacityTo: 0.05,
-					stops: [100, 100],
-				},
-			},
-			tooltip: {
-				x: {
-					show: false,
-				},
-			},
+	// Capacity Plan approval Request
+
+	const approvalRequests = [
+		{
+			id: "1",
+			organization: "MINEDUC",
+			status: "ACTIVE",
+			payload:
+				"New capacity development plan submitted for approval by MINEDUC.",
+			time: "1hr ago",
 		},
+		{
+			id: "2",
+			organization: "MINISANTE",
+			status: "REJECTED",
+			payload: "Capacity Plan submitted by MINISANTE was Rejected.",
+			time: "2 min ago",
+		},
+		{
+			id: "3",
+			organization: "MIFOTRA",
+			status: "PENDING",
+			payload: "Capacity development plan approved by MIFOTRA.",
+			time: "1 mon ago",
+		},
+		{
+			id: "4",
+			organization: "MINICOM",
+			status: "PENDING",
+			payload:
+				"Capacity development plan rejected by MINICOM. Please review the comments and resubmit.",
+			time: "1 day ago",
+		},
+		{
+			id: "5",
+			organization: "MININFRA",
+			status: "PENDING",
+			payload: "Notification sent to MININFRA about profile update status.",
+			time: "17 day ago",
+		},
+		{
+			id: "6",
+			organization: "MINALOC",
+			status: "PENDING",
+			payload: "Capacity development plan from MINALOC is under review.",
+			time: "1 yr ago",
+		},
+		{
+			id: "7",
+			organization: "MINIJUST",
+			status: "ACTIVE",
+			payload: "Capacity development plan for MINIJUST approved successfully.",
+			time: "3 yrs ago",
+		},
+		{
+			id: "8",
+			organization: "RDB",
+			status: "PENDING",
+			payload:
+				"Real-time report on capacity development plan progress for RDB generated.",
+			time: "Just Now",
+		},
+		{
+			id: "9",
+			organization: "MINEDUC",
+			status: "APPROVED",
+			payload:
+				"Notification sent to MINEDUC managers about the approval status.",
+			time: "2 min ago",
+		},
+	];
+
+	const getStatusBadgeColor = (status: string) => {
+		switch (status) {
+			case "PENDING":
+				return {
+					badge: "badge-outline-info",
+					bg: "bg-info-light",
+				};
+
+			case "APPROVED":
+				return {
+					badge: "badge-outline-success",
+					bg: "bg-success-light",
+				};
+			case "REJECTED":
+				return {
+					badge: "badge-outline-danger",
+					bg: "bg-danger-light",
+				};
+
+			case "IN_PROGRESS":
+				return {
+					badge: "badge-outline-warning",
+					bg: "bg-warning-light",
+				};
+			case "ACTIVE":
+				return {
+					badge: "badge-outline-success",
+					bg: "bg-success-light",
+				};
+			default:
+				return {
+					badge: "badge-outline-info",
+					bg: "bg-info-light",
+				};
+		}
 	};
 
 	return (
@@ -465,11 +517,33 @@ const Index = () => {
 					<div className="panel h-full sm:col-span-2 xl:col-span-1">
 						<div className="flex items-center mb-5">
 							<h5 className="font-semibold text-lg dark:text-white-light">
-								Capacity Plan
+								Capacity Plan Budget
 								<span className="block text-white-dark text-sm font-normal">
 									Requested Vs Allocated Capacity Plan Budget
 								</span>
 							</h5>
+							<div className="dropdown -mt-5">
+								<Dropdown
+									offset={[0, 1]}
+									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
+									button={
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
+									}
+								>
+									<ul>
+										<li>
+											<button type="button">2023</button>
+										</li>
+										<li>
+											<button type="button">2022</button>
+										</li>
+										<li>
+											<button type="button">2021</button>
+										</li>
+									</ul>
+								</Dropdown>
+							</div>
+
 							<div className="ltr:ml-auto rtl:mr-auto relative">
 								{/* <div className="w-11 h-11 text-warning bg-[#ffeccb] dark:bg-warning dark:text-[#ffeccb] grid place-content-center rounded-full">
 									<IconDollarSign />
@@ -521,7 +595,7 @@ const Index = () => {
 							<div className="flex items-center">
 								<div className="w-9 h-9 ltr:mr-3 rtl:ml-3">
 									<div className="bg-cdms_secondary-light dark:bg-cdms_secondary text-cdms_secondary dark:text-cdms_secondary-light  rounded-full w-9 h-9 grid place-content-center">
-										<IconInbox />
+										<IconUserPlus />
 									</div>
 								</div>
 								<div className="flex-1">
@@ -537,7 +611,7 @@ const Index = () => {
 							<div className="flex items-center">
 								<div className="w-9 h-9 ltr:mr-3 rtl:ml-3">
 									<div className="bg-success-light dark:bg-success text-success dark:text-success-light rounded-full w-9 h-9 grid place-content-center">
-										<IconTag />
+										<IconUsers />
 									</div>
 								</div>
 								<div className="flex-1">
@@ -556,7 +630,7 @@ const Index = () => {
 							<div className="flex items-center">
 								<div className="w-9 h-9 ltr:mr-3 rtl:ml-3">
 									<div className="bg-warning-light dark:bg-warning text-warning dark:text-warning-light rounded-full w-9 h-9 grid place-content-center">
-										<IconCreditCard />
+										<IconMinusCircle />
 									</div>
 								</div>
 								<div className="flex-1">
@@ -575,32 +649,89 @@ const Index = () => {
 						</div>
 					</div>
 
-					<div className="panel h-full p-0">
-						<div className="flex items-center justify-between w-full p-5 absolute">
-							<div className="relative">
-								<div className="text-success dark:text-success-light bg-success-light dark:bg-success w-11 h-11 rounded-lg flex items-center justify-center">
-									<IconShoppingCart />
-								</div>
-							</div>
-							<h5 className="font-semibold text-2xl ltr:text-right rtl:text-left dark:text-white-light">
-								3,192
-								<span className="block text-sm font-normal">Total Orders</span>
+					{/*
+					 *
+					 * Trainings
+					 *
+					 */}
+
+					<div className="panel h-full">
+						<div className="flex items-center justify-between mb-5">
+							<h5 className="font-semibold text-lg dark:text-white-light">
+								Trainings Statistics
 							</h5>
+							<div className="dropdown">
+								<Dropdown
+									offset={[0, 1]}
+									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
+									button={
+										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
+									}
+								>
+									<ul>
+										<li>
+											<button type="button">2023</button>
+										</li>
+										<li>
+											<button type="button">2022</button>
+										</li>
+										<li>
+											<button type="button">2021</button>
+										</li>
+									</ul>
+								</Dropdown>
+							</div>
 						</div>
-						<div className="bg-transparent rounded-lg overflow-hidden">
-							{/* loader */}
-							{loading ? (
-								<div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] ">
-									<span className="animate-spin border-2 border-black dark:border-white !border-l-transparent  rounded-full w-5 h-5 inline-flex"></span>
-								</div>
-							) : (
-								<ReactApexChart
-									series={totalOrders.series}
-									options={totalOrders.options}
-									type="area"
-									height={290}
-								/>
-							)}
+						<div>
+							<div className="bg-white dark:bg-black rounded-lg overflow-hidden">
+								{loading ? (
+									<div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+										<span className="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
+									</div>
+								) : (
+									<ReactApexChart
+										series={cdmsTrainings.series}
+										options={{
+											...cdmsTrainings.options,
+											chart: {
+												...cdmsTrainings.options.chart,
+												height: 400,
+											},
+											plotOptions: {
+												pie: {
+													donut: {
+														labels: {
+															show: true,
+															name: {
+																show: true,
+																fontSize: "14px",
+																offsetY: -10,
+															},
+															value: {
+																show: true,
+																fontSize: "12px",
+																offsetY: 10,
+															},
+															total: {
+																show: true,
+																label: "Total",
+																fontSize: "16px",
+																fontWeight: 600,
+															},
+														},
+													},
+												},
+											},
+											legend: {
+												position: "bottom",
+												fontSize: "14px",
+											},
+										}}
+										type="donut"
+										height={400}
+									/>
+								)}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -661,205 +792,46 @@ const Index = () => {
 
 					{/*
 					 *
-					 * Trainings
+					 * Recent request
 					 *
 					 */}
 
-					<div className="panel h-full">
-						<div className="flex items-center mb-5">
-							<h5 className="font-semibold text-lg dark:text-white-light">
-								Trainings Statistics
-							</h5>
-						</div>
-						<div>
-							<div className="bg-white dark:bg-black rounded-lg overflow-hidden">
-								{loading ? (
-									<div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] ">
-										<span className="animate-spin border-2 border-black dark:border-white !border-l-transparent  rounded-full w-5 h-5 inline-flex"></span>
-									</div>
-								) : (
-									<ReactApexChart
-										series={cdmsTrainings.series}
-										options={cdmsTrainings.options}
-										type="donut"
-										height={460}
-									/>
-								)}
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
 					<div className="panel h-full sm:col-span-2 xl:col-span-1 pb-0">
 						<h5 className="font-semibold text-lg dark:text-white-light mb-5">
-							Recent Activities
+							Capacity Plan Request
 						</h5>
 						<PerfectScrollbar className="relative h-[290px] ltr:pr-3 rtl:pl-3 ltr:-mr-3 rtl:-ml-3 mb-4">
-							<div className="text-sm cursor-pointer">
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-cdms_primary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">Updated Server Logs</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										Just Now
-									</div>
+							<>
+								{approvalRequests &&
+									approvalRequests?.map((request) => {
+										return (
+											<div className="flex items-center py-1.5 relative group">
+												<div
+													className={`${
+														getStatusBadgeColor(request.status).bg
+													} w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5`}
+												></div>
 
-									<span className="badge badge-outline-primary absolute ltr:right-0 rtl:left-0 text-xs bg-cdms_primary-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Pending
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-success w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">Send Mail to HR and Admin</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										2 min ago
-									</div>
+												<div
+													className={`bg-${request.status.toLowerCase()} w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5`}
+												></div>
+												<div className="flex-1">
+													{request.payload} {request.time}
+												</div>
 
-									<span className="badge badge-outline-success absolute ltr:right-0 rtl:left-0 text-xs bg-success-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Completed
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-danger w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">Backup Files EOD</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										14:00
-									</div>
-
-									<span className="badge badge-outline-danger absolute ltr:right-0 rtl:left-0 text-xs bg-danger-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Pending
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-black w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">Collect documents from Sara</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										16:00
-									</div>
-
-									<span className="badge badge-outline-dark absolute ltr:right-0 rtl:left-0 text-xs bg-dark-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Completed
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-warning w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">
-										Conference call with Marketing Manager.
-									</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										17:00
-									</div>
-
-									<span className="badge badge-outline-warning absolute ltr:right-0 rtl:left-0 text-xs bg-warning-light dark:bg-black opacity-0 group-hover:opacity-100">
-										In progress
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-info w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">Rebooted Server</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										17:00
-									</div>
-
-									<span className="badge badge-outline-info absolute ltr:right-0 rtl:left-0 text-xs bg-info-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Completed
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-cdms_secondary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">
-										Send contract details to Freelancer
-									</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										18:00
-									</div>
-
-									<span className="badge badge-outline-secondary absolute ltr:right-0 rtl:left-0 text-xs bg-cdms_secondary-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Pending
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-cdms_primary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">Updated Server Logs</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										Just Now
-									</div>
-
-									<span className="badge badge-outline-primary absolute ltr:right-0 rtl:left-0 text-xs bg-cdms_primary-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Pending
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-success w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">Send Mail to HR and Admin</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										2 min ago
-									</div>
-
-									<span className="badge badge-outline-success absolute ltr:right-0 rtl:left-0 text-xs bg-success-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Completed
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-danger w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">Backup Files EOD</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										14:00
-									</div>
-
-									<span className="badge badge-outline-danger absolute ltr:right-0 rtl:left-0 text-xs bg-danger-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Pending
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-black w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">Collect documents from Sara</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										16:00
-									</div>
-
-									<span className="badge badge-outline-dark absolute ltr:right-0 rtl:left-0 text-xs bg-dark-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Completed
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-warning w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">
-										Conference call with Marketing Manager.
-									</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										17:00
-									</div>
-
-									<span className="badge badge-outline-warning absolute ltr:right-0 rtl:left-0 text-xs bg-warning-light dark:bg-black opacity-0 group-hover:opacity-100">
-										In progress
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-info w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">Rebooted Server</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										17:00
-									</div>
-
-									<span className="badge badge-outline-info absolute ltr:right-0 rtl:left-0 text-xs bg-info-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Completed
-									</span>
-								</div>
-								<div className="flex items-center py-1.5 relative group">
-									<div className="bg-cdms_secondary w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5"></div>
-									<div className="flex-1">
-										Send contract details to Freelancer
-									</div>
-									<div className="ltr:ml-auto rtl:mr-auto text-xs text-white-dark dark:text-gray-500">
-										18:00
-									</div>
-
-									<span className="badge badge-outline-secondary absolute ltr:right-0 rtl:left-0 text-xs bg-cdms_secondary-light dark:bg-black opacity-0 group-hover:opacity-100">
-										Pending
-									</span>
-								</div>
-							</div>
+												<span
+													className={`badge ${
+														getStatusBadgeColor(request.status).badge
+													} ${
+														getStatusBadgeColor(request.status).bg
+													} absolute ltr:right-0 rtl:left-0 text-xs mt-8`}
+												>
+													{request.status}
+												</span>
+											</div>
+										);
+									})}
+							</>
 						</PerfectScrollbar>
 						<div className="border-t border-white-light dark:border-white/10">
 							<Link
@@ -869,500 +841,6 @@ const Index = () => {
 								View All
 								<IconArrowLeft className="rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition duration-300 ltr:ml-1 rtl:mr-1" />
 							</Link>
-						</div>
-					</div>
-					<div className="panel h-full">
-						<div className="flex items-center justify-between dark:text-white-light mb-5">
-							<h5 className="font-semibold text-lg">Transactions</h5>
-							<div className="dropdown">
-								<Dropdown
-									placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-									button={
-										<IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
-									}
-								>
-									<ul>
-										<li>
-											<button type="button">View Report</button>
-										</li>
-										<li>
-											<button type="button">Edit Report</button>
-										</li>
-										<li>
-											<button type="button">Mark as Done</button>
-										</li>
-									</ul>
-								</Dropdown>
-							</div>
-						</div>
-						<div>
-							<div className="space-y-6">
-								<div className="flex">
-									<span className="shrink-0 grid place-content-center text-base w-9 h-9 rounded-md bg-success-light dark:bg-success text-success dark:text-success-light">
-										SP
-									</span>
-									<div className="px-3 flex-1">
-										<div>Shaun Park</div>
-										<div className="text-xs text-white-dark dark:text-gray-500">
-											10 Jan 1:00PM
-										</div>
-									</div>
-									<span className="text-success text-base px-1 ltr:ml-auto rtl:mr-auto whitespace-pre">
-										+$36.11
-									</span>
-								</div>
-								<div className="flex">
-									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-warning-light dark:bg-warning text-warning dark:text-warning-light">
-										<IconCashBanknotes />
-									</span>
-									<div className="px-3 flex-1">
-										<div>Cash withdrawal</div>
-										<div className="text-xs text-white-dark dark:text-gray-500">
-											04 Jan 1:00PM
-										</div>
-									</div>
-									<span className="text-danger text-base px-1 ltr:ml-auto rtl:mr-auto whitespace-pre">
-										-$16.44
-									</span>
-								</div>
-								<div className="flex">
-									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-danger-light dark:bg-danger text-danger dark:text-danger-light">
-										<IconUser className="w-6 h-6" />
-									</span>
-									<div className="px-3 flex-1">
-										<div>Amy Diaz</div>
-										<div className="text-xs text-white-dark dark:text-gray-500">
-											10 Jan 1:00PM
-										</div>
-									</div>
-									<span className="text-success text-base px-1 ltr:ml-auto rtl:mr-auto whitespace-pre">
-										+$66.44
-									</span>
-								</div>
-								<div className="flex">
-									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_secondary-light dark:bg-cdms_secondary text-cdms_secondary dark:text-cdms_secondary-light">
-										<IconNetflix />
-									</span>
-									<div className="px-3 flex-1">
-										<div>Netflix</div>
-										<div className="text-xs text-white-dark dark:text-gray-500">
-											04 Jan 1:00PM
-										</div>
-									</div>
-									<span className="text-danger text-base px-1 ltr:ml-auto rtl:mr-auto whitespace-pre">
-										-$32.00
-									</span>
-								</div>
-								<div className="flex">
-									<span className="shrink-0 grid place-content-center text-base w-9 h-9 rounded-md bg-info-light dark:bg-info text-info dark:text-info-light">
-										DA
-									</span>
-									<div className="px-3 flex-1">
-										<div>Daisy Anderson</div>
-										<div className="text-xs text-white-dark dark:text-gray-500">
-											10 Jan 1:00PM
-										</div>
-									</div>
-									<span className="text-success text-base px-1 ltr:ml-auto rtl:mr-auto whitespace-pre">
-										+$10.08
-									</span>
-								</div>
-								<div className="flex">
-									<span className="shrink-0 grid place-content-center w-9 h-9 rounded-md bg-cdms_primary-light dark:bg-cdms_primary text-cdms_primary dark:text-cdms_primary-light">
-										<IconBolt />
-									</span>
-									<div className="px-3 flex-1">
-										<div>Electricity Bill</div>
-										<div className="text-xs text-white-dark dark:text-gray-500">
-											04 Jan 1:00PM
-										</div>
-									</div>
-									<span className="text-danger text-base px-1 ltr:ml-auto rtl:mr-auto whitespace-pre">
-										-$22.00
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div className="panel h-full p-0 border-0 overflow-hidden">
-						<div className="p-6 bg-gradient-to-r from-[#4361ee] to-[#160f6b] min-h-[190px]">
-							<div className="flex justify-between items-center mb-6">
-								<div className="bg-black/50 rounded-full p-1 ltr:pr-3 rtl:pl-3 flex items-center text-white font-semibold">
-									<img
-										className="w-8 h-8 rounded-full border-2 border-white/50 block object-cover ltr:mr-1 rtl:ml-1"
-										src="/assets/images/profile-34.jpeg"
-										alt="avatar"
-									/>
-									Alan Green
-								</div>
-								<button
-									type="button"
-									className="ltr:ml-auto rtl:mr-auto flex items-center justify-between w-9 h-9 bg-black text-white rounded-md hover:opacity-80"
-								>
-									<IconPlus className="w-6 h-6 m-auto" />
-								</button>
-							</div>
-							<div className="text-white flex justify-between items-center">
-								<p className="text-xl">Wallet Balance</p>
-								<h5 className="ltr:ml-auto rtl:mr-auto text-2xl">
-									<span className="text-white-light">$</span>2953
-								</h5>
-							</div>
-						</div>
-						<div className="-mt-12 px-8 grid grid-cols-2 gap-2">
-							<div className="bg-white rounded-md shadow px-4 py-2.5 dark:bg-[#060818]">
-								<span className="flex justify-between items-center mb-4 dark:text-white">
-									Received
-									<IconCaretDown className="w-4 h-4 text-success rotate-180" />
-								</span>
-								<div className="btn w-full  py-1 text-base shadow-none border-0 bg-[#ebedf2] dark:bg-black text-[#515365] dark:text-[#bfc9d4]">
-									$97.99
-								</div>
-							</div>
-							<div className="bg-white rounded-md shadow px-4 py-2.5 dark:bg-[#060818]">
-								<span className="flex justify-between items-center mb-4 dark:text-white">
-									Spent
-									<IconCaretDown className="w-4 h-4 text-danger" />
-								</span>
-								<div className="btn w-full  py-1 text-base shadow-none border-0 bg-[#ebedf2] dark:bg-black text-[#515365] dark:text-[#bfc9d4]">
-									$53.00
-								</div>
-							</div>
-						</div>
-						<div className="p-5">
-							<div className="mb-5">
-								<span className="bg-[#1b2e4b] text-white text-xs rounded-full px-4 py-1.5 before:bg-white before:w-1.5 before:h-1.5 before:rounded-full ltr:before:mr-2 rtl:before:ml-2 before:inline-block">
-									Pending
-								</span>
-							</div>
-							<div className="mb-5 space-y-1">
-								<div className="flex items-center justify-between">
-									<p className="text-[#515365] font-semibold">Netflix</p>
-									<p className="text-base">
-										<span>$</span> <span className="font-semibold">13.85</span>
-									</p>
-								</div>
-								<div className="flex items-center justify-between">
-									<p className="text-[#515365] font-semibold">BlueHost VPN</p>
-									<p className="text-base">
-										<span>$</span> <span className="font-semibold ">15.66</span>
-									</p>
-								</div>
-							</div>
-							<div className="text-center px-2 flex justify-around">
-								<button
-									type="button"
-									className="btn btn-secondary ltr:mr-2 rtl:ml-2"
-								>
-									View Details
-								</button>
-								<button type="button" className="btn btn-success">
-									Pay Now $29.51
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
-					<div className="panel h-full w-full">
-						<div className="flex items-center justify-between mb-5">
-							<h5 className="font-semibold text-lg dark:text-white-light">
-								Recent Orders
-							</h5>
-						</div>
-						<div className="table-responsive">
-							<table>
-								<thead>
-									<tr>
-										<th className="ltr:rounded-l-md rtl:rounded-r-md">
-											Customer
-										</th>
-										<th>Product</th>
-										<th>Invoice</th>
-										<th>Price</th>
-										<th className="ltr:rounded-r-md rtl:rounded-l-md">
-											Status
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
-										<td className="min-w-[150px] text-black dark:text-white">
-											<div className="flex items-center">
-												<img
-													className="w-8 h-8 rounded-md ltr:mr-3 rtl:ml-3 object-cover"
-													src="/assets/images/profile-6.jpeg"
-													alt="avatar"
-												/>
-												<span className="whitespace-nowrap">Luke Ivory</span>
-											</div>
-										</td>
-										<td className="text-cdms_primary">Headphone</td>
-										<td>
-											<Link to="/apps/invoice/preview">#46894</Link>
-										</td>
-										<td>$56.07</td>
-										<td>
-											<span className="badge bg-success shadow-md dark:group-hover:bg-transparent">
-												Paid
-											</span>
-										</td>
-									</tr>
-									<tr className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
-										<td className="text-black dark:text-white">
-											<div className="flex items-center">
-												<img
-													className="w-8 h-8 rounded-md ltr:mr-3 rtl:ml-3 object-cover"
-													src="/assets/images/profile-7.jpeg"
-													alt="avatar"
-												/>
-												<span className="whitespace-nowrap">Andy King</span>
-											</div>
-										</td>
-										<td className="text-info">Nike Sport</td>
-										<td>
-											<Link to="/apps/invoice/preview">#76894</Link>
-										</td>
-										<td>$126.04</td>
-										<td>
-											<span className="badge bg-cdms_secondary shadow-md dark:group-hover:bg-transparent">
-												Shipped
-											</span>
-										</td>
-									</tr>
-									<tr className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
-										<td className="text-black dark:text-white">
-											<div className="flex items-center">
-												<img
-													className="w-8 h-8 rounded-md ltr:mr-3 rtl:ml-3 object-cover"
-													src="/assets/images/profile-8.jpeg"
-													alt="avatar"
-												/>
-												<span className="whitespace-nowrap">Laurie Fox</span>
-											</div>
-										</td>
-										<td className="text-warning">Sunglasses</td>
-										<td>
-											<Link to="/apps/invoice/preview">#66894</Link>
-										</td>
-										<td>$56.07</td>
-										<td>
-											<span className="badge bg-success shadow-md dark:group-hover:bg-transparent">
-												Paid
-											</span>
-										</td>
-									</tr>
-									<tr className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
-										<td className="text-black dark:text-white">
-											<div className="flex items-center">
-												<img
-													className="w-8 h-8 rounded-md ltr:mr-3 rtl:ml-3 object-cover"
-													src="/assets/images/profile-9.jpeg"
-													alt="avatar"
-												/>
-												<span className="whitespace-nowrap">Ryan Collins</span>
-											</div>
-										</td>
-										<td className="text-danger">Sport</td>
-										<td>
-											<Link to="/apps/invoice/preview">#75844</Link>
-										</td>
-										<td>$110.00</td>
-										<td>
-											<span className="badge bg-cdms_secondary shadow-md dark:group-hover:bg-transparent">
-												Shipped
-											</span>
-										</td>
-									</tr>
-									<tr className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
-										<td className="text-black dark:text-white">
-											<div className="flex items-center">
-												<img
-													className="w-8 h-8 rounded-md ltr:mr-3 rtl:ml-3 object-cover"
-													src="/assets/images/profile-10.jpeg"
-													alt="avatar"
-												/>
-												<span className="whitespace-nowrap">Irene Collins</span>
-											</div>
-										</td>
-										<td className="text-cdms_secondary">Speakers</td>
-										<td>
-											<Link to="/apps/invoice/preview">#46894</Link>
-										</td>
-										<td>$56.07</td>
-										<td>
-											<span className="badge bg-success shadow-md dark:group-hover:bg-transparent">
-												Paid
-											</span>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-
-					<div className="panel h-full w-full">
-						<div className="flex items-center justify-between mb-5">
-							<h5 className="font-semibold text-lg dark:text-white-light">
-								Top Selling Product
-							</h5>
-						</div>
-						<div className="table-responsive">
-							<table>
-								<thead>
-									<tr className="border-b-0">
-										<th className="ltr:rounded-l-md rtl:rounded-r-md">
-											Product
-										</th>
-										<th>Price</th>
-										<th>Discount</th>
-										<th>Sold</th>
-										<th className="ltr:rounded-r-md rtl:rounded-l-md">
-											Source
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
-										<td className="min-w-[150px] text-black dark:text-white">
-											<div className="flex">
-												<img
-													className="w-8 h-8 rounded-md ltr:mr-3 rtl:ml-3 object-cover"
-													src="/assets/images/product-headphones.jpg"
-													alt="avatar"
-												/>
-												<p className="whitespace-nowrap">
-													Headphone
-													<span className="text-cdms_primary block text-xs">
-														Digital
-													</span>
-												</p>
-											</div>
-										</td>
-										<td>$168.09</td>
-										<td>$60.09</td>
-										<td>170</td>
-										<td>
-											<Link className="text-danger flex items-center" to="/">
-												<IconMultipleForwardRight className="rtl:rotate-180 ltr:mr-1 rtl:ml-1" />
-												Direct
-											</Link>
-										</td>
-									</tr>
-									<tr className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
-										<td className="text-black dark:text-white">
-											<div className="flex">
-												<img
-													className="w-8 h-8 rounded-md ltr:mr-3 rtl:ml-3 object-cover"
-													src="/assets/images/product-shoes.jpg"
-													alt="avatar"
-												/>
-												<p className="whitespace-nowrap">
-													Shoes{" "}
-													<span className="text-warning block text-xs">
-														Faishon
-													</span>
-												</p>
-											</div>
-										</td>
-										<td>$126.04</td>
-										<td>$47.09</td>
-										<td>130</td>
-										<td>
-											<Link className="text-success flex items-center" to="/">
-												<IconMultipleForwardRight className="rtl:rotate-180 ltr:mr-1 rtl:ml-1" />
-												Google
-											</Link>
-										</td>
-									</tr>
-									<tr className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
-										<td className="text-black dark:text-white">
-											<div className="flex">
-												<img
-													className="w-8 h-8 rounded-md ltr:mr-3 rtl:ml-3 object-cover"
-													src="/assets/images/product-watch.jpg"
-													alt="avatar"
-												/>
-												<p className="whitespace-nowrap">
-													Watch{" "}
-													<span className="text-danger block text-xs">
-														Accessories
-													</span>
-												</p>
-											</div>
-										</td>
-										<td>$56.07</td>
-										<td>$20.00</td>
-										<td>66</td>
-										<td>
-											<Link className="text-warning flex items-center" to="/">
-												<IconMultipleForwardRight className="rtl:rotate-180 ltr:mr-1 rtl:ml-1" />
-												Ads
-											</Link>
-										</td>
-									</tr>
-									<tr className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
-										<td className="text-black dark:text-white">
-											<div className="flex">
-												<img
-													className="w-8 h-8 rounded-md ltr:mr-3 rtl:ml-3 object-cover"
-													src="/assets/images/product-laptop.jpg"
-													alt="avatar"
-												/>
-												<p className="whitespace-nowrap">
-													Laptop{" "}
-													<span className="text-cdms_primary block text-xs">
-														Digital
-													</span>
-												</p>
-											</div>
-										</td>
-										<td>$110.00</td>
-										<td>$33.00</td>
-										<td>35</td>
-										<td>
-											<Link
-												className="text-cdms_secondary flex items-center"
-												to="/"
-											>
-												<IconMultipleForwardRight className="rtl:rotate-180 ltr:mr-1 rtl:ml-1" />
-												Email
-											</Link>
-										</td>
-									</tr>
-									<tr className="text-white-dark hover:text-black dark:hover:text-white-light/90 group">
-										<td className="text-black dark:text-white">
-											<div className="flex">
-												<img
-													className="w-8 h-8 rounded-md ltr:mr-3 rtl:ml-3 object-cover"
-													src="/assets/images/product-camera.jpg"
-													alt="avatar"
-												/>
-												<p className="whitespace-nowrap">
-													Camera{" "}
-													<span className="text-cdms_primary block text-xs">
-														Digital
-													</span>
-												</p>
-											</div>
-										</td>
-										<td>$56.07</td>
-										<td>$26.04</td>
-										<td>30</td>
-										<td>
-											<Link
-												className="text-cdms_primary flex items-center"
-												to="/"
-											>
-												<IconMultipleForwardRight className="rtl:rotate-180 ltr:mr-1 rtl:ml-1" />
-												Referral
-											</Link>
-										</td>
-									</tr>
-								</tbody>
-							</table>
 						</div>
 					</div>
 				</div>
