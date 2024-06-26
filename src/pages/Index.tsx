@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../store";
 import ReactApexChart from "react-apexcharts";
@@ -14,6 +14,8 @@ import IconArrowLeft from "../components/Icon/IconArrowLeft";
 import IconUserPlus from "../components/Icon/IconUserPlus";
 import IconUsers from "../components/Icon/IconUsers";
 import IconMinusCircle from "../components/Icon/IconMinusCircle";
+import IconPlus from "../components/Icon/IconPlus";
+import IconEye from "../components/Icon/IconEye";
 
 const Index = () => {
 	const dispatch = useDispatch();
@@ -585,7 +587,9 @@ const Index = () => {
 								>
 									<ul>
 										<li>
-											<button type="button">View All Users</button>
+											<button type="button">
+												<Link to="/employees">View All Employees</Link>
+											</button>
 										</li>
 									</ul>
 								</Dropdown>

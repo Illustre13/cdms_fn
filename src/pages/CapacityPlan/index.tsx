@@ -359,7 +359,23 @@ const CapacityPlanTable = () => {
 			<div className="panel ">
 				<div className="flex flex-col items-start justify-end gap-4">
 					<div className="flex relative w-full justify-end px-8 gap-4">
-						<IconHorizontalDots />
+						{/* <IconHorizontalDots /> */}
+						<div className="dropdown">
+							<Dropdown
+								placement={"bottom-start"}
+								button={
+									<IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
+								}
+							>
+								<ul>
+									<li>
+										<button type="button">
+											<Link to="/cp/add">Create Capacity Plan</Link>
+										</button>
+									</li>
+								</ul>
+							</Dropdown>
+						</div>
 					</div>
 					<div className="flex flex-row gap-8 items-center p-3 text-primary">
 						{/**

@@ -11,6 +11,8 @@ const AssessementTemplates = lazy(
 );
 const CPOverview = lazy(() => import("../pages/CapacityPlan/index"));
 const CPTranings = lazy(() => import("../pages/CapacityPlan/Training"));
+const AddCapacityPlan = lazy(() => import("../pages/CapacityPlan/CreateCP"));
+
 const routes = [
 	// dashboard
 	{
@@ -54,6 +56,10 @@ const routes = [
 	{
 		path: "/cp/trainings",
 		element: <CPTranings />,
+	},
+	{
+		path: "/cp/add",
+		element: <AddCapacityPlan />,
 	},
 ];
 

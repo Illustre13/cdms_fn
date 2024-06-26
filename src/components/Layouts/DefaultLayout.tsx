@@ -51,7 +51,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
 	return (
 		<App>
 			{/* BEGIN MAIN CONTAINER */}
-			<div className="relative">
+			<div className="relative bg-cdms_primary bg-opacity-10">
 				{/* sidebar menu overlay */}
 				<div
 					className={`${

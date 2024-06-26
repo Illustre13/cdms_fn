@@ -90,7 +90,7 @@ const Sidebar = () => {
 									<div className="flex items-center">
 										<IconMenuCalendar className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-											{t("Homepage")}
+											{t("homepage")}
 										</span>
 									</div>
 								</NavLink>
