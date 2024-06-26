@@ -218,10 +218,7 @@ const Sidebar = () => {
 											<NavLink to="/cp/overview">{t("Overview")}</NavLink>
 										</li>
 										<li>
-											<NavLink to="/cp/assessment">{t("Assessment")}</NavLink>
-										</li>
-										<li>
-											<NavLink to="/cp/template">{t("Templates")}</NavLink>
+											<NavLink to="/cp/trainings">{t("Trainings")}</NavLink>
 										</li>
 									</ul>
 								</AnimateHeight>

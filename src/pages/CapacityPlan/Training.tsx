@@ -16,7 +16,6 @@ import Dropdown from "../../components/Dropdown";
 import IconThumbUp from "../../components/Icon/IconThumbUp";
 import IconBolt from "../../components/Icon/IconBolt";
 import { ApproveModal } from "./ApproveModal";
-import IconX from "../../components/Icon/IconX";
 
 const capacityPlanData = [
 	{
@@ -181,7 +180,7 @@ const capacityPlanData = [
 	},
 ];
 
-const CapacityPlanTable = () => {
+const CapacityPlanTranining = () => {
 	const isDark = useSelector(
 		(state: IRootState) =>
 			state.themeConfig.theme === "dark" || state.themeConfig.isDarkMode
@@ -236,52 +235,6 @@ const CapacityPlanTable = () => {
 		setInitialRecords(sortStatus.direction === "desc" ? data.reverse() : data);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [sortStatus]);
-
-	// radialBarChartOptions;
-	const radialBarChart: any = {
-		series: [34, 67],
-		options: {
-			chart: {
-				height: 100,
-				type: "radialBar",
-				zoom: {
-					enabled: false,
-				},
-				toolbar: {
-					show: false,
-				},
-			},
-			colors: ["#996111", "#805dca"],
-			grid: {
-				borderColor: isDark ? "#191e3a" : "#e0e6ed",
-			},
-			plotOptions: {
-				radialBar: {
-					dataLabels: {
-						name: {
-							fontSize: "22px",
-						},
-						value: {
-							fontSize: "16px",
-						},
-						total: {
-							show: true,
-							label: "Total Budget",
-							formatter: function (w: any) {
-								// By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-								return `RWF 50,500,678`;
-								// return 66;
-							},
-						},
-					},
-				},
-			},
-			labels: ["Requested", "Allocated"],
-			fill: {
-				opacity: 0.85,
-			},
-		},
-	};
 
 	const options4 = [
 		{ value: "draft", label: "Draft" },
@@ -351,107 +304,14 @@ const CapacityPlanTable = () => {
 						</Link>
 					</li>
 					<li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-						<span>Overview</span>
+						<span>Trainings</span>
 					</li>
 				</ul>
 			</div>
 
-			<div className="panel ">
-				<div className="flex flex-col items-start justify-end gap-4">
-					<div className="flex relative w-full justify-end px-8 gap-4">
-						<IconHorizontalDots />
-					</div>
-					<div className="flex flex-row gap-8 items-center p-3 text-primary">
-						{/**
-						 * Analytics
-						 * Card 1
-						 */}
-
-						<div className="mb-5 flex items-center justify-center">
-							<div className="max-w-[19rem] w-full bg-cdms_primary bg-opacity-10 shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-white-light dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none h-64">
-								<div className="p-4">
-									<div className="bg-cdms_primary mb-2 p-1 inline-block text-[#f1f2f3] rounded-full">
-										RWF 50,500,678
-									</div>
-									<h5 className="text-[#3b3f5c] text-xl font-semibold mb-4 dark:text-white-light">
-										Available Budget
-									</h5>
-									<p className="text-white-dark">
-										Available budget for capacity development projects in Rwanda
-										in the year 2024.
-									</p>
-								</div>
-							</div>
-						</div>
-
-						{/**
-						 *
-						 * Card 2
-						 */}
-
-						<div className="mb-5 flex items-center justify-center">
-							<div className="max-w-[19rem] w-full bg-[#996111] bg-opacity-10 shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-white-light dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none h-64">
-								<div className="p-4">
-									<div className="bg-[#996111] mb-2 p-1 inline-block text-[#f1f2f3] rounded-full">
-										RWF 12,569,678
-									</div>
-									<h5 className="text-[#3b3f5c] text-xl font-semibold mb-4 dark:text-white-light">
-										Requested Budget
-									</h5>
-									<p className="text-white-dark">
-										Pending requested budget for capacity development projects
-										in Rwanda in the year 2024.
-									</p>
-								</div>
-							</div>
-						</div>
-
-						{/**
-						 *
-						 * Card 3
-						 */}
-
-						<div className="mb-5 flex items-center justify-center">
-							<div className="max-w-[19rem] w-full bg-[#805dca] bg-opacity-10 shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-white-light dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none h-64">
-								<div className="p-4">
-									<div className="bg-[#805dca] mb-2 p-1 inline-block text-[#f1f2f3] rounded-full">
-										RWF 34,569,678
-									</div>
-									<h5 className="text-[#3b3f5c] text-xl font-semibold mb-4 dark:text-white-light">
-										Allocated Budget
-									</h5>
-									<p className="text-white-dark">
-										Approved requested budget for capacity development projects
-										in Rwanda in the year 2024.
-									</p>
-								</div>
-							</div>
-						</div>
-
-						{/**
-						 *
-						 * Chart 1
-						 */}
-
-						<div className="">
-							{/* <div className="mb-5 flex items-center justify-between">
-						<h5 className="text-lg font-semibold dark:text-white">
-							Radial Bar
-						</h5>
-					</div> */}
-							<div className="mb-5">
-								<ReactApexChart
-									series={radialBarChart.series}
-									options={radialBarChart.options}
-									className="rounded-lg bg-white dark:bg-black overflow-hidden"
-									type="radialBar"
-									height={300}
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			{/* <div className="panel ">
+				<div className="flex flex-col items-start justify-end gap-4"></div>
+			</div> */}
 			{/* </div> */}
 
 			{/**
@@ -474,33 +334,10 @@ const CapacityPlanTable = () => {
 							<IconSearch className="mx-auto" />
 						</button>
 					</div>
-
 					{/* Searchable Select*/}
 					<div className="flex items-center justify-between"></div>
 					<div className="">
 						<Select placeholder="Select status" options={options4} />
-					</div>
-
-					{/**
-					 * Optional capacity Plan Approve Button when selecting checkbox
-					 */}
-					<button
-						type="button"
-						className="btn btn-danger gap-2"
-						// onClick={() => deleteRow()}
-					>
-						<IconX />
-						Reject
-					</button>
-					<div>
-						<button
-							type="button"
-							className="btn btn-primary"
-							onClick={() => setOpenApproveModal(true)}
-						>
-							<IconThumbUp className="ltr:mr-2 rtl:ml-2" />
-							Approve
-						</button>
 					</div>
 				</div>
 
@@ -623,4 +460,4 @@ const CapacityPlanTable = () => {
 	);
 };
 
-export default CapacityPlanTable;
+export default CapacityPlanTranining;
