@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { IRootState } from "../../store";
+import { IRootState } from "../../redux/store";
 import {
 	toggleRTL,
 	toggleTheme,
 	toggleSidebar,
-} from "../../store/themeConfigSlice";
+} from "../../redux/reducer/themeConfigSlice";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import Dropdown from "../Dropdown";

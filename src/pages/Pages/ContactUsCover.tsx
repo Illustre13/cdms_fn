@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { setPageTitle, toggleRTL } from "../../store/themeConfigSlice";
+import { setPageTitle, toggleRTL } from "../../redux/reducer/themeConfigSlice";
 import Dropdown from "../../components/Dropdown";
-import { IRootState } from "../../store";
+import { IRootState } from "../../redux/store";
 import i18next from "i18next";
 import IconCaretDown from "../../components/Icon/IconCaretDown";
 import IconUser from "../../components/Icon/IconUser";

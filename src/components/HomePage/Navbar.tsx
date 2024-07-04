@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
 						<Link to="/contact-us">Contact Us</Link>
 					</li>
 					<li className="inline-block align-middle">
-						<Link to="/signin">
+						<Link to="/cdms-signin">
 							<button className="bg-gradient-to-r from-cdms_primary to-cdms_secondary hover:border-2 hover:border-dashed hover:border-cdms_secondary hover:cursor-pointer py-2 px-4 rounded">
 								Sign In
 							</button>

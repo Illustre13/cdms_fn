@@ -1,10 +1,36 @@
-import * as React from "react";
-import { Field, Form, Formik } from "formik";
-import { loginValidation } from "../../components/Authentication/login.schema";
+import { useEffect } from "react";
+import { Field, Form, Formik, ErrorMessage } from "formik";
+import {
+	loginInitialValues,
+	loginValidation,
+} from "../../components/Authentication/login.schema";
 import { Link } from "react-router-dom";
+import { handleLogin } from "../../redux/action/loginAction";
+import { useAppDispatch } from "../../redux/hooks";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { IRootState } from "../../redux/store";
 
 const CDMSLogin = () => {
-	const submitForm = () => {};
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
+
+	const loginState = useSelector((state: IRootState) => state.login);
+
+	useEffect(() => {
+		if (loginState.state === "FULFILLED") {
+			navigate("/dashboard");
+		}
+	}, [loginState, navigate, dispatch]);
+
+	const submitForm = (values: any) => {
+		console.log("Submitting form with values:", values);
+		const userCredentials = {
+			email: values?.email,
+			password: values?.password,
+		};
+		dispatch(handleLogin(userCredentials));
+	};
 
 	return (
 		<div className="px-16 py-8 bg-white max-md:px-5">
@@ -48,47 +74,13 @@ const CDMSLogin = () => {
 								className="shrink-0 self-stretch my-auto w-48 max-w-full border border-solid aspect-[100] border-zinc-300 stroke-[1px] stroke-zinc-300"
 							/>
 						</div>
-						{/* <div className="flex flex-col justify-center px-3.5 py-2.5 mt-11 text-base leading-6 text-gray-500 whitespace-nowrap bg-white rounded-lg border border-gray-300 border-solid shadow-sm max-md:mt-10 max-md:max-w-full">
-							<div className="flex gap-2 max-md:flex-wrap">
-								<img
-									loading="lazy"
-									src="https://cdn.builder.io/api/v1/image/assets/TEMP/3f39194d7f926eb1a66bc340d1b7cbe9dc28bfbd06a4eeaceba29b500722b386?apiKey=91e50d8dc4334802820abcbb631f5a11&"
-									className="shrink-0 my-auto w-5 aspect-square"
-								/>
-								<div className="flex-1 max-md:max-w-full">
-									ndahayosibertin17@gmail.com
-								</div>
-							</div>
-						</div>
-						<div className="flex flex-col justify-center px-3.5 py-2.5 mt-8 text-base leading-6 text-gray-500 whitespace-nowrap bg-white rounded-lg border border-gray-300 border-solid shadow-sm max-md:max-w-full">
-							<div className="flex gap-2 px-px max-md:flex-wrap">
-								<div className="flex flex-1 gap-2 max-md:flex-wrap">
-									<img
-										loading="lazy"
-										src="https://cdn.builder.io/api/v1/image/assets/TEMP/bb17d94fb66373fc1a8c1c83edc7cf9aa69351d39356aff3d69c6d5ef4a77968?apiKey=91e50d8dc4334802820abcbb631f5a11&"
-										className="shrink-0 my-auto w-5 aspect-square"
-									/>
-									<div className="flex-1 max-md:max-w-full">
-										****************
-									</div>
-								</div>
-								<img
-									loading="lazy"
-									src="https://cdn.builder.io/api/v1/image/assets/TEMP/1f7bf2e07bda834b1c7f131113237aa27ff5aa11375e19ef903a9dd24c208552?apiKey=91e50d8dc4334802820abcbb631f5a11&"
-									className="shrink-0 w-6 aspect-square"
-								/>
-							</div>
-						</div> */}
 						<div className="mb-5">
-							<Formik
-								initialValues={{
-									email: "",
-									password: "",
-								}}
+							{/* <Formik
+								initialValues={loginInitialValues}
 								validationSchema={loginValidation}
 								onSubmit={() => {}}
 							>
-								{({ errors, submitCount, touched }) => (
+								{({ errors, submitCount, values }) => (
 									<Form className="space-y-5">
 										<div className="p-4">
 											<div className="py-4">
@@ -163,16 +155,101 @@ const CDMSLogin = () => {
 											<button
 												type="submit"
 												className="w-full btn btn-primary !mt-6"
-												onClick={() => {
-													if (
-														touched.email &&
-														touched.password &&
-														!errors.email &&
-														!errors.password
-													) {
-														submitForm();
+												onClick={(e) => {
+													e.preventDefault();
+													if (!errors.email && !errors.password) {
+														console.log("Form values before submit:", values);
+														submitForm(values);
 													}
 												}}
+											>
+												Sign in
+											</button>
+										</div>
+									</Form>
+								)}
+							</Formik> */}
+
+							<Formik
+								initialValues={loginInitialValues}
+								validationSchema={loginValidation}
+								onSubmit={submitForm}
+							>
+								{({ errors, touched }) => (
+									<Form className="space-y-5">
+										<div className="p-4">
+											<div className="py-4">
+												<div
+													className={
+														touched.email && errors.email
+															? "has-error"
+															: touched.email
+															? "has-success"
+															: ""
+													}
+												>
+													<div className="flex gap-5 max-md:flex-wrap">
+														<Field
+															name="email"
+															type="email"
+															id="email"
+															placeholder="Enter Email"
+															className="flex-1 max-md:max-w-full form-input"
+														/>
+													</div>
+													<ErrorMessage
+														name="email"
+														component="div"
+														className="text-danger mt-1"
+													/>
+												</div>
+											</div>
+
+											<div className="py-4">
+												<div
+													className={
+														touched.password && errors.password
+															? "has-error"
+															: touched.password
+															? "has-success"
+															: ""
+													}
+												>
+													<div className="flex gap-2 px-px max-md:flex-wrap">
+														<div className="flex flex-1 gap-2 max-md:flex-wrap">
+															<Field
+																name="password"
+																type="password"
+																id="password"
+																placeholder="Enter Password"
+																className="flex-1 max-md:max-w-full form-input"
+															/>
+														</div>
+													</div>
+													<ErrorMessage
+														name="password"
+														component="div"
+														className="text-danger mt-1"
+													/>
+												</div>
+											</div>
+
+											<div className="flex gap-5 items-start mt-7 w-full max-md:flex-wrap max-md:max-w-full">
+												<div className="flex flex-1 gap-3">
+													<div className="flex flex-col justify-center p-1.5 my-auto border border-cdms_primary border-solid fill-purple-50 stroke-[1px] stroke-cdms_primary">
+														<div className="shrink-0 w-2 h-2 bg-cdms_primary rounded-full" />
+													</div>
+													<div className="text-base font-medium leading-6 text-gray-900">
+														Remember me
+													</div>
+												</div>
+												<div className="flex-auto mt-3.5 text-lg leading-8 text-center text-cdms_primary">
+													<Link to="/">Forgot Password? </Link>
+												</div>
+											</div>
+											<button
+												type="submit"
+												className="w-full btn btn-primary !mt-6"
 											>
 												Sign in
 											</button>
@@ -187,7 +264,10 @@ const CDMSLogin = () => {
 							<span className="font-semibold">Sign Up</span>
 						</div>
 						<div className="self-center mt-4 text-base leading-8 text-gray-900">
-							Back to Homepage? <span className="font-bold">Here</span>
+							Back to Homepage?{" "}
+							<span className="font-bold">
+								<a href="/">Here</a>
+							</span>
 						</div>
 						<div className="self-center mt-44 text-sm leading-7 text-gray-500 max-md:mt-10">
 							2024 © CDMS

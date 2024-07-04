@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "../store";
-import { setPageTitle } from "../store/themeConfigSlice";
+import { IRootState } from "../redux/store";
+import { setPageTitle } from "../redux/reducer/themeConfigSlice";
 import Navbar from "../components/HomePage/Navbar";
 import Typewriter from "typewriter-effect";
 import HorizontalScrollCards from "../components/HomePage/ScrollingBrands";

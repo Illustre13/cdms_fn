@@ -1,0 +1,6 @@
+export enum StateOptions {
+	INITIAL = "INITIAL",
+	PENDING = "PENDING",
+	FULFILLED = "FULFILLED",
+	REJECTED = "REJECTED",
+}

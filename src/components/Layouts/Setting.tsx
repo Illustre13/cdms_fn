@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "../../store";
+import { IRootState } from "../../redux/store";
 import {
 	toggleAnimation,
 	toggleLayout,
@@ -9,7 +9,7 @@ import {
 	toggleRTL,
 	toggleTheme,
 	toggleSemidark,
-} from "../../store/themeConfigSlice";
+} from "../../redux/reducer/themeConfigSlice";
 import IconSettings from "../Icon/IconSettings";
 import IconX from "../Icon/IconX";
 import IconSun from "../Icon/IconSun";

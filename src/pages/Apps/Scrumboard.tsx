@@ -1,11 +1,11 @@
 import Dropdown from "../../components/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { ReactSortable } from "react-sortablejs";
-import { IRootState } from "../../store";
+import { IRootState } from "../../redux/store";
 import { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Swal from "sweetalert2";
-import { setPageTitle } from "../../store/themeConfigSlice";
+import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
 import IconPlus from "../../components/Icon/IconPlus";
 import IconPlusCircle from "../../components/Icon/IconPlusCircle";
 import IconHorizontalDots from "../../components/Icon/IconHorizontalDots";

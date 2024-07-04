@@ -1,9 +1,9 @@
 import Dropdown from "../../components/Dropdown";
-import { IRootState } from "../../store";
+import { IRootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { setPageTitle } from "../../store/themeConfigSlice";
+import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
 import IconHorizontalDots from "../../components/Icon/IconHorizontalDots";
 import IconSettings from "../../components/Icon/IconSettings";
 import IconHelpCircle from "../../components/Icon/IconHelpCircle";

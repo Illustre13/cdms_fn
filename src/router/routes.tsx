@@ -16,7 +16,7 @@ const AddCapacityPlan = lazy(() => import("../pages/CapacityPlan/CreateCP"));
 
 const routes = [
 	{
-		path: "/cdms-login",
+		path: "/cdms-signin",
 		element: <CDMSLogin />,
 		layout: "blank",
 	},

@@ -1,10 +1,10 @@
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
-import { toggleSidebar } from "../../store/themeConfigSlice";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { toggleSidebar } from "../../redux/reducer/themeConfigSlice";
 import AnimateHeight from "react-animate-height";
-import { IRootState } from "../../store";
+import { IRootState } from "../../redux/store";
 import { useState, useEffect } from "react";
 import IconCaretsDown from "../Icon/IconCaretsDown";
 import IconCaretDown from "../Icon/IconCaretDown";
@@ -16,6 +16,7 @@ import IconMessagesDot from "../Icon/IconMessagesDot";
 import IconLogout from "../Icon/IconLogout";
 
 const Sidebar = () => {
+	const navigate = useNavigate();
 	const [currentMenu, setCurrentMenu] = useState<string>("");
 	const [errorSubMenu, setErrorSubMenu] = useState(false);
 	const themeConfig = useSelector((state: IRootState) => state.themeConfig);
@@ -58,6 +59,11 @@ const Sidebar = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location]);
 
+	const handleSignOut = () => {
+		localStorage.removeItem("token");
+		navigate("/cdms-signin");
+	};
+
 	return (
 		<div className={semidark ? "dark" : ""}>
 			<nav
@@ -83,7 +89,7 @@ const Sidebar = () => {
 							<IconCaretsDown className="m-auto rotate-90" />
 						</button>
 					</div>
-					<PerfectScrollbar className="h-[calc(100vh-80px)] relative">
+					<PerfectScrollbar className="h-[calc(100vh-80px)] relative flex justify-between flex-col">
 						<ul className="relative font-semibold space-y-0.5 p-4 py-0">
 							<li className="nav-item">
 								<NavLink to="/homepage" className="group">
@@ -267,16 +273,18 @@ const Sidebar = () => {
 									</ul>
 								</AnimateHeight>
 							</li>
-
-							<li className="nav-item">
-								<NavLink to="/logout" className="group">
-									<div className="flex items-center">
-										<IconLogout className="group-hover:!text-cdms_primary shrink-0" />
-										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-											{t("Sign Out")}
-										</span>
-									</div>
-								</NavLink>
+						</ul>
+						<ul className="relative font-semibold space-y-0.5 mb-8 p-4 py-0">
+							<li className="nav-item px-3">
+								<div
+									className="flex group hover:cursor-pointer"
+									onClick={handleSignOut}
+								>
+									<IconLogout className="group-hover:!text-cdms_primary shrink-0" />
+									<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
+										{t("Sign Out")}
+									</span>
+								</div>
 							</li>
 						</ul>
 					</PerfectScrollbar>

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "../../store";
+import { IRootState } from "../../redux/store";
 import Dropdown from "../../components/Dropdown";
-import { setPageTitle } from "../../store/themeConfigSlice";
+import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
 import { useEffect } from "react";
 import IconPencilPaper from "../../components/Icon/IconPencilPaper";
 import IconCoffee from "../../components/Icon/IconCoffee";

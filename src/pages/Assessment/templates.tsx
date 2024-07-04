@@ -1,7 +1,7 @@
 import { DataTable, DataTableSortStatus } from "mantine-datatable";
 import { useEffect, useState } from "react";
 import "tippy.js/dist/tippy.css";
-import { setPageTitle } from "../../store/themeConfigSlice";
+import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
 import { useDispatch } from "react-redux";
 import IconSearch from "../../components/Icon/IconSearch";
 import { Link } from "react-router-dom";

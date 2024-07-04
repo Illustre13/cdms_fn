@@ -8,6 +8,11 @@ export const differenceInYears = (dateLeft: string, dateRight: string) => {
 	return dateFnsDifferenceInYears(parseISO(dateLeft), parseISO(dateRight));
 };
 
+export const loginInitialValues = {
+	email: "",
+	password: "",
+};
+
 export const loginValidation = Yup.object().shape({
 	email: Yup.string()
 		.email("Invalid email address")
