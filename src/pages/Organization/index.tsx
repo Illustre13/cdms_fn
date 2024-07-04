@@ -34,7 +34,7 @@ const AccountSetting = () => {
 					<div className="border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 bg-white dark:bg-black mb-4 flex flex-row gap-5">
 						<div className="relative ltr:sm:mr-4 rtl:sm:ml-4 w-full sm:w-2/12 mb-5">
 							<img
-								src="/assets/images/brands/brands-008.png"
+								src="/assets/images/brands/rdb_001.png"
 								alt="img"
 								className="w-48 h-48 md:w-48 md:h-48 rounded-full object-cover mx-auto border border-[bg-cdms_secondary] dark:border-[#191e3a] shadow-lg"
 							/>
@@ -44,7 +44,7 @@ const AccountSetting = () => {
 						</div>
 
 						<h6 className="text-xl font-bold mt-8 w-8/12">
-							Rwanda Space Agency
+							Rwanda Development Board
 						</h6>
 						<div className="w-1/12 flex justify-end items-end">
 							<IconEdit className="flex justify-end right-0" />
@@ -62,6 +62,7 @@ const AccountSetting = () => {
 										type="text"
 										placeholder="Organization Name"
 										className="form-input"
+										value={"Rwanda Development Board"}
 									/>
 								</div>
 								<div>
@@ -71,24 +72,8 @@ const AccountSetting = () => {
 										type="text"
 										placeholder="Display Name"
 										className="form-input"
+										value={"RDB"}
 									/>
-								</div>
-								<div>
-									<label htmlFor="logoUrl">Logo URL</label>
-									<input
-										id="logoUrl"
-										type="text"
-										placeholder="Logo URL"
-										className="form-input"
-									/>
-								</div>
-								<div>
-									<label htmlFor="aboutUs">About Us</label>
-									<textarea
-										id="aboutUs"
-										placeholder="About Us"
-										className="form-textarea"
-									></textarea>
 								</div>
 								<div>
 									<label htmlFor="mission">Mission</label>
@@ -96,14 +81,33 @@ const AccountSetting = () => {
 										id="mission"
 										placeholder="Mission"
 										className="form-textarea"
+										value={
+											"Fast tracking economic development in Rwanda by enabling private sector growth."
+										}
 									></textarea>
 								</div>
+
+								<div>
+									<label htmlFor="aboutUs">About Us</label>
+									<textarea
+										id="aboutUs"
+										placeholder="About Us"
+										className="form-textarea"
+										value={
+											"Rwanda Development Board (RDB) is a government institution, mandated to accelerate Rwanda’s economic development by enabling private sector growth. Under the supervision of the Office of the President, RDB is governed by the Board of Directors made up of global entrepreneurs and experts."
+										}
+									></textarea>
+								</div>
+
 								<div>
 									<label htmlFor="vision">Vision</label>
 									<textarea
 										id="vision"
 										placeholder="Vision"
 										className="form-textarea"
+										value={
+											"To transform Rwanda into a dynamic global hub for business, investment, and innovation."
+										}
 									></textarea>
 								</div>
 								<div>
@@ -113,6 +117,19 @@ const AccountSetting = () => {
 										type="text"
 										placeholder="Industry"
 										className="form-input"
+										value={"Business, Innovation, and Investment"}
+									/>
+								</div>
+								<div>
+									<label htmlFor="logoUrl">Logo URL</label>
+									<input
+										id="logoUrl"
+										type="text"
+										placeholder="Logo URL"
+										className="form-input"
+										value={
+											"https://rdb.rw/wp-content/uploads/2022/12/rdb-251X55.jpg"
+										}
 									/>
 								</div>
 								<div>
@@ -122,6 +139,7 @@ const AccountSetting = () => {
 										type="text"
 										placeholder="Address"
 										className="form-input"
+										value={"P.O. Box 6239 Kigali, Rwanda"}
 									/>
 								</div>
 								<div>
@@ -131,6 +149,7 @@ const AccountSetting = () => {
 										type="text"
 										placeholder="Phone Number"
 										className="form-input"
+										value={"+2507880009870"}
 									/>
 								</div>
 								<div>
@@ -140,6 +159,7 @@ const AccountSetting = () => {
 										type="email"
 										placeholder="Email"
 										className="form-input"
+										value={"info@rdb.rw"}
 									/>
 								</div>
 								<div>

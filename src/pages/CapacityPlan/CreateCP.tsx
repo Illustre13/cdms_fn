@@ -89,7 +89,7 @@ const Add = () => {
 						</div>
 					</Link>
 					<span className="flex flex-row gap-2 font-bold text-xl">
-						Submit New Capacity Plan
+						Submit Capacity Plan
 					</span>
 				</div>
 			</div>
@@ -169,7 +169,7 @@ const Add = () => {
 							</Link>
 							<button type="button" className="btn btn-primary">
 								<IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
-								Save
+								Submit
 							</button>
 						</div>
 					</form>
