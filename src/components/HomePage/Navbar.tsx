@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
 						</Link>
 					</li>
 					<li className="inline-block align-middle">
-						<Link to="/signup">
+						<Link to="/cdms-signup">
 							<button className="bg-gradient-to-r from-cdms_primary to-cdms_secondary hover:border-2 hover:border-dashed hover:border-cdms_secondary hover:cursor-pointer py-2 px-4 rounded">
 								Sign Up
 							</button>

@@ -3,7 +3,7 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import {
 	loginInitialValues,
 	loginValidation,
-} from "../../components/Authentication/login.schema";
+} from "../../components/Authentication/signIn.schema";
 import { Link } from "react-router-dom";
 import { handleLogin } from "../../redux/action/loginAction";
 import { useAppDispatch } from "../../redux/hooks";
@@ -75,101 +75,6 @@ const CDMSLogin = () => {
 							/>
 						</div>
 						<div className="mb-5">
-							{/* <Formik
-								initialValues={loginInitialValues}
-								validationSchema={loginValidation}
-								onSubmit={() => {}}
-							>
-								{({ errors, submitCount, values }) => (
-									<Form className="space-y-5">
-										<div className="p-4">
-											<div className="py-4">
-												<div
-													className={
-														submitCount
-															? errors.email
-																? "has-error"
-																: "has-success"
-															: ""
-													}
-												>
-													<div className="flex gap-5 max-md:flex-wrap">
-														<Field
-															name="email"
-															type="email"
-															id="email"
-															placeholder="Enter Email"
-															className="flex-1 max-md:max-w-full form-input"
-														/>
-													</div>
-													{submitCount > 0 && errors.email && (
-														<div className="text-danger mt-1">
-															{errors.email}
-														</div>
-													)}
-												</div>
-											</div>
-
-											<div className="py-4">
-												<div
-													className={
-														submitCount
-															? errors.password
-																? "has-error"
-																: "has-success"
-															: ""
-													}
-												>
-													<div className="flex gap-2 px-px max-md:flex-wrap">
-														<div className="flex flex-1 gap-2 max-md:flex-wrap">
-															<Field
-																name="password"
-																type="password"
-																id="password"
-																placeholder="Enter Password"
-																className="flex-1 max-md:max-w-full form-input"
-															/>
-														</div>
-													</div>
-													{submitCount > 0 && errors.password && (
-														<div className="text-danger mt-1">
-															{errors.password.length > 0 && errors.password}
-														</div>
-													)}
-												</div>
-											</div>
-
-											<div className="flex gap-5 items-start mt-7 w-full max-md:flex-wrap max-md:max-w-full">
-												<div className="flex flex-1 gap-3">
-													<div className="flex flex-col justify-center p-1.5 my-auto border border-cdms_primary border-solid fill-purple-50 stroke-[1px] stroke-cdms_primary">
-														<div className="shrink-0 w-2 h-2 bg-cdms_primary rounded-full" />
-													</div>
-													<div className="text-base font-medium leading-6 text-gray-900">
-														Remember me
-													</div>
-												</div>
-												<div className="flex-auto mt-3.5 text-lg leading-8 text-center text-cdms_primary">
-													<Link to="/">Forgot Password? </Link>
-												</div>
-											</div>
-											<button
-												type="submit"
-												className="w-full btn btn-primary !mt-6"
-												onClick={(e) => {
-													e.preventDefault();
-													if (!errors.email && !errors.password) {
-														console.log("Form values before submit:", values);
-														submitForm(values);
-													}
-												}}
-											>
-												Sign in
-											</button>
-										</div>
-									</Form>
-								)}
-							</Formik> */}
-
 							<Formik
 								initialValues={loginInitialValues}
 								validationSchema={loginValidation}
@@ -178,6 +83,9 @@ const CDMSLogin = () => {
 								{({ errors, touched }) => (
 									<Form className="space-y-5">
 										<div className="p-4">
+											{/*
+											 * Email input field
+											 */}
 											<div className="py-4">
 												<div
 													className={
@@ -205,6 +113,9 @@ const CDMSLogin = () => {
 												</div>
 											</div>
 
+											{/*
+											 * Password input field
+											 */}
 											<div className="py-4">
 												<div
 													className={
@@ -261,7 +172,9 @@ const CDMSLogin = () => {
 
 						<div className="self-center text-base leading-8 text-gray-900">
 							Don’t have a account?{" "}
-							<span className="font-semibold">Sign Up</span>
+							<span className="font-semibold">
+								<Link to="/cdms-signup">Sign Up</Link>
+							</span>
 						</div>
 						<div className="self-center mt-4 text-base leading-8 text-gray-900">
 							Back to Homepage?{" "}

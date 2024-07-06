@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import Homepage from "../pages/HomePage";
 import CDMSLogin from "../pages/Authentication/CDMSLogin";
+import { CDMSSignUp } from "../pages/Authentication/CDMSSignup";
 const Index = lazy(() => import("../pages/Index"));
 const AllOrganization = lazy(() => import("../pages/Organization/all"));
 const MyOrganization = lazy(() => import("../pages/Organization/index"));
@@ -18,6 +19,11 @@ const routes = [
 	{
 		path: "/cdms-signin",
 		element: <CDMSLogin />,
+		layout: "blank",
+	},
+	{
+		path: "/cdms-signup",
+		element: <CDMSSignUp />,
 		layout: "blank",
 	},
 	// dashboard
