@@ -586,7 +586,7 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 
 export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 	handleTabClick,
-	setSignupData = () => {},
+	// setSignupData = () => {},
 }) => {
 	const saveOrganizationInfo = (values: any, { setSubmitting }: any) => {
 		sessionStorage.setItem("organizationName", values.name);
@@ -601,11 +601,21 @@ export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 		sessionStorage.setItem("organizationEmail", values.email);
 		sessionStorage.setItem("organizationWebsite", values.website);
 		sessionStorage.setItem("organizationTinNo", values.tinNo);
-
 		setSubmitting(false);
 		setTimeout(() => {
-			setSignupData(true);
+			handleTabClick("workInfo");
 		}, 0);
+	};
+	const isRenderingRef = useRef(false);
+
+	useEffect(() => {
+		isRenderingRef.current = false; // Reset after rendering
+	});
+	const handlePrev = () => {
+		if (!isRenderingRef.current) {
+			handleTabClick("personal");
+		}
+		// handleTabClick("personal")
 	};
 
 	return (
@@ -613,7 +623,6 @@ export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 			initialValues={organizationInfoIV}
 			validationSchema={organizationInfoValidation}
 			onSubmit={saveOrganizationInfo}
-			enableReinitialize={true}
 		>
 			{({ errors, touched, isValid }) => (
 				<Form>
@@ -1094,12 +1103,12 @@ export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 						</div>
 					</div>
 					<div className=" flex flex-row justify-end pr-4 gap-2">
-						{/* <button
-							onClick={handleTabClick("personal")}
-							className="hover:text-cdms_primary"
+						<button
+							onClick={handlePrev}
+							className="btn btn-primary bg-cdms_secondary"
 						>
 							Prev
-						</button> */}
+						</button>
 
 						{!isValid && (
 							<div className="text-danger mt-1 flex flex-row gap-2">
@@ -1111,7 +1120,7 @@ export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 							className=" btn btn-primary px-4 py-1"
 							disabled={!isValid}
 						>
-							Sign Up
+							Next
 						</button>
 					</div>
 				</Form>
@@ -1120,30 +1129,136 @@ export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 	);
 };
 
-export const WorkInfoForm = () => (
-	<Formik
-		initialValues={workInfoIV}
-		validationSchema={workInfoValidations}
-		onSubmit={(values) => {
-			console.log(values);
-		}}
-	>
-		{({ isSubmitting }) => (
-			<Form>
-				<Field
-					type="text"
-					name="department"
-					placeholder="Enter your department"
-				/>
-				<ErrorMessage name="department" component="div" />
+export const WorkInfoForm: React.FC<ISignupProps> = ({
+	handleTabClick,
+	setSignupData = () => {},
+}) => {
+	const isRenderingRef = useRef(false);
 
-				<Field type="text" name="position" placeholder="Enter your position" />
-				<ErrorMessage name="position" component="div" />
+	useEffect(() => {
+		isRenderingRef.current = false; // Reset after rendering
+	});
+	const handlePrev = () => {
+		if (!isRenderingRef.current) {
+			handleTabClick("organization");
+		}
+		// handleTabClick("personal")
+	};
+	const saveUserWorkInfo = (values: any, { setSubmitting }: any) => {
+		sessionStorage.setItem("department", values.department);
+		sessionStorage.setItem("position", values.position);
+		setSubmitting(false);
+		setTimeout(() => {
+			setSignupData(true);
+		}, 0);
+	};
+	return (
+		<Formik
+			initialValues={workInfoIV}
+			validationSchema={workInfoValidations}
+			onSubmit={saveUserWorkInfo}
+		>
+			{({ isValid, touched, errors }) => (
+				<Form>
+					<div className="p-4">
+						{/*
+						 * Department input field
+						 */}
+						<div className="py-2 flex flex-row gap-2">
+							<label
+								htmlFor="department"
+								className="block text-sm font-medium text-gray-700 w-3/12"
+							>
+								Department:
+							</label>
+							<div
+								className={
+									touched.department && errors.department
+										? "has-error w-9/12"
+										: touched.department
+										? "has-success w-9/12"
+										: "w-9/12"
+								}
+							>
+								<div className="flex gap-2 px-px max-md:flex-wrap">
+									<div className="flex flex-1 gap-2 max-md:flex-wrap">
+										<Field
+											name="department"
+											type="text"
+											id="email"
+											placeholder="Enter your department"
+											className="flex-1 max-md:max-w-full form-input"
+										/>
+									</div>
+								</div>
+								<ErrorMessage
+									name="department"
+									component="div"
+									className="text-danger mt-1"
+								/>
+							</div>
+						</div>
+						{/*
+						 * Position input field
+						 */}
+						<div className="py-2 flex flex-row gap-2">
+							<label
+								htmlFor="department"
+								className="block text-sm font-medium text-gray-700 w-3/12"
+							>
+								Position:
+							</label>
+							<div
+								className={
+									touched.position && errors.position
+										? "has-error w-9/12"
+										: touched.position
+										? "has-success w-9/12"
+										: "w-9/12"
+								}
+							>
+								<div className="flex gap-2 px-px max-md:flex-wrap">
+									<div className="flex flex-1 gap-2 max-md:flex-wrap">
+										<Field
+											name="position"
+											type="text"
+											id="position"
+											placeholder="Enter your position"
+											className="flex-1 max-md:max-w-full form-input"
+										/>
+									</div>
+								</div>
+								<ErrorMessage
+									name="position"
+									component="div"
+									className="text-danger mt-1"
+								/>
+							</div>
+						</div>
+						<div className=" flex flex-row justify-end pt-4 pr-4 gap-2">
+							<button
+								onClick={handlePrev}
+								className="btn btn-primary bg-cdms_secondary"
+							>
+								Prev
+							</button>
 
-				<button type="submit" disabled={isSubmitting}>
-					Submit
-				</button>
-			</Form>
-		)}
-	</Formik>
-);
+							{!isValid && (
+								<div className="text-danger mt-1 flex flex-row gap-2">
+									Please fill out all required fields correctly.
+								</div>
+							)}
+							<button
+								type="submit"
+								className=" btn btn-primary px-4 py-1"
+								disabled={!isValid}
+							>
+								Sign up
+							</button>
+						</div>
+					</div>
+				</Form>
+			)}
+		</Formik>
+	);
+};

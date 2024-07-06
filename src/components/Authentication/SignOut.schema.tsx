@@ -43,8 +43,8 @@ export const organizationInfoIV = {
 };
 
 export const workInfoIV = {
-	department: "",
-	position: "",
+	department: sessionStorage.getItem("department") || "",
+	position: sessionStorage.getItem("position") || "",
 };
 
 export const personalInfoValidation = Yup.object().shape({
@@ -110,6 +110,8 @@ export const organizationInfoValidation = Yup.object().shape({
 		.email("Organization email must be a valid email address."),
 	website: Yup.string().optional(),
 	tinNo: Yup.string().optional(),
+	department: Yup.string().required("Department is required."),
+	position: Yup.string().required("Position is required."),
 });
 
 export const workInfoValidations = Yup.object().shape({

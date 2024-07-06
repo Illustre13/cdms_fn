@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
 	PersonalInfoForm,
 	OrganizationInfoForm,
+	WorkInfoForm,
 } from "../../components/Authentication/SignUpForms";
 import { Link } from "react-router-dom";
 import { sign } from "crypto";
@@ -19,11 +20,64 @@ export const CDMSSignUp = () => {
 	//         	setActiveTab(tab);
 	//         };
 	// }, [handleTabClick]);
+	const submitForm = () => {
+		console.log("Submitting Signup Info:");
+		const userInfo = {
+			firstName: sessionStorage.getItem("firstName"),
+			middleName: sessionStorage.getItem("middleName"),
+			lastName: sessionStorage.getItem("lastName"),
+			email: sessionStorage.getItem("email"),
+			phoneNumber: sessionStorage.getItem("phoneNumber"),
+			gender: sessionStorage.getItem("gender"),
+			// dob: sessionStorage.getItem("dob") ,
+			// dob: sessionStorage.getItem("dob") || new Date().toISOString().split("")[0],
+			nationality: sessionStorage.getItem("nationality"),
+			profileImage: sessionStorage.getItem("profileImage"),
+			rssbNo: sessionStorage.getItem("rssbNo"),
+			idNumber: sessionStorage.getItem("idNumber"),
+			address: sessionStorage.getItem("address"),
+			password: sessionStorage.getItem("password"),
+			confirmPassword: sessionStorage.getItem("confirmPassword"),
+		};
+		const organizationInfo = {
+			name: sessionStorage.getItem("organizationName"),
+			displayName: sessionStorage.getItem("organizationDisplayName"),
+			logoUrl: sessionStorage.getItem("organizationLogoUrl"),
+			aboutUs: sessionStorage.getItem("organizationAboutUs"),
+			mission: sessionStorage.getItem("organizationMission"),
+			vision: sessionStorage.getItem("organizationVision"),
+			industry: sessionStorage.getItem("organizationIndustry"),
+			address: sessionStorage.getItem("organizationAddress"),
+			phoneNumber: sessionStorage.getItem("organizationPhoneNumber"),
+			email: sessionStorage.getItem("organizationEmail"),
+			website: sessionStorage.getItem("organizationWebsite"),
+			tinNo: sessionStorage.getItem("organizationTinNo"),
+		};
+		const userWorkInfo = {
+			department: sessionStorage.getItem("department"),
+			position: sessionStorage.getItem("position"),
+		};
+		const payload = {
+			userInfo,
+			organizationInfo,
+			userWorkInfo,
+		};
+		console.log(payload);
+		// dispatch(handleLogin(userCredentials));
+	};
 
 	useEffect(() => {
 		setTabMoved(true);
+		if (activeTab) {
+			window.scrollTo({
+				top: 0,
+				left: 0,
+				behavior: "smooth",
+			});
+		}
 		if (signupData) {
 			console.log("Signup Data");
+			submitForm();
 		}
 	}, [activeTab, signupData]);
 
@@ -105,6 +159,15 @@ export const CDMSSignUp = () => {
 										>
 											Organization Information
 										</div>
+										<div
+											className={`flex-auto w-6/12 text-center my-auto justify-center p-2 rounded-xl max-md:px-5 info-tab ${
+												activeTab === "workInfo" ? "bg-cdms_primary" : ""
+											}`}
+											// onClick={() => handleTabClick("organization")}
+										>
+											<span>Work</span> <br />
+											<span>Information</span>
+										</div>
 									</div>
 
 									{activeTab === "personal" && (
@@ -114,7 +177,12 @@ export const CDMSSignUp = () => {
 									)}
 									{activeTab === "organization" && (
 										<div>
-											<OrganizationInfoForm
+											<OrganizationInfoForm handleTabClick={handleTabClick} />
+										</div>
+									)}
+									{activeTab === "workInfo" && (
+										<div>
+											<WorkInfoForm
 												handleTabClick={handleTabClick}
 												setSignupData={setSignupData}
 											/>
