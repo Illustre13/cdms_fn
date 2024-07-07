@@ -588,6 +588,10 @@ export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 	handleTabClick,
 	// setSignupData = () => {},
 }) => {
+	const handleSubmit1 = (errors: any) => {
+		console.log("===> ", errors);
+	};
+
 	const saveOrganizationInfo = (values: any, { setSubmitting }: any) => {
 		sessionStorage.setItem("organizationName", values.name);
 		sessionStorage.setItem("organizationDisplayName", values.displayName);
@@ -615,11 +619,20 @@ export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 		if (!isRenderingRef.current) {
 			handleTabClick("personal");
 		}
+
 		// handleTabClick("personal")
 	};
+	const [values, setValues] = useState({});
+
+	useEffect(() => {
+		console.log(values);
+	}, [values]);
 
 	return (
 		<Formik
+			innerRef={(formikActions) =>
+				formikActions ? setValues(formikActions.values) : setValues({})
+			}
 			initialValues={organizationInfoIV}
 			validationSchema={organizationInfoValidation}
 			onSubmit={saveOrganizationInfo}
@@ -671,7 +684,7 @@ export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 						 */}
 						<div className="py-2 flex flex-row gap-2">
 							<label
-								htmlFor="middleName"
+								htmlFor="displayName"
 								className="block text-sm font-medium text-gray-700 w-3/12"
 							>
 								Display Name:

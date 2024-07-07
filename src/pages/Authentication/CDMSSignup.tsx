@@ -1,19 +1,32 @@
 import { useEffect, useState } from "react";
+import { useAppDispatch } from "../../redux/hooks";
+import { useNavigate } from "react-router-dom";
 import {
 	PersonalInfoForm,
 	OrganizationInfoForm,
 	WorkInfoForm,
 } from "../../components/Authentication/SignUpForms";
 import { Link } from "react-router-dom";
-import { sign } from "crypto";
+import { useSelector } from "react-redux";
+import { IRootState } from "../../redux/store";
+import { use } from "i18next";
+import { handleSignup } from "../../redux/action/signUpAction";
 export const CDMSSignUp = () => {
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 	const [activeTab, setActiveTab] = useState("personal");
-	const [tabMoved, setTabMoved] = useState(false);
 	const [signupData, setSignupData] = useState(false);
 
+	const signUpState = useSelector((state: IRootState) => state.signUp);
 	const handleTabClick = (tab: string) => {
 		setActiveTab(tab);
 	};
+
+	useEffect(() => {
+		if (signUpState.state === "FULFILED") {
+			navigate("/cdms-signin");
+		}
+	}, [signUpState]);
 
 	// useEffect(() => {
 	//     const handleTabClick = (tab: string) => {
@@ -22,40 +35,40 @@ export const CDMSSignUp = () => {
 	// }, [handleTabClick]);
 	const submitForm = () => {
 		console.log("Submitting Signup Info:");
-		const userInfo = {
-			firstName: sessionStorage.getItem("firstName"),
-			middleName: sessionStorage.getItem("middleName"),
-			lastName: sessionStorage.getItem("lastName"),
-			email: sessionStorage.getItem("email"),
-			phoneNumber: sessionStorage.getItem("phoneNumber"),
-			gender: sessionStorage.getItem("gender"),
-			// dob: sessionStorage.getItem("dob") ,
-			// dob: sessionStorage.getItem("dob") || new Date().toISOString().split("")[0],
-			nationality: sessionStorage.getItem("nationality"),
-			profileImage: sessionStorage.getItem("profileImage"),
-			rssbNo: sessionStorage.getItem("rssbNo"),
-			idNumber: sessionStorage.getItem("idNumber"),
-			address: sessionStorage.getItem("address"),
-			password: sessionStorage.getItem("password"),
-			confirmPassword: sessionStorage.getItem("confirmPassword"),
+		const userInfo: userInfo = {
+			firstName: sessionStorage.getItem("firstName") as string,
+			middleName: sessionStorage.getItem("middleName") as string,
+			lastName: sessionStorage.getItem("lastName") as string,
+			email: sessionStorage.getItem("email") as string,
+			phoneNumber: sessionStorage.getItem("phoneNumber") as string,
+			gender: sessionStorage.getItem("gender") as string,
+			// dob: sessionStorage.getItem("dob") as string ,
+			// dob: sessionStorage.getItem("dob") as string || new Date().toISOString().split("") as string[0],
+			nationality: sessionStorage.getItem("nationality") as string,
+			profileImage: sessionStorage.getItem("profileImage") as string,
+			rssbNo: sessionStorage.getItem("rssbNo") as string,
+			idNumber: sessionStorage.getItem("idNumber") as string,
+			address: sessionStorage.getItem("address") as string,
+			password: sessionStorage.getItem("password") as string,
+			confirmPassword: sessionStorage.getItem("confirmPassword") as string,
 		};
-		const organizationInfo = {
-			name: sessionStorage.getItem("organizationName"),
-			displayName: sessionStorage.getItem("organizationDisplayName"),
-			logoUrl: sessionStorage.getItem("organizationLogoUrl"),
-			aboutUs: sessionStorage.getItem("organizationAboutUs"),
-			mission: sessionStorage.getItem("organizationMission"),
-			vision: sessionStorage.getItem("organizationVision"),
-			industry: sessionStorage.getItem("organizationIndustry"),
-			address: sessionStorage.getItem("organizationAddress"),
-			phoneNumber: sessionStorage.getItem("organizationPhoneNumber"),
-			email: sessionStorage.getItem("organizationEmail"),
-			website: sessionStorage.getItem("organizationWebsite"),
-			tinNo: sessionStorage.getItem("organizationTinNo"),
+		const organizationInfo: organizationInfo = {
+			name: sessionStorage.getItem("organizationName") as string,
+			displayName: sessionStorage.getItem("organizationDisplayName") as string,
+			logoUrl: sessionStorage.getItem("organizationLogoUrl") as string,
+			aboutUs: sessionStorage.getItem("organizationAboutUs") as string,
+			mission: sessionStorage.getItem("organizationMission") as string,
+			vision: sessionStorage.getItem("organizationVision") as string,
+			industry: sessionStorage.getItem("organizationIndustry") as string,
+			address: sessionStorage.getItem("organizationAddress") as string,
+			phoneNumber: sessionStorage.getItem("organizationPhoneNumber") as string,
+			email: sessionStorage.getItem("organizationEmail") as string,
+			website: sessionStorage.getItem("organizationWebsite") as string,
+			tinNo: sessionStorage.getItem("organizationTinNo") as string,
 		};
-		const userWorkInfo = {
-			department: sessionStorage.getItem("department"),
-			position: sessionStorage.getItem("position"),
+		const userWorkInfo: userWorkInfo = {
+			department: sessionStorage.getItem("department") as string,
+			position: sessionStorage.getItem("position") as string,
 		};
 		const payload = {
 			userInfo,
@@ -63,11 +76,11 @@ export const CDMSSignUp = () => {
 			userWorkInfo,
 		};
 		console.log(payload);
-		// dispatch(handleLogin(userCredentials));
+
+		dispatch(handleSignup(payload));
 	};
 
 	useEffect(() => {
-		setTabMoved(true);
 		if (activeTab) {
 			window.scrollTo({
 				top: 0,
