@@ -34,7 +34,7 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 			sessionStorage.setItem("email", values.email);
 			sessionStorage.setItem("phoneNumber", values.phoneNumber);
 			sessionStorage.setItem("gender", values.gender);
-			// sessionStorage.setItem("dob", values.dob);
+			sessionStorage.setItem("dob", values.dob);
 			sessionStorage.setItem("nationality", values.nationality);
 			sessionStorage.setItem("profileImage", values.profileImage);
 			sessionStorage.setItem("rssbNo", values.rssbNo);
@@ -277,9 +277,9 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 											component="select"
 											className="flex-1 max-md:max-w-full form-input"
 										>
-											<option value="male">Select your gender</option>
-											<option value="male">Male</option>
-											<option value="female">Female</option>
+											<option value="">Select your gender</option>
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
 										</Field>
 									</div>
 								</div>
@@ -294,7 +294,7 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 						{/*
 						 * Date select field
 						 */}
-						{/* <div className="py-2 flex flex-row gap-2">
+						<div className="py-2 flex flex-row gap-2">
 							<label
 								htmlFor="dob"
 								className="block text-sm font-medium text-gray-700 w-3/12"
@@ -326,7 +326,7 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 									className="text-danger mt-1"
 								/>
 							</div>
-						</div> */}
+						</div>
 
 						{/*
 						 * Nationality select field
@@ -356,7 +356,7 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 											component="select"
 											className="flex-1 max-md:max-w-full form-input"
 										>
-											<option value="male">Select your nationality</option>
+											<option value="">Select your nationality</option>
 											<option value="Rwanda">Rwanda</option>
 											{/* <option value="Burundi">Burundi</option>
 										<option value="USA">USA</option>

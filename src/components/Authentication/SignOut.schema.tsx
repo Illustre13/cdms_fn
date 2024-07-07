@@ -1,13 +1,13 @@
 import * as Yup from "yup";
-// import {
-// 	differenceInYears as dateFnsDifferenceInYears,
-// 	parseISO,
-// } from "date-fns";
+import {
+	differenceInYears as dateFnsDifferenceInYears,
+	parseISO,
+} from "date-fns";
 
-// export const differenceInYears = (dateLeft: string, dateRight: string) => {
-// 	console.log(dateLeft, dateRight);
-// 	return dateFnsDifferenceInYears(parseISO(dateLeft), parseISO(dateRight));
-// };
+export const differenceInYears = (dateLeft: string, dateRight: string) => {
+	console.log(dateLeft, dateRight);
+	return dateFnsDifferenceInYears(parseISO(dateLeft), parseISO(dateRight));
+};
 
 export const personalInfoIV = {
 	firstName: sessionStorage.getItem("firstName") || "",
@@ -17,7 +17,7 @@ export const personalInfoIV = {
 	phoneNumber: sessionStorage.getItem("phoneNumber") || "",
 	gender: sessionStorage.getItem("gender") || "",
 	// dob: sessionStorage.getItem("dob") || "",
-	// dob: sessionStorage.getItem("dob") || new Date().toISOString().split("")[0],
+	dob: sessionStorage.getItem("dob") || new Date(),
 	nationality: sessionStorage.getItem("nationality") || "",
 	profileImage: sessionStorage.getItem("profileImage") || "",
 	rssbNo: sessionStorage.getItem("rssbNo") || "",
@@ -61,17 +61,17 @@ export const personalInfoValidation = Yup.object().shape({
 	// dob: Yup.string()
 	// 	.required("Date of Birth is required.")
 	// 	.matches(/^\d{4}-\d{2}-\d{2}$/, "Date of Birth must be a valid date."),
-	// dob: Yup.date()
-	// 	.required("Date of Birth is required.")
-	// 	.typeError("Date of Birth must be a valid date.")
-	// 	.test("dob", "You must be at least 18 years old.", function (value) {
-	// 		return (
-	// 			differenceInYears(
-	// 				new Date().toISOString().split("T")[0],
-	// 				new Date((value as Date) || "").toISOString().split("T")[0]
-	// 			) >= 18
-	// 		);
-	// 	}),
+	dob: Yup.date()
+		.required("Date of Birth is required.")
+		.typeError("Date of Birth must be a valid date.")
+		.test("dob", "You must be at least 18 years old.", function (value) {
+			return (
+				differenceInYears(
+					new Date().toISOString().split("T")[0],
+					new Date((value as Date) || "").toISOString().split("T")[0]
+				) >= 18
+			);
+		}),
 	nationality: Yup.string().optional(),
 	profileImage: Yup.string().optional(),
 	rssbNo: Yup.string().required("RSSB Number is required."),

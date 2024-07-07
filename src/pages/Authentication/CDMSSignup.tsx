@@ -9,7 +9,6 @@ import {
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IRootState } from "../../redux/store";
-import { use } from "i18next";
 import { handleSignup } from "../../redux/action/signUpAction";
 export const CDMSSignUp = () => {
 	const dispatch = useAppDispatch();
@@ -22,12 +21,6 @@ export const CDMSSignUp = () => {
 		setActiveTab(tab);
 	};
 
-	useEffect(() => {
-		if (signUpState.state === "FULFILED") {
-			navigate("/cdms-signin");
-		}
-	}, [signUpState]);
-
 	// useEffect(() => {
 	//     const handleTabClick = (tab: string) => {
 	//         	setActiveTab(tab);
@@ -35,6 +28,10 @@ export const CDMSSignUp = () => {
 	// }, [handleTabClick]);
 	const submitForm = () => {
 		console.log("Submitting Signup Info:");
+		console.log(
+			typeof sessionStorage.getItem("dob"),
+			sessionStorage.getItem("dob")
+		);
 		const userInfo: userInfo = {
 			firstName: sessionStorage.getItem("firstName") as string,
 			middleName: sessionStorage.getItem("middleName") as string,
@@ -43,7 +40,7 @@ export const CDMSSignUp = () => {
 			phoneNumber: sessionStorage.getItem("phoneNumber") as string,
 			gender: sessionStorage.getItem("gender") as string,
 			// dob: sessionStorage.getItem("dob") as string ,
-			// dob: sessionStorage.getItem("dob") as string || new Date().toISOString().split("") as string[0],
+			dob: sessionStorage.getItem("dob") as string,
 			nationality: sessionStorage.getItem("nationality") as string,
 			profileImage: sessionStorage.getItem("profileImage") as string,
 			rssbNo: sessionStorage.getItem("rssbNo") as string,
@@ -78,7 +75,15 @@ export const CDMSSignUp = () => {
 		console.log(payload);
 
 		dispatch(handleSignup(payload));
+		setSignupData(false);
 	};
+
+	useEffect(() => {
+		console.log(signUpState.state);
+		if (signUpState.state === "FULFILED") {
+			navigate("/cdms-signin");
+		}
+	}, [signUpState]);
 
 	useEffect(() => {
 		if (activeTab) {

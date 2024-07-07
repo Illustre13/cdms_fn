@@ -19,7 +19,7 @@ interface IPersonalInfo {
 	email: string;
 	phoneNumber: string;
 	gender: string;
-	dob: string;
+	dob: Date;
 	nationality: string;
 	profileImage: string;
 	rssbNo: string;
@@ -40,7 +40,7 @@ interface userInfo {
 	email: string;
 	phoneNumber: string;
 	gender: string;
-	dob?: Date;
+	dob?: string;
 	nationality?: string;
 	profileImage?: string;
 	rssbNo: string;
