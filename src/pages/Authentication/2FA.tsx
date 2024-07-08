@@ -47,7 +47,6 @@ export const TwoFactorAuth = () => {
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const id = toast.loading("verifying OTP");
-		debugger;
 		dispatch(verifyOTP(passCode) as any).then((data: any) => {
 			if (data.error !== undefined) {
 				toast.update(id, {
