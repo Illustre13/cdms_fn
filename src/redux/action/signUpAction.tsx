@@ -19,6 +19,7 @@ export const handleSignup = createAsyncThunk<ResponseData, signupInfoData>(
 					"nationality",
 					"profileImage",
 					"rssbNo",
+					"dob",
 					"idNumber",
 					"address",
 					"password",

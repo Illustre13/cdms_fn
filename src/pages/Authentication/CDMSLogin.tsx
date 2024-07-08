@@ -10,18 +10,25 @@ import { useAppDispatch } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IRootState } from "../../redux/store";
+import { getOtp } from "../../redux/action/2FAAction";
 
 const CDMSLogin = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	const loginState = useSelector((state: IRootState) => state.login);
+	const getOtpState = useSelector((state: IRootState) => state.getOtp);
 
 	useEffect(() => {
 		if (loginState.state === "FULFILLED") {
-			navigate("/dashboard");
+			dispatch(getOtp()).then(({ payload }) => {
+				const { status } = payload;
+				if (status === 200) {
+					navigate("/tfa");
+				}
+			});
 		}
-	}, [loginState, navigate, dispatch]);
+	}, [loginState]);
 
 	const submitForm = (values: any) => {
 		console.log("Submitting form with values:", values);

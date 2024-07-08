@@ -21,6 +21,7 @@ const signUpSlice = createSlice({
 				state.loading = true;
 			})
 			.addCase(handleSignup.fulfilled, (state, action: PayloadAction<any>) => {
+				console.log(action.payload);
 				state.state = StateOptions.FULFILLED;
 				state.status = action.payload.status;
 				state.data = action.payload.message;

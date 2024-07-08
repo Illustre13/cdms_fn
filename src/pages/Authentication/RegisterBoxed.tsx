@@ -264,7 +264,7 @@ const RegisterBoxed = () => {
 							<div className="text-center dark:text-white">
 								Already have an account ?&nbsp;
 								<Link
-									to="/auth/boxed-signin"
+									to="/cdms-signin"
 									className="uppercase text-cdms_primary underline transition hover:text-black dark:hover:text-white"
 								>
 									SIGN IN
