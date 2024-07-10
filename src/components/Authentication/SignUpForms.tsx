@@ -7,7 +7,7 @@ import {
 	personalInfoValidation,
 	workInfoIV,
 	workInfoValidations,
-} from "./signOut.schema";
+} from "./SignUp.schema";
 
 export interface ISignupProps {
 	tabMoved?: boolean;

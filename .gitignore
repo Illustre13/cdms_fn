@@ -12,3 +12,4 @@ http.log
 # ignore compiled files
 dist/
 dist_other/
+.DS_Store

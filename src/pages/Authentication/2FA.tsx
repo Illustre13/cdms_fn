@@ -75,6 +75,11 @@ export const TwoFactorAuth = () => {
 						progress: undefined,
 						theme: "colored",
 					});
+
+					/**
+					 * Fetch User Info
+					 */
+
 					setTimeout(() => {
 						navigate("/dashboard");
 					}, 1000);

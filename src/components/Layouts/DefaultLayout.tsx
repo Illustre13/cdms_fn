@@ -5,7 +5,6 @@ import { IRootState } from "../../redux/store";
 import { toggleSidebar } from "../../redux/reducer/themeConfigSlice";
 import Footer from "./Footer";
 import Header from "./Header";
-import Setting from "./Setting";
 import Sidebar from "./Sidebar";
 import Portals from "../../components/Portals";
 

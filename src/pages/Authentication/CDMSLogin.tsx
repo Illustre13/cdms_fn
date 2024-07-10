@@ -3,7 +3,7 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import {
 	loginInitialValues,
 	loginValidation,
-} from "../../components/Authentication/signIn.schema";
+} from "../../components/Authentication/SignIn.schema";
 import { Link } from "react-router-dom";
 import { handleLogin } from "../../redux/action/loginAction";
 import { useAppDispatch } from "../../redux/hooks";
