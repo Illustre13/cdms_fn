@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IRootState } from "../../redux/store";
 import {
 	toggleRTL,
@@ -21,6 +21,7 @@ import IconLogout from "../Icon/IconLogout";
 import IconMenuApps from "../Icon/Menu/IconMenuApps";
 
 const Header = () => {
+	const navigate = useNavigate();
 	const location = useLocation();
 	useEffect(() => {
 		const selector = document.querySelector(
@@ -70,6 +71,10 @@ const Header = () => {
 	const [flag, setFlag] = useState(themeConfig.locale);
 
 	const { t } = useTranslation();
+	const handleSignOut = () => {
+		localStorage.removeItem("token");
+		navigate("/cdms-signin");
+	};
 
 	return (
 		<header
@@ -246,10 +251,13 @@ const Header = () => {
 										</Link>
 									</li>
 									<li className="border-t border-white-light dark:border-white-light/10">
-										<Link to="/cdms-signin" className="text-danger !py-3">
+										<div
+											onClick={handleSignOut}
+											className="flex dark:hover:text-white text-danger p-4 cursor-pointer"
+										>
 											<IconLogout className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 rotate-90 shrink-0" />
 											Sign Out
-										</Link>
+										</div>
 									</li>
 								</ul>
 							</Dropdown>

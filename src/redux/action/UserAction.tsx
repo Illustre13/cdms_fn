@@ -1,10 +1,10 @@
 import URL from "../../util/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getOtp = createAsyncThunk("", async () => {
+export const fetchUserInfo = createAsyncThunk("", async () => {
 	try {
 		const token = "Bearer " + localStorage.getItem("token");
-		const response = await URL.get("/auth/sendOTP", {
+		const response = await URL.get("/user/info", {
 			headers: { "Accept-language": "en", Authorization: token },
 		});
 		return response.data;
