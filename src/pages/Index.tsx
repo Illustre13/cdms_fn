@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 import ReactApexChart from "react-apexcharts";
@@ -7,25 +7,28 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import Dropdown from "../components/Dropdown";
 import { setPageTitle } from "../redux/reducer/themeConfigSlice";
 import IconHorizontalDots from "../components/Icon/IconHorizontalDots";
-import IconInbox from "../components/Icon/IconInbox";
-import IconTag from "../components/Icon/IconTag";
-import IconCreditCard from "../components/Icon/IconCreditCard";
 import IconArrowLeft from "../components/Icon/IconArrowLeft";
 import IconUserPlus from "../components/Icon/IconUserPlus";
 import IconUsers from "../components/Icon/IconUsers";
 import IconMinusCircle from "../components/Icon/IconMinusCircle";
-import IconPlus from "../components/Icon/IconPlus";
-import IconEye from "../components/Icon/IconEye";
+import { fetchUserInfo } from "../redux/action/UserAction";
 
 const Index = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(setPageTitle("Dashboard"));
+		
 	});
 	const isDark = useSelector(
 		(state: IRootState) =>
 			state.themeConfig.theme === "dark" || state.themeConfig.isDarkMode
 	);
+	const userInfoState = useSelector((state: IRootState) => state.user);
+	
+	if (Object.keys(userInfoState.data).length === 0) {
+		dispatch(fetchUserInfo() as any);
+		console.log("User Info After--> ", userInfoState)
+	  }
 	const isRtl =
 		useSelector((state: IRootState) => state.themeConfig.rtlClass) === "rtl"
 			? true

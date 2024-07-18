@@ -1,12 +1,14 @@
 import URL from "../../util/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchUserInfo = createAsyncThunk("", async () => {
+export const fetchUserInfo = createAsyncThunk("user/info", async () => {
 	try {
 		const token = "Bearer " + localStorage.getItem("token");
 		const response = await URL.get("/user/info", {
 			headers: { "Accept-language": "en", Authorization: token },
 		});
+		// console.log(response);
+		// debugger;
 		return response.data;
 	} catch (error: any) {
 		throw error.response.data.message;

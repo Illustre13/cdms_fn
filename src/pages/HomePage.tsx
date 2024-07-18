@@ -13,7 +13,7 @@ import Footer from "../components/HomePage/Footer";
 const HomePage = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(setPageTitle("Dashboard"));
+		dispatch(setPageTitle("Home"));
 	});
 	const isDark = useSelector(
 		(state: IRootState) =>

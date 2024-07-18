@@ -10,6 +10,7 @@ interface StateResponseData {
 	loading: boolean;
 	status: null | string | number;
 	state?: string;
+	message?: string;
 }
 
 interface IPersonalInfo {
