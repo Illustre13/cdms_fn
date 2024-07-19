@@ -23,8 +23,11 @@ export const personalInfoIV = {
 	rssbNo: sessionStorage.getItem("rssbNo") || "",
 	idNumber: sessionStorage.getItem("idNumber") || "",
 	address: sessionStorage.getItem("address") || "",
-	password: sessionStorage.getItem("password") || "",
-	confirmPassword: sessionStorage.getItem("confirmPassword") || "",
+	// password: sessionStorage.getItem("password") || "",
+	// confirmPassword: sessionStorage.getItem("confirmPassword") || "",
+	department: sessionStorage.getItem("department") || "",
+	position: sessionStorage.getItem("position") || "",
+	role: sessionStorage.getItem("role") || "",
 };
 
 export const organizationInfoIV = {
@@ -79,15 +82,18 @@ export const personalInfoValidation = Yup.object().shape({
 		.optional()
 		.matches(/^[0-9]{16}$/, "ID Number should be 16 digits."),
 	address: Yup.string().optional(),
-	password: Yup.string()
-		.required("Password is required.")
-		.matches(
-			/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,20}$/,
-			"Recommended strong password with 1 capital letter, 1 small letter, 1 symbol, 1 digit and characters between 6 and 20."
-		),
-	confirmPassword: Yup.string()
-		.oneOf([Yup.ref("password"), null], "Passwords must match")
-		.required("Confirm Password is required."),
+	// password: Yup.string()
+	// 	.required("Password is required.")
+	// 	.matches(
+	// 		/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,20}$/,
+	// 		"Recommended strong password with 1 capital letter, 1 small letter, 1 symbol, 1 digit and characters between 6 and 20."
+	// 	),
+	// confirmPassword: Yup.string()
+	// 	.oneOf([Yup.ref("password"), null], "Passwords must match")
+	// 	.required("Confirm Password is required."),
+		department: Yup.string().required("Department is required."),
+		position: Yup.string().required("Position is required."),
+		role: Yup.string().required("Role is required."),
 });
 
 export const organizationInfoValidation = Yup.object().shape({

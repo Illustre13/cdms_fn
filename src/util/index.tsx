@@ -47,8 +47,8 @@ interface userInfo {
 	rssbNo: string;
 	idNumber?: string;
 	address?: string;
-	password: string;
-	confirmPassword?: string;
+	// password: string;
+	// confirmPassword?: string;
 }
 interface organizationInfo {
 	name: string;
@@ -65,6 +65,7 @@ interface organizationInfo {
 	tinNo?: string;
 }
 interface userWorkInfo {
+	role: string;
 	department: string;
 	position: string;
 }

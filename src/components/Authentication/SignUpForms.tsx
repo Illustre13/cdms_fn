@@ -5,8 +5,8 @@ import {
 	organizationInfoValidation,
 	personalInfoIV,
 	personalInfoValidation,
-	workInfoIV,
-	workInfoValidations,
+	// workInfoIV,
+	// workInfoValidations,
 } from "./SignUp.schema";
 
 export interface ISignupProps {
@@ -40,9 +40,11 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 			sessionStorage.setItem("rssbNo", values.rssbNo);
 			sessionStorage.setItem("idNumber", values.idNumber);
 			sessionStorage.setItem("address", values.address);
-			sessionStorage.setItem("password", values.password);
-			sessionStorage.setItem("confirmPassword", values.confirmPassword);
-
+			// sessionStorage.setItem("password", values.password);
+			// sessionStorage.setItem("confirmPassword", values.confirmPassword);
+			sessionStorage.setItem("department", values.department);
+		sessionStorage.setItem("position", values.position);
+			sessionStorage.setItem("role", values.role);
 			// // handleTabClick("organization");
 			// console.log("====>   ", isRenderingRef.current);
 			// if (!isRenderingRef.current) {
@@ -486,11 +488,130 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 								/>
 							</div>
 						</div>
+						<hr></hr>
+						{/*
+						 * Department input field
+						 */}
+						<div className="py-2 flex flex-row gap-2">
+							<label
+								htmlFor="department"
+								className="block text-sm font-medium text-gray-700 w-3/12"
+							>
+								Department:
+							</label>
+							<div
+								className={
+									touched.department && errors.department
+										? "has-error w-9/12"
+										: touched.department
+										? "has-success w-9/12"
+										: "w-9/12"
+								}
+							>
+								<div className="flex gap-2 px-px max-md:flex-wrap">
+									<div className="flex flex-1 gap-2 max-md:flex-wrap">
+										<Field
+											name="department"
+											type="text"
+											id="email"
+											placeholder="Enter your department"
+											className="flex-1 max-md:max-w-full form-input"
+										/>
+									</div>
+								</div>
+								<ErrorMessage
+									name="department"
+									component="div"
+									className="text-danger mt-1"
+								/>
+							</div>
+						</div>
+						{/*
+						 * Position input field
+						 */}
+						<div className="py-2 flex flex-row gap-2">
+							<label
+								htmlFor="department"
+								className="block text-sm font-medium text-gray-700 w-3/12"
+							>
+								Position:
+							</label>
+							<div
+								className={
+									touched.position && errors.position
+										? "has-error w-9/12"
+										: touched.position
+										? "has-success w-9/12"
+										: "w-9/12"
+								}
+							>
+								<div className="flex gap-2 px-px max-md:flex-wrap">
+									<div className="flex flex-1 gap-2 max-md:flex-wrap">
+										<Field
+											name="position"
+											type="text"
+											id="position"
+											placeholder="Enter your position"
+											className="flex-1 max-md:max-w-full form-input"
+										/>
+									</div>
+								</div>
+								<ErrorMessage
+									name="position"
+									component="div"
+									className="text-danger mt-1"
+								/>
+							</div>
+						</div>
+ {/*
+						 * Role select field
+						 */}
+						<div className="py-2 flex flex-row gap-2">
+							<label
+								htmlFor="role"
+								className="block text-sm font-medium text-gray-700 w-3/12"
+							>
+								Role:
+							</label>
+							<div
+								className={
+									touched.role && errors.role
+										? "has-error w-9/12"
+										: touched.role
+										? "has-success w-9/12"
+										: "w-9/12"
+								}
+							>
+								<div className="flex gap-2 px-px max-md:flex-wrap">
+									<div className="flex flex-1 gap-2 max-md:flex-wrap">
+										<Field
+											name="role"
+											id="role"
+											label="Select your role"
+											component="select"
+											className="flex-1 max-md:max-w-full form-input"
+										>
+											<option value="">Select your role</option>
+											<option value="manager">HR Manager</option>
+											<option value="employee">Employee</option>
+											<option value="trainer">Trainer</option>
+											<option value="approver">Approver</option>
+
+										</Field>
+									</div>
+								</div>
+								<ErrorMessage
+									name="role"
+									component="div"
+									className="text-danger mt-1"
+								/>
+							</div>
+						</div>
 
 						{/*
 						 * Password input field
 						 */}
-						<div className="py-2 flex flex-row gap-2">
+						{/* <div className="py-2 flex flex-row gap-2">
 							<label
 								htmlFor="password"
 								className="block text-sm font-medium text-gray-700 w-3/12"
@@ -523,12 +644,12 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 									className="text-danger mt-1"
 								/>
 							</div>
-						</div>
+						</div> */}
 
 						{/*
 						 * Confirm Password input field
 						 */}
-						<div className="py-2 flex flex-row gap-2">
+						{/* <div className="py-2 flex flex-row gap-2">
 							<label
 								htmlFor="confirmPassword"
 								className="block text-sm font-medium text-gray-700 w-3/12"
@@ -561,7 +682,9 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 									className="text-danger mt-1"
 								/>
 							</div>
-						</div>
+						</div> */}
+
+						
 					</div>
 					<div className=" flex flex-row justify-end pr-4 gap-2">
 						{!isValid && (
@@ -586,8 +709,9 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
 
 export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 	handleTabClick,
-	// setSignupData = () => {},
+	setSignupData = () => {},
 }) => {
+	
 	const handleSubmit1 = (errors: any) => {
 		console.log("===> ", errors);
 	};
@@ -607,8 +731,18 @@ export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 		sessionStorage.setItem("organizationTinNo", values.tinNo);
 		setSubmitting(false);
 		setTimeout(() => {
-			handleTabClick("workInfo");
+			// handleTabClick("workInfo");
+			setSignupData(true);
 		}, 0);
+
+		setSubmitting(false);
+// 		setTimeout(() => {
+// 			setSignupData(true);
+// 		}, 0);
+
+
+
+
 	};
 	const isRenderingRef = useRef(false);
 
@@ -1142,136 +1276,136 @@ export const OrganizationInfoForm: React.FC<ISignupProps> = ({
 	);
 };
 
-export const WorkInfoForm: React.FC<ISignupProps> = ({
-	handleTabClick,
-	setSignupData = () => {},
-}) => {
-	const isRenderingRef = useRef(false);
+// export const WorkInfoForm: React.FC<ISignupProps> = ({
+// 	handleTabClick,
+// 	setSignupData = () => {},
+// }) => {
+// 	const isRenderingRef = useRef(false);
 
-	useEffect(() => {
-		isRenderingRef.current = false; // Reset after rendering
-	});
-	const handlePrev = () => {
-		if (!isRenderingRef.current) {
-			handleTabClick("organization");
-		}
-		// handleTabClick("personal")
-	};
-	const saveUserWorkInfo = (values: any, { setSubmitting }: any) => {
-		sessionStorage.setItem("department", values.department);
-		sessionStorage.setItem("position", values.position);
-		setSubmitting(false);
-		setTimeout(() => {
-			setSignupData(true);
-		}, 0);
-	};
-	return (
-		<Formik
-			initialValues={workInfoIV}
-			validationSchema={workInfoValidations}
-			onSubmit={saveUserWorkInfo}
-		>
-			{({ isValid, touched, errors }) => (
-				<Form>
-					<div className="p-4">
-						{/*
-						 * Department input field
-						 */}
-						<div className="py-2 flex flex-row gap-2">
-							<label
-								htmlFor="department"
-								className="block text-sm font-medium text-gray-700 w-3/12"
-							>
-								Department:
-							</label>
-							<div
-								className={
-									touched.department && errors.department
-										? "has-error w-9/12"
-										: touched.department
-										? "has-success w-9/12"
-										: "w-9/12"
-								}
-							>
-								<div className="flex gap-2 px-px max-md:flex-wrap">
-									<div className="flex flex-1 gap-2 max-md:flex-wrap">
-										<Field
-											name="department"
-											type="text"
-											id="email"
-											placeholder="Enter your department"
-											className="flex-1 max-md:max-w-full form-input"
-										/>
-									</div>
-								</div>
-								<ErrorMessage
-									name="department"
-									component="div"
-									className="text-danger mt-1"
-								/>
-							</div>
-						</div>
-						{/*
-						 * Position input field
-						 */}
-						<div className="py-2 flex flex-row gap-2">
-							<label
-								htmlFor="department"
-								className="block text-sm font-medium text-gray-700 w-3/12"
-							>
-								Position:
-							</label>
-							<div
-								className={
-									touched.position && errors.position
-										? "has-error w-9/12"
-										: touched.position
-										? "has-success w-9/12"
-										: "w-9/12"
-								}
-							>
-								<div className="flex gap-2 px-px max-md:flex-wrap">
-									<div className="flex flex-1 gap-2 max-md:flex-wrap">
-										<Field
-											name="position"
-											type="text"
-											id="position"
-											placeholder="Enter your position"
-											className="flex-1 max-md:max-w-full form-input"
-										/>
-									</div>
-								</div>
-								<ErrorMessage
-									name="position"
-									component="div"
-									className="text-danger mt-1"
-								/>
-							</div>
-						</div>
-						<div className=" flex flex-row justify-end pt-4 pr-4 gap-2">
-							<button
-								onClick={handlePrev}
-								className="btn btn-primary bg-cdms_secondary"
-							>
-								Prev
-							</button>
+// 	useEffect(() => {
+// 		isRenderingRef.current = false; // Reset after rendering
+// 	});
+// 	const handlePrev = () => {
+// 		if (!isRenderingRef.current) {
+// 			handleTabClick("organization");
+// 		}
+// 		// handleTabClick("personal")
+// 	};
+// 	const saveUserWorkInfo = (values: any, { setSubmitting }: any) => {
+// 		sessionStorage.setItem("department", values.department);
+// 		sessionStorage.setItem("position", values.position);
+// 		setSubmitting(false);
+// 		setTimeout(() => {
+// 			setSignupData(true);
+// 		}, 0);
+// 	};
+// 	return (
+// 		<Formik
+// 			initialValues={workInfoIV}
+// 			validationSchema={workInfoValidations}
+// 			onSubmit={saveUserWorkInfo}
+// 		>
+// 			{({ isValid, touched, errors }) => (
+// 				<Form>
+// 					<div className="p-4">
+// 						{/*
+// 						 * Department input field
+// 						 */}
+// 						{/* <div className="py-2 flex flex-row gap-2">
+// 							<label
+// 								htmlFor="department"
+// 								className="block text-sm font-medium text-gray-700 w-3/12"
+// 							>
+// 								Department:
+// 							</label>
+// 							<div
+// 								className={
+// 									touched.department && errors.department
+// 										? "has-error w-9/12"
+// 										: touched.department
+// 										? "has-success w-9/12"
+// 										: "w-9/12"
+// 								}
+// 							>
+// 								<div className="flex gap-2 px-px max-md:flex-wrap">
+// 									<div className="flex flex-1 gap-2 max-md:flex-wrap">
+// 										<Field
+// 											name="department"
+// 											type="text"
+// 											id="email"
+// 											placeholder="Enter your department"
+// 											className="flex-1 max-md:max-w-full form-input"
+// 										/>
+// 									</div>
+// 								</div>
+// 								<ErrorMessage
+// 									name="department"
+// 									component="div"
+// 									className="text-danger mt-1"
+// 								/>
+// 							</div>
+// 						</div> */}
+// 						{/*
+// 						 * Position input field
+// 						 */}
+// 						{/* <div className="py-2 flex flex-row gap-2">
+// 							<label
+// 								htmlFor="department"
+// 								className="block text-sm font-medium text-gray-700 w-3/12"
+// 							>
+// 								Position:
+// 							</label>
+// 							<div
+// 								className={
+// 									touched.position && errors.position
+// 										? "has-error w-9/12"
+// 										: touched.position
+// 										? "has-success w-9/12"
+// 										: "w-9/12"
+// 								}
+// 							>
+// 								<div className="flex gap-2 px-px max-md:flex-wrap">
+// 									<div className="flex flex-1 gap-2 max-md:flex-wrap">
+// 										<Field
+// 											name="position"
+// 											type="text"
+// 											id="position"
+// 											placeholder="Enter your position"
+// 											className="flex-1 max-md:max-w-full form-input"
+// 										/>
+// 									</div>
+// 								</div>
+// 								<ErrorMessage
+// 									name="position"
+// 									component="div"
+// 									className="text-danger mt-1"
+// 								/>
+// 							</div>
+// 						</div> */}
+// 						<div className=" flex flex-row justify-end pt-4 pr-4 gap-2">
+// 							<button
+// 								onClick={handlePrev}
+// 								className="btn btn-primary bg-cdms_secondary"
+// 							>
+// 								Prev
+// 							</button>
 
-							{!isValid && (
-								<div className="text-danger mt-1 flex flex-row gap-2">
-									Please fill out all required fields correctly.
-								</div>
-							)}
-							<button
-								type="submit"
-								className=" btn btn-primary px-4 py-1"
-								disabled={!isValid}
-							>
-								Sign up
-							</button>
-						</div>
-					</div>
-				</Form>
-			)}
-		</Formik>
-	);
-};
+// 							{!isValid && (
+// 								<div className="text-danger mt-1 flex flex-row gap-2">
+// 									Please fill out all required fields correctly.
+// 								</div>
+// 							)}
+// 							<button
+// 								type="submit"
+// 								className=" btn btn-primary px-4 py-1"
+// 								disabled={!isValid}
+// 							>
+// 								Sign up
+// 							</button>
+// 						</div>
+// 					</div>
+// 				</Form>
+// 			)}
+// 		</Formik>
+// 	);
+// };

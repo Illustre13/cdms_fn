@@ -5,8 +5,6 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
 import { useDispatch, useSelector } from "react-redux";
-import IconPencil from "../../components/Icon/IconPencil";
-import IconTrashLines from "../../components/Icon/IconTrashLines";
 import IconSearch from "../../components/Icon/IconSearch";
 import Select from "react-select";
 import IconPlus from "../../components/Icon/IconPlus";
@@ -96,6 +94,9 @@ const Organization = () => {
 		{ value: "suspended", label: "Suspended" },
 	];
 
+	const handleDelete = () => {
+
+	}
 	
 
 	return (
@@ -228,7 +229,7 @@ const Organization = () => {
 								title: "Status",
 								sortable: true,
 								render: ({ status }) => (
-									<span className="badge bg-cdms_primary">{status}</span>
+									<span className="badge bg-yellow-700">{status}</span>
 								),
 							},
 							{
@@ -277,6 +278,7 @@ const Organization = () => {
 													<button
 														type="button"
 														className="flex items-center space-x-2"
+														onClick={() => handleDelete()}
 													>
 														<IconArchive className="mr-2 text-red-500" />{" "}
 														<span>Delete</span>
