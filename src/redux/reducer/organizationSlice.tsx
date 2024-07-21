@@ -1,28 +1,41 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addOrganization, fetchAllOrganization } from "../action/organizationAction";
+import {
+  addOrganization,
+  fetchAllOrganization,
+  deleteOrganization,
+} from "../action/organizationAction";
 import { StateOptions } from "../../util/enum";
 
 const initialState: {
-    fetchState: StateResponseData;
-    addState: StateResponseData;
-  } = {
-    fetchState: {
-      state: StateOptions.INITIAL,
-      data: null,
-      status: null,
-      loading: false,
-      error: false,
-      message: ""
-    },
-    addState: {
-      state: StateOptions.INITIAL,
-      data: null,
-      status: null,
-      loading: false,
-      error: false,
-      message: ""
-    }
-  };
+  fetchState: StateResponseData;
+  addState: StateResponseData;
+  deleteState: StateResponseData;
+} = {
+  fetchState: {
+    state: StateOptions.INITIAL,
+    data: null,
+    status: null,
+    loading: false,
+    error: false,
+    message: "",
+  },
+  addState: {
+    state: StateOptions.INITIAL,
+    data: null,
+    status: null,
+    loading: false,
+    error: false,
+    message: "",
+  },
+  deleteState: {
+    state: StateOptions.INITIAL,
+    data: null,
+    status: null,
+    loading: false,
+    error: false,
+    message: "",
+  },
+};
 
 const organizationSlice = createSlice({
   name: "organization",
@@ -54,7 +67,7 @@ const organizationSlice = createSlice({
         state.addState.message = "Organization added successfully!";
         state.addState.loading = false;
         state.addState.error = false;
-        state.addState.state = StateOptions.FULFILLED; 
+        state.addState.state = StateOptions.FULFILLED;
       })
       .addCase(addOrganization.pending, (state) => {
         state.addState.loading = true;
@@ -64,8 +77,31 @@ const organizationSlice = createSlice({
       .addCase(addOrganization.rejected, (state, action) => {
         state.addState.error = true;
         state.addState.loading = false;
-        state.addState.message = action.error.message || "Adding organization failed";
+        state.addState.message =
+          action.error.message || "Adding organization failed";
         state.addState.state = StateOptions.REJECTED;
+      })
+
+      // Delete Organization
+
+      .addCase(deleteOrganization.fulfilled, (state, action) => {
+        state.deleteState.data = action.payload;
+        state.deleteState.message = "Organization deleted successfully!";
+        state.deleteState.loading = false;
+        state.deleteState.error = false;
+        state.deleteState.state = StateOptions.FULFILLED;
+      })
+      .addCase(deleteOrganization.pending, (state) => {
+        state.deleteState.loading = true;
+        state.deleteState.error = false;
+        state.deleteState.state = StateOptions.PENDING;
+      })
+      .addCase(deleteOrganization.rejected, (state, action) => {
+        state.deleteState.error = true;
+        state.deleteState.loading = false;
+        state.deleteState.message =
+          action.error.message || "Deleting organization failed";
+        state.deleteState.state = StateOptions.REJECTED;
       });
   },
 });

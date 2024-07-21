@@ -12,6 +12,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import {
   fetchAllOrganization,
   addOrganization,
+  deleteOrganization,
 } from "../../redux/action/organizationAction";
 import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
 import IconSearch from "../../components/Icon/IconSearch";
@@ -29,6 +30,20 @@ import { FormikProps } from "formik";
 
 const Organization = () => {
   const PAGE_SIZES = [10, 20, 30, 50, 100];
+  const industryOptions = [
+    { value: "", label: "All" },
+	{ value: "it", label: "IT" },
+    { value: "agriculture", label: "Agriculture" },
+    { value: "finance", label: "Finance" },
+  ];
+
+  const statusOptions = [
+	{ value: "", label: "All" },
+    { value: "ACTIVE", label: "Active" },
+    { value: "PENDING", label: "Pending" },
+    { value: "SUSPENDED", label: "Suspended" },
+  ];
+
   const dispatch = useAppDispatch();
   const [signupData, setSignupData] = useState<any>(null);
   const [page, setPage] = useState(1);
@@ -41,37 +56,44 @@ const Organization = () => {
   const [page2, setPage2] = useState(1);
   const [pageSize2, setPageSize2] = useState(PAGE_SIZES[0]);
   const [initialRecords2, setInitialRecords2] = useState([]);
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState<any>();
+  const [industry, setIndustry] = useState<any>();
 
   const addOrganizationState = useSelector(
     (state: IRootState) => state.organization.addState
   );
-  const organizationState = useSelector(
+  const deleteOrganizationState = useSelector(
+    (state: IRootState) => state.organization.deleteState
+  );
+  const fetchOrganizationState = useSelector(
     (state: IRootState) => state.organization.fetchState
   );
-  const organizationData = organizationState?.data?.data;
-
-  const options3 = [
-    { value: "it", label: "IT" },
-    { value: "agriculture", label: "Agriculture" },
-    { value: "finance", label: "Finance" },
-  ];
-
-  const options4 = [
-    { value: "active", label: "Active" },
-    { value: "pending", label: "Pending" },
-    { value: "suspended", label: "Suspended" },
-  ];
+  const organizationData = fetchOrganizationState?.data?.data;
 
   useEffect(() => {
     dispatch(setPageTitle("Organizations"));
   }, [dispatch]);
 
+  const orgFilters: organizationFilters = {
+	search,
+	status: status,
+	industry: industry,
+  };
+
+  console.log(orgFilters)
+
   useEffect(() => {
-    dispatch(fetchAllOrganization() as any);
-  }, [dispatch]);
+    // const filters: organizationFilters = {
+    //   search,
+    //   status,
+    //   industry,
+    // };
+
+    dispatch(fetchAllOrganization(orgFilters));
+  }, [search, status, industry, dispatch]);
 
   
-
   useEffect(() => {
     setPage(1);
   }, [pageSize]);
@@ -113,11 +135,45 @@ const Organization = () => {
         progress: undefined,
         theme: "colored",
       });
-	  dispatch(fetchAllOrganization() as any)
     }
-  }, [addOrganizationState]);
 
-  const handleDelete = () => {};
+	if (deleteOrganizationState.state === "FULFILLED") {
+		const id = toast.loading("Deleted Organization successfully!");
+		toast.update(id, {
+		  render: addOrganizationState.message,
+		  type: "success",
+		  isLoading: false,
+		  autoClose: 5000,
+		  hideProgressBar: false,
+		  closeOnClick: true,
+		  pauseOnHover: true,
+		  draggable: true,
+		  progress: undefined,
+		  theme: "colored",
+		});
+	  }
+	  dispatch(fetchAllOrganization(orgFilters))
+
+  }, [addOrganizationState, deleteOrganizationState]);
+
+  const handleSearchChange = (e: any) => setSearch(e.target.value);
+//   const handleStatusChange = (e: any) => setStatus(e.target.value);
+//   const handleIndustryChange = (e: any) => setIndustry(e.target.value);
+
+const handleStatusChange = (selectedOption: any) => {
+	console.log("Selected Status:", selectedOption);
+	setStatus(selectedOption?.value);
+  };
+
+  const handleIndustryChange = (selectedOption: any) => {
+	console.log("Selected Industry:", selectedOption);
+	setIndustry(selectedOption?.value);
+  };
+
+  const handleDelete = (id: ItemID) => {
+	console.log("ID --->", id)
+	dispatch(deleteOrganization(id));
+  };
 
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -166,6 +222,8 @@ if (formRef.current) {
               type="text"
               placeholder="Search an organization..."
               className="form-input w-auto py-2 ltr:pr-11 rtl:pl-11 peer"
+			  value={search}
+			  onChange={handleSearchChange}
             />
             <button
               type="button"
@@ -178,10 +236,13 @@ if (formRef.current) {
           <div className="relative z-30 mx-auto max-w-[640px] w-full">
             <Select
               placeholder="All Industry"
-              options={options3}
+              options={industryOptions}
               classNamePrefix="custom-select py-3"
               menuPortalTarget={document.body}
               menuPosition="absolute"
+			  value={industry} 
+			  defaultValue={industryOptions[0].value}
+			  onChange={handleIndustryChange}
               styles={{
                 control: (provided) => ({
                   ...provided,
@@ -202,10 +263,12 @@ if (formRef.current) {
           <div className="relative z-30 mx-auto max-w-[580px] w-full">
             <Select
               placeholder="All status"
-              options={options4}
+              options={statusOptions}
               classNamePrefix="custom-select py-3"
               menuPortalTarget={document.body}
               menuPosition="absolute"
+			  value={status} 
+			  onChange={handleStatusChange}
               styles={{
                 control: (provided) => ({
                   ...provided,
@@ -270,7 +333,7 @@ if (formRef.current) {
               {
                 accessor: "action",
                 title: "Action",
-                render: () => (
+                render: ({id}) => (
                   <div className="dropdown">
                     <Dropdown
                       offset={[0, 5]}
@@ -308,7 +371,7 @@ if (formRef.current) {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
-                            onClick={() => handleDelete()}
+                            onClick={() => handleDelete(id)}
                           >
                             <IconArchive className="mr-2 text-red-500" />
                             <span>Delete</span>

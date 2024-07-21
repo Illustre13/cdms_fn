@@ -75,3 +75,13 @@ interface signupInfoData {
 	organizationInfo: organizationInfo;
 	userWorkInfo: userWorkInfo;
 }
+
+interface ItemID {
+	id: string;
+}
+
+interface organizationFilters {
+	search?: string;
+	status?: any;
+	industry?: any;
+  }
