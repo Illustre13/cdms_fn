@@ -6,19 +6,21 @@ import TFASlice from "../reducer/2FASlice";
 import GetOTPSlice from "../reducer/GetOTPSlice";
 import userSlice from "../reducer/userSlice";
 import organizationSlice from "../reducer/organizationSlice";
+import capacityPlanSlice from "../reducer/capacityPlanSlice";
 
 const rootReducer = combineReducers({
-	themeConfig: themeConfigSlice,
-	login: loginSlice,
-	signUp: signUpSlice,
-	tfa: TFASlice,
-	getOtp: GetOTPSlice,
-	user: userSlice,
-	organization: organizationSlice,
+  themeConfig: themeConfigSlice,
+  login: loginSlice,
+  signUp: signUpSlice,
+  tfa: TFASlice,
+  getOtp: GetOTPSlice,
+  user: userSlice,
+  organization: organizationSlice,
+  capacityPlan: capacityPlanSlice,
 });
 
 const store = configureStore({
-	reducer: rootReducer,
+  reducer: rootReducer,
 });
 
 // export type IRootState = ReturnType<typeof rootReducer>;

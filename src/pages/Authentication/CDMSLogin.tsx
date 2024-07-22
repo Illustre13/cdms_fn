@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IRootState } from "../../redux/store";
 import { getOtp } from "../../redux/action/2FAAction";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CDMSLogin = () => {
 	const dispatch = useAppDispatch();
@@ -18,14 +20,38 @@ const CDMSLogin = () => {
 
 	const loginState = useSelector((state: IRootState) => state.login);
 	const getOtpState = useSelector((state: IRootState) => state.getOtp);
-
+	
 	useEffect(() => {
 		if (loginState.state === "FULFILLED") {
+			toast.success(loginState.message, {
+				type: "success",
+				isLoading: false,
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "colored",
+			});
 			dispatch(getOtp()).then(({ payload }) => {
 				const { status } = payload;
 				if (status === 200) {
 					navigate("/tfa");
 				}
+			});
+		};
+		if (loginState.state === "REJECTED") {
+			toast.error(loginState.message || loginState.data, {
+			  type: "error",
+			  isLoading: false,
+			  autoClose: 5000,
+			  hideProgressBar: false,
+			  closeOnClick: true,
+			  pauseOnHover: true,
+			  draggable: true,
+			  progress: undefined,
+			  theme: "colored",
 			});
 		}
 	}, [loginState]);
@@ -225,7 +251,9 @@ const CDMSLogin = () => {
 						/>
 					</div>
 				</div>
+				<ToastContainer />
 			</div>
+		
 		</div>
 	);
 };

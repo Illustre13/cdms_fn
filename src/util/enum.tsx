@@ -4,3 +4,36 @@ export enum StateOptions {
 	FULFILLED = "FULFILLED",
 	REJECTED = "REJECTED",
 }
+
+export enum CapacityPlanLevel {
+	INDIVIDUAL = "INDIVIDUAL",
+	INSTITUTIONAL = "INSTITUTIONAL",
+	ORGANIZATIONAL = "ORGANIZATIONAL",
+}
+
+export enum CapacityPlanStatus {
+	PENDING = "PENDING",
+	ACTIVE = "ACTIVE",
+	SUSPENDED = "SUSPENDED",
+}
+
+export enum CapacityPlanType {
+	ANNUAL_PLAN = "ANNUAL_PLAN",
+	QUARTELY_PLAN = "QUARTELY_PLAN",
+	ESSENTIAL_PLAN = "ESSENTIAL_PLAN",
+}
+
+export enum EmployeeTrainingStatus {
+	PENDING = "PENDING",
+	APPROVED = "APPROVED",
+	REJECTED = "REJECTED",
+	FINISHED = "FINISHED",
+}
+
+export enum AssessmentStatus {
+	DRAFT = "DRAFT",
+	SENT = "SENT",
+	UNDER_REVIEW = "UNDER_REVIEW",
+	REVIEWED = "REVIEWED",
+}
+

@@ -27,18 +27,19 @@ import IconTxtFile from "../../components/Icon/IconTxtFile";
 import Modal from "../Components/Modals";
 import { OrganizationForm } from "../Forms/OrganizationForm";
 import { FormikProps } from "formik";
+import { StatusBadge } from "../../util/helper";
 
 const Organization = () => {
   const PAGE_SIZES = [10, 20, 30, 50, 100];
   const industryOptions = [
     { value: "", label: "All" },
-	{ value: "it", label: "IT" },
+    { value: "it", label: "IT" },
     { value: "agriculture", label: "Agriculture" },
     { value: "finance", label: "Finance" },
   ];
 
   const statusOptions = [
-	{ value: "", label: "All" },
+    { value: "", label: "All" },
     { value: "ACTIVE", label: "Active" },
     { value: "PENDING", label: "Pending" },
     { value: "SUSPENDED", label: "Suspended" },
@@ -46,16 +47,9 @@ const Organization = () => {
 
   const dispatch = useAppDispatch();
   const [signupData, setSignupData] = useState<any>(null);
-  const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-  const [initialRecords, setInitialRecords] = useState([]);
-  const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
-    columnAccessor: "firstName",
-    direction: "asc",
-  });
   const [page2, setPage2] = useState(1);
   const [pageSize2, setPageSize2] = useState(PAGE_SIZES[0]);
-  const [initialRecords2, setInitialRecords2] = useState([]);
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<any>();
   const [industry, setIndustry] = useState<any>();
@@ -76,51 +70,24 @@ const Organization = () => {
   }, [dispatch]);
 
   const orgFilters: organizationFilters = {
-	search,
-	status: status,
-	industry: industry,
+    search,
+    status: status,
+    industry: industry,
   };
 
-  console.log(orgFilters)
+  console.log(orgFilters);
 
   useEffect(() => {
-    // const filters: organizationFilters = {
-    //   search,
-    //   status,
-    //   industry,
-    // };
-
     dispatch(fetchAllOrganization(orgFilters));
   }, [search, status, industry, dispatch]);
-
-  
-  useEffect(() => {
-    setPage(1);
-  }, [pageSize]);
-
-  useEffect(() => {
-    const from = (page - 1) * pageSize;
-    const to = from + pageSize;
-  }, [page, pageSize, initialRecords]);
-
-  useEffect(() => {
-    const data = sortBy(initialRecords, sortStatus.columnAccessor);
-    setInitialRecords(sortStatus.direction === "desc" ? data.reverse() : data);
-    setPage(1);
-  }, [sortStatus]);
 
   useEffect(() => {
     setPage2(1);
   }, [pageSize2]);
 
   useEffect(() => {
-    const from = (page2 - 1) * pageSize2;
-    const to = from + pageSize2;
-  }, [page2, pageSize2, initialRecords2]);
+    console.log("Reached Here", addOrganizationState);
 
-  useEffect(() => {
-	console.log("Reached Here", addOrganizationState)
-	
     if (addOrganizationState.state === "FULFILLED") {
       const id = toast.loading("Add Organization");
       toast.update(id, {
@@ -137,42 +104,39 @@ const Organization = () => {
       });
     }
 
-	if (deleteOrganizationState.state === "FULFILLED") {
-		const id = toast.loading("Deleted Organization successfully!");
-		toast.update(id, {
-		  render: addOrganizationState.message,
-		  type: "success",
-		  isLoading: false,
-		  autoClose: 5000,
-		  hideProgressBar: false,
-		  closeOnClick: true,
-		  pauseOnHover: true,
-		  draggable: true,
-		  progress: undefined,
-		  theme: "colored",
-		});
-	  }
-	  dispatch(fetchAllOrganization(orgFilters))
-
+    if (deleteOrganizationState.state === "FULFILLED") {
+      const id = toast.loading("Deleted Organization successfully!");
+      toast.update(id, {
+        render: addOrganizationState.message,
+        type: "success",
+        isLoading: false,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    dispatch(fetchAllOrganization(orgFilters));
   }, [addOrganizationState, deleteOrganizationState]);
 
   const handleSearchChange = (e: any) => setSearch(e.target.value);
-//   const handleStatusChange = (e: any) => setStatus(e.target.value);
-//   const handleIndustryChange = (e: any) => setIndustry(e.target.value);
 
-const handleStatusChange = (selectedOption: any) => {
-	console.log("Selected Status:", selectedOption);
-	setStatus(selectedOption?.value);
+  const handleStatusChange = (selectedOption: any) => {
+    console.log("Selected Status:", selectedOption);
+    setStatus(selectedOption?.value);
   };
 
   const handleIndustryChange = (selectedOption: any) => {
-	console.log("Selected Industry:", selectedOption);
-	setIndustry(selectedOption?.value);
+    console.log("Selected Industry:", selectedOption);
+    setIndustry(selectedOption?.value);
   };
 
   const handleDelete = (id: ItemID) => {
-	console.log("ID --->", id)
-	dispatch(deleteOrganization(id));
+    console.log("ID --->", id);
+    dispatch(deleteOrganization(id));
   };
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -181,23 +145,22 @@ const handleStatusChange = (selectedOption: any) => {
   const closeAddOrganizationModal = () => setModalOpen(false);
 
   useEffect(() => {
-	if (signupData) {
-		handleAddOrganization();
-	}
+    if (signupData) {
+      handleAddOrganization();
+    }
   }, [signupData]);
 
   const formRef = useRef<FormikProps<any> | null>(null);
 
-  
   const handleAddOrganization = () => {
-if (formRef.current) {
-		formRef?.current.submitForm().then(() => {
-			const formValues = formRef?.current.values;
-			console.log("Form Values: ", formValues);
-		
-			dispatch(addOrganization(formValues));
-		});
-	}
+    if (formRef.current) {
+      formRef?.current.submitForm().then(() => {
+        const formValues = formRef?.current.values;
+        console.log("Form Values: ", formValues);
+
+        dispatch(addOrganization(formValues));
+      });
+    }
   };
 
   return (
@@ -205,7 +168,9 @@ if (formRef.current) {
       <Modal
         isOpen={isModalOpen}
         title="Add Organization"
-        content={<OrganizationForm setSignupData={setSignupData} formRef={formRef} />}
+        content={
+          <OrganizationForm setSignupData={setSignupData} formRef={formRef} />
+        }
         button1Text="Cancel"
         button2Text="Save"
         onClose={closeAddOrganizationModal}
@@ -222,8 +187,8 @@ if (formRef.current) {
               type="text"
               placeholder="Search an organization..."
               className="form-input w-auto py-2 ltr:pr-11 rtl:pl-11 peer"
-			  value={search}
-			  onChange={handleSearchChange}
+              value={search}
+              onChange={handleSearchChange}
             />
             <button
               type="button"
@@ -240,9 +205,9 @@ if (formRef.current) {
               classNamePrefix="custom-select py-3"
               menuPortalTarget={document.body}
               menuPosition="absolute"
-			  value={industry} 
-			  defaultValue={industryOptions[0].value}
-			  onChange={handleIndustryChange}
+              value={industry}
+              defaultValue={industryOptions[0].value}
+              onChange={handleIndustryChange}
               styles={{
                 control: (provided) => ({
                   ...provided,
@@ -267,8 +232,8 @@ if (formRef.current) {
               classNamePrefix="custom-select py-3"
               menuPortalTarget={document.body}
               menuPosition="absolute"
-			  value={status} 
-			  onChange={handleStatusChange}
+              value={status}
+              onChange={handleStatusChange}
               styles={{
                 control: (provided) => ({
                   ...provided,
@@ -325,15 +290,13 @@ if (formRef.current) {
                 accessor: "status",
                 title: "Status",
                 sortable: true,
-                render: ({ status }) => (
-                  <span className="badge bg-yellow-700">{status}</span>
-                ),
+                render: ({ status }) => <StatusBadge status={status} />,
               },
               { accessor: "tinNo", title: "TIN No.", sortable: true },
               {
                 accessor: "action",
                 title: "Action",
-                render: ({id}) => (
+                render: ({ id }) => (
                   <div className="dropdown">
                     <Dropdown
                       offset={[0, 5]}

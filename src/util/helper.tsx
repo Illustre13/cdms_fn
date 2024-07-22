@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+import { AssessmentStatus, EmployeeTrainingStatus } from './enum';
 
 export class InvalidTokenError extends Error {}
 
@@ -10,6 +12,16 @@ interface TimeoutMessageProps {
 	timeout: number;
   }
 
+  interface StatusBadgeProps {
+	status: allStatus;
+  }
+
+type allStatus = CapacityPlanStatus | EmployeeTrainingStatus | AssessmentStatus;
+
+interface CurrencyFormatterProps {
+	amount: number | string;
+	currency: string;
+  }
   
 export const clearSessionStorage = (keys: string[]) => {
 	keys.forEach((key) => sessionStorage.removeItem(key));
@@ -41,3 +53,72 @@ export const TimeoutMessage: React.FC<TimeoutMessageProps> = ({ initialMessage, 
 };
 
 export default TimeoutMessage;
+
+export const convertTimestamp = (timestamp: string) => {
+	const parsedTime = moment(timestamp);
+	const currentTime = moment();
+	if (parsedTime.isSame(currentTime, 'day')) {
+	  const minutes = Math.abs(currentTime.diff(parsedTime, 'minutes'));
+	  if (minutes < 60) {
+		if (minutes === 0) {
+		  return 'Today, just now';
+		} else {
+		  return `Today, ${minutes}min ago`;
+		}
+	  } else {
+		const hours = Math.abs(currentTime.diff(parsedTime, 'hours'));
+		return `Today, ${hours}h ${minutes % 60}min ago`;
+	  }
+	} else {
+	  return parsedTime.format('MMM DD YYYY, h:mm A');
+	}
+  };
+
+const statusColorMap: Record<allStatus, string> = {
+	PENDING: "bg-yellow-500",
+	ACTIVE: "bg-green-500",
+	SUSPENDED: "bg-red-500",
+	DRAFT: "bg-gray-500",
+	SENT: "bg-blue-500",
+	UNDER_REVIEW: "bg-purple-500",
+	REVIEWED: "bg-indigo-500",
+	APPROVED: "bg-teal-500",
+	REJECTED: "bg-red-700",
+	FINISHED: "bg-green-700",
+  };
+
+
+  export const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
+	const colorClass = statusColorMap[status] || "bg-gray-300";
+  
+	return (
+	  <span className={`badge px-3 py-1 rounded-full text-white ${colorClass}`}>
+		{status}
+	  </span>
+	);
+  };
+
+export const CurrencyFormatter: React.FC<CurrencyFormatterProps> = ({ amount, currency }) => {
+	const formattedAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(Number(amount));
+  
+	return (
+	  <span>{formattedAmount}</span>
+	);
+  };
+
+  const cleanAndConvertArray = (rawArray: []) => {
+	if (!Array.isArray(rawArray) || rawArray.length === 0) {
+	  throw new TypeError('Input must be a non-empty array of strings.');
+	}
+  
+	// Join the array into a single string, then remove extra quotes and whitespace
+	const cleanedString = rawArray
+	  .join(', ')  // Combine all elements into one string
+	  .replace(/["[\]]+/g, '')  // Remove quotes and brackets
+	  .trim();  // Remove any leading or trailing whitespace
+	return cleanedString;
+  }
+  export const  arrayToCommaSeparatedString = (array: []) => {
+	const cleanArray = cleanAndConvertArray(array);
+	return cleanArray;
+  }

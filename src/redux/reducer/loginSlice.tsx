@@ -40,6 +40,7 @@ const loginSlice = createSlice({
 					state.status = action.payload.response.data.status;
 					state.error = true;
 					state.data = action.payload.message;
+					state.message = action.payload.message;
 				} else {
 					state.status = action.payload.response.data.status;
 					state.error = true;
