@@ -28,6 +28,7 @@ import Modal from "../Components/Modals";
 import { OrganizationForm } from "../Forms/OrganizationForm";
 import { FormikProps } from "formik";
 import { StatusBadge } from "../../util/helper";
+import { StateOptions } from "../../util/enum";
 
 const Organization = () => {
   const PAGE_SIZES = [10, 20, 30, 50, 100];
@@ -88,7 +89,7 @@ const Organization = () => {
   useEffect(() => {
     console.log("Reached Here", addOrganizationState);
 
-    if (addOrganizationState.state === "FULFILLED") {
+    if (addOrganizationState.state === StateOptions.FULFILLED) {
       const id = toast.loading("Add Organization");
       toast.update(id, {
         render: addOrganizationState.message,
@@ -104,7 +105,7 @@ const Organization = () => {
       });
     }
 
-    if (deleteOrganizationState.state === "FULFILLED") {
+    if (deleteOrganizationState.state === StateOptions.FULFILLED) {
       const id = toast.loading("Deleted Organization successfully!");
       toast.update(id, {
         render: addOrganizationState.message,

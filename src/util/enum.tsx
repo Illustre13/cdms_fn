@@ -12,9 +12,11 @@ export enum CapacityPlanLevel {
 }
 
 export enum CapacityPlanStatus {
-	PENDING = "PENDING",
-	ACTIVE = "ACTIVE",
-	SUSPENDED = "SUSPENDED",
+	DRAFT = "DRAFT",
+	SENT = "SENT",
+	UNDER_REVIEW = "UNDER_REVIEW",
+	APPROVED = "APPROVED",
+	REJECTED = "REJECTED",
 }
 
 export enum CapacityPlanType {

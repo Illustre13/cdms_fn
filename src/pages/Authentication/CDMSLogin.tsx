@@ -13,6 +13,7 @@ import { IRootState } from "../../redux/store";
 import { getOtp } from "../../redux/action/2FAAction";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { StateOptions } from "../../util/enum";
 
 const CDMSLogin = () => {
 	const dispatch = useAppDispatch();
@@ -22,7 +23,7 @@ const CDMSLogin = () => {
 	const getOtpState = useSelector((state: IRootState) => state.getOtp);
 	
 	useEffect(() => {
-		if (loginState.state === "FULFILLED") {
+		if (loginState.state === StateOptions.FULFILLED) {
 			toast.success(loginState.message, {
 				type: "success",
 				isLoading: false,

@@ -16,115 +16,196 @@ import IconBolt from "../../components/Icon/IconBolt";
 import { ApproveModal } from "./ApproveModal";
 import IconX from "../../components/Icon/IconX";
 import { useAppDispatch } from "../../redux/hooks";
-import { fetchAllCapacityPlan } from "../../redux/action/capacityPlanAction";
+import {
+  fetchAllCapacityPlan,
+  fetchCPCardsAnalytics,
+} from "../../redux/action/capacityPlanAction";
 import {
   arrayToCommaSeparatedString,
   CurrencyFormatter,
-  StatusBadge
+  StatusBadge,
 } from "../../util/helper";
-import { CapacityPlanStatus } from "../../util/enum";
+import { CapacityPlanStatus, StateOptions } from "../../util/enum";
+import IconPlus from "../../components/Icon/IconPlus";
+import IconTxtFile from "../../components/Icon/IconTxtFile";
+import Modal from "../Components/Modals";
+import { CPBulkImport } from "../../components/CapacityPlan.tsx/bulk_import";
 
 const CapacityPlanTable = () => {
+  const dispatch = useAppDispatch();
+  const PAGE_SIZES = [10, 20, 30, 50, 100];
+  const [selectedRecords, setSelectedRecords] = useState<any>([]);
+  const [isRowSelected, setIsRowSelected] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
+  const [cardAnalyticsYear, setCardAnalyticsYear] = useState(
+    new Date().getFullYear()
+  );
+  const [status, setStatus] = useState<any>();
+  const [industry, setIndustry] = useState<any>();
+  const [openApproveModal, setOpenApproveModal] = useState(false);
+  const [page2, setPage2] = useState(1);
+  const [pageSize2, setPageSize2] = useState(PAGE_SIZES[0]);
+  //   const [availableAmount, setAvailableAmount] = useState(0);
+  //   const [requestedAmount, setRequestedAmount] = useState(0);
+  //   const [allocatedAmount, setAllocatedAmount] = useState(0);
+  //   const [requestedAmountPercent, setRequestedAmountPercent] = useState(0);
+  //   const [allocatedAmountPercent, setAllocatedAmountPercent] = useState(0);
+
+  // Selector declarations
   const isDark = useSelector(
     (state: IRootState) =>
       state.themeConfig.theme === "dark" || state.themeConfig.isDarkMode
   );
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(setPageTitle("Checkbox Table"));
-  });
-
-  const [selectedRecords, setSelectedRecords] = useState<any>([]);
-
-  const [searchKey, setSearchKey] = useState("");
-  const [status, setStatus] = useState<any>();
-  const [industry, setIndustry] = useState<any>();
-
-  // radialBarChartOptions;
-  const radialBarChart: any = {
-    series: [34, 67],
-    options: {
-      chart: {
-        height: 100,
-        type: "radialBar",
-        zoom: {
-          enabled: false,
-        },
-        toolbar: {
-          show: false,
-        },
-      },
-      colors: ["#996111", "#805dca"],
-      grid: {
-        borderColor: isDark ? "#191e3a" : "#e0e6ed",
-      },
-      plotOptions: {
-        radialBar: {
-          dataLabels: {
-            name: {
-              fontSize: "22px",
-            },
-            value: {
-              fontSize: "16px",
-            },
-            total: {
-              show: true,
-              label: "Total Budget",
-              formatter: function (w: any) {
-                // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                return `RWF 50,500,678`;
-                // return 66;
-              },
-            },
-          },
-        },
-      },
-      labels: ["Requested", "Allocated"],
-      fill: {
-        opacity: 0.85,
-      },
-    },
-  };
-
-  const statusOptions = [
-    { value: "", label: "All" },
-    { value: CapacityPlanStatus.PENDING, label: "Pending" },
-    { value: CapacityPlanStatus.ACTIVE, label: "Active" },
-    { value: CapacityPlanStatus.SUSPENDED, label: "Suspended" },
-  ];
-
-  const [openApproveModal, setOpenApproveModal] = useState(false);
-  const openApproveModalHandler = () => {
-    setOpenApproveModal(true);
-  };
-  const approveModalCloseHandler = () => {
-    setOpenApproveModal(false);
-  };
-  const PAGE_SIZES = [10, 20, 30, 50, 100];
-  const [page2, setPage2] = useState(1);
-  const [pageSize2, setPageSize2] = useState(PAGE_SIZES[0]);
-
   const fetchCapacityPlanState = useSelector(
     (state: IRootState) => state.capacityPlan.fetchState
   );
+  const fetchCardsAnalyticsState = useSelector(
+    (state: IRootState) => state.capacityPlan.fetchCardsAnalytics
+  );
 
+  // Data from selectors
   const cpData = fetchCapacityPlanState?.data?.data;
+  const cardAnalyticsData = fetchCardsAnalyticsState?.data?.data;
 
+  // Status options
+  const statusOptions = [
+    { value: "", label: "All" },
+    { value: CapacityPlanStatus.DRAFT, label: "Draft" },
+    { value: CapacityPlanStatus.SENT, label: "Sent" },
+    { value: CapacityPlanStatus.APPROVED, label: "Approved" },
+    { value: CapacityPlanStatus.REJECTED, label: "Rejected" },
+    { value: CapacityPlanStatus.UNDER_REVIEW, label: "Under Review" },
+  ];
+
+  // Filters
   const orgFilters: capacityPlanFilters = {
     searchKey,
     status: status,
     industry: industry,
   };
 
+  const AnalyticsFilter: any = {
+    cardAnalyticsYear,
+  };
+
+  // Effects
+  useEffect(() => {
+    dispatch(setPageTitle("Checkbox Table"));
+  }, [dispatch]);
+
   useEffect(() => {
     dispatch(fetchAllCapacityPlan(orgFilters));
   }, [searchKey, status, industry, dispatch]);
 
+  useEffect(() => {
+    dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
+  }, [dispatch, cardAnalyticsYear]);
+
+  useEffect(() => {
+    if (selectedRecords.length > 0) {
+      setIsRowSelected(true);
+    }
+    if (selectedRecords.length === 0) {
+      setIsRowSelected(false);
+    }
+  }, [selectedRecords]);
+
+  // Handlers
+  const openApproveModalHandler = () => {
+    setOpenApproveModal(true);
+  };
+
+  const approveModalCloseHandler = () => {
+    setOpenApproveModal(false);
+  };
+
+  const [bulkCPModalOpen, setBulkCPModalOpen] = useState(false);
+  const openAddBulkCPModal = () => setBulkCPModalOpen(true);
+  const closeAddBulkCPModal = () => setBulkCPModalOpen(false);
+
   const handleSearchChange = (e: any) => setSearchKey(e.target.value);
 
   const handleStatusChange = (selectedOption: any) => {
-    console.log("Selected Status:", selectedOption);
     setStatus(selectedOption?.value);
+  };
+  let radialBarChart: ReactChartProps | any;
+  if (cardAnalyticsData) {
+    console.log(cardAnalyticsData);
+    radialBarChart = (
+      reqAmountPercent: number,
+      allAmountPercent: number,
+      availableAmount?: number
+    ) => {
+      console.log(
+        "TYPE OF --> ",
+        typeof [
+          parseFloat(Number(reqAmountPercent).toFixed(2)),
+          parseFloat(Number(allAmountPercent).toFixed(2)),
+        ]
+      );
+      return {
+        // series: [parseFloat(Number(reqAmountPercent).toFixed(2)), parseFloat(Number(allAmountPercent).toFixed(2))] as ApexNonAxisChartSeries,
+        series: [417, 1] as ApexNonAxisChartSeries,
+        options: {
+          chart: {
+            height: 100,
+            type: "radialBar",
+            zoom: {
+              enabled: false,
+            },
+            toolbar: {
+              show: false,
+            },
+          },
+          colors: ["#996111", "#805dca"],
+          grid: {
+            borderColor: isDark ? "#191e3a" : "#e0e6ed",
+          },
+          plotOptions: {
+            radialBar: {
+              dataLabels: {
+                name: {
+                  fontSize: "22px",
+                },
+                value: {
+                  fontSize: "16px",
+                },
+                total: {
+                  show: true,
+                  label: "Total Budget",
+                  formatter: function (w: any) {
+                    return `RWF ${availableAmount}`;
+                  },
+                },
+              },
+            },
+          },
+          labels: ["Requested", "Allocated"],
+          fill: {
+            opacity: 0.85,
+          },
+        },
+      };
+    };
+  }
+
+  const [isCPBulkSubmit, setIsCPBulkSubmit] = useState(false);
+
+  useEffect(() => {
+    setIsCPBulkSubmit(isCPBulkSubmit);
+  }, [isCPBulkSubmit]);
+
+  //   const handleCreateBulkCP = () => {
+  // // setIsCPBulkSubmit(true);
+  //   }
+
+  const handleCreateBulkCP = () => {
+    // Trigger the bulk import functionality
+    if (bulkCPModalOpen) {
+      // Ensure the `handleBulkImport` function is properly called within `CPBulkImport`
+      // You might need to pass a handler function or manage state accordingly
+      setIsCPBulkSubmit(true);
+    }
   };
 
   return (
@@ -133,6 +214,27 @@ const CapacityPlanTable = () => {
         <ApproveModal
           openApprovalModal={openApproveModal}
           approveModalCloseHandler={approveModalCloseHandler}
+        />
+      )}
+
+      {bulkCPModalOpen && (
+        <Modal
+          isOpen={bulkCPModalOpen}
+          title="Capactiy Plan Bulk Import"
+          content={
+            <CPBulkImport
+              cpBulkSubmit={isCPBulkSubmit}
+              setIsCPBulkSubmit={setIsCPBulkSubmit}
+              handleBulkImport={handleCreateBulkCP}
+            />
+            // <CPBulkImport cpBulkSubmit={isCPBulkSubmit}/>
+            // <OrganizationForm setSignupData={setSignupData} formRef={formRef} />
+          }
+          button1Text="Cancel"
+          button2Text="Upload"
+          onClose={closeAddBulkCPModal}
+          onSubmit={handleCreateBulkCP}
+          buttonTwoDisabled={isCPBulkSubmit}
         />
       )}
 
@@ -171,7 +273,7 @@ const CapacityPlanTable = () => {
               >
                 <ul>
                   <li>
-                    <button type="button">
+                    <button type="button" className="w-72">
                       <Link to="/cp/add">Create Capacity Plan</Link>
                     </button>
                   </li>
@@ -189,7 +291,10 @@ const CapacityPlanTable = () => {
               <div className="max-w-[19rem] w-full bg-cdms_primary bg-opacity-10 shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-white-light dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none h-64">
                 <div className="p-4">
                   <div className="bg-cdms_primary mb-2 p-1 inline-block text-[#f1f2f3] rounded-full">
-                    RWF 50,500,678
+                    <CurrencyFormatter
+                      amount={cardAnalyticsData?.availableBudget?.amount}
+                      currency={cardAnalyticsData?.availableBudget?.currency}
+                    />
                   </div>
                   <h5 className="text-[#3b3f5c] text-xl font-semibold mb-4 dark:text-white-light">
                     Available Budget
@@ -211,7 +316,10 @@ const CapacityPlanTable = () => {
               <div className="max-w-[19rem] w-full bg-[#996111] bg-opacity-10 shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-white-light dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none h-64">
                 <div className="p-4">
                   <div className="bg-[#996111] mb-2 p-1 inline-block text-[#f1f2f3] rounded-full">
-                    RWF 12,569,678
+                    <CurrencyFormatter
+                      amount={cardAnalyticsData?.requestedBudget.amount}
+                      currency={cardAnalyticsData?.requestedBudget?.currency}
+                    />
                   </div>
                   <h5 className="text-[#3b3f5c] text-xl font-semibold mb-4 dark:text-white-light">
                     Requested Budget
@@ -233,7 +341,10 @@ const CapacityPlanTable = () => {
               <div className="max-w-[19rem] w-full bg-[#805dca] bg-opacity-10 shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-white-light dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none h-64">
                 <div className="p-4">
                   <div className="bg-[#805dca] mb-2 p-1 inline-block text-[#f1f2f3] rounded-full">
-                    RWF 34,569,678
+                    <CurrencyFormatter
+                      amount={cardAnalyticsData?.allocatedBudget?.amount}
+                      currency={cardAnalyticsData?.allocatedBudget?.Currency}
+                    />
                   </div>
                   <h5 className="text-[#3b3f5c] text-xl font-semibold mb-4 dark:text-white-light">
                     Allocated Budget
@@ -257,15 +368,23 @@ const CapacityPlanTable = () => {
 							Radial Bar
 						</h5>
 					</div> */}
-              <div className="mb-5">
-                <ReactApexChart
-                  series={radialBarChart.series}
-                  options={radialBarChart.options}
-                  className="rounded-lg bg-white dark:bg-black overflow-hidden"
-                  type="radialBar"
-                  height={300}
-                />
-              </div>
+              {cardAnalyticsData && (
+                <div className="mb-5">
+                  <ReactApexChart
+                    series={radialBarChart().series}
+                    options={
+                      radialBarChart(
+                        cardAnalyticsData?.requestedBudget?.percent,
+                        cardAnalyticsData?.allocatedBudget?.percent,
+                        cardAnalyticsData?.availableBudget?.amount.toLocaleString()
+                      ).options
+                    }
+                    className="rounded-lg bg-white dark:bg-black overflow-hidden"
+                    type="radialBar"
+                    height={300}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -295,43 +414,69 @@ const CapacityPlanTable = () => {
 
           {/* Searchable Select*/}
           <div className="flex items-center justify-between"></div>
-          <div className="relative z-30 w-48">
+          <div className="relative z-10 w-48">
             <Select
               placeholder="Select status"
               options={statusOptions}
               value={status}
-			  onChange={handleStatusChange}
+              onChange={handleStatusChange}
             />
           </div>
 
-          {/**
-           * Optional capacity Plan Approve Button when selecting checkbox
-           */}
-          <button
-            type="button"
-            className="btn btn-danger gap-2"
-            // onClick={() => deleteRow()}
-          >
-            <IconX />
-            Reject
-          </button>
+          <div className="flex justify-end gap-4">
+            <button
+              type="button"
+              className="btn btn-primary"
+              // onClick={openAddBulkCPModal}
+            >
+              <IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
+              Add New Capacity Plan
+            </button>
+          </div>
+
           <div>
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => setOpenApproveModal(true)}
+              onClick={openAddBulkCPModal}
             >
-              <IconThumbUp className="ltr:mr-2 rtl:ml-2" />
-              Approve
+              <IconTxtFile className="ltr:mr-2 rtl:ml-2" />
+              Bulk Import
             </button>
           </div>
+
+          {isRowSelected && (
+            <div className="flex gap-4">
+              {/**
+               * Optional capacity Plan Approve Button when selecting checkbox
+               */}
+              <button
+                type="button"
+                className="btn btn-danger gap-2"
+                // onClick={() => deleteRow()}
+              >
+                <IconX />
+                Reject
+              </button>
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => setOpenApproveModal(true)}
+                >
+                  <IconThumbUp className="ltr:mr-2 rtl:ml-2" />
+                  Approve
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="datatables z-40">
           <DataTable
             className="whitespace-nowrap table-hover"
             records={cpData?.capacityPlans}
-			striped
+            striped
             columns={[
               {
                 accessor: "index",
@@ -339,12 +484,12 @@ const CapacityPlanTable = () => {
                 render: (_, index) => index + 1,
               },
               { accessor: "title", sortable: true },
-			  {
+              {
                 accessor: "program",
                 sortable: true,
                 title: "Program",
               },
-			  {
+              {
                 accessor: "subProgram",
                 sortable: true,
                 title: "Sub Program",
@@ -375,7 +520,7 @@ const CapacityPlanTable = () => {
               // 	sortable: true,
               // 	title: "Female Participants",
               // },
-			  { accessor: "type", sortable: true },
+              { accessor: "type", sortable: true },
               { accessor: "action", sortable: true },
               {
                 accessor: "responsibleEntity",

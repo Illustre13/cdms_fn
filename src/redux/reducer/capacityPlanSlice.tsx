@@ -3,6 +3,8 @@ import {
   addCapacityPlan,
   fetchAllCapacityPlan,
   deleteCapacityPlan,
+  fetchCPCardsAnalytics,
+  bulkCreateCapacityPlan,
 } from "../action/capacityPlanAction";
 import { StateOptions } from "../../util/enum";
 
@@ -10,6 +12,8 @@ const initialState: {
   fetchState: StateResponseData;
   addState: StateResponseData;
   deleteState: StateResponseData;
+  fetchCardsAnalytics: StateResponseData;
+  bulkCreateState: StateResponseData;
 } = {
   fetchState: {
     state: StateOptions.INITIAL,
@@ -28,6 +32,22 @@ const initialState: {
     message: "",
   },
   deleteState: {
+    state: StateOptions.INITIAL,
+    data: null,
+    status: null,
+    loading: false,
+    error: false,
+    message: "",
+  },
+  fetchCardsAnalytics: {
+    state: StateOptions.INITIAL,
+    data: null,
+    status: null,
+    loading: false,
+    error: false,
+    message: "",
+  },
+  bulkCreateState: {
     state: StateOptions.INITIAL,
     data: null,
     status: null,
@@ -102,6 +122,47 @@ const capacityplanSlice = createSlice({
         state.deleteState.message =
           action.error.message || "Deleting capacity plan failed";
         state.deleteState.state = StateOptions.REJECTED;
+      })
+
+      //Fetch Cards Analytics
+
+      .addCase(fetchCPCardsAnalytics.fulfilled, (state, action) => {
+        state.fetchCardsAnalytics.data = action.payload;
+        state.fetchCardsAnalytics.loading = false;
+        state.fetchCardsAnalytics.error = false;
+        state.fetchCardsAnalytics.state = StateOptions.FULFILLED;
+      })
+      .addCase(fetchCPCardsAnalytics.pending, (state) => {
+        state.fetchCardsAnalytics.loading = true;
+        state.fetchCardsAnalytics.error = false;
+        state.fetchCardsAnalytics.state = StateOptions.PENDING;
+      })
+      .addCase(fetchCPCardsAnalytics.rejected, (state, action) => {
+        state.fetchCardsAnalytics.error = true;
+        state.fetchCardsAnalytics.loading = false;
+        state.fetchCardsAnalytics.message = action.error.message;
+        state.fetchCardsAnalytics.state = StateOptions.REJECTED;
+      })
+
+      // Bulk create capacity plan
+      .addCase(bulkCreateCapacityPlan.fulfilled, (state, action) => {
+        state.bulkCreateState.data = action.payload;
+        state.bulkCreateState.message = "Created Capacity Plan in Bulks successfully!";
+        state.bulkCreateState.loading = false;
+        state.bulkCreateState.error = false;
+        state.bulkCreateState.state = StateOptions.FULFILLED;
+      })
+      .addCase(bulkCreateCapacityPlan.pending, (state) => {
+        state.bulkCreateState.loading = true;
+        state.bulkCreateState.error = false;
+        state.bulkCreateState.state = StateOptions.PENDING;
+      })
+      .addCase(bulkCreateCapacityPlan.rejected, (state, action) => {
+        state.bulkCreateState.error = true;
+        state.bulkCreateState.loading = false;
+        state.bulkCreateState.message =
+          action.error.message || "Capacity plan bulk create failed";
+        state.bulkCreateState.state = StateOptions.REJECTED;
       });
   },
 });

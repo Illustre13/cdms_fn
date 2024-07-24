@@ -13,3 +13,4 @@ http.log
 dist/
 dist_other/
 .DS_Store
+.xlsx

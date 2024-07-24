@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IRootState } from "../../redux/store";
 import { handleSignup } from "../../redux/action/signUpAction";
+import { StateOptions } from "../../util/enum";
 export const CDMSSignUp = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ export const CDMSSignUp = () => {
 
   useEffect(() => {
     console.log(signUpState.state);
-    if (signUpState.state === "FULFILLED") {
+    if (signUpState.state === StateOptions.FULFILLED) {
       navigate("/cdms-signin");
     }
   }, [signUpState]);
@@ -196,7 +197,10 @@ export const CDMSSignUp = () => {
                   )}
                   {activeTab === "organization" && (
                     <div>
-                      <OrganizationInfoForm handleTabClick={handleTabClick} setSignupData={setSignupData} />
+                      <OrganizationInfoForm
+                        handleTabClick={handleTabClick}
+                        setSignupData={setSignupData}
+                      />
                     </div>
                   )}
                   {/* {activeTab === "workInfo" && (

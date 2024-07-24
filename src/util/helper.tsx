@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { AssessmentStatus, EmployeeTrainingStatus } from './enum';
+import { camelCase } from 'lodash'; 
+
 
 export class InvalidTokenError extends Error {}
 
@@ -20,7 +22,7 @@ type allStatus = CapacityPlanStatus | EmployeeTrainingStatus | AssessmentStatus;
 
 interface CurrencyFormatterProps {
 	amount: number | string;
-	currency: string;
+	currency?: string;
   }
   
 export const clearSessionStorage = (keys: string[]) => {
@@ -76,8 +78,8 @@ export const convertTimestamp = (timestamp: string) => {
 
 const statusColorMap: Record<allStatus, string> = {
 	PENDING: "bg-yellow-500",
-	ACTIVE: "bg-green-500",
-	SUSPENDED: "bg-red-500",
+	// ACTIVE: "bg-green-500",
+	// SUSPENDED: "bg-red-500",
 	DRAFT: "bg-gray-500",
 	SENT: "bg-blue-500",
 	UNDER_REVIEW: "bg-purple-500",
@@ -98,7 +100,8 @@ const statusColorMap: Record<allStatus, string> = {
 	);
   };
 
-export const CurrencyFormatter: React.FC<CurrencyFormatterProps> = ({ amount, currency }) => {
+export const CurrencyFormatter: React.FC<CurrencyFormatterProps> = ({ amount = 0, currency = "RWF" }) => {
+	// console.log(amount, currency,)
 	const formattedAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(Number(amount));
   
 	return (
@@ -122,3 +125,36 @@ export const CurrencyFormatter: React.FC<CurrencyFormatterProps> = ({ amount, cu
 	const cleanArray = cleanAndConvertArray(array);
 	return cleanArray;
   }
+
+
+  export const formatData = (data: any) => {
+
+	return (data || []).map((d: any) => {
+	// return map(data, (d: any) => {
+	  const result: any = {};
+  
+	  Object.keys(d).forEach((k: string) => {
+		if (k !== '__rowNum__') result[camelCase(k)] = d[k];
+	  });
+  
+	  return result;
+	});
+  };
+
+  export const useWindowResize = () => {
+	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  
+	useEffect(() => {
+	  const handleResize = () => {
+		setScreenWidth(window.innerWidth);
+	  };
+  
+	  window.addEventListener('resize', handleResize);
+  
+	  return () => {
+		window.removeEventListener('resize', handleResize);
+	  };
+	}, []);
+  
+	return screenWidth;
+  };

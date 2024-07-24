@@ -14,6 +14,8 @@ interface IModalProps {
   button2Text?: string;
   onClose: () => void;
   onSubmit?: () => void;
+  buttonOneDisabled?: boolean;
+  buttonTwoDisabled?: boolean;
 }
 
 const Modal: React.FC<IModalProps> = ({
@@ -25,6 +27,7 @@ const Modal: React.FC<IModalProps> = ({
   button2Text = "Save",
   onClose,
   onSubmit,
+  buttonTwoDisabled = true,
 }) => {
   const dispatch = useDispatch();
   
@@ -77,6 +80,7 @@ const Modal: React.FC<IModalProps> = ({
                     </button>
                     <button
                       onClick={onSubmit}
+                      disabled={buttonTwoDisabled}
                       type="button"
                       className="btn btn-primary ltr:ml-4 rtl:mr-4"
                     >

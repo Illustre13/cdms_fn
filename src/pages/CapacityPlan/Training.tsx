@@ -87,9 +87,10 @@ const CapacityPlanTable = () => {
 
   const statusOptions = [
     { value: "", label: "All" },
-    { value: CapacityPlanStatus.PENDING, label: "Pending" },
-    { value: CapacityPlanStatus.ACTIVE, label: "Active" },
-    { value: CapacityPlanStatus.SUSPENDED, label: "Suspended" },
+    { value: CapacityPlanStatus.DRAFT, label: "Draft" },
+    { value: CapacityPlanStatus.APPROVED, label: "Approved" },
+    { value: CapacityPlanStatus.REJECTED, label: "Rejected" },
+    { value: CapacityPlanStatus.UNDER_REVIEW, label: "Under Review" },
   ];
 
   const [openApproveModal, setOpenApproveModal] = useState(false);
