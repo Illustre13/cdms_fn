@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/hooks";
 import IconDownload from "../Icon/IconDownload";
 import { useDropzone } from "react-dropzone";
-import { formatData } from "../../util/helper";
+import { downloadFile, formatData, mergeDataWithHeaders } from "../../util/helper";
 import { bulkCreateCapacityPlan } from "../../redux/action/capacityPlanAction";
 import { IRootState } from "../../redux/store";
 import IconFolderMinus from "../Icon/IconFolderMinus";
@@ -32,6 +32,7 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
     (state: IRootState) => state.capacityPlan.bulkCreateState
   );
   const [thisState, setThisState] = useState(initialState);
+  const [isBulkValid, setIsBulkValid] = useState(false);
 
   console.log("", cpBulkCreateState?.data?.data);
   const onDrop = useCallback(
@@ -48,36 +49,34 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
             blankrows: false,
           }
         );
-        const capacityPlansInfo = JSONDATA?.slice(1, -9) as capacityplanInfo[];
-        const capacityPlansTitle = JSONDATA[0] as string;
-
-        console.log("Data before format -->", capacityPlansInfo);
-        console.log("Title ---> ", capacityPlansTitle);
-        const formatted = formatData(capacityPlansInfo);
-        console.log("Formatted ---> ", formatted);
+        const capacityPlansInfo: string[] = JSONDATA?.slice(1, -9) as string[];
+        const capacityPlansTitle = JSONDATA[0] as string[];
+        const cpInfoFormatted001 = mergeDataWithHeaders(JSONDATA?.slice(1, -9)[0] as [], capacityPlansInfo.slice(1)) as capacityplanInfo[];
+        console.log("Formatted_001 ---> ", cpInfoFormatted001);
+ 
         setThisState((prev) => ({
           ...prev,
           isAfterFileChanged: true,
           bulkCPData: {
-            info: capacityPlansInfo,
-            title: capacityPlansTitle,
+            info: cpInfoFormatted001,
+            title: capacityPlansTitle[0],
           },
           file,
         }));
-        //   CPBulkImport;
-        if (setIsCPBulkSubmit) {
-          setIsCPBulkSubmit(true); // Notify parent to enable submit button
+        if (cpInfoFormatted001.length > 0) {
+          setIsBulkValid(true);
         }
       };
       reader.readAsArrayBuffer(file);
     },
-    [setIsCPBulkSubmit]
+    []
   );
-  //       console.log("State Here --> ", thisState);
-  //       cpBulkSubmit = true;
-  //     };
-  //     reader.readAsArrayBuffer(file);
-  //   }, []);
+
+  useEffect(() => {
+if(setIsCPBulkSubmit) {
+    setIsCPBulkSubmit(true);
+}
+  }, [isBulkValid]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
@@ -91,36 +90,26 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
 
   const fileLabel = thisState.file ? thisState.file.name : "";
 
-  //   if (cpBulkSubmit) {
-  //     console.log("Reached Herere");
-  //     const handleBulkImport = () => {
-  //       dispatch(
-  //         bulkCreateCapacityPlan(thisState.bulkCPData)
-  //         // {
-
-  //         // type: states.bulkImportEmployees.constants.request,
-  //         // payload: thisState.bulkCPData
-  //         //   }
-  //       );
-  //     };
-  //   }
-
   useEffect(() => {
-    console.log(cpBulkSubmit);
+if(isBulkValid && handleBulkImport){
+    console.log(cpBulkSubmit, isBulkValid);
     console.log("State Here 22222222222 --> ", thisState);
     dispatch(bulkCreateCapacityPlan(thisState.bulkCPData));
-  }, [cpBulkSubmit, dispatch]);
+    setIsBulkValid(false);
+}
+  }, [handleBulkImport, isBulkValid, thisState, dispatch]);
 
-  // const handleBulkImport = () => {
-  //     dispatch(bulkCreateCapacityPlan(thisState.bulkCPData));
-  //   };
   return (
     <div className="flex flex-col">
       <div className="flex-1 mb-4">
-        <button type="button" className="btn btn-primary">
+        <button type="button" className="btn btn-primary" onClick={() => downloadFile('capacity_plan_bulk_import_006.xlsx')}>
           <IconDownload className="ltr:mr-2 rtl:ml-2" />
           Download Template
         </button>
+
+
+
+
       </div>
 
       <div className="flex-1">

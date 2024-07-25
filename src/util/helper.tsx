@@ -141,6 +141,17 @@ export const CurrencyFormatter: React.FC<CurrencyFormatterProps> = ({ amount = 0
 	});
   };
 
+  export const mergeDataWithHeaders = (headers: string[], dataRows: any[]): any[] => {
+	return dataRows.map((row: any) => {
+	  // Create an object where each key is from headers and each value is from the row
+	  const result: any = {};
+	  headers.forEach((header, index) => {
+		result[header] = row[index];
+	  });
+	  return result;
+	});
+  };
+
   export const useWindowResize = () => {
 	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   
@@ -158,3 +169,11 @@ export const CurrencyFormatter: React.FC<CurrencyFormatterProps> = ({ amount = 0
   
 	return screenWidth;
   };
+
+  export const downloadFile = (fileName: string) => {
+	const link = document.createElement('a');
+	link.href = `/src/assets/docs/${fileName}`;
+	link.download = fileName;
+	link.click();
+  };
+  

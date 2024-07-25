@@ -121,8 +121,14 @@ const CapacityPlanTable = () => {
 
   const [bulkCPModalOpen, setBulkCPModalOpen] = useState(false);
   const openAddBulkCPModal = () => setBulkCPModalOpen(true);
-  const closeAddBulkCPModal = () => setBulkCPModalOpen(false);
-
+  const closeAddBulkCPModal = () => {
+	setIsCPBulkSubmit(false)
+	setBulkCPModalOpen(false);
+  }
+  const closeBulkCPModal = () => {
+	setIsCPBulkSubmit(false)
+	setBulkCPModalOpen(false);
+  }
   const handleSearchChange = (e: any) => setSearchKey(e.target.value);
 
   const handleStatusChange = (selectedOption: any) => {
@@ -191,19 +197,8 @@ const CapacityPlanTable = () => {
 
   const [isCPBulkSubmit, setIsCPBulkSubmit] = useState(false);
 
-  useEffect(() => {
-    setIsCPBulkSubmit(isCPBulkSubmit);
-  }, [isCPBulkSubmit]);
-
-  //   const handleCreateBulkCP = () => {
-  // // setIsCPBulkSubmit(true);
-  //   }
-
   const handleCreateBulkCP = () => {
-    // Trigger the bulk import functionality
     if (bulkCPModalOpen) {
-      // Ensure the `handleBulkImport` function is properly called within `CPBulkImport`
-      // You might need to pass a handler function or manage state accordingly
       setIsCPBulkSubmit(true);
     }
   };
@@ -233,8 +228,8 @@ const CapacityPlanTable = () => {
           button1Text="Cancel"
           button2Text="Upload"
           onClose={closeAddBulkCPModal}
-          onSubmit={handleCreateBulkCP}
-          buttonTwoDisabled={isCPBulkSubmit}
+          onSubmit={closeBulkCPModal}
+          buttonTwoDisabled={!isCPBulkSubmit}
         />
       )}
 
@@ -564,6 +559,7 @@ const CapacityPlanTable = () => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
+							onClick={() => setOpenApproveModal(true)}
                           >
                             <IconThumbUp className="mr-2 text-green-500" />{" "}
                             <span>Approve</span>
