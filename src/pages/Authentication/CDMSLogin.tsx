@@ -42,7 +42,7 @@ const CDMSLogin = () => {
 				}
 			});
 		};
-		if (loginState.state === "REJECTED") {
+		if (loginState.state === StateOptions.REJECTED) {
 			toast.error(loginState.message || loginState.data, {
 			  type: "error",
 			  isLoading: false,

@@ -1,5 +1,5 @@
 import { DataTable } from "mantine-datatable";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
 import ReactApexChart from "react-apexcharts";
@@ -17,6 +17,7 @@ import { ApproveModal } from "./ApproveModal";
 import IconX from "../../components/Icon/IconX";
 import { useAppDispatch } from "../../redux/hooks";
 import {
+  addCapacityPlan,
   fetchAllCapacityPlan,
   fetchCPCardsAnalytics,
 } from "../../redux/action/capacityPlanAction";
@@ -29,10 +30,16 @@ import { CapacityPlanStatus, StateOptions } from "../../util/enum";
 import IconPlus from "../../components/Icon/IconPlus";
 import IconTxtFile from "../../components/Icon/IconTxtFile";
 import Modal from "../Components/Modals";
-import { CPBulkImport } from "../../components/CapacityPlan.tsx/bulk_import";
+import { CPBulkImport } from "../../components/CapacityPlan/bulk_import";
+import { FormikProps } from "formik";
+import { CapacityPlanForm } from "../Forms/CapacityPlanForm";
+import { toast, ToastContainer } from "react-toastify";
 
 const CapacityPlanTable = () => {
   const dispatch = useAppDispatch();
+
+  const [capacityPlanData, setCapacityPlanData] = useState<any>(null);
+
   const PAGE_SIZES = [10, 20, 30, 50, 100];
   const [selectedRecords, setSelectedRecords] = useState<any>([]);
   const [isRowSelected, setIsRowSelected] = useState(false);
@@ -61,6 +68,10 @@ const CapacityPlanTable = () => {
   );
   const fetchCardsAnalyticsState = useSelector(
     (state: IRootState) => state.capacityPlan.fetchCardsAnalytics
+  );
+
+  const addCapacityPlanSTate = useSelector(
+    (state: IRootState) => state.capacityPlan.addState
   );
 
   // Data from selectors
@@ -122,13 +133,13 @@ const CapacityPlanTable = () => {
   const [bulkCPModalOpen, setBulkCPModalOpen] = useState(false);
   const openAddBulkCPModal = () => setBulkCPModalOpen(true);
   const closeAddBulkCPModal = () => {
-	setIsCPBulkSubmit(false)
-	setBulkCPModalOpen(false);
-  }
+    setIsCPBulkSubmit(false);
+    setBulkCPModalOpen(false);
+  };
   const closeBulkCPModal = () => {
-	setIsCPBulkSubmit(false)
-	setBulkCPModalOpen(false);
-  }
+    setIsCPBulkSubmit(false);
+    setBulkCPModalOpen(false);
+  };
   const handleSearchChange = (e: any) => setSearchKey(e.target.value);
 
   const handleStatusChange = (selectedOption: any) => {
@@ -203,6 +214,65 @@ const CapacityPlanTable = () => {
     }
   };
 
+
+
+  const formRef = useRef<FormikProps<any> | null>(null);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleAddCP = () => {
+	if (formRef.current && !isSubmitting) {
+	  setIsSubmitting(true);
+	  formRef.current.submitForm().then(() => {
+		const formValues = formRef?.current.values;
+		dispatch(addCapacityPlan({
+		  ...formValues,
+		  participants: { male: formValues?.maleParticipants, female: formValues?.femaleParticipants },
+		})).finally(() => setIsSubmitting(false)); // Reset isSubmitting after dispatch
+	  });
+	}
+  };
+
+	useEffect(() => {
+		if (addCapacityPlanSTate.state === StateOptions.FULFILLED) {
+		  toast.success(addCapacityPlanSTate.message, {
+			type: "success",
+			isLoading: false,
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "colored",
+		  });
+		  setIsAddCPModalOpen(false);
+		  dispatch(fetchAllCapacityPlan(orgFilters));
+		  dispatch(fetchCPCardsAnalytics(AnalyticsFilter)); 
+		}
+		console.log("--------------------------->>>", addCapacityPlanSTate)
+	  
+		if (addCapacityPlanSTate.state === StateOptions.REJECTED) {
+		  toast.error(addCapacityPlanSTate.message || addCapacityPlanSTate.data.message, {
+			type: "error",
+			isLoading: false,
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "colored",
+		  });
+		}
+	  }, [addCapacityPlanSTate, dispatch]);
+	  
+
+  const [isAddCPModalOpen, setIsAddCPModalOpen] = useState(false);
+
+  const openAddCapacityPlanModal = () => setIsAddCPModalOpen(true);
+  const closeAddCapacityPlanModal = () => setIsAddCPModalOpen(false);
+
   return (
     <div>
       {openApproveModal && (
@@ -211,6 +281,22 @@ const CapacityPlanTable = () => {
           approveModalCloseHandler={approveModalCloseHandler}
         />
       )}
+
+      <Modal
+        isOpen={isAddCPModalOpen}
+        title="Add Capacity Plan"
+        content={
+          <CapacityPlanForm
+            setCapacityPlanData={setCapacityPlanData}
+            formRef={formRef}
+          />
+        }
+        button1Text="Cancel"
+        button2Text="Save"
+        onClose={closeAddCapacityPlanModal}
+        onSubmit={handleAddCP}
+        buttonTwoDisabled={false}
+      />
 
       {bulkCPModalOpen && (
         <Modal
@@ -222,8 +308,6 @@ const CapacityPlanTable = () => {
               setIsCPBulkSubmit={setIsCPBulkSubmit}
               handleBulkImport={handleCreateBulkCP}
             />
-            // <CPBulkImport cpBulkSubmit={isCPBulkSubmit}/>
-            // <OrganizationForm setSignupData={setSignupData} formRef={formRef} />
           }
           button1Text="Cancel"
           button2Text="Upload"
@@ -422,7 +506,7 @@ const CapacityPlanTable = () => {
             <button
               type="button"
               className="btn btn-primary"
-              // onClick={openAddBulkCPModal}
+              onClick={openAddCapacityPlanModal}
             >
               <IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
               Add New Capacity Plan
@@ -559,7 +643,7 @@ const CapacityPlanTable = () => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
-							onClick={() => setOpenApproveModal(true)}
+                            onClick={() => setOpenApproveModal(true)}
                           >
                             <IconThumbUp className="mr-2 text-green-500" />{" "}
                             <span>Approve</span>
@@ -603,6 +687,7 @@ const CapacityPlanTable = () => {
             }
           />
         </div>
+		<ToastContainer />
       </div>
     </div>
   );

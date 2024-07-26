@@ -95,13 +95,14 @@ const capacityplanSlice = createSlice({
         state.addState.state = StateOptions.PENDING;
       })
       .addCase(addCapacityPlan.rejected, (state, action) => {
+        const { message } = action.error;
         state.addState.error = true;
         state.addState.loading = false;
         state.addState.message =
           action.error.message || "Adding capacity plan failed";
         state.addState.state = StateOptions.REJECTED;
       })
-
+      
       // Delete CapacityPlan
 
       .addCase(deleteCapacityPlan.fulfilled, (state, action) => {

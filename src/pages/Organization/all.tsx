@@ -176,6 +176,7 @@ const Organization = () => {
         button2Text="Save"
         onClose={closeAddOrganizationModal}
         onSubmit={handleAddOrganization}
+        buttonTwoDisabled={false}
       />
       <div className="flex flex-col items-start overflow-x-auto whitespace-nowrap p-3 text-cdms_primary relative z-10 w-full">
         <h5 className="font-bold text-gray-700 text-2xl dark:text-white-light">
