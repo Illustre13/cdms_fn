@@ -3,6 +3,7 @@ export enum StateOptions {
 	PENDING = "PENDING",
 	FULFILLED = "FULFILLED",
 	REJECTED = "REJECTED",
+	IDLE = "IDLE",
 }
 
 export enum CapacityPlanLevel {

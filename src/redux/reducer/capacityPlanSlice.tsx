@@ -5,6 +5,7 @@ import {
   deleteCapacityPlan,
   fetchCPCardsAnalytics,
   bulkCreateCapacityPlan,
+  updateCapacityPlan
 } from "../action/capacityPlanAction";
 import { StateOptions } from "../../util/enum";
 
@@ -14,6 +15,7 @@ const initialState: {
   deleteState: StateResponseData;
   fetchCardsAnalytics: StateResponseData;
   bulkCreateState: StateResponseData;
+  updateState: StateResponseData;
 } = {
   fetchState: {
     state: StateOptions.INITIAL,
@@ -48,6 +50,14 @@ const initialState: {
     message: "",
   },
   bulkCreateState: {
+    state: StateOptions.INITIAL,
+    data: null,
+    status: null,
+    loading: false,
+    error: false,
+    message: "",
+  },
+  updateState: {
     state: StateOptions.INITIAL,
     data: null,
     status: null,
@@ -164,7 +174,30 @@ const capacityplanSlice = createSlice({
         state.bulkCreateState.message =
           action.error.message || "Capacity plan bulk create failed";
         state.bulkCreateState.state = StateOptions.REJECTED;
-      });
+      })
+      
+      // Update capacity plan
+      .addCase(updateCapacityPlan.fulfilled, (state, action) => {
+        state.updateState.data = action.payload;
+        state.updateState.message = "Capacity Plan updated successfully!";
+        state.updateState.loading = false;
+        state.updateState.error = false;
+        state.updateState.state = StateOptions.FULFILLED;
+      })
+      .addCase(updateCapacityPlan.pending, (state) => {
+        state.updateState.loading = true;
+        state.updateState.error = false;
+        state.updateState.state = StateOptions.PENDING;
+      })
+      .addCase(updateCapacityPlan.rejected, (state, action) => {
+        const { message } = action.error;
+        state.updateState.error = true;
+        state.updateState.loading = false;
+        state.updateState.message =
+          action.error.message || "Updating capacity plan failed";
+        state.updateState.state = StateOptions.REJECTED;
+      })
+      ;
   },
 });
 

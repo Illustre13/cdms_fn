@@ -92,6 +92,7 @@ interface capacityPlanFilters {
 	searchKey?: string;
 	status?: any;
 	industry?: any;
+  year?: number
   }
 
 interface capacityplanInfo {
@@ -188,4 +189,22 @@ interface ICPBulkImportData {
   };
   file: any;
   isAfterFileChanged: boolean;
+}
+
+type ModalType = '' | 'approve' | 'reject' | 'addCapacityPlan'
+
+interface IModalProps {
+  type?: ModalType;
+  isOpen: boolean;
+  size?: string;
+  title?: string;
+  content?: any;
+  button1Text?: string;
+  button2Text?: string;
+  onClose: () => void;
+  onSubmit?: () => void;
+  onRetry?: () => void;
+  buttonOneDisabled?: boolean;
+  buttonTwoDisabled?: boolean;
+  hideButton1?: boolean;
 }

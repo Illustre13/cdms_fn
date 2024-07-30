@@ -1,5 +1,5 @@
 import { DataTable } from "mantine-datatable";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
 import ReactApexChart from "react-apexcharts";
@@ -21,6 +21,7 @@ import {
   fetchAllCapacityPlan,
   fetchCPCardsAnalytics,
   deleteCapacityPlan,
+  updateCapacityPlan,
 } from "../../redux/action/capacityPlanAction";
 import {
   arrayToCommaSeparatedString,
@@ -36,22 +37,20 @@ import { FormikProps } from "formik";
 import { CapacityPlanForm } from "../Forms/CapacityPlanForm";
 import { toast, ToastContainer } from "react-toastify";
 
-
 interface CPCardAnalyticsResultProps {
-	amount: number;
-	currency: string;
-	percent: number;
-  }
-  
-  interface CardAnalyticsData {
-	requestedBudget: CPCardAnalyticsResultProps;
-	allocatedBudget: CPCardAnalyticsResultProps;
-	availableBudget: {
-	  amount: number;
-	  currency: string;
-	};
-  }
+  amount: number;
+  currency: string;
+  percent: number;
+}
 
+interface CardAnalyticsData {
+  requestedBudget: CPCardAnalyticsResultProps;
+  allocatedBudget: CPCardAnalyticsResultProps;
+  availableBudget: {
+    amount: number;
+    currency: string;
+  };
+}
 
 const CapacityPlanTable = () => {
   const dispatch = useAppDispatch();
@@ -66,24 +65,22 @@ const CapacityPlanTable = () => {
     new Date().getFullYear()
   );
   const [status, setStatus] = useState<any>();
+  const [year, setYear] = useState<any>(new Date().getFullYear());
   const [industry, setIndustry] = useState<any>();
-  //   const [openApproveModal, setOpenApproveModal] = useState(false);
-    const [cpRowData, setCPRowData] = useState("");
-  //   const [modalProps, setModalProps] = useState<IModalProps | null>(null);
   const [modalProps, setModalProps] = useState<IModalProps>({
     isOpen: false,
     type: "addCapacityPlan",
-    onClose: () => setModalProps((prev) => ({ ...prev, isOpen: false })),
+    onClose: () => handleModalClose(),
+    onSubmit: () => {},
   });
+
+  const handleModalClose = () => {
+    setModalProps((prev) => ({ ...prev, isOpen: false }));
+  };
+
   const [page2, setPage2] = useState(1);
   const [pageSize2, setPageSize2] = useState(PAGE_SIZES[0]);
-  //   const [availableAmount, setAvailableAmount] = useState(0);
-  //   const [requestedAmount, setRequestedAmount] = useState(0);
-  //   const [allocatedAmount, setAllocatedAmount] = useState(0);
-  //   const [requestedAmountPercent, setRequestedAmountPercent] = useState(0);
-  //   const [allocatedAmountPercent, setAllocatedAmountPercent] = useState(0);
 
-  // Selector declarations
   const isDark = useSelector(
     (state: IRootState) =>
       state.themeConfig.theme === "dark" || state.themeConfig.isDarkMode
@@ -95,7 +92,7 @@ const CapacityPlanTable = () => {
     (state: IRootState) => state.capacityPlan.fetchCardsAnalytics
   );
 
-  const addCapacityPlanSTate = useSelector(
+  const addCapacityPlanState = useSelector(
     (state: IRootState) => state.capacityPlan.addState
   );
 
@@ -103,22 +100,20 @@ const CapacityPlanTable = () => {
     (state: IRootState) => state.capacityPlan.deleteState
   );
 
-  // Data from selectors
+  const updateCapacityPlanState = useSelector(
+    (state: IRootState) => state.capacityPlan.updateState
+  );
+
   const cpData = fetchCapacityPlanState?.data?.data;
-//   const [cardAnalyticsData, setCardAnalyticsData] = useState(null);
-const [cardAnalyticsData, setCardAnalyticsData] = useState<CardAnalyticsData | null>(null);
+  const [cardAnalyticsData, setCardAnalyticsData] =
+    useState<CardAnalyticsData | null>(null);
 
-//   const cardAnalyticsData = fetchCardsAnalyticsState?.data?.data;
-
-
-
-useEffect(() => {
-    // Fetch or update cardAnalyticsData when fetchCardsAnalyticsState changes
+  useEffect(() => {
     const data = fetchCardsAnalyticsState?.data?.data;
     if (data) {
       setCardAnalyticsData(data);
     }
-  }, [fetchCardsAnalyticsState]); 
+  }, [fetchCardsAnalyticsState]);
 
   // Status options
   const statusOptions = [
@@ -135,6 +130,7 @@ useEffect(() => {
     searchKey,
     status: status,
     industry: industry,
+	year: year
   };
 
   const AnalyticsFilter: any = {
@@ -147,12 +143,10 @@ useEffect(() => {
   }, [dispatch]);
 
   useEffect(() => {
+	console.log(orgFilters)
     dispatch(fetchAllCapacityPlan(orgFilters));
-  }, [searchKey, status, industry, dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
-  }, [dispatch, cardAnalyticsYear]);
+	dispatch(fetchCPCardsAnalytics(AnalyticsFilter))
+  }, [searchKey, status, industry, year, cardAnalyticsYear, dispatch]);
 
   useEffect(() => {
     if (selectedRecords.length > 0) {
@@ -162,34 +156,6 @@ useEffect(() => {
       setIsRowSelected(false);
     }
   }, [selectedRecords]);
-
-  const openApproveModalHandler = () => {
-    setModalProps({
-      type: "approve",
-      isOpen: true,
-      onClose: modalProps.onClose,
-      onSubmit: () => {},
-      title: "Approve Capacity Plan",
-      button1Text: "Cancel",
-      button2Text: "Approve",
-    });
-  };
-
-  const openRejectModalHandler = () => {
-    setModalProps({
-      type: "reject",
-      isOpen: true,
-      onClose: modalProps.onClose,
-      onSubmit: () => {},
-      title: "Reject",
-      button1Text: "Cancel",
-      button2Text: "Reject",
-    });
-  };
-
-  //   const approveModalCloseHandler = () => {
-  //     setOpenApproveModal(false);
-  //   };
 
   const [bulkCPModalOpen, setBulkCPModalOpen] = useState(false);
   const openAddBulkCPModal = () => setBulkCPModalOpen(true);
@@ -206,9 +172,13 @@ useEffect(() => {
   const handleStatusChange = (selectedOption: any) => {
     setStatus(selectedOption?.value);
   };
+  const handleYearChange = (selectedOption: any) => {
+    setYear(selectedOption?.value);
+	setCardAnalyticsYear(selectedOption?.value);
+  };
   let radialBarChart: ReactChartProps | any;
   if (cardAnalyticsData) {
-    console.log(cardAnalyticsData);
+    // console.log(cardAnalyticsData);
     radialBarChart = (
       reqAmountPercent: number,
       allAmountPercent: number,
@@ -224,7 +194,10 @@ useEffect(() => {
         parseFloat(Number(allAmountPercent).toFixed(2))
       );
       return {
-        series: [parseFloat(Number(reqAmountPercent).toFixed(2)), parseFloat(Number(allAmountPercent).toFixed(2))] as ApexNonAxisChartSeries,
+        series: [
+          parseFloat(Number(reqAmountPercent).toFixed(2)),
+          parseFloat(Number(allAmountPercent).toFixed(2)),
+        ] as ApexNonAxisChartSeries,
         // series: [
         //   isNaN(parseFloat(Number(reqAmountPercent).toFixed(2)))
         //     ? 417
@@ -305,94 +278,162 @@ useEffect(() => {
         ).finally(() => setIsSubmitting(false)); // Reset isSubmitting after dispatch
       });
     }
+    handleModalClose();
   };
 
+  const handleApproveCP = (cpId: string) => {
+	console.log("Approves, Id --> ", cpId)
+    dispatch(
+      updateCapacityPlan({
+        data: {
+          status: CapacityPlanStatus.APPROVED,
+        },
+        id: cpId,
+      })
+    );
+	handleModalClose();
+  };
+
+  const handleRejectCP = (cpId: string) => {
+    console.log("Rejects, ID --> ", cpId);
+    dispatch(
+      updateCapacityPlan({
+        data: {
+          status: CapacityPlanStatus.REJECTED,
+        },
+        id: cpId,
+      })
+    );
+	handleModalClose();
+  };
+
+  const handleDelete = (id: ItemID) => {
+    console.log("ID --->", id);
+    dispatch(deleteCapacityPlan(id));
+	handleModalClose();
+  };
+
+const [activeToast, setActiveToast] = useState<string | null>(null);
+
+    const showToast = (state: string, message: string, successMsg: string, errorMsg: string) => {
+      if (state === StateOptions.FULFILLED) {
+        if (activeToast !== successMsg) {
+          toast.success(message || successMsg, {
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: 'colored',
+          });
+          setActiveToast(successMsg);
+        }
+      } else if (state === StateOptions.REJECTED) {
+        if (activeToast !== errorMsg) {
+          toast.error(message || errorMsg, {
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: 'colored',
+          });
+          setActiveToast(errorMsg);
+        }
+      }
+	  dispatch(fetchAllCapacityPlan(orgFilters));
+	  dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
+    };
+
+	const clearToast = () => {
+		setActiveToast(null);
+	  };
+
   useEffect(() => {
-    if (addCapacityPlanSTate.state === StateOptions.FULFILLED) {
-      toast.success(addCapacityPlanSTate.message, {
-        type: "success",
-        isLoading: false,
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-      //   setIsAddCPModalOpen(false);
-      //   setCpModalTitle("");
-      dispatch(fetchAllCapacityPlan(orgFilters));
-      dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
-    }
-    console.log("--------------------------->>>", addCapacityPlanSTate);
+    // Handle Add Capacity Plan
+	if (addCapacityPlanState.state !== StateOptions.IDLE) {
+		showToast(
+		  addCapacityPlanState.state!,
+		  addCapacityPlanState.message!,
+		  "Added Capacity plan successfully!",
+		  addCapacityPlanState.data?.message || "Failed to add Capacity plan."
+		);
+		clearToast();
+	  }
 
-    if (addCapacityPlanSTate.state === StateOptions.REJECTED) {
-      toast.error(
-        addCapacityPlanSTate.message || addCapacityPlanSTate.data.message,
-        {
-          type: "error",
-          isLoading: false,
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        }
-      );
-    }
+    // Handle Delete Capacity Plan
+	if (deleteCapacityPlanState.state !== StateOptions.IDLE) {
+		showToast(
+		  deleteCapacityPlanState.state!,
+		  deleteCapacityPlanState.message!,
+		  "Deleted Capacity plan successfully!",
+		  deleteCapacityPlanState.data?.message || "Failed to delete Capacity plan."
+		);
+		clearToast();
+	  }
 
-    if (deleteCapacityPlanState.state === StateOptions.FULFILLED) {
-      toast.success(
-        deleteCapacityPlanState.message ||
-          "Deleted Capacity plan successfully!",
-        {
-          type: "success",
-          isLoading: false,
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        }
-      );
-      dispatch(fetchAllCapacityPlan(orgFilters));
-      dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
-    }
+    // Handle Update Capacity Plan
+	if (updateCapacityPlanState.state !== StateOptions.IDLE) {
+		showToast(
+		  updateCapacityPlanState.state!,
+		  updateCapacityPlanState.message!,
+		  "Updated Capacity plan successfully!",
+		  updateCapacityPlanState.data?.message || "Failed to update Capacity plan."
+		);
+		clearToast();
+	  }
+  }, [
+    addCapacityPlanState,
+    deleteCapacityPlanState,
+    updateCapacityPlanState,
+	activeToast
+  ]);
 
-    if (deleteCapacityPlanState.state === StateOptions.REJECTED) {
-      toast.error(
-        deleteCapacityPlanState.message || deleteCapacityPlanState.data.message,
-        {
-          type: "error",
-          isLoading: false,
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        }
-      );
-    }
-  }, [deleteCapacityPlanState, addCapacityPlanSTate, dispatch]);
+  const openApproveModalHandler = (cpId?: string, selectedRecords?: any) => {
+    setModalProps({
+      type: "approve",
+      isOpen: true,
+      onClose: modalProps.onClose,
+      onSubmit: () => handleApproveCP(cpId!),
+      title: "Approve Capacity Plan",
+      button1Text: "Cancel",
+      button2Text: "Approve",
+      buttonTwoDisabled: false,
+	  content: (
+		<p>Are you sure you want to approve this capacity plan?</p>
+	  )
+    });
+  };
 
-  //   const [isAddCPModalOpen, setIsAddCPModalOpen] = useState(false);
-  //   const [cpModalTitle, setCpModalTitle] = useState("");
+  const openRejectModalHandler = (cpId?: string, selectedRecords?: any) => {
+	if(selectedRecords) {
+		console.log("HEHEHEHEHEHEHEH")
+		console.log(selectedRecords);
+	}
+	if(cpId){
+		setModalProps({
+			type: "reject",
+			isOpen: true,
+			onClose: modalProps.onClose,
+			onSubmit: () => handleRejectCP(cpId!),
+			title: "Reject",
+			button1Text: "Cancel",
+			button2Text: "Reject",
+			buttonTwoDisabled: false,
+			content: (
+			  <p>Are you sure you want to reject this capacity plan?</p>
+			)
+		  });
+	}
+ 
+  };
 
   const openAddCapacityPlanModal = () => {
     setModalProps({
       type: "addCapacityPlan",
       isOpen: true,
       onClose: modalProps.onClose,
-      onSubmit: () => {
-        modalProps.onSubmit;
-      },
+      onSubmit: () => handleAddCP(),
       title: "Add Capacity Plan",
       button1Text: "Cancel",
       button2Text: "Save",
@@ -402,34 +443,36 @@ useEffect(() => {
           formRef={formRef}
         />
       ),
+      buttonTwoDisabled: false,
     });
   };
-  const closeAddCapacityPlanModal = () => {
-    // setIsAddCPModalOpen(false)
-    // setCpModalTitle("");
-  };
 
-  const handleDelete = (id: ItemID) => {
-    console.log("ID --->", id);
-    dispatch(deleteCapacityPlan(id));
-  };
+  const uniqueYears = useMemo(() => {
+    const years = cpData?.capacityPlans.map((plan: capacityplanInfo) => plan.year);
+    return Array.from(new Set(years)).sort(); // Sort if needed
+  }, [cpData]);
+  console.log(uniqueYears);
+//     const yearOptions = uniqueYears.map((year: number) => ({
+//     label: year.toString(),
+//     value: year
+//   }));
 
+const yearOptions: {label: string, value: number}[] = uniqueYears.map((year) => ({
+    label: year.toString(),
+    value: year,
+  }));
   return (
     <div>
       {modalProps?.isOpen && (
         <Modal
           isOpen={modalProps.isOpen}
           title={modalProps.title}
-          content={
-            <CapacityPlanForm
-              setCapacityPlanData={setCapacityPlanData}
-              formRef={formRef}
-            />
-          }
+          content={modalProps.content}
           button1Text={modalProps.button1Text}
           button2Text={modalProps.button2Text}
-          onClose={closeAddCapacityPlanModal}
-          onSubmit={handleAddCP}
+          onClose={modalProps.onClose}
+          onSubmit={modalProps.onSubmit}
+          onRetry={modalProps.onRetry}
           buttonTwoDisabled={modalProps.buttonTwoDisabled}
         />
       )}
@@ -496,7 +539,7 @@ useEffect(() => {
               </Dropdown>
             </div>
           </div>
-          <div className="flex flex-row gap-8 items-center p-3 text-primary">
+          <div className="flex flex-row gap-8 items-center justify-between p-3 text-primary">
             {/**
              * Analytics
              * Card 1
@@ -574,18 +617,13 @@ useEffect(() => {
 
             {/**
              *
-             * Chart 1
+             * Radia Bar Chart
              */}
 
-            <div className="">
-              {/* <div className="mb-5 flex items-center justify-between">
-						<h5 className="text-lg font-semibold dark:text-white">
-							Radial Bar
-						</h5>
-					</div> */}
+            {/* <div className="">
               {cardAnalyticsData &&
-                !isNaN(cardAnalyticsData?.requestedBudget?.percent) &&
-                !isNaN(cardAnalyticsData?.allocatedBudget?.percent) && (
+                isNaN(cardAnalyticsData?.requestedBudget?.percent) &&
+                isNaN(cardAnalyticsData?.allocatedBudget?.percent) && (
                   <div className="mb-5">
                     <ReactApexChart
                       series={radialBarChart().series}
@@ -602,7 +640,7 @@ useEffect(() => {
                     />
                   </div>
                 )}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -640,6 +678,15 @@ useEffect(() => {
             />
           </div>
 
+		  <div className="relative z-10 w-48">
+            <Select
+              placeholder="Select Year"
+              options={yearOptions}
+              value={year}
+              onChange={handleYearChange}
+            />
+          </div>
+
           <div className="flex justify-end gap-4">
             <button
               type="button"
@@ -671,7 +718,7 @@ useEffect(() => {
                 type="button"
                 className="btn btn-danger gap-2"
                 // onClick={() => deleteRow()}
-                onClick={() => openRejectModalHandler()}
+                onClick={() => openRejectModalHandler("",selectedRecords)}
               >
                 <IconX />
                 Reject
@@ -680,7 +727,7 @@ useEffect(() => {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => openApproveModalHandler()}
+                  onClick={() => openApproveModalHandler("",selectedRecords)}
                 >
                   <IconThumbUp className="ltr:mr-2 rtl:ml-2" />
                   Approve
@@ -696,6 +743,10 @@ useEffect(() => {
             records={cpData?.capacityPlans}
             striped
             columns={[
+            //   {
+            //     accessor: "id",
+            //     title: "ID",
+            //   },
               {
                 accessor: "index",
                 title: "No",
@@ -721,6 +772,10 @@ useEffect(() => {
                     currency={record.currency}
                   />
                 ),
+              },
+			  {
+                accessor: "year",
+                title: "Target Year",
               },
               {
                 accessor: "status",
@@ -782,10 +837,7 @@ useEffect(() => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
-                            onClick={() => {
-                              openApproveModalHandler();
-                              setCPRowData(id);
-                            }}
+                            onClick={() => openApproveModalHandler(id)}
                           >
                             <IconThumbUp className="mr-2 text-green-500" />{" "}
                             <span>Approve</span>
@@ -795,10 +847,7 @@ useEffect(() => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
-                            onClick={() => {
-                              openRejectModalHandler();
-                              setCPRowData(id);
-                            }}
+                            onClick={() => openRejectModalHandler(id)}
                           >
                             <IconX className="mr-2 text-red-500" />{" "}
                             <span>Reject</span>
