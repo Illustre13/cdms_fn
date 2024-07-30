@@ -101,11 +101,10 @@ const statusColorMap: Record<allStatus, string> = {
   };
 
 export const CurrencyFormatter: React.FC<CurrencyFormatterProps> = ({ amount = 0, currency = "RWF" }) => {
-	// console.log(amount, currency,)
 	const formattedAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(Number(amount));
-  
+	
 	return (
-	  <span>{formattedAmount}</span>
+		<span>{formattedAmount}</span>
 	);
   };
 

@@ -143,7 +143,6 @@ const CapacityPlanTable = () => {
   }, [dispatch]);
 
   useEffect(() => {
-	console.log(orgFilters)
     dispatch(fetchAllCapacityPlan(orgFilters));
 	dispatch(fetchCPCardsAnalytics(AnalyticsFilter))
   }, [searchKey, status, industry, year, cardAnalyticsYear, dispatch]);
@@ -178,7 +177,6 @@ const CapacityPlanTable = () => {
   };
   let radialBarChart: ReactChartProps | any;
   if (cardAnalyticsData) {
-    // console.log(cardAnalyticsData);
     radialBarChart = (
       reqAmountPercent: number,
       allAmountPercent: number,
@@ -447,7 +445,7 @@ const [activeToast, setActiveToast] = useState<string | null>(null);
     });
   };
 
-  const uniqueYears = useMemo(() => {
+  const uniqueYears: {label: string, value: number}[] = useMemo(() => {
     const years = cpData?.capacityPlans.map((plan: capacityplanInfo) => plan.year);
     return Array.from(new Set(years)).sort(); // Sort if needed
   }, [cpData]);

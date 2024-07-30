@@ -117,3 +117,27 @@ export const updateCapacityPlan = createAsyncThunk<ResponseData, {data: capacity
     }
   }
 );
+
+export const fetchCPBudgetAnalytics = createAsyncThunk(
+  "capacityplan/budget/analytics",
+  async (payload: any) => {
+    try {
+      const token = "Bearer " + localStorage.getItem("token");
+
+      const params = new URLSearchParams();
+      if (payload?.cardAnalyticsYear)
+        params.append("year", payload.cardAnalyticsYear);
+      const response = await URL.get(
+        `/cp/budget/analytics?${params.toString()}`,
+        {
+          headers: { "Accept-language": "en", Authorization: token },
+        }
+      );
+
+      console.log(response);
+      return response.data;
+    } catch (error: any) {
+      throw error.response.data.message;
+    }
+  }
+);
