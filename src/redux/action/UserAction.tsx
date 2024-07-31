@@ -28,3 +28,17 @@ export const verifyOTP = createAsyncThunk("verify/OTP", async (otp: string) => {
 		throw error.response.data.message;
 	}
 });
+
+export const userInfoAnalytics = createAsyncThunk("user/dashboard/info", async () => {
+	try {
+		const token = "Bearer " + localStorage.getItem("token");
+		const response = await URL.get("/user/dashboard/analytics", {
+			headers: { "Accept-language": "en", Authorization: token },
+		});
+		// console.log(response);
+		// debugger;
+		return response.data;
+	} catch (error: any) {
+		throw error.response.data.message;
+	}
+});

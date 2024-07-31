@@ -11,12 +11,13 @@ import IconArrowLeft from "../components/Icon/IconArrowLeft";
 import IconUserPlus from "../components/Icon/IconUserPlus";
 import IconUsers from "../components/Icon/IconUsers";
 import IconMinusCircle from "../components/Icon/IconMinusCircle";
-import { fetchUserInfo } from "../redux/action/UserAction";
+import { fetchUserInfo, userInfoAnalytics } from "../redux/action/UserAction";
 import { fetchAllCapacityPlan } from "../redux/action/capacityPlanAction";
 import { useAppDispatch } from "../redux/hooks";
 import { convertTimestamp } from "../util/helper";
 import Modal from "./Components/Modals";
 import { fetchCPBudgetAnalytics } from "../redux/action/capacityPlanAction";
+import { StateOptions } from "../util/enum";
 
 const Index = () => {
   const dispatch = useAppDispatch();
@@ -385,16 +386,29 @@ const Index = () => {
   };
 
   const [budgetAnalyticsData, setBudgetAnalyticsData] = useState<any>(null);
+const userInfoAnalyticsState = useSelector((state: IRootState) => state.analytics.fetchUserAnalyticState);
+const [userInfoAnalyticsData, setUserInfoAnalyticsData] = useState<any>(null);
+
+useEffect(() => {
+  if(userInfoAnalyticsState?.state === StateOptions.FULFILLED){
+    setUserInfoAnalyticsData(userInfoAnalyticsState?.data?.data);
+  }
+}, [userInfoAnalyticsState])
 
   useEffect(() => {
     dispatch(fetchCPBudgetAnalytics(AnalyticsFilter));
   }, [budgetAnalyticsYear, dispatch]);
+
+  useEffect(() => {
+    dispatch(userInfoAnalytics());
+  }, [dispatch]);
 
   const fetchCPBudgetAnalyticsState = useSelector(
     (state: IRootState) => state.capacityPlan.fetchBudgetAnalytics
   );
 
   console.log(fetchCPBudgetAnalyticsState);
+  console.log("INFO USER -----> ", userInfoAnalyticsState)
 
   useEffect(() => {
     const data = fetchCPBudgetAnalyticsState?.data?.data;
@@ -408,6 +422,47 @@ const Index = () => {
   const handleYearChange = (selectedOption: any) => {
     setYear(selectedOption?.value);
   };
+
+  console.log(userInfoAnalyticsData);
+  
+    // userDashboardChartOptions
+
+    let userDashboardChart: any;
+ if(userInfoAnalyticsData) {
+  userDashboardChart = {
+    series: Object.values(userInfoAnalyticsData?.percentages),
+    options: {
+        chart: {
+            height: 300,
+            type: 'pie',
+            zoom: {
+                enabled: false,
+            },
+            toolbar: {
+                show: false,
+            },
+        },
+        labels: Object.keys(userInfoAnalyticsData?.percentages),
+        colors: ['#4361ee', '#805dca', '#00ab55', '#e7515a', '#e2a03f'],
+        responsive: [
+            {
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200,
+                    },
+                },
+            },
+        ],
+        stroke: {
+            show: false,
+        },
+        legend: {
+            position: 'bottom',
+        },
+    },
+};
+ }
 
   const cPlanStatistics = {
     series: [
@@ -673,14 +728,110 @@ const Index = () => {
 
                 </div> */}
               </div>
+  {/**
+               *
+               * CDMS Users Stats
+               *
+               */}
+              <div className="panel h-full">
+                <div className="flex items-center justify-between dark:text-white-light mb-5">
+                  <h5 className="font-semibold text-lg">CDMS {userInfoAnalyticsData && userInfoAnalyticsData?.type === "users" ? "Users" : "Employee"}</h5>
+                  <div className="dropdown">
+                    <Dropdown
+                      placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
+                      button={
+                        <IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
+                      }
+                    >
+                      <ul>
+                        <li>
+                          <button type="button">
+                            <Link to="/employees">View All Employees</Link>
+                          </button>
+                        </li>
+                      </ul>
+                    </Dropdown>
+                  </div>
+                </div>
+                <div>
+                  <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
+                    {userInfoAnalyticsState.state != StateOptions.FULFILLED && !userInfoAnalyticsData ? (
+                      <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                        <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
+                      </div>
+                    ) : (
+                  
+                      <ReactApexChart series={userDashboardChart.series} options={userDashboardChart.options} className="rounded-lg bg-white dark:bg-black overflow-hidden" type="pie" height={400} />
+                    )}
+                  </div>
+                </div>
+              </div>
+           
+            </div>
 
+            <div className="grid xl:grid-cols-3 gap-6 mb-6">
               {/*
+               *
+               * Capacity Need Assessment
+               *
+               */}
+              <div className="panel h-full xl:col-span-2">
+                <div className="flex items-center justify-between dark:text-white-light mb-5">
+                  <h5 className="font-semibold text-lg">
+                    Capacity Need Assessement
+                  </h5>
+                  <div className="dropdown">
+                    <Dropdown
+                      offset={[0, 1]}
+                      placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
+                      button={
+                        <IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
+                      }
+                    >
+                      <ul>
+                        <li>
+                          <button type="button">2023</button>
+                        </li>
+                        <li>
+                          <button type="button">2022</button>
+                        </li>
+                        <li>
+                          <button type="button">2021</button>
+                        </li>
+                      </ul>
+                    </Dropdown>
+                  </div>
+                </div>
+                <p className="text-lg dark:text-white-light/90">
+                  Total <span className="text-cdms_primary ml-2">12,345</span>
+                </p>
+                <div className="relative">
+                  <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
+                    {loading ? (
+                      <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] ">
+                        <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent  rounded-full w-5 h-5 inline-flex"></span>
+                      </div>
+                    ) : (
+                      <ReactApexChart
+                        series={assessmentChart.series}
+                        options={assessmentChart.options}
+                        type="area"
+                        height={325}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+
+            
+
+                 {/*
                *
                * Trainings
                *
                */}
 
-              <div className="panel h-full">
+<div className="panel h-full">
                 <div className="flex items-center justify-between mb-5">
                   <h5 className="font-semibold text-lg dark:text-white-light">
                     Trainings Statistics
@@ -756,144 +907,6 @@ const Index = () => {
                         height={400}
                       />
                     )}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid xl:grid-cols-3 gap-6 mb-6">
-              {/*
-               *
-               * Capacity Need Assessment
-               *
-               */}
-              <div className="panel h-full xl:col-span-2">
-                <div className="flex items-center justify-between dark:text-white-light mb-5">
-                  <h5 className="font-semibold text-lg">
-                    Capacity Need Assessement
-                  </h5>
-                  <div className="dropdown">
-                    <Dropdown
-                      offset={[0, 1]}
-                      placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-                      button={
-                        <IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
-                      }
-                    >
-                      <ul>
-                        <li>
-                          <button type="button">2023</button>
-                        </li>
-                        <li>
-                          <button type="button">2022</button>
-                        </li>
-                        <li>
-                          <button type="button">2021</button>
-                        </li>
-                      </ul>
-                    </Dropdown>
-                  </div>
-                </div>
-                <p className="text-lg dark:text-white-light/90">
-                  Total <span className="text-cdms_primary ml-2">12,345</span>
-                </p>
-                <div className="relative">
-                  <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
-                    {loading ? (
-                      <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] ">
-                        <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent  rounded-full w-5 h-5 inline-flex"></span>
-                      </div>
-                    ) : (
-                      <ReactApexChart
-                        series={assessmentChart.series}
-                        options={assessmentChart.options}
-                        type="area"
-                        height={325}
-                      />
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/**
-               *
-               * CDMS Users Stats
-               *
-               */}
-              <div className="panel h-full">
-                <div className="flex items-center justify-between dark:text-white-light mb-5">
-                  <h5 className="font-semibold text-lg">CDMS Users</h5>
-                  <div className="dropdown">
-                    <Dropdown
-                      placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-                      button={
-                        <IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
-                      }
-                    >
-                      <ul>
-                        <li>
-                          <button type="button">
-                            <Link to="/employees">View All Employees</Link>
-                          </button>
-                        </li>
-                      </ul>
-                    </Dropdown>
-                  </div>
-                </div>
-                <div className="space-y-9">
-                  <div className="flex items-center">
-                    <div className="w-9 h-9 ltr:mr-3 rtl:ml-3">
-                      <div className="bg-cdms_secondary-light dark:bg-cdms_secondary text-cdms_secondary dark:text-cdms_secondary-light  rounded-full w-9 h-9 grid place-content-center">
-                        <IconUserPlus />
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex font-semibold text-white-dark mb-2">
-                        <h6>Active Users</h6>
-                        <p className="ltr:ml-auto rtl:mr-auto">2467</p>
-                      </div>
-                      <div className="rounded-full h-2 bg-dark-light dark:bg-[#1b2e4b] shadow">
-                        <div className="bg-gradient-to-r from-[#7579ff] to-[#b224ef] w-11/12 h-full rounded-full"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-9 h-9 ltr:mr-3 rtl:ml-3">
-                      <div className="bg-success-light dark:bg-success text-success dark:text-success-light rounded-full w-9 h-9 grid place-content-center">
-                        <IconUsers />
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex font-semibold text-white-dark mb-2">
-                        <h6>Pending Users</h6>
-                        <p className="ltr:ml-auto rtl:mr-auto">567</p>
-                      </div>
-                      <div className="w-full rounded-full h-2 bg-dark-light dark:bg-[#1b2e4b] shadow">
-                        <div
-                          className="bg-gradient-to-r from-[#3cba92] to-[#0ba360] w-full h-full rounded-full"
-                          style={{ width: "17%" }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-9 h-9 ltr:mr-3 rtl:ml-3">
-                      <div className="bg-warning-light dark:bg-warning text-warning dark:text-warning-light rounded-full w-9 h-9 grid place-content-center">
-                        <IconMinusCircle />
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex font-semibold text-white-dark mb-2">
-                        <h6>Suspended Users</h6>
-                        <p className="ltr:ml-auto rtl:mr-auto">45</p>
-                      </div>
-                      <div className="w-full rounded-full h-2 bg-dark-light dark:bg-[#1b2e4b] shadow">
-                        <div
-                          className="bg-gradient-to-r from-[#f09819] to-[#ff5858] w-full h-full rounded-full"
-                          style={{ width: "6%" }}
-                        ></div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
