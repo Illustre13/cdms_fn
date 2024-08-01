@@ -16,6 +16,7 @@ import IconBolt from "../../components/Icon/IconBolt";
 import { ApproveModal } from "./ApproveModal";
 import IconX from "../../components/Icon/IconX";
 import { useAppDispatch } from "../../redux/hooks";
+import { downloadExcel } from 'react-export-table-to-excel';
 import {
   addCapacityPlan,
   fetchAllCapacityPlan,
@@ -36,6 +37,7 @@ import { CPBulkImport } from "../../components/CapacityPlan/bulk_import";
 import { FormikProps } from "formik";
 import { CapacityPlanForm } from "../Forms/CapacityPlanForm";
 import { toast, ToastContainer } from "react-toastify";
+import IconFile from "../../components/Icon/IconFile";
 
 interface CPCardAnalyticsResultProps {
   amount: number;
@@ -130,7 +132,7 @@ const CapacityPlanTable = () => {
     searchKey,
     status: status,
     industry: industry,
-	year: year
+    year: year,
   };
 
   const AnalyticsFilter: any = {
@@ -144,7 +146,7 @@ const CapacityPlanTable = () => {
 
   useEffect(() => {
     dispatch(fetchAllCapacityPlan(orgFilters));
-	dispatch(fetchCPCardsAnalytics(AnalyticsFilter))
+    dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
   }, [searchKey, status, industry, year, cardAnalyticsYear, dispatch]);
 
   useEffect(() => {
@@ -173,7 +175,7 @@ const CapacityPlanTable = () => {
   };
   const handleYearChange = (selectedOption: any) => {
     setYear(selectedOption?.value);
-	setCardAnalyticsYear(selectedOption?.value);
+    setCardAnalyticsYear(selectedOption?.value);
   };
   let radialBarChart: ReactChartProps | any;
   if (cardAnalyticsData) {
@@ -280,7 +282,7 @@ const CapacityPlanTable = () => {
   };
 
   const handleApproveCP = (cpId: string) => {
-	console.log("Approves, Id --> ", cpId)
+    console.log("Approves, Id --> ", cpId);
     dispatch(
       updateCapacityPlan({
         data: {
@@ -289,7 +291,7 @@ const CapacityPlanTable = () => {
         id: cpId,
       })
     );
-	handleModalClose();
+    handleModalClose();
   };
 
   const handleRejectCP = (cpId: string) => {
@@ -302,89 +304,96 @@ const CapacityPlanTable = () => {
         id: cpId,
       })
     );
-	handleModalClose();
+    handleModalClose();
   };
 
   const handleDelete = (id: ItemID) => {
     console.log("ID --->", id);
     dispatch(deleteCapacityPlan(id));
-	handleModalClose();
+    handleModalClose();
   };
 
-const [activeToast, setActiveToast] = useState<string | null>(null);
+  const [activeToast, setActiveToast] = useState<string | null>(null);
 
-    const showToast = (state: string, message: string, successMsg: string, errorMsg: string) => {
-      if (state === StateOptions.FULFILLED) {
-        if (activeToast !== successMsg) {
-          toast.success(message || successMsg, {
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: 'colored',
-          });
-          setActiveToast(successMsg);
-        }
-      } else if (state === StateOptions.REJECTED) {
-        if (activeToast !== errorMsg) {
-          toast.error(message || errorMsg, {
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: 'colored',
-          });
-          setActiveToast(errorMsg);
-        }
+  const showToast = (
+    state: string,
+    message: string,
+    successMsg: string,
+    errorMsg: string
+  ) => {
+    if (state === StateOptions.FULFILLED) {
+      if (activeToast !== successMsg) {
+        toast.success(message || successMsg, {
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+        setActiveToast(successMsg);
       }
-	  dispatch(fetchAllCapacityPlan(orgFilters));
-	  dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
-    };
+    } else if (state === StateOptions.REJECTED) {
+      if (activeToast !== errorMsg) {
+        toast.error(message || errorMsg, {
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+        setActiveToast(errorMsg);
+      }
+    }
+    dispatch(fetchAllCapacityPlan(orgFilters));
+    dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
+  };
 
-	const clearToast = () => {
-		setActiveToast(null);
-	  };
+  const clearToast = () => {
+    setActiveToast(null);
+  };
 
   useEffect(() => {
     // Handle Add Capacity Plan
-	if (addCapacityPlanState.state !== StateOptions.IDLE) {
-		showToast(
-		  addCapacityPlanState.state!,
-		  addCapacityPlanState.message!,
-		  "Added Capacity plan successfully!",
-		  addCapacityPlanState.data?.message || "Failed to add Capacity plan."
-		);
-		clearToast();
-	  }
+    if (addCapacityPlanState.state !== StateOptions.IDLE) {
+      showToast(
+        addCapacityPlanState.state!,
+        addCapacityPlanState.message!,
+        "Added Capacity plan successfully!",
+        addCapacityPlanState.data?.message || "Failed to add Capacity plan."
+      );
+      clearToast();
+    }
 
     // Handle Delete Capacity Plan
-	if (deleteCapacityPlanState.state !== StateOptions.IDLE) {
-		showToast(
-		  deleteCapacityPlanState.state!,
-		  deleteCapacityPlanState.message!,
-		  "Deleted Capacity plan successfully!",
-		  deleteCapacityPlanState.data?.message || "Failed to delete Capacity plan."
-		);
-		clearToast();
-	  }
+    if (deleteCapacityPlanState.state !== StateOptions.IDLE) {
+      showToast(
+        deleteCapacityPlanState.state!,
+        deleteCapacityPlanState.message!,
+        "Deleted Capacity plan successfully!",
+        deleteCapacityPlanState.data?.message ||
+          "Failed to delete Capacity plan."
+      );
+      clearToast();
+    }
 
     // Handle Update Capacity Plan
-	if (updateCapacityPlanState.state !== StateOptions.IDLE) {
-		showToast(
-		  updateCapacityPlanState.state!,
-		  updateCapacityPlanState.message!,
-		  "Updated Capacity plan successfully!",
-		  updateCapacityPlanState.data?.message || "Failed to update Capacity plan."
-		);
-		clearToast();
-	  }
+    if (updateCapacityPlanState.state !== StateOptions.IDLE) {
+      showToast(
+        updateCapacityPlanState.state!,
+        updateCapacityPlanState.message!,
+        "Updated Capacity plan successfully!",
+        updateCapacityPlanState.data?.message ||
+          "Failed to update Capacity plan."
+      );
+      clearToast();
+    }
   }, [
     addCapacityPlanState,
     deleteCapacityPlanState,
     updateCapacityPlanState,
-	activeToast
+    activeToast,
   ]);
 
   const openApproveModalHandler = (cpId?: string, selectedRecords?: any) => {
@@ -397,33 +406,28 @@ const [activeToast, setActiveToast] = useState<string | null>(null);
       button1Text: "Cancel",
       button2Text: "Approve",
       buttonTwoDisabled: false,
-	  content: (
-		<p>Are you sure you want to approve this capacity plan?</p>
-	  )
+      content: <p>Are you sure you want to approve this capacity plan?</p>,
     });
   };
 
   const openRejectModalHandler = (cpId?: string, selectedRecords?: any) => {
-	if(selectedRecords) {
-		console.log("HEHEHEHEHEHEHEH")
-		console.log(selectedRecords);
-	}
-	if(cpId){
-		setModalProps({
-			type: "reject",
-			isOpen: true,
-			onClose: modalProps.onClose,
-			onSubmit: () => handleRejectCP(cpId!),
-			title: "Reject",
-			button1Text: "Cancel",
-			button2Text: "Reject",
-			buttonTwoDisabled: false,
-			content: (
-			  <p>Are you sure you want to reject this capacity plan?</p>
-			)
-		  });
-	}
- 
+    if (selectedRecords) {
+      console.log("HEHEHEHEHEHEHEH");
+      console.log(selectedRecords);
+    }
+    if (cpId) {
+      setModalProps({
+        type: "reject",
+        isOpen: true,
+        onClose: modalProps.onClose,
+        onSubmit: () => handleRejectCP(cpId!),
+        title: "Reject",
+        button1Text: "Cancel",
+        button2Text: "Reject",
+        buttonTwoDisabled: false,
+        content: <p>Are you sure you want to reject this capacity plan?</p>,
+      });
+    }
   };
 
   const openAddCapacityPlanModal = () => {
@@ -445,20 +449,75 @@ const [activeToast, setActiveToast] = useState<string | null>(null);
     });
   };
 
-  const uniqueYears: {label: string, value: number}[] = useMemo(() => {
-    const years = cpData?.capacityPlans.map((plan: capacityplanInfo) => plan.year);
+  const uniqueYears: { label: string; value: number }[] = useMemo(() => {
+    const years = cpData?.capacityPlans.map(
+      (plan: capacityplanInfo) => plan.year
+    );
     return Array.from(new Set(years)).sort(); // Sort if needed
   }, [cpData]);
   console.log(uniqueYears);
-//     const yearOptions = uniqueYears.map((year: number) => ({
-//     label: year.toString(),
-//     value: year
-//   }));
+  //     const yearOptions = uniqueYears.map((year: number) => ({
+  //     label: year.toString(),
+  //     value: year
+  //   }));
 
-const yearOptions: {label: string, value: number}[] = uniqueYears.map((year) => ({
-    label: year.toString(),
-    value: year,
-  }));
+  const yearOptions: { label: string; value: number }[] = uniqueYears.map(
+    (year) => ({
+      label: year.toString(),
+      value: year,
+    })
+  );
+
+  const header = [
+    // "No",
+    "Title",
+    "Program",
+    "Sub Program",
+    "Budget",
+    "Target Year",
+    "Status",
+    "Type",
+    "Action",
+    "Responsible Entity",
+    "Stakeholders",
+    "Source of Fund",
+  ];
+
+  const filterKeys = [
+    "title",
+    "program",
+    "subProgram",
+    "budget",
+    "year",
+    "status",
+    "type",
+    "action",
+    "responsibleEntity",
+    "stakeholders",
+    "fundSource"
+  ];
+  const filteredCapacityPlans = cpData?.capacityPlans?.map((plan: any) => {
+    const filteredPlan = {};
+    filterKeys.forEach(key => {
+      if (key in plan) {
+        filteredPlan[key] = plan[key];
+      }
+    });
+    return filteredPlan;
+  });
+
+
+  function handleDownloadExcel() {
+    downloadExcel({
+        fileName: 'capacity_plan',
+        sheet: 'cp',
+        tablePayload: {
+            header,
+            body: filteredCapacityPlans,
+        },
+    });
+}
+
   return (
     <div>
       {modalProps?.isOpen && (
@@ -676,7 +735,7 @@ const yearOptions: {label: string, value: number}[] = uniqueYears.map((year) => 
             />
           </div>
 
-		  <div className="relative z-10 w-48">
+          <div className="relative z-10 w-48">
             <Select
               placeholder="Select Year"
               options={yearOptions}
@@ -692,7 +751,7 @@ const yearOptions: {label: string, value: number}[] = uniqueYears.map((year) => 
               onClick={openAddCapacityPlanModal}
             >
               <IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
-              Add New Capacity Plan
+              Add Capacity Plan
             </button>
           </div>
 
@@ -707,6 +766,17 @@ const yearOptions: {label: string, value: number}[] = uniqueYears.map((year) => 
             </button>
           </div>
 
+          <div>
+            <button
+              type="button"
+              className="btn btn-primary btn-sm m-1"
+              onClick={handleDownloadExcel}
+            >
+              <IconFile className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
+              EXCEL
+            </button>
+          </div>
+
           {isRowSelected && (
             <div className="flex gap-4">
               {/**
@@ -716,7 +786,7 @@ const yearOptions: {label: string, value: number}[] = uniqueYears.map((year) => 
                 type="button"
                 className="btn btn-danger gap-2"
                 // onClick={() => deleteRow()}
-                onClick={() => openRejectModalHandler("",selectedRecords)}
+                onClick={() => openRejectModalHandler("", selectedRecords)}
               >
                 <IconX />
                 Reject
@@ -725,7 +795,7 @@ const yearOptions: {label: string, value: number}[] = uniqueYears.map((year) => 
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => openApproveModalHandler("",selectedRecords)}
+                  onClick={() => openApproveModalHandler("", selectedRecords)}
                 >
                   <IconThumbUp className="ltr:mr-2 rtl:ml-2" />
                   Approve
@@ -741,10 +811,10 @@ const yearOptions: {label: string, value: number}[] = uniqueYears.map((year) => 
             records={cpData?.capacityPlans}
             striped
             columns={[
-            //   {
-            //     accessor: "id",
-            //     title: "ID",
-            //   },
+              //   {
+              //     accessor: "id",
+              //     title: "ID",
+              //   },
               {
                 accessor: "index",
                 title: "No",
@@ -771,7 +841,7 @@ const yearOptions: {label: string, value: number}[] = uniqueYears.map((year) => 
                   />
                 ),
               },
-			  {
+              {
                 accessor: "year",
                 title: "Target Year",
               },

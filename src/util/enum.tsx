@@ -20,6 +20,14 @@ export enum CapacityPlanStatus {
 	REJECTED = "REJECTED",
 }
 
+
+export enum TrainingStatus {
+	PENDING = "PENDING",
+	APPROVED = "APPROVED",
+	REJECTED = "REJECTED",
+	FINISHED = "FINISHED",
+}
+
 export enum CapacityPlanType {
 	ANNUAL_PLAN = "ANNUAL_PLAN",
 	QUARTELY_PLAN = "QUARTELY_PLAN",

@@ -8,6 +8,7 @@ import userSlice from "../reducer/userSlice";
 import organizationSlice from "../reducer/organizationSlice";
 import capacityPlanSlice from "../reducer/capacityPlanSlice";
 import analyticsSlice from "../reducer/analyticsSlice";
+import trainingSlice from "../reducer/trainingSlice";
 
 const rootReducer = combineReducers({
   themeConfig: themeConfigSlice,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   organization: organizationSlice,
   capacityPlan: capacityPlanSlice,
   analytics: analyticsSlice,
+  training: trainingSlice,
 });
 
 const store = configureStore({

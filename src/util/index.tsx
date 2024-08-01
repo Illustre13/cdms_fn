@@ -1,6 +1,14 @@
 type CapacityPlanLevel = "INDIVIDUAL" | "INSTITUTIONAL" | "ORGANIZATIONAL";
 type CapacityPlanStatus = "DRAFT" | "SENT" | "UNDER_REVIEW" | "APPROVED" | "REJECTED";
 type CapacityPlanType = "ANNUAL_PLAN" | "QUARTELY_PLAN" | "ESSENTIAL_PLAN";
+type TrainingStatus = "PENDING" | "APPROVED" | "REJECTED" | "FINISHED";
+type TrainingMode = "ONLINE" | "PHYSICAL" | "HYBRID";
+type EmployeeTrainingStatus =
+| "PENDING"
+| "APPROVED"
+| "REJECTED"
+| "FINISHED";
+
 interface ResponseData {
   data: object;
   error: boolean;
@@ -95,6 +103,14 @@ interface capacityPlanFilters {
   year?: number
   }
 
+
+  interface trainingFilters {
+    searchKey?: string;
+    status?: any;
+    industry?: any;
+    year?: number
+    }
+
 interface capacityplanInfo {
 	title: string;
 	description: string;
@@ -118,6 +134,24 @@ interface capacityplanInfo {
 	// training?: ITraining[];
 	createdAt?: string;
 	updatedAt?: string;
+}
+
+interface trainingInfo {
+  title: string;
+  status: TrainingStatus;
+  mode?: TrainingMode;
+  startDate?: Date;
+  endDate?: Date;
+  budgetAmount: number;
+  capacityPlan?: capacityplanInfo;
+  employeeTraining?: IEmployeeTraining[]
+}
+
+
+interface IEmployeeTraining {
+  status: EmployeeTrainingStatus;
+  training?: trainingInfo;
+  // employee?: Employee;
 }
 
 interface ReactChartProps {

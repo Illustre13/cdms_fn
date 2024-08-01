@@ -682,7 +682,7 @@ useEffect(() => {
                       (cpData?.capacityPlans || []).map(
                         (request: capacityplanInfo) => {
                           return (
-                            <div className="flex items-center py-1.5 relative group">
+                            <div className="flex items-center py-1.5 relative group hover:bg-cdms_primary/5 rounded-lg">
                               <div
                                 className={`${
                                   getStatusBadgeColor(request.status).bg
@@ -693,7 +693,7 @@ useEffect(() => {
                                 className={`bg-${request.status.toLowerCase()} w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5`}
                               ></div>
 
-                              <div className="flex flex-col hover:bg-cdms_primary/5 rounded-lg p-2 ">
+                              <div className="flex flex-col p-2 ">
                                 <div className="flex flex-row">
                                   {request.title}
                                 </div>
@@ -761,7 +761,7 @@ useEffect(() => {
                       </div>
                     ) : (
                   
-                      <ReactApexChart series={userDashboardChart.series} options={userDashboardChart.options} className="rounded-lg bg-white dark:bg-black overflow-hidden" type="pie" height={400} />
+                      <ReactApexChart series={userDashboardChart?.series} options={userDashboardChart?.options} className="rounded-lg bg-white dark:bg-black overflow-hidden" type="pie" height={400} />
                     )}
                   </div>
                 </div>
