@@ -265,19 +265,21 @@ const CapacityPlanTable = () => {
   const handleAddCP = () => {
     if (formRef.current && !isSubmitting) {
       setIsSubmitting(true);
-      formRef.current.submitForm().then(() => {
-        const formValues = formRef?.current.values;
-        dispatch(
-          addCapacityPlan({
-            ...formValues,
-            participants: {
-              male: formValues?.maleParticipants,
-              female: formValues?.femaleParticipants,
-            },
-          })
-        ).finally(() => setIsSubmitting(false)); // Reset isSubmitting after dispatch
-      });
+
+      console.log("Reached Here on handleAddCP ");
+      console.log("Form Values are: ", formRef?.current.values)
+      const formValues = formRef?.current.values;
+      dispatch(
+        addCapacityPlan({
+          ...formValues,
+          participants: {
+            male: formValues?.maleParticipants,
+            female: formValues?.femaleParticipants,
+          },
+        })
+      );
     }
+    setIsSubmitting(false);
     handleModalClose();
   };
 
@@ -348,6 +350,7 @@ const CapacityPlanTable = () => {
     }
     dispatch(fetchAllCapacityPlan(orgFilters));
     dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
+    setActiveToast(null);
   };
 
   const clearToast = () => {
