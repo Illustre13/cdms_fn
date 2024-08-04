@@ -3,40 +3,48 @@ import { Form } from "react-router-dom";
 import {
   trainingInitialValues,
   trainingValidationSchema,
-} from "../../components/CapacityPlan/TrainingSchema"; 
-import { TrainingStatus } from "../../util/enum";
+} from "../../components/CapacityPlan/TrainingSchema";
+import { TrainingMode, TrainingStatus } from "../../util/enum";
 
 export interface ITrainingFormProps {
   trainingData: trainingInfo;
   isEditing?: boolean;
+  formRef?: any;
+  setTrainingDataInfo?: (data: any) => void;
 }
 
 const statusOptions = [
-  { value: "", label: "Select status" },
   { value: TrainingStatus.APPROVED, label: "Approved" },
   { value: TrainingStatus.FINISHED, label: "Finished" },
   { value: TrainingStatus.PENDING, label: "Pending" },
   { value: TrainingStatus.REJECTED, label: "Rejected" },
 ];
+const modeOptions = [
+  { value: TrainingMode.PHYSICAL, label: "Physical" },
+  { value: TrainingMode.VIRTUAL, label: "Virtual" },
+  { value: TrainingMode.HYBRID, label: "Hybrid" },
+];
 
-const levelOptions = [
-  { value: "", label: "Select level" },
-  { value: "INDIVIDUAL", label: "Individual" },
-  { value: "INSTITUTIONAL", label: "Institutional" },
-  { value: "ORGANIZATIONAL", label: "Organizational" },
+const currencyOptions = [
+  { value: "", label: "Select currency" },
+  { value: "RWF", label: "RWF" },
 ];
 
 export const TrainingForm: React.FC<ITrainingFormProps> = ({
   trainingData,
-  isEditing=false, 
+  isEditing = false,
+  setTrainingDataInfo = () => {},
+  formRef,
 }) => {
-  const handleSave = () => {
-    // console.log("VALUES ---> ", values);
-    // setTrainingData(values);
+  const handleSave = (values: any) => {
+    setTrainingDataInfo(values);
   };
+
+  console.log(trainingData);
 
   return (
     <Formik
+      innerRef={formRef}
       initialValues={trainingInitialValues(trainingData)}
       validationSchema={trainingValidationSchema}
       onSubmit={handleSave}
@@ -62,10 +70,10 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                   type="text"
                   id="title"
                   placeholder="Enter training title"
-                      className={`form-input w-full ${
+                  className={`form-input w-full ${
                     !isEditing ? "bg-gray-200" : ""
                   }`}
-                  disabled={!isEditing} // Disable based on isEditing
+                  disabled={!isEditing}
                 />
                 <ErrorMessage
                   name="title"
@@ -89,15 +97,22 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                 }`}
               >
                 <Field
+                  as="select"
                   name="status"
-                  type="text"
                   id="status"
-                  placeholder="Enter training status"
-                      className={`form-input w-full ${
+                  className={`form-input w-full ${
                     !isEditing ? "bg-gray-200" : ""
                   }`}
-                  disabled={!isEditing} // Disable based on isEditing
-                />
+                  disabled={!isEditing}
+                >
+                  <option value="" label="Select status" />
+                  {statusOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </Field>
+
                 <ErrorMessage
                   name="status"
                   component="div"
@@ -123,10 +138,10 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                   name="startDate"
                   type="date"
                   id="startDate"
-                      className={`form-input w-full ${
+                  className={`form-input w-full ${
                     !isEditing ? "bg-gray-200" : ""
                   }`}
-                  disabled={!isEditing} // Disable based on isEditing
+                  disabled={!isEditing}
                 />
                 <ErrorMessage
                   name="startDate"
@@ -153,10 +168,10 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                   name="endDate"
                   type="date"
                   id="endDate"
-                      className={`form-input w-full ${
+                  className={`form-input w-full ${
                     !isEditing ? "bg-gray-200" : ""
                   }`}
-                  disabled={!isEditing} // Disable based on isEditing
+                  disabled={!isEditing}
                 />
                 <ErrorMessage
                   name="endDate"
@@ -180,15 +195,21 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                 }`}
               >
                 <Field
+                  as="select"
                   name="mode"
-                  type="text"
                   id="mode"
-                  placeholder="Enter Mode"
-                      className={`form-input w-full ${
+                  className={`form-input w-full ${
                     !isEditing ? "bg-gray-200" : ""
                   }`}
-                  disabled={!isEditing} // Disable based on isEditing
-                />
+                  disabled={!isEditing}
+                >
+                  <option value="" label="Select training mode" />
+                  {modeOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </Field>
                 <ErrorMessage
                   name="mode"
                   component="div"
@@ -213,14 +234,19 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                 >
                   <Field
                     name="currency"
-                    type="text"
+                    as="select"
                     id="currency"
-                    placeholder="Enter currency amount"
-                        className={`form-input w-full ${
-                    !isEditing ? "bg-gray-200" : ""
-                  }`}
-                    disabled={!isEditing} // Disable based on isEditing
-                  />
+                    className={`form-input w-full ${
+                      !isEditing ? "bg-gray-200 cursor-not-allowed" : ""
+                    }`}
+                    disabled={!isEditing}
+                  >
+                    {currencyOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </Field>
                   <ErrorMessage
                     name="currency"
                     component="div"
@@ -239,10 +265,10 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                     type="text"
                     id="budgetAmount"
                     placeholder="Enter budget amount"
-                        className={`form-input w-full ${
-                    !isEditing ? "bg-gray-200" : ""
-                  }`}
-                    disabled={!isEditing} // Disable based on isEditing
+                    className={`form-input w-full ${
+                      !isEditing ? "bg-gray-200" : ""
+                    }`}
+                    disabled={!isEditing}
                   />
                   <ErrorMessage
                     name="budgetAmount"
@@ -273,10 +299,10 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                   type="text"
                   id="maleParticipants"
                   placeholder="Enter male participants"
-                      className={`form-input w-full ${
+                  className={`form-input w-full ${
                     !isEditing ? "bg-gray-200" : ""
                   }`}
-                  disabled={!isEditing} // Disable based on isEditing
+                  disabled={!isEditing}
                 />
                 <ErrorMessage
                   name="maleParticipants"

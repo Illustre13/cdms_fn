@@ -1,13 +1,14 @@
 type CapacityPlanLevel = "INDIVIDUAL" | "INSTITUTIONAL" | "ORGANIZATIONAL";
-type CapacityPlanStatus = "DRAFT" | "SENT" | "UNDER_REVIEW" | "APPROVED" | "REJECTED";
+type CapacityPlanStatus =
+  | "DRAFT"
+  | "SENT"
+  | "UNDER_REVIEW"
+  | "APPROVED"
+  | "REJECTED";
 type CapacityPlanType = "ANNUAL_PLAN" | "QUARTELY_PLAN" | "ESSENTIAL_PLAN";
 type TrainingStatus = "PENDING" | "APPROVED" | "REJECTED" | "FINISHED";
 type TrainingMode = "ONLINE" | "PHYSICAL" | "HYBRID";
-type EmployeeTrainingStatus =
-| "PENDING"
-| "APPROVED"
-| "REJECTED"
-| "FINISHED";
+type EmployeeTrainingStatus = "PENDING" | "APPROVED" | "REJECTED" | "FINISHED";
 
 interface ResponseData {
   data: object;
@@ -97,46 +98,46 @@ interface organizationFilters {
   industry?: any;
 }
 interface capacityPlanFilters {
-	searchKey?: string;
-	status?: any;
-	industry?: any;
-  year?: number
-  }
+  searchKey?: string;
+  status?: any;
+  industry?: any;
+  year?: number;
+}
 
-
-  interface trainingFilters {
-    searchKey?: string;
-    status?: any;
-    industry?: any;
-    year?: number
-    }
+interface trainingFilters {
+  searchKey?: string;
+  status?: any;
+  industry?: any;
+  year?: number;
+}
 
 interface capacityplanInfo {
-	title: string;
-	description: string;
-	type: CapacityPlanType;
-	year: number;
-	status: CapacityPlanStatus;
-	attachment?: Buffer;
-	program: string;
-	subProgram: string;
-	output: string;
-	capacityChallenge: string;
-	level: CapacityPlanLevel;
-	action: string;
-	participants: any;
-	responsibleEntity: string;
-	stakeholders: string[];
-	budget: number;
-	currency: string;
-	fundSource: string;
-	organization?: organizationInfo;
-	// training?: ITraining[];
-	createdAt?: string;
-	updatedAt?: string;
+  title: string;
+  description: string;
+  type: CapacityPlanType;
+  year: number;
+  status: CapacityPlanStatus;
+  attachment?: Buffer;
+  program: string;
+  subProgram: string;
+  output: string;
+  capacityChallenge: string;
+  level: CapacityPlanLevel;
+  action: string;
+  participants: any;
+  responsibleEntity: string;
+  stakeholders: string[];
+  budget: number;
+  currency: string;
+  fundSource: string;
+  organization?: organizationInfo;
+  // training?: ITraining[];
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 interface trainingInfo {
+  id?: string;
   title: string;
   status: TrainingStatus;
   mode?: TrainingMode;
@@ -146,9 +147,8 @@ interface trainingInfo {
   budgetAmount: number;
   currency: string;
   capacityPlan?: capacityplanInfo;
-  employeeTraining?: IEmployeeTraining[]
+  employeeTraining?: IEmployeeTraining[];
 }
-
 
 interface IEmployeeTraining {
   status: EmployeeTrainingStatus;
@@ -157,52 +157,53 @@ interface IEmployeeTraining {
 }
 
 interface ReactChartProps {
-  type?: "line"
-  | "area"
-  | "bar"
-  | "histogram"
-  | "pie"
-  | "donut"
-  | "radialBar"
-  | "scatter"
-  | "bubble"
-  | "heatmap"
-  | "treemap"
-  | "boxPlot"
-  | "candlestick"
-  | "radar"
-  | "polarArea"
-  | "rangeBar",
-  series: ApexOptions['series'],
-  width?: string | number,
-  height?: string | number,
-  options: ApexOptions,
-  [key: string]: any,
+  type?:
+    | "line"
+    | "area"
+    | "bar"
+    | "histogram"
+    | "pie"
+    | "donut"
+    | "radialBar"
+    | "scatter"
+    | "bubble"
+    | "heatmap"
+    | "treemap"
+    | "boxPlot"
+    | "candlestick"
+    | "radar"
+    | "polarArea"
+    | "rangeBar";
+  series: ApexOptions["series"];
+  width?: string | number;
+  height?: string | number;
+  options: ApexOptions;
+  [key: string]: any;
 }
 
 interface ApexOptions {
-  annotations?: ApexAnnotations
-  chart?: ApexChart
-  colors?: any[]
-  dataLabels?: ApexDataLabels
-  fill?: ApexFill
-  forecastDataPoints?: ApexForecastDataPoints
-  grid?: ApexGrid
-  labels?: string[]
-  legend?: ApexLegend
-  markers?: ApexMarkers
-  noData?: ApexNoData
-  plotOptions?: ApexPlotOptions
-  responsive?: ApexResponsive[]
-  series?: ApexAxisChartSeries | ApexNonAxisChartSeries
-  states?: ApexStates
-  stroke?: ApexStroke
-  subtitle?: ApexTitleSubtitle
-  theme?: ApexTheme
-  title?: ApexTitleSubtitle
-  tooltip?: ApexTooltip
-  xaxis?: ApexXAxis
-  yaxis?: ApexYAxis | ApexYAxis[]
+  annotations?: ApexAnnotations;
+  chart?: ApexChart;
+  colors?: any[];
+  dataLabels?: ApexDataLabels;
+  fill?: ApexFill;
+  forecastDataPoints?: ApexForecastDataPoints;
+  grid?: ApexGrid;
+  labels?: string[];
+  legend?: ApexLegend;
+  markers?: ApexMarkers;
+  noData?: ApexNoData;
+  plotOptions?: ApexPlotOptions;
+  responsive?: ApexResponsive[];
+  series?: ApexAxisChartSeries | ApexNonAxisChartSeries;
+  states?: ApexStates;
+  stroke?: ApexStroke;
+  subtitle?: ApexTitleSubtitle;
+  theme?: ApexTheme;
+  title?: ApexTitleSubtitle;
+  tooltip?: ApexTooltip;
+  xaxis?: ApexXAxis;
+  yaxis?: ApexYAxis | ApexYAxis[];
 }
 
 interface ICPBulkImport {
@@ -214,20 +215,26 @@ interface ICPBulkImport {
 
 interface ICapacityPlanInfo {
   bulkCPData: {
-    info: capacityplanInfo[],
-    title: string,
+    info: capacityplanInfo[];
+    title: string;
   };
 }
 interface ICPBulkImportData {
   bulkCPData: {
-    info: capacityplanInfo[],
-    title: string,
+    info: capacityplanInfo[];
+    title: string;
   };
   file: any;
   isAfterFileChanged: boolean;
 }
 
-type ModalType = '' | 'approve' | 'reject' | 'addCapacityPlan' | 'viewTraining' | 'editTraining'
+type ModalType =
+  | ""
+  | "approve"
+  | "reject"
+  | "addCapacityPlan"
+  | "viewTraining"
+  | "editTraining";
 
 interface IModalProps {
   type?: ModalType;

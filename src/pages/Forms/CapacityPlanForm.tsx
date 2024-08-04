@@ -1,28 +1,15 @@
 import { Formik, Field, ErrorMessage } from "formik";
 import { Form } from "react-router-dom";
-import { useRef } from "react";
 import {
   capacityPlanInitialValues,
   capacityPlanValidation,
 } from "../../components/CapacityPlan/CapacityPlanSchema";
-import { CapacityPlanStatus } from "../../util/enum";
 
 export interface ICapacityPlanFormProps {
   setCapacityPlanData?: (data: any) => void;
   formRef?: any;
 }
 
-// // Status options
-// const statusOptions = [
-//   { value: "", label: "All" },
-//   { value: CapacityPlanStatus.DRAFT, label: "Draft" },
-//   { value: CapacityPlanStatus.SENT, label: "Sent" },
-//   { value: CapacityPlanStatus.APPROVED, label: "Approved" },
-//   { value: CapacityPlanStatus.REJECTED, label: "Rejected" },
-//   { value: CapacityPlanStatus.UNDER_REVIEW, label: "Under Review" },
-// ];
-
-// Define level options
 const levelOptions = [
   { value: "", label: "Select level" },
   { value: "INDIVIDUAL", label: "Individual" },
@@ -35,7 +22,6 @@ export const CapacityPlanForm: React.FC<ICapacityPlanFormProps> = ({
   formRef,
 }) => {
   const handleSave = (values: any) => {
-    console.log("VALUES ---> ", values);
     setCapacityPlanData(values);
   };
 

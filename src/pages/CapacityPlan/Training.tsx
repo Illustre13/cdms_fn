@@ -1,5 +1,5 @@
 import { DataTable } from "mantine-datatable";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
 import { IRootState } from "../../redux/store";
@@ -19,7 +19,7 @@ import {
   updateTraining,
 } from "../../redux/action/trainingAction";
 import {
-  arrayToCommaSeparatedString,
+  cleanNumberString,
   CurrencyFormatter,
   StatusBadge,
 } from "../../util/helper";
@@ -30,6 +30,7 @@ import IconFile from "../../components/Icon/IconFile";
 import { TrainingForm } from "../Forms/TrainingForm";
 import Modal from "../Components/Modals";
 import IconPencil from "../../components/Icon/IconPencil";
+import { FormikProps } from "formik";
 
 const Training = () => {
   const isDark = useSelector(
@@ -114,14 +115,14 @@ const Training = () => {
     setModalProps((prev) => ({ ...prev, isOpen: false }));
   };
 
-  const handleRejectCP = (trainigId: string) => {
-    console.log("Rejects, ID --> ", trainigId);
+  const handleRejectCP = (trainingId: string) => {
+    console.log("Rejects, ID --> ", trainingId);
     dispatch(
       updateTraining({
         data: {
           status: TrainingStatus.REJECTED,
         },
-        id: trainigId,
+        id: trainingId,
       })
     );
     handleModalClose();
@@ -208,14 +209,14 @@ const Training = () => {
   const [openApproveModal, setOpenApproveModal] = useState(false);
 
   const openFinishModalHandler = (
-    trainigId?: string,
+    trainingId?: string,
     selectedRecords?: any
   ) => {
     setModalProps({
       type: "approve",
       isOpen: true,
       onClose: modalProps.onClose,
-      onSubmit: () => handleFinishedTraining(trainigId!),
+      onSubmit: () => handleFinishedTraining(trainingId!),
       title: "Mark as Finished",
       button1Text: "Cancel",
       button2Text: "Approve",
@@ -226,8 +227,37 @@ const Training = () => {
 
   const [trainingModalType, setTrainingModalType] = useState<string>("view");
 
-  const openTrainingModal = (trainigId: ItemID) => {
-    dispatch(fetchTrainingInfo(trainigId!));
+  const openTrainingModal = (trainingId: ItemID) => {
+    dispatch(fetchTrainingInfo(trainingId!));
+  };
+
+  const TrainingFormRef = useRef<FormikProps<any> | null>(null);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleEditTraining = (trainingInfo: trainingInfo) => {
+    if (TrainingFormRef.current && !isSubmitting) {
+      setIsSubmitting(true);
+      const formValues = TrainingFormRef?.current.values;
+      debugger;
+      dispatch(
+        updateTraining({
+          data: {
+            ...formValues,
+            participants: {
+              males: formValues?.maleParticipants,
+              females: formValues?.femaleParticipants,
+            },
+            budgetAmount: parseFloat(
+              cleanNumberString(formValues?.budgetAmount)
+            ),
+          },
+          id: trainingInfo?.id!,
+        })
+      );
+    }
+    setIsSubmitting(false);
+    handleModalClose();
   };
 
   useEffect(() => {
@@ -239,6 +269,7 @@ const Training = () => {
           type: trainingModalType === "view" ? "viewTraining" : "editTraining",
           isOpen: true,
           onClose: modalProps.onClose,
+          onSubmit: () => handleEditTraining(singleTrainingInfo),
           title:
             trainingModalType === "edit"
               ? "Edit Training Info"
@@ -250,6 +281,7 @@ const Training = () => {
             <TrainingForm
               trainingData={singleTrainingInfo}
               isEditing={trainingModalType === "edit"}
+              formRef={TrainingFormRef}
             />
           ),
           hideButton1: trainingModalType === "view" && true,
@@ -258,14 +290,14 @@ const Training = () => {
     }
   }, [fetchTrainingByIdState, trainingModalType]);
 
-  const handleFinishedTraining = (trainigId: string) => {
-    console.log("Training, Id --> ", trainigId);
+  const handleFinishedTraining = (trainingId: string) => {
+    console.log("Training, Id --> ", trainingId);
     dispatch(
       updateTraining({
         data: {
           status: TrainingStatus.FINISHED,
         },
-        id: trainigId,
+        id: trainingId,
       })
     );
     handleModalClose();

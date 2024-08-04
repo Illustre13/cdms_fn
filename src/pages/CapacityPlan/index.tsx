@@ -2,7 +2,6 @@ import { DataTable } from "mantine-datatable";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
-import ReactApexChart from "react-apexcharts";
 import { IRootState } from "../../redux/store";
 import { Link } from "react-router-dom";
 import IconHorizontalDots from "../../components/Icon/IconHorizontalDots";
@@ -12,8 +11,6 @@ import IconEye from "../../components/Icon/IconEye";
 import IconArchive from "../../components/Icon/IconArchive";
 import Dropdown from "../../components/Dropdown";
 import IconThumbUp from "../../components/Icon/IconThumbUp";
-import IconBolt from "../../components/Icon/IconBolt";
-import { ApproveModal } from "./ApproveModal";
 import IconX from "../../components/Icon/IconX";
 import { useAppDispatch } from "../../redux/hooks";
 import { downloadExcel } from "react-export-table-to-excel";
@@ -265,9 +262,6 @@ const CapacityPlanTable = () => {
   const handleAddCP = () => {
     if (formRef.current && !isSubmitting) {
       setIsSubmitting(true);
-
-      console.log("Reached Here on handleAddCP ");
-      console.log("Form Values are: ", formRef?.current.values);
       const formValues = formRef?.current.values;
       dispatch(
         addCapacityPlan({
