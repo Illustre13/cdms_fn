@@ -452,19 +452,19 @@ const CapacityPlanTable = () => {
     });
   };
 
-  const uniqueYears: { label: string; value: number }[] = useMemo(() => {
+  const uniqueYears:  any[] = useMemo(() => {
     const years = cpData?.capacityPlans.map(
       (plan: capacityplanInfo) => plan.year
     );
     return Array.from(new Set(years)).sort(); // Sort if needed
   }, [cpData]);
   console.log(uniqueYears);
-  //     const yearOptions = uniqueYears.map((year: number) => ({
-  //     label: year.toString(),
-  //     value: year
-  //   }));
 
-  const yearOptions: { label: string; value: number }[] = uniqueYears.map(
+  interface IYears {
+    label: string; 
+    value: number
+  }
+  const yearOptions: IYears[] = uniqueYears.map(
     (year) => ({
       label: year.toString(),
       value: year,
@@ -499,15 +499,22 @@ const CapacityPlanTable = () => {
     "stakeholders",
     "fundSource",
   ];
-  const filteredCapacityPlans = cpData?.capacityPlans?.map((plan: any) => {
-    const filteredPlan = {};
-    filterKeys.forEach((key) => {
-      if (key in plan) {
-        filteredPlan[key] = plan[key];
-      }
-    });
-    return filteredPlan;
-  });
+
+  interface CapacityPlan {
+    [key: string]: any;
+  }
+
+  const filteredCapacityPlans: CapacityPlan[] = cpData?.capacityPlans?.map(
+    (plan: CapacityPlan) => {
+      const filteredPlan: CapacityPlan = {};
+      filterKeys.forEach((key) => {
+        if (key in plan) {
+          filteredPlan[key] = plan[key];
+        }
+      });
+      return filteredPlan;
+    }
+  );
 
   function handleDownloadExcel() {
     downloadExcel({

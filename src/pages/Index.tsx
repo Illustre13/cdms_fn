@@ -520,7 +520,7 @@ useEffect(() => {
         opposite: isRtl ? true : false,
         labels: {
           offsetX: isRtl ? -10 : 0,
-          formatter: function (value) {
+          formatter: function (value:any) {
             return `${value.toLocaleString()}`; // Add currency symbol here
           },
         },
@@ -528,7 +528,7 @@ useEffect(() => {
       tooltip: {
         theme: isDark ? "dark" : "light",
         y: {
-          formatter: function (value) {
+          formatter: function (value: any) {
             return `${value.toLocaleString()} RWF`; // Add currency symbol here
           },
         },
@@ -604,7 +604,7 @@ useEffect(() => {
                         }
                       >
                         <ul>
-                          {budgetAnalyticsData?.years.map((year) => (
+                          {budgetAnalyticsData?.years.map((year: number) => (
                             <li key={year}>
                               <button type="button">{year}</button>
                             </li>

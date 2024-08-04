@@ -39,7 +39,7 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
     (acceptedFiles: any) => {
       const file = acceptedFiles[0];
       const reader = new FileReader();
-      reader.onload = (event) => {
+      reader.onload = (event: any) => {
         const dataExcel = new Uint8Array(event.target.result);
         const workbook = read(dataExcel, { type: "array", cellDates: true });
         const JSONDATA = utils.sheet_to_json(
