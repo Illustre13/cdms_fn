@@ -106,10 +106,6 @@ if(isBulkValid && handleBulkImport){
           <IconDownload className="ltr:mr-2 rtl:ml-2" />
           Download Template
         </button>
-
-
-
-
       </div>
 
       <div className="flex-1">

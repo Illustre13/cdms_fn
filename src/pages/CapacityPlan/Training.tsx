@@ -11,13 +11,11 @@ import IconEye from "../../components/Icon/IconEye";
 import IconArchive from "../../components/Icon/IconArchive";
 import Dropdown from "../../components/Dropdown";
 import IconThumbUp from "../../components/Icon/IconThumbUp";
-import IconBolt from "../../components/Icon/IconBolt";
-import { ApproveModal } from "./ApproveModal";
-import IconX from "../../components/Icon/IconX";
 import { useAppDispatch } from "../../redux/hooks";
 import {
   deleteTraining,
   fetchAllTraining,
+  fetchTrainingInfo,
   updateTraining,
 } from "../../redux/action/trainingAction";
 import {
@@ -29,6 +27,9 @@ import { StateOptions, TrainingStatus } from "../../util/enum";
 import { toast, ToastContainer } from "react-toastify";
 import { downloadExcel } from "react-export-table-to-excel";
 import IconFile from "../../components/Icon/IconFile";
+import { TrainingForm } from "../Forms/TrainingForm";
+import Modal from "../Components/Modals";
+import IconPencil from "../../components/Icon/IconPencil";
 
 const Training = () => {
   const isDark = useSelector(
@@ -40,8 +41,10 @@ const Training = () => {
     dispatch(setPageTitle("Checkbox Table"));
   });
 
+  const fetchTrainingByIdState = useSelector(
+    (state: IRootState) => state.training.fetchOneByIdState
+  );
   const [selectedRecords, setSelectedRecords] = useState<any>([]);
-
   const [searchKey, setSearchKey] = useState("");
   const [status, setStatus] = useState<any>();
   const [industry, setIndustry] = useState<any>();
@@ -172,25 +175,20 @@ const Training = () => {
     (state: IRootState) => state.training.deleteState
   );
 
-  
   const updateTrainingState = useSelector(
     (state: IRootState) => state.training.updateState
   );
 
   const [activeToast, setActiveToast] = useState<string | null>(null);
 
-
-
   useEffect(() => {
-
     // Handle training
     if (deleteTrainingState.state !== StateOptions.IDLE) {
       showToast(
         deleteTrainingState.state!,
         deleteTrainingState.message!,
         "Deleted Training successfully!",
-        deleteTrainingState.data?.message ||
-          "Failed to delete Training."
+        deleteTrainingState.data?.message || "Failed to delete Training."
       );
       clearToast();
     }
@@ -201,20 +199,18 @@ const Training = () => {
         updateTrainingState.state!,
         updateTrainingState.message!,
         "Updated Training successfully!",
-        updateTrainingState.data?.message ||
-          "Failed to update Training."
+        updateTrainingState.data?.message || "Failed to update Training."
       );
       clearToast();
     }
-  }, [
-    deleteTrainingState,
-    updateTrainingState,
-    activeToast,
-  ]);
+  }, [deleteTrainingState, updateTrainingState, activeToast]);
 
   const [openApproveModal, setOpenApproveModal] = useState(false);
 
-  const openFinishModalHandler = (trainigId?: string, selectedRecords?: any) => {
+  const openFinishModalHandler = (
+    trainigId?: string,
+    selectedRecords?: any
+  ) => {
     setModalProps({
       type: "approve",
       isOpen: true,
@@ -227,6 +223,40 @@ const Training = () => {
       content: <p>Are you sure you want to mark this training as finished?</p>,
     });
   };
+
+  const [trainingModalType, setTrainingModalType] = useState<string>("view");
+
+  const openTrainingModal = (trainigId: ItemID) => {
+    dispatch(fetchTrainingInfo(trainigId!));
+  };
+
+  useEffect(() => {
+    if (fetchTrainingByIdState.state === StateOptions.FULFILLED) {
+      const singleTrainingInfo: trainingInfo =
+        fetchTrainingByIdState?.data?.data?.training;
+      if (singleTrainingInfo) {
+        setModalProps({
+          type: trainingModalType === "view" ? "viewTraining" : "editTraining",
+          isOpen: true,
+          onClose: modalProps.onClose,
+          title:
+            trainingModalType === "edit"
+              ? "Edit Training Info"
+              : "View Training Info",
+          button1Text: "Cancel",
+          button2Text: trainingModalType === "edit" ? "Save" : "Close",
+          buttonTwoDisabled: false,
+          content: (
+            <TrainingForm
+              trainingData={singleTrainingInfo}
+              isEditing={trainingModalType === "edit"}
+            />
+          ),
+          hideButton1: trainingModalType === "view" && true,
+        });
+      }
+    }
+  }, [fetchTrainingByIdState, trainingModalType]);
 
   const handleFinishedTraining = (trainigId: string) => {
     console.log("Training, Id --> ", trainigId);
@@ -241,25 +271,7 @@ const Training = () => {
     handleModalClose();
   };
 
-  const openRejectModalHandler = (trainigId?: string, selectedRecords?: any) => {
-    if (selectedRecords) {
-      console.log("HEHEHEHEHEHEHEH");
-      console.log(selectedRecords);
-    }
-    if (trainigId) {
-      setModalProps({
-        type: "reject",
-        isOpen: true,
-        onClose: modalProps.onClose,
-        onSubmit: () => handleRejectCP(trainigId!),
-        title: "Reject",
-        button1Text: "Cancel",
-        button2Text: "Reject",
-        buttonTwoDisabled: false,
-        content: <p>Are you sure you want to reject this training?</p>,
-      });
-    }
-  };
+  const openRejectModalHandler = () => {};
 
   const approveModalCloseHandler = () => {
     setOpenApproveModal(false);
@@ -273,7 +285,6 @@ const Training = () => {
   );
 
   const trainingsData = fetchTrainingState?.data?.data;
-  console.log("CP DATA --->>>>>", trainingsData);
   const orgFilters: trainingFilters = {
     searchKey,
     status: status,
@@ -311,15 +322,21 @@ const Training = () => {
     "budgetAmount",
   ];
 
-  const filteredTrainings = trainingsData?.trainings?.map((plan: any) => {
-    const filteredPlan = {};
-    filterKeys.forEach((key) => {
-      if (key in plan) {
-        filteredPlan[key] = plan[key];
-      }
-    });
-    return filteredPlan;
-  });
+  interface TrainingPlan {
+    [key: string]: any;
+  }
+
+  const filteredTrainings: TrainingPlan[] = trainingsData?.trainings?.map(
+    (plan: TrainingPlan) => {
+      const filteredPlan: TrainingPlan = {}; // Create an empty object with TrainingPlan type
+      filterKeys.forEach((key) => {
+        if (key in plan) {
+          filteredPlan[key] = plan[key];
+        }
+      });
+      return filteredPlan;
+    }
+  );
 
   function handleDownloadExcel() {
     downloadExcel({
@@ -334,10 +351,18 @@ const Training = () => {
 
   return (
     <div>
-      {openApproveModal && (
-        <ApproveModal
-          openApprovalModal={openApproveModal}
-          approveModalCloseHandler={approveModalCloseHandler}
+      {modalProps?.isOpen && (
+        <Modal
+          isOpen={modalProps.isOpen}
+          title={modalProps.title}
+          content={modalProps.content}
+          button1Text={modalProps.button1Text}
+          button2Text={modalProps.button2Text}
+          onClose={modalProps.onClose}
+          onSubmit={modalProps.onSubmit}
+          onRetry={modalProps.onRetry}
+          buttonTwoDisabled={modalProps.buttonTwoDisabled}
+          size="max-w-4xl"
         />
       )}
 
@@ -391,7 +416,7 @@ const Training = () => {
 
           {/* Searchable Select*/}
           <div className="flex items-center justify-between"></div>
-          <div className="relative z-30 w-48">
+          <div className="relative z-10 w-48">
             <Select
               placeholder="Select status"
               options={statusOptions}
@@ -462,18 +487,20 @@ const Training = () => {
                     amount={record.budgetAmount}
                     currency="RWF"
                   />
-                ), // Adjust currency as necessary
+                ),
               },
-              // {
-              //   accessor: "capacityPlan",
-              //   title: "Capacity Plan ID",
-              //   render: (record) => record.capacityPlan ? record.capacityPlan.id : 'N/A',
-              // },
-              // {
-              //   accessor: "employeeTraining",
-              //   title: "Employee Trainings",
-              //   render: (record) => record.employeeTraining.length || '0',
-              // },
+              {
+                accessor: "participants",
+                sortable: true,
+                title: "Male Participants",
+                render: (record) => record.participants.males,
+              },
+              {
+                accessor: "participants",
+                sortable: true,
+                title: "Female Participants",
+                render: (record) => record.participants.females,
+              },
               {
                 accessor: "actions",
                 title: "Actions",
@@ -491,8 +518,24 @@ const Training = () => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
+                            onClick={() => {
+                              openTrainingModal(id);
+                              setTrainingModalType("view");
+                            }}
                           >
                             <IconEye className="mr-2" /> <span>View</span>
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="flex items-center space-x-2"
+                            onClick={() => {
+                              openTrainingModal(id);
+                              setTrainingModalType("edit");
+                            }}
+                          >
+                            <IconPencil className="mr-2" /> <span>Edit</span>
                           </button>
                         </li>
                         <li>

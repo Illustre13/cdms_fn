@@ -6,7 +6,8 @@ import {
   fetchCPCardsAnalytics,
   bulkCreateTraining,
   updateTraining,
-  fetchCPBudgetAnalytics
+  fetchCPBudgetAnalytics,
+  fetchTrainingInfo
 } from "../action/trainingAction";
 import { StateOptions } from "../../util/enum";
 
@@ -18,6 +19,7 @@ const initialState: {
   bulkCreateState: StateResponseData;
   updateState: StateResponseData;
   fetchBudgetAnalytics: StateResponseData;
+  fetchOneByIdState: StateResponseData
 } = {
   fetchState: {
     state: StateOptions.INITIAL,
@@ -75,6 +77,14 @@ const initialState: {
     error: false,
     message: "",
   },
+  fetchOneByIdState: {
+    state: StateOptions.INITIAL,
+    data: null,
+    status: null,
+    loading: false,
+    error: false,
+    message: "",
+  },
 };
 
 const trainingSlice = createSlice({
@@ -119,7 +129,7 @@ const trainingSlice = createSlice({
         state.addState.error = true;
         state.addState.loading = false;
         state.addState.message =
-          action.error.message || "Adding capacity plan failed";
+          action.error.message || "Adding training failed";
         state.addState.state = StateOptions.REJECTED;
       })
       
@@ -127,7 +137,7 @@ const trainingSlice = createSlice({
 
       .addCase(deleteTraining.fulfilled, (state, action) => {
         state.deleteState.data = action.payload;
-        state.deleteState.message = "Capacity plan deleted successfully!";
+        state.deleteState.message = "Training deleted successfully!";
         state.deleteState.loading = false;
         state.deleteState.error = false;
         state.deleteState.state = StateOptions.FULFILLED;
@@ -141,7 +151,7 @@ const trainingSlice = createSlice({
         state.deleteState.error = true;
         state.deleteState.loading = false;
         state.deleteState.message =
-          action.error.message || "Deleting capacity plan failed";
+          action.error.message || "Deleting training failed";
         state.deleteState.state = StateOptions.REJECTED;
       })
 
@@ -165,10 +175,10 @@ const trainingSlice = createSlice({
         state.fetchCardsAnalytics.state = StateOptions.REJECTED;
       })
 
-      // Bulk create capacity plan
+      // Bulk create training
       .addCase(bulkCreateTraining.fulfilled, (state, action) => {
         state.bulkCreateState.data = action.payload;
-        state.bulkCreateState.message = "Created Capacity Plan in Bulks successfully!";
+        state.bulkCreateState.message = "Created Training in Bulks successfully!";
         state.bulkCreateState.loading = false;
         state.bulkCreateState.error = false;
         state.bulkCreateState.state = StateOptions.FULFILLED;
@@ -182,14 +192,14 @@ const trainingSlice = createSlice({
         state.bulkCreateState.error = true;
         state.bulkCreateState.loading = false;
         state.bulkCreateState.message =
-          action.error.message || "Capacity plan bulk create failed";
+          action.error.message || "Training bulk create failed";
         state.bulkCreateState.state = StateOptions.REJECTED;
       })
       
-      // Update capacity plan
+      // Update Training plan
       .addCase(updateTraining.fulfilled, (state, action) => {
         state.updateState.data = action.payload;
-        state.updateState.message = "Capacity Plan updated successfully!";
+        state.updateState.message = "Training updated successfully!";
         state.updateState.loading = false;
         state.updateState.error = false;
         state.updateState.state = StateOptions.FULFILLED;
@@ -204,7 +214,7 @@ const trainingSlice = createSlice({
         state.updateState.error = true;
         state.updateState.loading = false;
         state.updateState.message =
-          action.error.message || "Updating capacity plan failed";
+          action.error.message || "Updating training failed";
         state.updateState.state = StateOptions.REJECTED;
       })
 
@@ -228,6 +238,29 @@ const trainingSlice = createSlice({
         state.fetchBudgetAnalytics.message = action.error.message;
         state.fetchBudgetAnalytics.state = StateOptions.REJECTED;
       })
+
+           // Fetch training by Id
+
+           .addCase(fetchTrainingInfo.fulfilled, (state, action) => {
+            state.fetchOneByIdState.data = action.payload;
+            state.fetchOneByIdState.message = " deleted successfully!";
+            state.fetchOneByIdState.loading = false;
+            state.fetchOneByIdState.error = false;
+            state.fetchOneByIdState.state = StateOptions.FULFILLED;
+          })
+          .addCase(fetchTrainingInfo.pending, (state) => {
+            state.fetchOneByIdState.loading = true;
+            state.fetchOneByIdState.error = false;
+            state.fetchOneByIdState.state = StateOptions.PENDING;
+          })
+          .addCase(fetchTrainingInfo.rejected, (state, action) => {
+            state.fetchOneByIdState.error = true;
+            state.fetchOneByIdState.loading = false;
+            state.fetchOneByIdState.message =
+              action.error.message || "Fetching One training failed";
+            state.fetchOneByIdState.state = StateOptions.REJECTED;
+          })
+
       ;
   },
 });

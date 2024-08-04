@@ -16,7 +16,7 @@ import IconBolt from "../../components/Icon/IconBolt";
 import { ApproveModal } from "./ApproveModal";
 import IconX from "../../components/Icon/IconX";
 import { useAppDispatch } from "../../redux/hooks";
-import { downloadExcel } from 'react-export-table-to-excel';
+import { downloadExcel } from "react-export-table-to-excel";
 import {
   addCapacityPlan,
   fetchAllCapacityPlan,
@@ -267,7 +267,7 @@ const CapacityPlanTable = () => {
       setIsSubmitting(true);
 
       console.log("Reached Here on handleAddCP ");
-      console.log("Form Values are: ", formRef?.current.values)
+      console.log("Form Values are: ", formRef?.current.values);
       const formValues = formRef?.current.values;
       dispatch(
         addCapacityPlan({
@@ -497,11 +497,11 @@ const CapacityPlanTable = () => {
     "action",
     "responsibleEntity",
     "stakeholders",
-    "fundSource"
+    "fundSource",
   ];
   const filteredCapacityPlans = cpData?.capacityPlans?.map((plan: any) => {
     const filteredPlan = {};
-    filterKeys.forEach(key => {
+    filterKeys.forEach((key) => {
       if (key in plan) {
         filteredPlan[key] = plan[key];
       }
@@ -509,17 +509,16 @@ const CapacityPlanTable = () => {
     return filteredPlan;
   });
 
-
   function handleDownloadExcel() {
     downloadExcel({
-        fileName: 'capacity_plan',
-        sheet: 'cp',
-        tablePayload: {
-            header,
-            body: filteredCapacityPlans,
-        },
+      fileName: "capacity_plan",
+      sheet: "cp",
+      tablePayload: {
+        header,
+        body: filteredCapacityPlans,
+      },
     });
-}
+  }
 
   return (
     <div>
@@ -854,16 +853,6 @@ const CapacityPlanTable = () => {
                 sortable: true,
                 render: ({ status }) => <StatusBadge status={status} />,
               },
-              // {
-              // 	accessor: "participants.male",
-              // 	sortable: true,
-              // 	title: "Male Participants",
-              // },
-              // {
-              // 	accessor: "participants.female",
-              // 	sortable: true,
-              // 	title: "Female Participants",
-              // },
               { accessor: "type", sortable: true },
               { accessor: "action", sortable: true },
               {

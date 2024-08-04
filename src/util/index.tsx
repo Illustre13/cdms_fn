@@ -142,7 +142,9 @@ interface trainingInfo {
   mode?: TrainingMode;
   startDate?: Date;
   endDate?: Date;
+  participants?: any;
   budgetAmount: number;
+  currency: string;
   capacityPlan?: capacityplanInfo;
   employeeTraining?: IEmployeeTraining[]
 }
@@ -225,7 +227,7 @@ interface ICPBulkImportData {
   isAfterFileChanged: boolean;
 }
 
-type ModalType = '' | 'approve' | 'reject' | 'addCapacityPlan'
+type ModalType = '' | 'approve' | 'reject' | 'addCapacityPlan' | 'viewTraining' | 'editTraining'
 
 interface IModalProps {
   type?: ModalType;

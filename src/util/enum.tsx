@@ -28,6 +28,12 @@ export enum TrainingStatus {
 	FINISHED = "FINISHED",
 }
 
+export enum TrainingMode {
+	PHYSICAL = "PHYSICAL",
+	VIRTUAL = "VIRTUAL",
+	HYBRID = "HYBRID",
+  };
+
 export enum CapacityPlanType {
 	ANNUAL_PLAN = "ANNUAL_PLAN",
 	QUARTELY_PLAN = "QUARTELY_PLAN",

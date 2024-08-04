@@ -21,7 +21,7 @@ const Modal: React.FC<IModalProps> = ({
 }) => {
   if (!isOpen) return null;
   const dispatch = useAppDispatch();
-
+  
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10 mt-24" onClose={onClose}>

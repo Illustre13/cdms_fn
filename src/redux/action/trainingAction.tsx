@@ -141,3 +141,18 @@ export const fetchCPBudgetAnalytics = createAsyncThunk(
     }
   }
 );
+
+export const fetchTrainingInfo = createAsyncThunk<ResponseData, ItemID>(
+    "training/getOneById",
+    async (id, { rejectWithValue }) => {
+      try {
+        const token = "Bearer " + localStorage.getItem("token");
+        const response = await URL.get(`/training/${id}`, {
+          headers: { "Accept-language": "en", Authorization: token },
+        });
+        return response.data;
+      } catch (error) {
+        return rejectWithValue(error);
+      }
+    }
+  );
