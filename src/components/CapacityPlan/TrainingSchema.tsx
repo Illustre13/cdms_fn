@@ -37,3 +37,16 @@ export const trainingValidationSchema = Yup.object().shape({
   budgetAmount: Yup.string()
     .required("Budget amount is required"),
 });
+
+export const employeeTrainingVS = Yup.object().shape({
+    allParticipants: Yup.array().of(Yup.string()).required("Employee names are required"),
+  });  
+  
+export const employeeTrainingIV = (data: any) => {
+    return {
+        employeeNames: (data || []).map((et: any) => ({
+            value: et?.id,
+            label: et?.employeeNames
+        })) ?? [],
+    };
+  };

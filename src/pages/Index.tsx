@@ -387,13 +387,6 @@ const Index = () => {
 
   const [budgetAnalyticsData, setBudgetAnalyticsData] = useState<any>(null);
 const userInfoAnalyticsState = useSelector((state: IRootState) => state.analytics.fetchUserAnalyticState);
-const [userInfoAnalyticsData, setUserInfoAnalyticsData] = useState<any>(null);
-
-useEffect(() => {
-  if(userInfoAnalyticsState?.state === StateOptions.FULFILLED){
-    setUserInfoAnalyticsData(userInfoAnalyticsState?.data?.data);
-  }
-}, [userInfoAnalyticsState])
 
   useEffect(() => {
     dispatch(fetchCPBudgetAnalytics(AnalyticsFilter));
@@ -423,14 +416,14 @@ useEffect(() => {
     setYear(selectedOption?.value);
   };
 
-  console.log(userInfoAnalyticsData);
+  console.log(userInfoAnalyticsState?.data?.data);
   
     // userDashboardChartOptions
 
     let userDashboardChart: any;
- if(userInfoAnalyticsData) {
+ if(userInfoAnalyticsState?.data?.data) {
   userDashboardChart = {
-    series: Object.values(userInfoAnalyticsData?.percentages),
+    series: Object.values(userInfoAnalyticsState?.data?.data?.percentages),
     options: {
         chart: {
             height: 300,
@@ -442,7 +435,7 @@ useEffect(() => {
                 show: false,
             },
         },
-        labels: Object.keys(userInfoAnalyticsData?.percentages),
+        labels: Object.keys(userInfoAnalyticsState?.data?.data?.percentages),
         colors: ['#4361ee', '#805dca', '#00ab55', '#e7515a', '#e2a03f'],
         responsive: [
             {
@@ -735,7 +728,11 @@ useEffect(() => {
                */}
               <div className="panel h-full">
                 <div className="flex items-center justify-between dark:text-white-light mb-5">
-                  <h5 className="font-semibold text-lg">CDMS {userInfoAnalyticsData && userInfoAnalyticsData?.type === "users" ? "Users" : "Employee"}</h5>
+                  {userInfoAnalyticsState?.data?.data ? 
+                  <h5 className="font-semibold text-lg">CDMS {userInfoAnalyticsState?.data?.data && userInfoAnalyticsState?.data?.data?.type === "users" ? "Users" : "Employee"}</h5>
+                  :
+                  <h5 className="font-semibold text-lg">CDMS Users</h5>
+                  }
                   <div className="dropdown">
                     <Dropdown
                       placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
@@ -755,7 +752,7 @@ useEffect(() => {
                 </div>
                 <div>
                   <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
-                    {userInfoAnalyticsState.state != StateOptions.FULFILLED && !userInfoAnalyticsData ? (
+                    {userInfoAnalyticsState.state != StateOptions.FULFILLED && !userInfoAnalyticsState?.data?.data ? (
                       <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
                         <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
                       </div>

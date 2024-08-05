@@ -31,6 +31,7 @@ import { TrainingForm } from "../Forms/TrainingForm";
 import Modal from "../Components/Modals";
 import IconPencil from "../../components/Icon/IconPencil";
 import { FormikProps } from "formik";
+import { fetchAllEmployeeTraining } from "../../redux/action/employeeTrainingAction";
 
 const Training = () => {
   const isDark = useSelector(
@@ -45,6 +46,11 @@ const Training = () => {
   const fetchTrainingByIdState = useSelector(
     (state: IRootState) => state.training.fetchOneByIdState
   );
+
+  const fetchEmployeeTrainingState = useSelector(
+    (state: IRootState) => state.employeeTraining.fetchEmployeeTrainingState
+  );
+  
   const [selectedRecords, setSelectedRecords] = useState<any>([]);
   const [searchKey, setSearchKey] = useState("");
   const [status, setStatus] = useState<any>();
@@ -229,6 +235,7 @@ const Training = () => {
 
   const openTrainingModal = (trainingId: ItemID) => {
     dispatch(fetchTrainingInfo(trainingId!));
+    dispatch(fetchAllEmployeeTraining(trainingId!))
   };
 
   const TrainingFormRef = useRef<FormikProps<any> | null>(null);
@@ -261,9 +268,14 @@ const Training = () => {
   };
 
   useEffect(() => {
-    if (fetchTrainingByIdState.state === StateOptions.FULFILLED) {
+    if (fetchTrainingByIdState.state === StateOptions.FULFILLED &&
+      fetchEmployeeTrainingState.state === StateOptions.FULFILLED
+    ) {
       const singleTrainingInfo: trainingInfo =
         fetchTrainingByIdState?.data?.data?.training;
+
+      const employeeTraining: any = fetchEmployeeTrainingState?.data?.data;
+
       if (singleTrainingInfo) {
         setModalProps({
           type: trainingModalType === "view" ? "viewTraining" : "editTraining",
@@ -280,15 +292,16 @@ const Training = () => {
           content: (
             <TrainingForm
               trainingData={singleTrainingInfo}
+              employeeData={employeeTraining}
               isEditing={trainingModalType === "edit"}
-              formRef={TrainingFormRef}
+              TrainingFormRef={TrainingFormRef}
             />
           ),
           hideButton1: trainingModalType === "view" && true,
         });
       }
     }
-  }, [fetchTrainingByIdState, trainingModalType]);
+  }, [fetchTrainingByIdState, trainingModalType, fetchEmployeeTrainingState]);
 
   const handleFinishedTraining = (trainingId: string) => {
     console.log("Training, Id --> ", trainingId);
@@ -317,6 +330,8 @@ const Training = () => {
   );
 
   const trainingsData = fetchTrainingState?.data?.data;
+
+  console.log(" trainingsData ---> ", trainingsData)
   const orgFilters: trainingFilters = {
     searchKey,
     status: status,
@@ -360,7 +375,7 @@ const Training = () => {
 
   const filteredTrainings: TrainingPlan[] = trainingsData?.trainings?.map(
     (plan: TrainingPlan) => {
-      const filteredPlan: TrainingPlan = {}; // Create an empty object with TrainingPlan type
+      const filteredPlan: TrainingPlan = {};
       filterKeys.forEach((key) => {
         if (key in plan) {
           filteredPlan[key] = plan[key];
@@ -522,16 +537,14 @@ const Training = () => {
                 ),
               },
               {
-                accessor: "participants",
+                accessor: "maleParticipants",
                 sortable: true,
                 title: "Male Participants",
-                render: (record) => record.participants.males,
               },
               {
-                accessor: "participants",
+                accessor: "femaleParticipants",
                 sortable: true,
-                title: "Female Participants",
-                render: (record) => record.participants.females,
+                title: "Female Participants"
               },
               {
                 accessor: "actions",

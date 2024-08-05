@@ -99,24 +99,24 @@ export const bulkCreateTraining = createAsyncThunk<
   }
 });
 
-export const updateTraining = createAsyncThunk<ResponseData, {data: trainingInfo | any, id: string}>(
-  "training/update",
-  async (updateInfo, { rejectWithValue }) => {
-    try {
-      const token = "Bearer " + localStorage.getItem("token");
-      const { id, data } = updateInfo;
+export const updateTraining = createAsyncThunk<
+  ResponseData,
+  { data: trainingInfo | any; id: string }
+>("training/update", async (updateInfo, { rejectWithValue }) => {
+  try {
+    const token = "Bearer " + localStorage.getItem("token");
+    const { id, data } = updateInfo;
 
-      const response = await URL.patch(`/training/${id}`, data, {
-        headers: { "Accept-language": "en", Authorization: token },
-      });
+    const response = await URL.patch(`/training/${id}`, data, {
+      headers: { "Accept-language": "en", Authorization: token },
+    });
 
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    return rejectWithValue(error);
   }
-);
+});
 
 export const fetchCPBudgetAnalytics = createAsyncThunk(
   "training/budget/analytics",
@@ -143,16 +143,16 @@ export const fetchCPBudgetAnalytics = createAsyncThunk(
 );
 
 export const fetchTrainingInfo = createAsyncThunk<ResponseData, ItemID>(
-    "training/getOneById",
-    async (id, { rejectWithValue }) => {
-      try {
-        const token = "Bearer " + localStorage.getItem("token");
-        const response = await URL.get(`/training/${id}`, {
-          headers: { "Accept-language": "en", Authorization: token },
-        });
-        return response.data;
-      } catch (error) {
-        return rejectWithValue(error);
-      }
+  "training/getOneById",
+  async (id, { rejectWithValue }) => {
+    try {
+      const token = "Bearer " + localStorage.getItem("token");
+      const response = await URL.get(`/training/${id}`, {
+        headers: { "Accept-language": "en", Authorization: token },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
     }
-  );
+  }
+);

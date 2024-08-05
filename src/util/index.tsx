@@ -111,6 +111,10 @@ interface trainingFilters {
   year?: number;
 }
 
+interface EmployeeTrainingFilters {
+  id?: string;
+}
+
 interface capacityplanInfo {
   title: string;
   description: string;
@@ -148,6 +152,11 @@ interface trainingInfo {
   currency: string;
   capacityPlan?: capacityplanInfo;
   employeeTraining?: IEmployeeTraining[];
+}
+
+interface employeeTrainingAddProp {
+  trainingId: string;
+  employeeIds: string[];
 }
 
 interface IEmployeeTraining {
