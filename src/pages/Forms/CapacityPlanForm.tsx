@@ -627,29 +627,6 @@ export const CapacityPlanForm: React.FC<ICapacityPlanFormProps> = ({
                 />
               </div>
             </div>
-
-            {/* Capacity plan input field */}
-            {/* <div className="py-2 flex flex-row gap-2">
-              <label htmlFor="capacity plan" className="block text-sm font-medium text-gray-700 w-3/12">Capacity plan:</label>
-              <div className={touched.capacity plan && errors.capacity plan ? "has-error w-9/12" : touched.capacity plan ? "has-success w-9/12" : "w-9/12"}>
-                <Field name="capacity plan" type="text" id="capacity plan" placeholder="Enter capacity plan" className="form-input" />
-                <ErrorMessage name="capacity plan" component="div" className="text-danger mt-1" />
-              </div>
-            </div> */}
-
-            {/* Training input field */}
-            {/* <div className="py-2 flex flex-row gap-2">
-              <label htmlFor="training" className="block text-sm font-medium text-gray-700 w-3/12">Training:</label>
-              <div className={touched.training && errors.training ? "has-error w-9/12" : touched.training ? "has-success w-9/12" : "w-9/12"}>
-                <Field name="training" as="textarea" id="training" placeholder="Enter training details" className="form-input" />
-                <ErrorMessage name="training" component="div" className="text-danger mt-1" />
-              </div>
-            </div> */}
-
-            {/* Submit button */}
-            {/* <div className="py-2 flex flex-row justify-end">
-              <button type="submit" className="btn btn-primary">Save</button>
-            </div> */}
           </div>
         </Form>
       )}

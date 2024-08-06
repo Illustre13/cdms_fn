@@ -3,6 +3,7 @@ import Homepage from "../pages/HomePage";
 import CDMSLogin from "../pages/Authentication/CDMSLogin";
 import { CDMSSignUp } from "../pages/Authentication/CDMSSignup";
 import { TwoFactorAuth } from "../pages/Authentication/2FA";
+import { ResetPassword } from "../pages/Authentication/ResetPassword";
 const Index = lazy(() => import("../pages/Index"));
 const AllOrganization = lazy(() => import("../pages/Organization/all"));
 const MyOrganization = lazy(() => import("../pages/Organization/index"));
@@ -31,6 +32,12 @@ const routes = [
 	{
 		path: "/tfa",
 		element: <TwoFactorAuth />,
+		layout: "blank",
+	},
+
+	{
+		path: "/reset-password",
+		element: <ResetPassword />,
 		layout: "blank",
 	},
 	// dashboard

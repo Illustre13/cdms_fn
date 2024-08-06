@@ -83,7 +83,7 @@ export const CDMSSignUp = () => {
   useEffect(() => {
     console.log(signUpState.state);
     if (signUpState.state === StateOptions.FULFILLED) {
-      navigate("/cdms-signin");
+      navigate("/reset-password");
     }
   }, [signUpState]);
 
