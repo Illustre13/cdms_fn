@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   addOrganization,
   fetchAllOrganization,
+  fetchOrganizationInfo,
   deleteOrganization,
+  updateOrganization,
 } from "../action/organizationAction";
 import { StateOptions } from "../../util/enum";
 
@@ -10,8 +12,18 @@ const initialState: {
   fetchState: StateResponseData;
   addState: StateResponseData;
   deleteState: StateResponseData;
+  fetchOrganizationInfoState: StateResponseData;
+  updateOrganizationState: StateResponseData;
 } = {
   fetchState: {
+    state: StateOptions.INITIAL,
+    data: null,
+    status: null,
+    loading: false,
+    error: false,
+    message: "",
+  },
+  fetchOrganizationInfoState: {
     state: StateOptions.INITIAL,
     data: null,
     status: null,
@@ -28,6 +40,14 @@ const initialState: {
     message: "",
   },
   deleteState: {
+    state: StateOptions.INITIAL,
+    data: null,
+    status: null,
+    loading: false,
+    error: false,
+    message: "",
+  },
+  updateOrganizationState: {
     state: StateOptions.INITIAL,
     data: null,
     status: null,
@@ -102,7 +122,48 @@ const organizationSlice = createSlice({
         state.deleteState.message =
           action.error.message || "Deleting organization failed";
         state.deleteState.state = StateOptions.REJECTED;
-      });
+      })
+      
+      // Fetch organizations
+      .addCase(fetchOrganizationInfo.fulfilled, (state, action) => {
+        state.fetchOrganizationInfoState.data = action.payload;
+        state.fetchOrganizationInfoState.loading = false;
+        state.fetchOrganizationInfoState.error = false;
+        state.fetchOrganizationInfoState.state = StateOptions.FULFILLED;
+      })
+      .addCase(fetchOrganizationInfo.pending, (state) => {
+        state.fetchOrganizationInfoState.loading = true;
+        state.fetchOrganizationInfoState.error = false;
+        state.fetchOrganizationInfoState.state = StateOptions.PENDING;
+      })
+      .addCase(fetchOrganizationInfo.rejected, (state, action) => {
+        state.fetchOrganizationInfoState.error = true;
+        state.fetchOrganizationInfoState.loading = false;
+        state.fetchOrganizationInfoState.message = action.error.message;
+        state.fetchOrganizationInfoState.state = StateOptions.REJECTED;
+      })
+
+      // Update organization
+      .addCase(updateOrganization.fulfilled, (state, action) => {
+        state.updateOrganizationState.data = action.payload;
+        state.updateOrganizationState.message = "Organization updated successfully!";
+        state.updateOrganizationState.loading = false;
+        state.updateOrganizationState.error = false;
+        state.updateOrganizationState.state = StateOptions.FULFILLED;
+      })
+      .addCase(updateOrganization.pending, (state) => {
+        state.updateOrganizationState.loading = true;
+        state.updateOrganizationState.error = false;
+        state.updateOrganizationState.state = StateOptions.PENDING;
+      })
+      .addCase(updateOrganization.rejected, (state, action) => {
+        state.updateOrganizationState.error = true;
+        state.updateOrganizationState.loading = false;
+        state.updateOrganizationState.message =
+          action.error.message || "Updating organization failed";
+        state.updateOrganizationState.state = StateOptions.REJECTED;
+      })
+      ;
   },
 });
 

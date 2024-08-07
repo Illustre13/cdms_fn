@@ -57,3 +57,32 @@ export const deleteOrganization = createAsyncThunk<ResponseData, ItemID>(
     }
   }
 );
+
+export const fetchOrganizationInfo = createAsyncThunk("organization/fetchOrganizationInfo", async () => {
+	try {
+		const token = "Bearer " + localStorage.getItem("token");
+		const response = await URL.get("/organization/info", {
+			headers: { "Accept-language": "en", Authorization: token },
+		});
+		return response.data;
+	} catch (error: any) {
+		throw error.response.data.message;
+	}
+});
+
+export const updateOrganization = createAsyncThunk<
+  ResponseData,
+  { data: organizationInfo | any; id: string }
+>("organization/update", async (organizationInfo, { rejectWithValue }) => {
+  try {
+    const token = "Bearer " + localStorage.getItem("token");
+    const { id, data } = organizationInfo;
+
+    const response = await URL.patch(`/organization/${id}`, data, {
+      headers: { "Accept-language": "en", Authorization: token },
+    });
+    return response.data;
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});

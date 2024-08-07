@@ -243,7 +243,9 @@ type ModalType =
   | "reject"
   | "addCapacityPlan"
   | "viewTraining"
-  | "editTraining";
+  | "editTraining"
+  | "deleteOrganization"
+  | "updateOrganization";
 
 interface IModalProps {
   type?: ModalType;

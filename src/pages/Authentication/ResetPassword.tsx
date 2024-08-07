@@ -76,13 +76,11 @@ useEffect(() => {
 }, [rPasswordState]);
 
   const handleSubmit = (values: any) => {
-    // debugger;
     const userCredentials = {
         email: values?.email,
         password: values?.initialPassword,
         newPassword: values?.confirmPassword,
     };
-    debugger;
     dispatch(handleResetPassword(userCredentials) as any);
   };
 

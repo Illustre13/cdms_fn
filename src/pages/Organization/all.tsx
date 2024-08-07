@@ -155,12 +155,8 @@ const Organization = () => {
 
   const handleAddOrganization = () => {
     if (formRef.current) {
-      formRef?.current.submitForm().then(() => {
-        const formValues = formRef?.current.values;
-        console.log("Form Values: ", formValues);
-
-        dispatch(addOrganization(formValues));
-      });
+      const formValues = formRef?.current.values;
+      dispatch(addOrganization(formValues));
     }
   };
 
@@ -292,13 +288,13 @@ const Organization = () => {
                 accessor: "status",
                 title: "Status",
                 sortable: true,
-                render: ({ status }) => <StatusBadge status={status} />,
+                render: (record: any) => <StatusBadge status={record.status} />,
               },
               { accessor: "tinNo", title: "TIN No.", sortable: true },
               {
                 accessor: "action",
                 title: "Action",
-                render: ({ id }) => (
+                render: (record: any) => (
                   <div className="dropdown">
                     <Dropdown
                       offset={[0, 5]}
@@ -336,7 +332,7 @@ const Organization = () => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
-                            onClick={() => handleDelete(id)}
+                            onClick={() => handleDelete(record.id)}
                           >
                             <IconArchive className="mr-2 text-red-500" />
                             <span>Delete</span>
@@ -346,7 +342,8 @@ const Organization = () => {
                     </Dropdown>
                   </div>
                 ),
-              },
+              }
+              
             ]}
             totalRecords={organizationData?.totalItems}
             recordsPerPage={pageSize2}

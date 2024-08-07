@@ -64,7 +64,7 @@ const CapacityPlanTable = () => {
     new Date().getFullYear()
   );
   const [status, setStatus] = useState<any>();
-  const [year, setYear] = useState<any>(new Date().getFullYear());
+  const [year, setYear] = useState<number>();
   const [industry, setIndustry] = useState<any>();
   const [modalProps, setModalProps] = useState<IModalProps>({
     isOpen: false,
@@ -142,7 +142,7 @@ const CapacityPlanTable = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchAllCapacityPlan(orgFilters));
+    dispatch(fetchAllCapacityPlan({status, year, industry, searchKey}));
     dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
   }, [searchKey, status, industry, year, cardAnalyticsYear, dispatch]);
 
@@ -458,7 +458,7 @@ const CapacityPlanTable = () => {
     label: string; 
     value: number
   }
-  const yearOptions: IYears[] = uniqueYears.map(
+  const yearOptions: any = uniqueYears.map(
     (year) => ({
       label: year.toString(),
       value: year,
@@ -521,6 +521,7 @@ const CapacityPlanTable = () => {
     });
   }
 
+  console.log("YYEEAARR -->>", year)
   return (
     <div>
       {modalProps?.isOpen && (

@@ -50,7 +50,7 @@ const Training = () => {
   const fetchEmployeeTrainingState = useSelector(
     (state: IRootState) => state.employeeTraining.fetchEmployeeTrainingState
   );
-  
+
   const [selectedRecords, setSelectedRecords] = useState<any>([]);
   const [searchKey, setSearchKey] = useState("");
   const [status, setStatus] = useState<any>();
@@ -235,7 +235,7 @@ const Training = () => {
 
   const openTrainingModal = (trainingId: ItemID) => {
     dispatch(fetchTrainingInfo(trainingId!));
-    dispatch(fetchAllEmployeeTraining(trainingId!))
+    dispatch(fetchAllEmployeeTraining(trainingId!));
   };
 
   const TrainingFormRef = useRef<FormikProps<any> | null>(null);
@@ -246,7 +246,7 @@ const Training = () => {
     if (TrainingFormRef.current && !isSubmitting) {
       setIsSubmitting(true);
       const formValues = TrainingFormRef?.current.values;
-      debugger;
+      // debugger;
       dispatch(
         updateTraining({
           data: {
@@ -268,7 +268,8 @@ const Training = () => {
   };
 
   useEffect(() => {
-    if (fetchTrainingByIdState.state === StateOptions.FULFILLED &&
+    if (
+      fetchTrainingByIdState.state === StateOptions.FULFILLED &&
       fetchEmployeeTrainingState.state === StateOptions.FULFILLED
     ) {
       const singleTrainingInfo: trainingInfo =
@@ -331,7 +332,7 @@ const Training = () => {
 
   const trainingsData = fetchTrainingState?.data?.data;
 
-  console.log(" trainingsData ---> ", trainingsData)
+  console.log(" trainingsData ---> ", trainingsData);
   const orgFilters: trainingFilters = {
     searchKey,
     status: status,
@@ -544,7 +545,7 @@ const Training = () => {
               {
                 accessor: "femaleParticipants",
                 sortable: true,
-                title: "Female Participants"
+                title: "Female Participants",
               },
               {
                 accessor: "actions",
