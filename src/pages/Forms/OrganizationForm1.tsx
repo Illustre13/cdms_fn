@@ -1,6 +1,6 @@
 import { Formik, Field, ErrorMessage } from "formik";
 import { Form } from "react-router-dom";
-import { organizationInfoValidation } from "../../components/Authentication/SignUp.schema";
+import { organizationInfoIV2, organizationInfoValidation } from "../../components/Authentication/SignUp.schema";
 import IconEdit from "../../components/Icon/IconEdit";
 import "tippy.js/dist/tippy.css";
 import Tippy from "@tippyjs/react";
@@ -14,29 +14,12 @@ export interface ISignupProps {
   setIsEditing?: (value: boolean) => void;
 }
 
-const organizationInfoIV = (data: any) => {
-  return {
-    name: data?.name || "",
-    displayName: data?.displayName || "",
-    logoUrl: data?.logoUrl || "",
-    aboutUs: data?.aboutUs || "",
-    mission: data?.mission || "",
-    vision: data?.vision || "",
-    industry: data?.industry || "",
-    address: data?.address || "",
-    phoneNumber: data?.phoneNumber || "",
-    email: data?.email || "",
-    website: data?.website || "",
-    tinNo: data?.tinNo || "",
-  };
-};
-
 export const OrganizationForm1: React.FC<ISignupProps> = ({
   organizationFormRef,
   organizationInfo,
   setIsEditing = () => {},
 }) => {
-  const handleSave = (values: any) => {
+  const handleSave = () => {
     setIsEditingMode(false);
     setIsEditing(true);
   };
@@ -44,7 +27,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
   return (
     <Formik
       innerRef={organizationFormRef}
-      initialValues={organizationInfoIV(organizationInfo)}
+      initialValues={organizationInfoIV2(organizationInfo)}
       validationSchema={organizationInfoValidation}
       onSubmit={handleSave}
     >
@@ -90,7 +73,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 type="text"
                 id="name"
                 placeholder="Enter organization name"
-                className={`form-input ${!isEditingMode ? "bg-gray-200" : ""} ${
+                className={`form-input ${!isEditingMode ? "text-gray-500" : ""} ${
                   touched.name && errors.name
                     ? "border-red-500"
                     : "border-gray-300"
@@ -117,7 +100,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 type="text"
                 id="displayName"
                 placeholder="Enter organization display name"
-                className={`form-input ${!isEditingMode ? "bg-gray-200" : ""} ${
+                className={`form-input ${!isEditingMode ? "text-gray-500" : ""} ${
                   touched.displayName && errors.displayName
                     ? "border-red-500"
                     : "border-gray-300"
@@ -145,7 +128,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 id="aboutUs"
                 placeholder="Enter organization about us"
                 className={`form-textarea h-24 ${
-                  !isEditingMode ? "bg-gray-200" : ""
+                  !isEditingMode ? "text-gray-500" : ""
                 } ${
                   touched.aboutUs && errors.aboutUs
                     ? "border-red-500"
@@ -174,7 +157,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 id="mission"
                 placeholder="Enter organization mission"
                 className={`form-textarea ${
-                  !isEditingMode ? "bg-gray-200" : ""
+                  !isEditingMode ? "text-gray-500" : ""
                 } ${
                   touched.mission && errors.mission
                     ? "border-red-500"
@@ -203,7 +186,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 id="vision"
                 placeholder="Enter organization vision"
                 className={`form-textarea ${
-                  !isEditingMode ? "bg-gray-200" : ""
+                  !isEditingMode ? "text-gray-500" : ""
                 } ${
                   touched.vision && errors.vision
                     ? "border-red-500"
@@ -229,7 +212,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 name="industry"
                 id="industry"
                 className={`form-select ${
-                  !isEditingMode ? "bg-gray-200" : ""
+                  !isEditingMode ? "text-gray-500" : ""
                 } ${
                   touched.industry && errors.industry
                     ? "border-red-500"
@@ -258,6 +241,9 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                     <option value="Public Administration">
                       Public Administration
                     </option>
+                    <option value="Information Technology">
+                      Information Technology
+                    </option>
                   </>
                 ) : (
                   <option value={values.industry}>
@@ -285,7 +271,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 type="text"
                 id="address"
                 placeholder="Enter organization address"
-                className={`form-input ${!isEditingMode ? "bg-gray-200" : ""} ${
+                className={`form-input ${!isEditingMode ? "text-gray-500" : ""} ${
                   touched.address && errors.address
                     ? "border-red-500"
                     : "border-gray-300"
@@ -312,7 +298,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 type="text"
                 id="phoneNumber"
                 placeholder="Enter organization phone number"
-                className={`form-input ${!isEditingMode ? "bg-gray-200" : ""} ${
+                className={`form-input ${!isEditingMode ? "text-gray-500" : ""} ${
                   touched.phoneNumber && errors.phoneNumber
                     ? "border-red-500"
                     : "border-gray-300"
@@ -339,7 +325,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 type="email"
                 id="email"
                 placeholder="Enter organization email address"
-                className={`form-input ${!isEditingMode ? "bg-gray-200" : ""} ${
+                className={`form-input ${!isEditingMode ? "text-gray-500" : ""} ${
                   touched.email && errors.email
                     ? "border-red-500"
                     : "border-gray-300"
@@ -366,7 +352,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 type="text"
                 id="website"
                 placeholder="Enter organization website"
-                className={`form-input ${!isEditingMode ? "bg-gray-200" : ""} ${
+                className={`form-input ${!isEditingMode ? "text-gray-500" : ""} ${
                   touched.website && errors.website
                     ? "border-red-500"
                     : "border-gray-300"
@@ -393,7 +379,7 @@ export const OrganizationForm1: React.FC<ISignupProps> = ({
                 type="text"
                 id="tinNo"
                 placeholder="Enter organization TIN number"
-                className={`form-input ${!isEditingMode ? "bg-gray-200" : ""} ${
+                className={`form-input ${!isEditingMode ? "text-gray-500" : ""} ${
                   touched.tinNo && errors.tinNo
                     ? "border-red-500"
                     : "border-gray-300"

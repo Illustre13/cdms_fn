@@ -29,6 +29,7 @@ import { OrganizationForm } from "../Forms/OrganizationForm";
 import { FormikProps } from "formik";
 import { StatusBadge } from "../../util/helper";
 import { StateOptions } from "../../util/enum";
+import { Link } from "react-router-dom";
 
 const Organization = () => {
   const PAGE_SIZES = [10, 20, 30, 50, 100];
@@ -175,9 +176,16 @@ const Organization = () => {
         buttonTwoDisabled={false}
       />
       <div className="flex flex-col items-start overflow-x-auto whitespace-nowrap p-3 text-cdms_primary relative z-10 w-full">
-        <h5 className="font-bold text-gray-700 text-2xl dark:text-white-light">
-          Hello <br /> Mr Bertin NDAHAYO 👋
-        </h5>
+      <ul className="flex space-x-2 rtl:space-x-reverse">
+        <li>
+          <Link to="/my-organization" className="text-cdms_primary hover:underline">
+            Organization
+          </Link>
+        </li>
+        <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+          <span>All Organization</span>
+        </li>
+      </ul>
 
         <div className="mt-8 flex flex-row md:flex-row items-center justify-end gap-8 relative z-20">
           <div className="ltr:ml-auto rtl:mr-auto">

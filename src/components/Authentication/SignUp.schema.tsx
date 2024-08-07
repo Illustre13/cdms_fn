@@ -122,3 +122,20 @@ export const workInfoValidations = Yup.object().shape({
 	department: Yup.string().required("Department is required."),
 	position: Yup.string().required("Position is required."),
 });
+
+export const organizationInfoIV2 = (data: any) => {
+	return {
+	  name: data?.name || "",
+	  displayName: data?.displayName || "",
+	  logoUrl: data?.logoUrl || "",
+	  aboutUs: data?.aboutUs || "",
+	  mission: data?.mission || "",
+	  vision: data?.vision || "",
+	  industry: data?.industry || "",
+	  address: data?.address || "",
+	  phoneNumber: data?.phoneNumber || "",
+	  email: data?.email || "",
+	  website: data?.website || "",
+	  tinNo: data?.tinNo || "",
+	};
+  };

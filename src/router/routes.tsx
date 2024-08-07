@@ -14,7 +14,9 @@ const AssessementTemplates = lazy(
 	() => import("../pages/Assessment/templates")
 );
 const CPOverview = lazy(() => import("../pages/CapacityPlan/index"));
-const CPTranings = lazy(() => import("../pages/CapacityPlan/Training"));
+const CPTrainings = lazy(() => import("../pages/CapacityPlan/Training"));
+const UserProfile = lazy(() => import("../pages/Users/UserProfile"));
+const UserManagement = lazy(() => import("../pages/Users/UserManagement"));
 const AddCapacityPlan = lazy(() => import("../pages/CapacityPlan/CreateCP"));
 
 const routes = [
@@ -81,11 +83,19 @@ const routes = [
 	},
 	{
 		path: "/cp/trainings",
-		element: <CPTranings />,
+		element: <CPTrainings />,
 	},
 	{
 		path: "/cp/add",
 		element: <AddCapacityPlan />,
+	},
+	{
+		path: "/user/profile",
+		element: <UserProfile />,
+	},
+	{
+		path: "/user/management",
+		element: <UserManagement />,
 	},
 ];
 

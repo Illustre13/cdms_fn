@@ -9,7 +9,16 @@ type CapacityPlanType = "ANNUAL_PLAN" | "QUARTELY_PLAN" | "ESSENTIAL_PLAN";
 type TrainingStatus = "PENDING" | "APPROVED" | "REJECTED" | "FINISHED";
 type TrainingMode = "ONLINE" | "PHYSICAL" | "HYBRID";
 type EmployeeTrainingStatus = "PENDING" | "APPROVED" | "REJECTED" | "FINISHED";
-
+type UserStatus = "PENDING" | "ACTIVE" | "SUSPENDED";
+type ModalType =
+  | ""
+  | "approve"
+  | "reject"
+  | "addCapacityPlan"
+  | "viewTraining"
+  | "editTraining"
+  | "deleteOrganization"
+  | "updateOrganization";
 interface ResponseData {
   data: object;
   error: boolean;
@@ -237,16 +246,6 @@ interface ICPBulkImportData {
   isAfterFileChanged: boolean;
 }
 
-type ModalType =
-  | ""
-  | "approve"
-  | "reject"
-  | "addCapacityPlan"
-  | "viewTraining"
-  | "editTraining"
-  | "deleteOrganization"
-  | "updateOrganization";
-
 interface IModalProps {
   type?: ModalType;
   isOpen: boolean;
@@ -261,4 +260,30 @@ interface IModalProps {
   buttonOneDisabled?: boolean;
   buttonTwoDisabled?: boolean;
   hideButton1?: boolean;
+}
+
+interface IRole {
+  name?: string;
+  description?: string;
+}
+interface IworkInfo {
+  role?: IRole;
+  department?: string;
+  position?: string;
+  organization?: organizationInfo;
+}
+interface IUserInfo {
+		firstName: string;
+		middleName?: string;
+		lastName: string;
+		email: string;
+		phoneNumber: string;
+		gender: string;
+		dob: Date;
+		nationality?: string;
+		profileImage?: string;
+		status: UserStatus;
+		rssbNo: string;
+		idNumber?: string;
+		address?: string;
 }

@@ -14,6 +14,9 @@ import IconMenuInvoice from "../Icon/Menu/IconMenuInvoice";
 import IconMenuCalendar from "../Icon/Menu/IconMenuCalendar";
 import IconMessagesDot from "../Icon/IconMessagesDot";
 import IconLogout from "../Icon/IconLogout";
+import IconUser from "../Icon/IconUser";
+import IconFile from "../Icon/IconFile";
+import IconBook from "../Icon/IconBook";
 
 const Sidebar = () => {
 	const navigate = useNavigate();
@@ -111,6 +114,8 @@ const Sidebar = () => {
 									</div>
 								</NavLink>
 							</li>
+
+							{/* Organization Side bar */}
 							<li className="menu nav-item">
 								<button
 									type="button"
@@ -143,27 +148,62 @@ const Sidebar = () => {
 								>
 									<ul className="sub-menu text-gray-500">
 										<li>
-											<NavLink to="/organization/all">{t("All")}</NavLink>
-										</li>
-										<li>
 											<NavLink to="/my-organization">
 												{t("My Organization")}
+											</NavLink>
+										</li>
+										<li>
+											<NavLink to="/organization/all">{t("All Organization")}</NavLink>
+										</li>
+									</ul>
+								</AnimateHeight>
+							</li>
+
+							{/* User */}
+							<li className="menu nav-item">
+								<button
+									type="button"
+									className={`${
+										currentMenu === "user" ? "active" : ""
+									} nav-link group w-full`}
+									onClick={() => toggleMenu("user")}
+								>
+									<div className="flex items-center">
+										<IconUser className="group-hover:!text-cdms_primary shrink-0" />
+										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
+											{t("User")}
+										</span>
+									</div>
+
+									<div
+										className={
+											currentMenu !== "user"
+												? "rtl:rotate-90 -rotate-90"
+												: ""
+										}
+									>
+										<IconCaretDown />
+									</div>
+								</button>
+
+								<AnimateHeight
+									duration={300}
+									height={currentMenu === "user" ? "auto" : 0}
+								>
+									<ul className="sub-menu text-gray-500">
+										<li>
+											<NavLink to="/user/profile">{t("My Profile")}</NavLink>
+										</li>
+										<li>
+											<NavLink to="/user/management">
+												{t("User Management")}
 											</NavLink>
 										</li>
 									</ul>
 								</AnimateHeight>
 							</li>
-							{/* <li className="nav-item">
-								<NavLink to="/organization" className="group">
-									<div className="flex items-center">
-										<IconMenuContacts className="group-hover:!text-cdms_primary shrink-0" />
-										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-											{t("Organization")}
-										</span>
-									</div>
-								</NavLink>
-							</li> */}
 
+							{/* Employees */}
 							<li className="nav-item">
 								<NavLink to="/employees" className="group">
 									<div className="flex items-center">
@@ -200,7 +240,7 @@ const Sidebar = () => {
 									onClick={() => toggleMenu("cp")}
 								>
 									<div className="flex items-center">
-										<IconMessagesDot className="group-hover:!text-cdms_primary shrink-0" />
+										<IconFile className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
 											{t("Capacity Plan")}
 										</span>
@@ -241,7 +281,7 @@ const Sidebar = () => {
 									onClick={() => toggleMenu("cna")}
 								>
 									<div className="flex items-center">
-										<IconMessagesDot className="group-hover:!text-cdms_primary shrink-0" />
+										<IconBook className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
 											{t("Capacity Need Assessment")}
 										</span>

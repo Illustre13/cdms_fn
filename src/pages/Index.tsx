@@ -8,9 +8,6 @@ import Dropdown from "../components/Dropdown";
 import { setPageTitle } from "../redux/reducer/themeConfigSlice";
 import IconHorizontalDots from "../components/Icon/IconHorizontalDots";
 import IconArrowLeft from "../components/Icon/IconArrowLeft";
-import IconUserPlus from "../components/Icon/IconUserPlus";
-import IconUsers from "../components/Icon/IconUsers";
-import IconMinusCircle from "../components/Icon/IconMinusCircle";
 import { fetchUserInfo, userInfoAnalytics } from "../redux/action/UserAction";
 import { fetchAllCapacityPlan } from "../redux/action/capacityPlanAction";
 import { useAppDispatch } from "../redux/hooks";
@@ -41,10 +38,10 @@ const Index = () => {
     (state: IRootState) =>
       state.themeConfig.theme === "dark" || state.themeConfig.isDarkMode
   );
-  const userInfoState = useSelector((state: IRootState) => state.user);
+  const userInfoState = useSelector((state: IRootState) => state.user.fetchUserInfoState);
 
   useEffect(() => {
-    if (Object.keys(userInfoState.data).length === 0 && loadingUser) {
+    if (userInfoState?.data?.data && loadingUser) {
       dispatch(fetchUserInfo())
         .unwrap()
         .then(() => setLoadingUser(false))

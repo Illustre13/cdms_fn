@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
-import { useDispatch, useSelector } from "react-redux";
-import IconHome from "../../components/Icon/IconHome";
-import IconArchive from "../../components/Icon/IconArchive";
-import IconEdit from "../../components/Icon/IconEdit";
-import IconCamera from "../../components/Icon/IconCamera";
+import { useSelector } from "react-redux";
 import { OrganizationForm1 } from "../Forms/OrganizationForm1";
 import { fetchOrganizationInfo } from "../../redux/action/organizationAction";
 import { useAppDispatch } from "../../redux/hooks";
@@ -17,8 +13,8 @@ import { IRootState } from "../../redux/store";
 import { StateOptions } from "../../util/enum";
 import { toast, ToastContainer } from "react-toastify";
 import { FormikProps } from "formik";
-import { set } from "lodash";
 import Modal from "../Components/Modals";
+
 const MyOrganization = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [activeToast, setActiveToast] = useState<string | null>(null);
@@ -31,11 +27,11 @@ const MyOrganization = () => {
     setTabs(name);
   };
 
-  const organizationInfo = useSelector(
+  const organizationInfoState = useSelector(
     (state: IRootState) => state.organization.fetchOrganizationInfoState
   );
 
-  const organizationInfoData = organizationInfo?.data?.data?.organization;
+  const organizationInfoData = organizationInfoState?.data?.data?.organization;
   useEffect(() => {
     dispatch(fetchOrganizationInfo());
   }, [dispatch]);
@@ -176,12 +172,12 @@ const MyOrganization = () => {
       )}
       <ul className="flex space-x-2 rtl:space-x-reverse">
         <li>
-          <Link to="/dashboard" className="text-cdms_primary hover:underline">
-            Dashboard
+          <Link to="/my-organization" className="text-cdms_primary hover:underline">
+            Organization
           </Link>
         </li>
         <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-          <span>Organization</span>
+          <span>My Organization</span>
         </li>
       </ul>
       <div className="pt-5">
