@@ -258,7 +258,7 @@ console.log("PI --->", userData?.profileImage)
                     </div>
                   </li>
                   <li>
-                    <Link to="/users/profile" className="dark:hover:text-white">
+                    <Link to="/user/profile" className="dark:hover:text-white">
                       <IconUser className="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" />
                       My Profile
                     </Link>

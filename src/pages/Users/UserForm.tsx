@@ -64,7 +64,7 @@ export const UserForm: React.FC<IUserFormProps> = ({
             <div className="flex flex-col sm:flex-row">
               <div className="ltr:sm:mr-4 rtl:sm:ml-4 w-full sm:w-2/12 mb-5">
                 <img
-                  src={values.profileImage || "/assets/images/profile-34.jpeg"}
+                  src={values.profileImage || "/assets/images/profile_avatar.png"}
                   alt="Profile"
                   className="w-20 h-20 md:w-32 md:h-32 rounded-full object-cover mx-auto"
                 />
@@ -470,7 +470,7 @@ export const UserForm: React.FC<IUserFormProps> = ({
                     id="department"
                     name="department"
                     type="text"
-                    placeholder="department"
+                    placeholder="Department"
                     className={`form-input ${
                       !isEditingMode ? "text-gray-500" : ""
                     } ${
