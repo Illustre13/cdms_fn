@@ -825,26 +825,29 @@ const CapacityPlanTable = () => {
                 render: (_, index) => index + 1,
               },
               { accessor: "title", sortable: true },
-              {
-                accessor: "program",
-                sortable: true,
-                title: "Program",
+             {
+              accessor: "numberOfTrainings",
+                title: "Number of Trainings",
+                render: ({ training }) => (
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {training.length}
+                  </span>
+                )
               },
+
               {
-                accessor: "subProgram",
-                sortable: true,
-                title: "Sub Program",
-              },
-              {
-                accessor: "amountCurrency",
-                title: "Budget",
-                render: (record: any) => (
-                  <CurrencyFormatter
-                    amount={record.budget}
-                    currency={record.currency}
-                  />
+                accessor: "totalBudget",
+                title: "Total Budgets",
+                render: ({ training }) => (
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {training.reduce(
+                      (total: any, { budget }: any) => total + budget,
+                      0
+                    ).toFixed(2)}  {/* Use toFixed for formatting */}
+                  </span>
                 ),
               },
+              
               {
                 accessor: "year",
                 title: "Target Year",
@@ -855,25 +858,7 @@ const CapacityPlanTable = () => {
                 sortable: true,
                 render: ({ status }) => <StatusBadge status={status} />,
               },
-              { accessor: "type", sortable: true },
-              { accessor: "action", sortable: true },
-              {
-                accessor: "responsibleEntity",
-                sortable: true,
-                title: "Responsible Entity",
-              },
-              {
-                accessor: "stakeholders",
-                sortable: true,
-                render: ({ stakeholders }) =>
-                  arrayToCommaSeparatedString(stakeholders),
-              },
-
-              {
-                accessor: "fundSource",
-                sortable: true,
-                title: "Source of Fund",
-              },
+             
               {
                 accessor: "moreAction",
                 title: "Action",

@@ -6,7 +6,7 @@ export enum StateOptions {
 	IDLE = "IDLE",
 }
 
-export enum CapacityPlanLevel {
+export enum TrainingPlanLevel {
 	INDIVIDUAL = "INDIVIDUAL",
 	INSTITUTIONAL = "INSTITUTIONAL",
 	ORGANIZATIONAL = "ORGANIZATIONAL",
@@ -34,7 +34,7 @@ export enum TrainingMode {
 	HYBRID = "HYBRID",
   };
 
-export enum CapacityPlanType {
+export enum TrainingPlanType {
 	ANNUAL_PLAN = "ANNUAL_PLAN",
 	QUARTELY_PLAN = "QUARTELY_PLAN",
 	ESSENTIAL_PLAN = "ESSENTIAL_PLAN",

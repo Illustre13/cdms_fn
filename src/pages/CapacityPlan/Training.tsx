@@ -19,6 +19,7 @@ import {
   updateTraining,
 } from "../../redux/action/trainingAction";
 import {
+  arrayToCommaSeparatedString,
   cleanNumberString,
   CurrencyFormatter,
   StatusBadge,
@@ -527,13 +528,34 @@ const Training = () => {
                     : "-",
               },
               {
-                accessor: "budgetAmount",
+                accessor: "budget",
                 sortable: true,
                 title: "Budget",
                 render: (record) => (
                   <CurrencyFormatter
                     amount={record.budgetAmount}
                     currency="RWF"
+                  />
+                ),
+              },
+
+              {
+                accessor: "program",
+                sortable: true,
+                title: "Program",
+              },
+              {
+                accessor: "subProgram",
+                sortable: true,
+                title: "Sub Program",
+              },
+              {
+                accessor: "amountCurrency",
+                title: "Budget",
+                render: (record: any) => (
+                  <CurrencyFormatter
+                    amount={record.budget}
+                    currency={record.currency}
                   />
                 ),
               },
@@ -547,8 +569,29 @@ const Training = () => {
                 sortable: true,
                 title: "Female Participants",
               },
+
+              { accessor: "type", sortable: true },
+              { accessor: "action", sortable: true },
               {
-                accessor: "actions",
+                accessor: "responsibleEntity",
+                sortable: true,
+                title: "Responsible Entity",
+              },
+              {
+                accessor: "stakeholders",
+                sortable: true,
+                render: ({ stakeholders }) =>
+                  arrayToCommaSeparatedString(stakeholders),
+              },
+
+              {
+                accessor: "fundSource",
+                sortable: true,
+                title: "Source of Fund",
+              },
+              
+              {
+                accessor: "moreAction",
                 title: "Actions",
                 render: ({ id }) => (
                   <div className="dropdown">

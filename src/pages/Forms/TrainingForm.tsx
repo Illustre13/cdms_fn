@@ -76,7 +76,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                 </label>
                 <div
                   className={`w-9/12 ${
-                    touched.title && errors.title ? "has-error" : ""
+                    touched.action && errors.action ? "has-error" : ""
                   }`}
                 >
                   <Field

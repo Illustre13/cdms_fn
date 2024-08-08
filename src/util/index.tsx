@@ -1,11 +1,11 @@
-type CapacityPlanLevel = "INDIVIDUAL" | "INSTITUTIONAL" | "ORGANIZATIONAL";
+type TrainingPlanLevel = "INDIVIDUAL" | "INSTITUTIONAL" | "ORGANIZATIONAL";
 type CapacityPlanStatus =
   | "DRAFT"
   | "SENT"
   | "UNDER_REVIEW"
   | "APPROVED"
   | "REJECTED";
-type CapacityPlanType = "ANNUAL_PLAN" | "QUARTELY_PLAN" | "ESSENTIAL_PLAN";
+type TrainingPlanType = "ANNUAL_PLAN" | "QUARTELY_PLAN" | "ESSENTIAL_PLAN";
 type TrainingStatus = "PENDING" | "APPROVED" | "REJECTED" | "FINISHED";
 type TrainingMode = "ONLINE" | "PHYSICAL" | "HYBRID";
 type EmployeeTrainingStatus = "PENDING" | "APPROVED" | "REJECTED" | "FINISHED";
@@ -127,38 +127,36 @@ interface EmployeeTrainingFilters {
 interface capacityplanInfo {
   title: string;
   description: string;
-  type: CapacityPlanType;
+  type: TrainingPlanType;
   year: number;
   status: CapacityPlanStatus;
-  attachment?: Buffer;
-  program: string;
-  subProgram: string;
-  output: string;
-  capacityChallenge: string;
-  level: CapacityPlanLevel;
-  action: string;
-  participants: any;
-  responsibleEntity: string;
-  stakeholders: string[];
-  budget: number;
-  currency: string;
-  fundSource: string;
+  attachment?: Buffer
   organization?: organizationInfo;
-  // training?: ITraining[];
+  training?: trainingInfo[];
   createdAt?: string;
   updatedAt?: string;
 }
 
 interface trainingInfo {
   id?: string;
-  title: string;
+  action: string;
   status: TrainingStatus;
   mode?: TrainingMode;
+  participants: any;
   startDate?: Date;
   endDate?: Date;
-  participants?: any;
-  budgetAmount: number;
-  currency: string;
+  currency?: string;
+  type: TrainingPlanType;
+  year: number;
+  program: string;
+  subProgram: string;
+  output: string;
+  capacityChallenge: string;
+  level: TrainingPlanLevel;
+  responsibleEntity: string;
+  stakeholders: string[];
+  budget: number;
+  fundSource: string;
   capacityPlan?: capacityplanInfo;
   employeeTraining?: IEmployeeTraining[];
 }
