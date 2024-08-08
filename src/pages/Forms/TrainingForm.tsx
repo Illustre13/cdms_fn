@@ -84,7 +84,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
     };
     dispatch(addEmployeeTraining(idx));
   };
-
+  console.log("employeeTrainingData ---> ", trainingData);
   return (
     <>
       <Formik
@@ -411,8 +411,8 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                     htmlFor="employeeNames"
                     className="block text-left w-4/12 text-sm font-medium text-gray-700"
                   >
-                    All Participants (
-                    {employeeTrainingData?.employeeTrainings.length}):
+                    All Participants
+                    {/* ({employeeTrainingData?.employeeTrainings.length}) */}:
                   </label>
                   <div
                     className={`w-8/12 ${
@@ -423,18 +423,32 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                   >
                     {isEditing ? (
                       <>
-                        
+                        <div className="text-gray-500 text-left">
+                          {employeeTrainingData?.employeeTrainings?.map(
+                            (item: any, index: number) => (
+                              <div key={index}>
+                                {index + 1}. {item?.employeeNames}
+                              </div>
+                            )
+                          )}
+                        </div>
                         <MultiSelect
                           label=""
                           placeholder="Choose employee"
                           data={allEmployeeOptions?.filter(
                             (item: any) => item.value
-                          )}                          
-                          styles={{ dropdown: { maxHeight: 200, overflowY: 'auto' } }}                  
+                          )}
+                          styles={{
+                            dropdown: { maxHeight: 200, overflowY: "auto" },
+                          }}
                           searchable
                           onChange={(selectedOptions: any) => {
                             setFieldValue("employeeNames", selectedOptions);
                           }}
+                          // maxValues={
+                          //   trainingData?.participants?.males +
+                          //   trainingData?.participants?.females
+                          // }
                         />
 
                         <button
@@ -447,12 +461,11 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                         </button>
                       </>
                     ) : (
-                      <div className="text-gray-500 p-2">
+                      <div className="text-left text-gray-500">
                         {employeeTrainingData?.employeeTrainings?.map(
                           (item: any, index: number) => (
                             <div key={index}>
-                              {/* Assuming employeeNames is an array */}
-                              {item?.employeeNames}
+                              {index + 1}. {item?.employeeNames}
                             </div>
                           )
                         )}

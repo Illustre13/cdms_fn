@@ -228,7 +228,7 @@ const Training = () => {
       button1Text: "Cancel",
       button2Text: "Approve",
       buttonTwoDisabled: false,
-      content: <p>Are you sure you want to mark this training as finished?</p>,
+      content: <p>Are you sure you want to mark this training as finished?</p>
     });
   };
 
@@ -300,6 +300,7 @@ const Training = () => {
             />
           ),
           hideButton1: trainingModalType === "view" && true,
+          size: "max-w-4xl"
         });
       }
     }
@@ -411,7 +412,7 @@ const Training = () => {
           onSubmit={modalProps.onSubmit}
           onRetry={modalProps.onRetry}
           buttonTwoDisabled={modalProps.buttonTwoDisabled}
-          size="max-w-4xl"
+          size={modalProps.size}
         />
       )}
 

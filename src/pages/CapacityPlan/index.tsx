@@ -834,7 +834,15 @@ const CapacityPlanTable = () => {
                   </span>
                 )
               },
-
+              {
+                accessor: "organizationName",
+                  title: "Organization",
+                  render: (record: capacityplanInfo) => (
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                      {record.organization!.name}
+                    </span>
+                  )
+                },
               {
                 accessor: "totalBudget",
                 title: "Total Budgets",
