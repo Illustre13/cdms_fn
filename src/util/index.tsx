@@ -125,6 +125,7 @@ interface EmployeeTrainingFilters {
 }
 
 interface capacityplanInfo {
+  id?: string;
   title: string;
   description: string;
   type: TrainingPlanType;
@@ -132,7 +133,7 @@ interface capacityplanInfo {
   status: CapacityPlanStatus;
   attachment?: Buffer
   organization?: organizationInfo;
-  training?: trainingInfo[];
+  training: trainingInfo[];
   createdAt?: string;
   updatedAt?: string;
 }

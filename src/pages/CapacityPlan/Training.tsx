@@ -294,7 +294,7 @@ const Training = () => {
           content: (
             <TrainingForm
               trainingData={singleTrainingInfo}
-              employeeData={employeeTraining}
+              employeeTrainingData={employeeTraining}
               isEditing={trainingModalType === "edit"}
               TrainingFormRef={TrainingFormRef}
             />
@@ -450,7 +450,7 @@ const Training = () => {
           <div className="relative ">
             <input
               type="text"
-              placeholder="Search Traings..."
+              placeholder="Search Trainings..."
               className="form-input ltr:pr-11 rtl:pl-11 peer"
               value={searchKey}
               onChange={handleSearchChange}
@@ -531,10 +531,10 @@ const Training = () => {
                 accessor: "budget",
                 sortable: true,
                 title: "Budget",
-                render: (record) => (
+                render: (record: trainingInfo) => (
                   <CurrencyFormatter
-                    amount={record.budgetAmount}
-                    currency="RWF"
+                    amount={record.budget}
+                    currency={record.currency}
                   />
                 ),
               },
@@ -548,16 +548,6 @@ const Training = () => {
                 accessor: "subProgram",
                 sortable: true,
                 title: "Sub Program",
-              },
-              {
-                accessor: "amountCurrency",
-                title: "Budget",
-                render: (record: any) => (
-                  <CurrencyFormatter
-                    amount={record.budget}
-                    currency={record.currency}
-                  />
-                ),
               },
               {
                 accessor: "maleParticipants",

@@ -42,7 +42,7 @@ export const addCapacityPlan = createAsyncThunk<ResponseData, capacityplanInfo>(
   }
 );
 
-export const deleteCapacityPlan = createAsyncThunk<ResponseData, ItemID>(
+export const deleteCapacityPlan = createAsyncThunk<ResponseData, string>(
   "capacityplan/delete",
   async (id, { rejectWithValue }) => {
     try {

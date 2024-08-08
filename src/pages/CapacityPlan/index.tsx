@@ -303,7 +303,7 @@ const CapacityPlanTable = () => {
     handleModalClose();
   };
 
-  const handleDelete = (id: ItemID) => {
+  const handleDelete = (id: string) => {
     console.log("ID --->", id);
     dispatch(deleteCapacityPlan(id));
     handleModalClose();
@@ -828,9 +828,9 @@ const CapacityPlanTable = () => {
              {
               accessor: "numberOfTrainings",
                 title: "Number of Trainings",
-                render: ({ training }) => (
+                render: (record: capacityplanInfo) => (
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {training.length}
+                    {record.training.length}
                   </span>
                 )
               },
@@ -838,12 +838,12 @@ const CapacityPlanTable = () => {
               {
                 accessor: "totalBudget",
                 title: "Total Budgets",
-                render: ({ training }) => (
+                render: (record: capacityplanInfo) => (
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {training.reduce(
+                    {record.training[0].currency} {record.training.reduce(
                       (total: any, { budget }: any) => total + budget,
                       0
-                    ).toFixed(2)}  {/* Use toFixed for formatting */}
+                    ).toLocaleString()} 
                   </span>
                 ),
               },
@@ -856,13 +856,13 @@ const CapacityPlanTable = () => {
                 accessor: "status",
                 title: "Status",
                 sortable: true,
-                render: ({ status }) => <StatusBadge status={status} />,
+                render: (record: capacityplanInfo) => <StatusBadge status={record.status} />,
               },
              
               {
                 accessor: "moreAction",
                 title: "Action",
-                render: ({ id }) => (
+                render: (record: capacityplanInfo) => (
                   <div className="dropdown">
                     <Dropdown
                       offset={[0, 5]}
@@ -884,7 +884,7 @@ const CapacityPlanTable = () => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
-                            onClick={() => openApproveModalHandler(id)}
+                            onClick={() => openApproveModalHandler(record.id)}
                           >
                             <IconThumbUp className="mr-2 text-green-500" />{" "}
                             <span>Approve</span>
@@ -894,7 +894,7 @@ const CapacityPlanTable = () => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
-                            onClick={() => openRejectModalHandler(id)}
+                            onClick={() => openRejectModalHandler(record.id)}
                           >
                             <IconX className="mr-2 text-red-500" />{" "}
                             <span>Reject</span>
@@ -904,7 +904,7 @@ const CapacityPlanTable = () => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
-                            onClick={() => handleDelete(id)}
+                            onClick={() => handleDelete(record.id!)}
                           >
                             <IconArchive className="mr-2 text-red-500" />{" "}
                             <span>Delete</span>

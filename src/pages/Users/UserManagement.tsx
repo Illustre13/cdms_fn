@@ -449,7 +449,7 @@ const Training = () => {
           <div className="relative ">
             <input
               type="text"
-              placeholder="Search Traings..."
+              placeholder="Search Trainings..."
               className="form-input ltr:pr-11 rtl:pl-11 peer"
               value={searchKey}
               onChange={handleSearchChange}

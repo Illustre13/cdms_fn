@@ -9,8 +9,12 @@ export const trainingInitialValues = (data: trainingInfo) => {
     mode: data.mode ?? "",
     maleParticipants: data.participants?.males ?? 0,
     femaleParticipants: data.participants?.females ?? 0,
-    startDate: data.startDate ?? undefined,
-    endDate: data.endDate ?? undefined,
+    startDate: data?.startDate
+      ? new Date(data.startDate).toISOString().split("T")[0]
+      : "",
+    endDate: data?.endDate
+      ? new Date(data.endDate).toISOString().split("T")[0]
+      : "",
     budgetAmount: data.budget ?? 0,
     currency: data.currency ?? "",
     type: data.type ?? "",
@@ -55,21 +59,27 @@ export const trainingValidationSchema = Yup.object().shape({
   capacityChallenge: Yup.string().required("Capacity Challenge is required"),
   level: Yup.string().required("Level is required"),
   responsibleEntity: Yup.string().required("Responsible Entity is required"),
-  stakeholders: Yup.array().of(Yup.string()).required("Stakeholders are required"),
+  stakeholders: Yup.array()
+    .of(Yup.string())
+    .required("Stakeholders are required"),
   fundSource: Yup.string().required("Fund Source is required"),
 });
 
 // Validation schema for employee training
 export const employeeTrainingVS = Yup.object().shape({
-  allParticipants: Yup.array().of(Yup.string()).required("Employee names are required"),
+  // employeeNames: Yup.array()
+  //   .of(Yup.string())
+  //   .required("Employee names are required"),
+  employeeNames: Yup.array().min(1, 'At least one employee must be selected'),
 });
 
 // Function to transform employee training data
 export const employeeTrainingIV = (data: any) => {
   return {
-    employeeNames: (data || []).map((et: any) => ({
-      value: et?.id,
-      label: et?.employeeNames,
-    })) ?? [],
+    employeeNames:
+      (data || []).map((et: any) => ({
+        value: et?.id,
+        label: et?.employeeNames,
+      })) ?? [],
   };
 };

@@ -6,15 +6,27 @@ import {
   trainingInitialValues,
   trainingValidationSchema,
 } from "../../components/CapacityPlan/TrainingSchema";
-import { TrainingMode, TrainingStatus } from "../../util/enum";
+import { StateOptions, TrainingMode, TrainingStatus } from "../../util/enum";
+import {
+  fetchAllEmployee,
+  fetchAllEmployeeByCP,
+} from "../../redux/action/employeeAction";
+import { useAppDispatch } from "../../redux/hooks";
+import { useEffect, useState } from "react";
+import { IRootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+import * as Yup from "yup";
+import { MultiSelect } from "@mantine/core";
+import IconPlus from "../../components/Icon/IconPlus";
+import { addEmployeeTraining } from "../../redux/action/employeeTrainingAction";
 
 export interface ITrainingFormProps {
   trainingData: trainingInfo;
   isEditing?: boolean;
   TrainingFormRef?: any;
   employeeTrainingForm?: any;
-  employeeData: any;
-  setEmployeeData?: (data: any) => void;
+  employeeTrainingData: any;
+  setemployeeTrainingData?: (data: any) => void;
   setTrainingDataInfo?: (data: any) => void;
 }
 
@@ -37,23 +49,41 @@ const currencyOptions = [
 
 export const TrainingForm: React.FC<ITrainingFormProps> = ({
   trainingData,
-  employeeData,
+  employeeTrainingData,
   isEditing = false,
   setTrainingDataInfo = () => {},
   TrainingFormRef,
   employeeTrainingForm,
-  setEmployeeData = () => {},
+  setemployeeTrainingData = () => {},
 }) => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllEmployeeByCP(trainingData?.capacityPlan?.id!));
+  }, [dispatch]);
+
+  const fetchAllEmployeeByCPState = useSelector(
+    (state: IRootState) => state.employee.fetchAllEmployeeByCPState
+  );
+  const allEmployees = fetchAllEmployeeByCPState?.data?.data?.employees;
+  const allEmployeeOptions = allEmployees?.map((employee: any) => ({
+    value: employee.id,
+    label: `${employee?.user?.firstName} ${employee?.user?.lastName}`,
+  }));
+
+  console.log("fetchAllEmployeeByCPState ---> ", allEmployeeOptions);
   const handleSaveTraining = (values: any) => {
     setTrainingDataInfo(values);
   };
 
   const handleSaveEmployeeTraining = (values: any) => {
-    setEmployeeData(values);
+    console.log("values ---> ", values, "trainingId ---> ", trainingData?.id);
+    const idx = {
+      trainingId: trainingData?.id!,
+      employeeIds: values?.employeeNames,
+    };
+    dispatch(addEmployeeTraining(idx));
   };
-
-  console.log("----------------------------->>", employeeData);
-  console.log(trainingData);
 
   return (
     <>
@@ -70,22 +100,22 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
               <div className="py-2 flex flex-row gap-2">
                 <label
                   htmlFor="title"
-                  className="block text-left w-3/12 text-sm font-medium text-gray-700"
+                  className="block text-left w-4/12 text-sm font-medium text-gray-700"
                 >
                   Title:
                 </label>
                 <div
-                  className={`w-9/12 ${
+                  className={`w-8/12 ${
                     touched.action && errors.action ? "has-error" : ""
                   }`}
                 >
                   <Field
-                    name="title"
+                    name="action"
                     type="text"
                     id="title"
                     placeholder="Enter training title"
                     className={`form-input w-full ${
-                      !isEditing ? "bg-gray-200" : ""
+                      !isEditing ? "text-gray-500" : ""
                     }`}
                     disabled={!isEditing}
                   />
@@ -101,12 +131,12 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
               <div className="py-2 flex flex-row gap-2">
                 <label
                   htmlFor="status"
-                  className="block text-left w-3/12 text-sm font-medium text-gray-700"
+                  className="block text-left w-4/12 text-sm font-medium text-gray-700"
                 >
                   Status:
                 </label>
                 <div
-                  className={`w-9/12 ${
+                  className={`w-8/12 ${
                     touched.status && errors.status ? "has-error" : ""
                   }`}
                 >
@@ -115,7 +145,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                     name="status"
                     id="status"
                     className={`form-input w-full ${
-                      !isEditing ? "bg-gray-200" : ""
+                      !isEditing ? "text-gray-500" : ""
                     }`}
                     disabled={!isEditing}
                   >
@@ -139,12 +169,12 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
               <div className="py-2 flex flex-row gap-2">
                 <label
                   htmlFor="startDate"
-                  className="block text-left w-3/12 text-sm font-medium text-gray-700"
+                  className="block text-left w-4/12 text-sm font-medium text-gray-700"
                 >
                   Start Date:
                 </label>
                 <div
-                  className={`w-9/12 ${
+                  className={`w-8/12 ${
                     touched.startDate && errors.startDate ? "has-error" : ""
                   }`}
                 >
@@ -153,7 +183,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                     type="date"
                     id="startDate"
                     className={`form-input w-full ${
-                      !isEditing ? "bg-gray-200" : ""
+                      !isEditing ? "text-gray-500" : ""
                     }`}
                     disabled={!isEditing}
                   />
@@ -169,12 +199,12 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
               <div className="py-2 flex flex-row gap-2">
                 <label
                   htmlFor="endDate"
-                  className="block text-left w-3/12 text-sm font-medium text-gray-700"
+                  className="block text-left w-4/12 text-sm font-medium text-gray-700"
                 >
                   End Date:
                 </label>
                 <div
-                  className={`w-9/12 ${
+                  className={`w-8/12 ${
                     touched.endDate && errors.endDate ? "has-error" : ""
                   }`}
                 >
@@ -183,7 +213,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                     type="date"
                     id="endDate"
                     className={`form-input w-full ${
-                      !isEditing ? "bg-gray-200" : ""
+                      !isEditing ? "text-gray-500" : ""
                     }`}
                     disabled={!isEditing}
                   />
@@ -199,12 +229,12 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
               <div className="py-2 flex flex-row gap-2">
                 <label
                   htmlFor="mode"
-                  className="block text-left w-3/12 text-sm font-medium text-gray-700"
+                  className="block text-left w-4/12 text-sm font-medium text-gray-700"
                 >
                   Mode:
                 </label>
                 <div
-                  className={`w-9/12 ${
+                  className={`w-8/12 ${
                     touched.mode && errors.mode ? "has-error" : ""
                   }`}
                 >
@@ -213,7 +243,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                     name="mode"
                     id="mode"
                     className={`form-input w-full ${
-                      !isEditing ? "bg-gray-200" : ""
+                      !isEditing ? "text-gray-500" : ""
                     }`}
                     disabled={!isEditing}
                   >
@@ -236,11 +266,11 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
               <div className="py-2 flex flex-row gap-2">
                 <label
                   htmlFor="budgetAmount"
-                  className="block text-left w-3/12 text-sm font-medium text-gray-700"
+                  className="block text-left w-4/12 text-sm font-medium text-gray-700"
                 >
                   Budget Amount:
                 </label>
-                <div className="w-9/12 flex gap-2">
+                <div className="w-8/12 flex gap-2">
                   <div
                     className={`w-6/12 ${
                       touched.currency && errors.currency ? "has-error" : ""
@@ -251,7 +281,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                       as="select"
                       id="currency"
                       className={`form-input w-full ${
-                        !isEditing ? "bg-gray-200 cursor-not-allowed" : ""
+                        !isEditing ? "text-gray-500" : ""
                       }`}
                       disabled={!isEditing}
                     >
@@ -280,7 +310,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                       id="budgetAmount"
                       placeholder="Enter budget amount"
                       className={`form-input w-full ${
-                        !isEditing ? "bg-gray-200" : ""
+                        !isEditing ? "text-gray-500" : ""
                       }`}
                       disabled={!isEditing}
                     />
@@ -297,12 +327,12 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
               <div className="py-2 flex flex-row gap-2">
                 <label
                   htmlFor="maleParticipants"
-                  className="block text-left w-3/12 text-sm font-medium text-gray-700"
+                  className="block text-left w-4/12 text-sm font-medium text-gray-700"
                 >
                   Male Participants:
                 </label>
                 <div
-                  className={`w-9/12 ${
+                  className={`w-8/12 ${
                     touched.maleParticipants && errors.maleParticipants
                       ? "has-error"
                       : ""
@@ -314,7 +344,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                     id="maleParticipants"
                     placeholder="Enter male participants"
                     className={`form-input w-full ${
-                      !isEditing ? "bg-gray-200" : ""
+                      !isEditing ? "text-gray-500" : ""
                     }`}
                     disabled={!isEditing}
                   />
@@ -330,12 +360,12 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
               <div className="py-2 flex flex-row gap-2">
                 <label
                   htmlFor="femaleParticipants"
-                  className="block text-left w-3/12 text-sm font-medium text-gray-700"
+                  className="block text-left w-4/12 text-sm font-medium text-gray-700"
                 >
                   Female Participants:
                 </label>
                 <div
-                  className={`w-9/12 ${
+                  className={`w-8/12 ${
                     touched.femaleParticipants && errors.femaleParticipants
                       ? "has-error"
                       : ""
@@ -347,7 +377,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                     id="femaleParticipants"
                     placeholder="Enter female participants"
                     className={`form-input w-full ${
-                      !isEditing ? "bg-gray-200" : ""
+                      !isEditing ? "text-gray-500" : ""
                     }`}
                     disabled={!isEditing}
                   />
@@ -362,81 +392,85 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
           </Form>
         )}
       </Formik>
-      <Formik
-        innerRef={employeeTrainingForm}
-        initialValues={employeeTrainingIV(employeeData?.employeeTrainings)}
-        validationSchema={employeeTrainingVS}
-        onSubmit={handleSaveEmployeeTraining}
-      >
-        {({ errors, touched, handleSubmit, values, setFieldValue }) => (
-          <Form>
-            <div className="p-4 grid grid-cols-2 gap-4">
-              {/* All Participants */}
-              <div className="py-2 flex flex-row gap-2">
-                <label
-                  htmlFor="employeeNames"
-                  className="block text-left w-3/12 text-sm font-medium text-gray-700"
-                >
-                  All Participants ({employeeData?.employeeTrainings.length}):
-                </label>
-                <div
-                  className={`w-9/12 ${
-                    touched.employeeNames && errors.employeeNames
-                      ? "has-error"
-                      : ""
-                  }`}
-                >
-                  {isEditing ? (
-                    <Field
-                      as="select"
-                      name="allParticipants"
-                      id="allParticipants"
-                      className="form-input w-full"
-                      multiple
-                      onChange={(event: any) => {
-                        const options = Array.from(
-                          event.target.selectedOptions,
-                          (option: any) => option.value
-                        );
-                        setFieldValue("allParticipants", options);
-                      }}
-                    >
-                      <option value="" label="Select Employees" />
-                      {(employeeData?.employeeTrainings || []).map(
-                        (item: any) => (
-                          <option
-                            key={item?.employee?.id}
-                            value={item?.employee?.id}
-                          >
-                            {item?.employeeNames || ""}
-                          </option>
-                        )
-                      )}
-                    </Field>
-                  ) : (
-                    <div className="bg-gray-200 p-2">
-                      {employeeData?.employeeTrainings?.map(
-                        (item: any, index: number) => (
-                          <div key={index}>
-                            {/* Assuming employeeNames is an array */}
-                            {item?.employeeNames}
-                          </div>
-                        )
-                      )}
-                    </div>
-                  )}
 
-                  <ErrorMessage
-                    name="allParticipants"
-                    component="div"
-                    className="text-danger mt-1"
-                  />
+      {fetchAllEmployeeByCPState.state === StateOptions.FULFILLED && (
+        <Formik
+          innerRef={employeeTrainingForm}
+          initialValues={employeeTrainingIV(
+            employeeTrainingData?.employeeTrainings
+          )}
+          validationSchema={employeeTrainingVS}
+          onSubmit={handleSaveEmployeeTraining}
+        >
+          {({ errors, touched, handleSubmit, values, setFieldValue }) => (
+            <Form onSubmit={handleSubmit}>
+              <div className="p-4 grid grid-cols-2 gap-4">
+                {/* All Participants */}
+                <div className="py-2 flex flex-row gap-2">
+                  <label
+                    htmlFor="employeeNames"
+                    className="block text-left w-4/12 text-sm font-medium text-gray-700"
+                  >
+                    All Participants (
+                    {employeeTrainingData?.employeeTrainings.length}):
+                  </label>
+                  <div
+                    className={`w-8/12 ${
+                      touched.employeeNames && errors.employeeNames
+                        ? "has-error"
+                        : ""
+                    }`}
+                  >
+                    {isEditing ? (
+                      <>
+                        
+                        <MultiSelect
+                          label=""
+                          placeholder="Choose employee"
+                          data={allEmployeeOptions?.filter(
+                            (item: any) => item.value
+                          )}                          
+                          styles={{ dropdown: { maxHeight: 200, overflowY: 'auto' } }}                  
+                          searchable
+                          onChange={(selectedOptions: any) => {
+                            setFieldValue("employeeNames", selectedOptions);
+                          }}
+                        />
+
+                        <button
+                          type="submit"
+                          className="btn btn-primary btn-sm m-1"
+                          onClick={() => {}}
+                        >
+                          <IconPlus className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
+                          Add Participant
+                        </button>
+                      </>
+                    ) : (
+                      <div className="text-gray-500 p-2">
+                        {employeeTrainingData?.employeeTrainings?.map(
+                          (item: any, index: number) => (
+                            <div key={index}>
+                              {/* Assuming employeeNames is an array */}
+                              {item?.employeeNames}
+                            </div>
+                          )
+                        )}
+                      </div>
+                    )}
+
+                    <ErrorMessage
+                      name="allParticipants"
+                      component="div"
+                      className="text-danger mt-1"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </Form>
-        )}
-      </Formik>
+            </Form>
+          )}
+        </Formik>
+      )}
     </>
   );
 };
