@@ -4,6 +4,7 @@ import CDMSLogin from "../pages/Authentication/CDMSLogin";
 import { CDMSSignUp } from "../pages/Authentication/CDMSSignup";
 import { TwoFactorAuth } from "../pages/Authentication/2FA";
 import { ResetPassword } from "../pages/Authentication/ResetPassword";
+import Error from "../components/Error";
 const Index = lazy(() => import("../pages/Index"));
 const AllOrganization = lazy(() => import("../pages/Organization/all"));
 const MyOrganization = lazy(() => import("../pages/Organization/index"));
@@ -97,6 +98,11 @@ const routes = [
 		path: "/user/management",
 		element: <UserManagement />,
 	},
+	{
+        path: '*',
+        element: <Error />,
+        layout: 'blank',
+    },
 ];
 
 export { routes };
