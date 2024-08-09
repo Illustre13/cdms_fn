@@ -128,12 +128,11 @@ interface capacityplanInfo {
   id?: string;
   title: string;
   description: string;
-  type: TrainingPlanType;
   year: number;
-  status: CapacityPlanStatus;
+  status?: CapacityPlanStatus;
   attachment?: Buffer
   organization?: organizationInfo;
-  training: trainingInfo[];
+  training?: trainingInfo[];
   createdAt?: string;
   updatedAt?: string;
 }
@@ -238,8 +237,8 @@ interface ICapacityPlanInfo {
 }
 interface ICPBulkImportData {
   bulkCPData: {
-    info: capacityplanInfo[];
-    title: string;
+    trainings: trainingInfo[];
+    plans: capacityplanInfo;
   };
   file: any;
   isAfterFileChanged: boolean;

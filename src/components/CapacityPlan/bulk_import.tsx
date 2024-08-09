@@ -12,8 +12,8 @@ import { useWindowResize } from "../../util/helper";
 
 const initialState: ICPBulkImportData = {
   bulkCPData: {
-    info: [],
-    title: "",
+    trainings: [],
+    plans: {title:"", description: "", year: new Date().getFullYear()},
   },
   file: "",
   isAfterFileChanged: false,
@@ -51,15 +51,15 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
         );
         const capacityPlansInfo: string[] = JSONDATA?.slice(1, -9) as string[];
         const capacityPlansTitle = JSONDATA[0] as string[];
-        const cpInfoFormatted001 = mergeDataWithHeaders(JSONDATA?.slice(1, -9)[0] as [], capacityPlansInfo.slice(1)) as capacityplanInfo[];
+        const cpInfoFormatted001 = mergeDataWithHeaders(JSONDATA?.slice(1, -9)[0] as [], capacityPlansInfo.slice(1)) as trainingInfo[];
         console.log("Formatted_001 ---> ", cpInfoFormatted001);
- 
+ debugger;
         setThisState((prev) => ({
           ...prev,
           isAfterFileChanged: true,
           bulkCPData: {
-            info: cpInfoFormatted001,
-            title: capacityPlansTitle[0],
+            trainings: cpInfoFormatted001,
+            plans: {...initialState?.bulkCPData?.plans, title: capacityPlansTitle[0]},
           },
           file,
         }));
@@ -151,7 +151,7 @@ if(isBulkValid && handleBulkImport){
                     thisState.isAfterFileChanged ? "block" : "hidden"
                   }`}
                 >
-                  {thisState.bulkCPData.info.length < 1
+                  {thisState.bulkCPData.trainings.length < 1
                     ? "Your document is empty, click to upload a new document"
                     : ""}
                 </span>

@@ -830,7 +830,7 @@ const CapacityPlanTable = () => {
                 title: "Number of Trainings",
                 render: (record: capacityplanInfo) => (
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {record.training.length}
+                    {record.training!.length}
                   </span>
                 )
               },
@@ -848,7 +848,7 @@ const CapacityPlanTable = () => {
                 title: "Total Budgets",
                 render: (record: capacityplanInfo) => (
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {record.training[0].currency} {record.training.reduce(
+                    {record.training![0].currency} {record.training!.reduce(
                       (total: any, { budget }: any) => total + budget,
                       0
                     ).toLocaleString()} 
@@ -864,7 +864,7 @@ const CapacityPlanTable = () => {
                 accessor: "status",
                 title: "Status",
                 sortable: true,
-                render: (record: capacityplanInfo) => <StatusBadge status={record.status} />,
+                render: (record: capacityplanInfo) => <StatusBadge status={record.status!} />,
               },
              
               {
@@ -937,6 +937,7 @@ const CapacityPlanTable = () => {
             paginationText={({ from, to, totalRecords }) =>
               `Showing  ${from} to ${to} of ${totalRecords} entries`
             }
+            fontSize="sm"
           />
         </div>
         <ToastContainer />

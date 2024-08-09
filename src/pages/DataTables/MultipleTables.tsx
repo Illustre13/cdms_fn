@@ -748,6 +748,7 @@ const MultipleTables = () => {
 						paginationText={({ from, to, totalRecords }) =>
 							`Showing  ${from} to ${to} of ${totalRecords} entries`
 						}
+						fontSize="sm"
 					/>
 				</div>
 			</div>
@@ -841,6 +842,7 @@ const MultipleTables = () => {
 						paginationText={({ from, to, totalRecords }) =>
 							`Showing  ${from} to ${to} of ${totalRecords} entries`
 						}
+						fontSize="sm"
 					/>
 				</div>
 			</div>

@@ -270,8 +270,8 @@ const Sidebar = () => {
 								</AnimateHeight>
 							</li>
 
-							{/* Capacity Plan */}
-
+							{/* Capacity Need Assessment */}
+{/* 
 							<li className="menu nav-item">
 								<button
 									type="button"
@@ -312,7 +312,7 @@ const Sidebar = () => {
 										</li>
 									</ul>
 								</AnimateHeight>
-							</li>
+							</li> */}
 						</ul>
 						<ul className="relative font-semibold space-y-0.5 mb-8 p-4 py-0">
 							<li className="nav-item px-3">
