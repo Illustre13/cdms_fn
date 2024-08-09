@@ -450,7 +450,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                           //   trainingData?.participants?.females
                           // }
                         />
-
+{/* 
                         <button
                           type="submit"
                           className="btn btn-primary btn-sm m-1"
@@ -458,7 +458,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                         >
                           <IconPlus className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
                           Add Participant
-                        </button>
+                        </button> */}
                       </>
                     ) : (
                       <div className="text-left text-gray-500">
