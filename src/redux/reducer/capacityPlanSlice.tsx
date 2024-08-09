@@ -80,7 +80,12 @@ const initialState: {
 const capacityplanSlice = createSlice({
   name: "capacityplan",
   initialState,
-  reducers: {},
+  reducers: {
+
+    resetCapacityPlanState: (state) => {
+      return initialState;
+    }
+  },
   extraReducers: (builder) => {
     builder
       // Fetch all capacityplans
@@ -179,6 +184,9 @@ const capacityplanSlice = createSlice({
         state.bulkCreateState.state = StateOptions.PENDING;
       })
       .addCase(bulkCreateCapacityPlan.rejected, (state, action) => {
+        console.log(action)
+        debugger;
+        
         state.bulkCreateState.error = true;
         state.bulkCreateState.loading = false;
         state.bulkCreateState.message =
@@ -232,5 +240,5 @@ const capacityplanSlice = createSlice({
   },
 });
 
-export const capacityplanSliceAction = capacityplanSlice.actions;
+export const { resetCapacityPlanState } = capacityplanSlice.actions;
 export default capacityplanSlice.reducer;

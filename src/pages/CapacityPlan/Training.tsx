@@ -191,7 +191,7 @@ const Training = () => {
 
   useEffect(() => {
     // Handle training
-    if (deleteTrainingState.state !== StateOptions.IDLE) {
+    if (deleteTrainingState.state !== StateOptions.INITIAL) {
       showToast(
         deleteTrainingState.state!,
         deleteTrainingState.message!,
@@ -202,7 +202,7 @@ const Training = () => {
     }
 
     // Handle Update Training
-    if (updateTrainingState.state !== StateOptions.IDLE) {
+    if (updateTrainingState.state !== StateOptions.INITIAL) {
       showToast(
         updateTrainingState.state!,
         updateTrainingState.message!,

@@ -84,7 +84,7 @@ const MyOrganization = () => {
   const organizationFormRef = useRef<FormikProps<any> | null>(null);
 
   useEffect(() => {
-    if (deleteOrganizationState.state !== StateOptions.IDLE) {
+    if (deleteOrganizationState.state !== StateOptions.INITIAL) {
       showToast(
         deleteOrganizationState.state!,
         deleteOrganizationState.message!,
@@ -94,7 +94,7 @@ const MyOrganization = () => {
       );
       clearToast();
     }
-    if (updateOrganizationState.state !== StateOptions.IDLE) {
+    if (updateOrganizationState.state !== StateOptions.INITIAL) {
       showToast(
         updateOrganizationState.state!,
         updateOrganizationState.message!,

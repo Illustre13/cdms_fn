@@ -20,6 +20,7 @@ import {
   fetchCPCardsAnalytics,
   deleteCapacityPlan,
   updateCapacityPlan,
+  bulkCreateCapacityPlan,
 } from "../../redux/action/capacityPlanAction";
 import {
   arrayToCommaSeparatedString,
@@ -35,6 +36,7 @@ import { FormikProps } from "formik";
 import { CapacityPlanForm } from "../Forms/CapacityPlanForm";
 import { toast, ToastContainer } from "react-toastify";
 import IconFile from "../../components/Icon/IconFile";
+import { resetCapacityPlanState } from "../../redux/reducer/capacityPlanSlice";
 
 interface CPCardAnalyticsResultProps {
   amount: number;
@@ -64,7 +66,7 @@ const CapacityPlanTable = () => {
     new Date().getFullYear()
   );
   const [status, setStatus] = useState<any>();
-  const [year, setYear] = useState<number>();
+  const [year, setYear] = useState<number>(2024);
   const [industry, setIndustry] = useState<any>();
   const [modalProps, setModalProps] = useState<IModalProps>({
     isOpen: false,
@@ -101,6 +103,10 @@ const CapacityPlanTable = () => {
 
   const updateCapacityPlanState = useSelector(
     (state: IRootState) => state.capacityPlan.updateState
+  );
+
+  const bulkImportCapacityPlanState = useSelector(
+    (state: IRootState) => state.capacityPlan.bulkCreateState
   );
 
   const cpData = fetchCapacityPlanState?.data?.data;
@@ -156,12 +162,10 @@ const CapacityPlanTable = () => {
   }, [selectedRecords]);
 
   const [bulkCPModalOpen, setBulkCPModalOpen] = useState(false);
+  const [isCPBulkSubmit, setIsCPBulkSubmit] = useState(false);
+
   const openAddBulkCPModal = () => setBulkCPModalOpen(true);
   const closeAddBulkCPModal = () => {
-    setIsCPBulkSubmit(false);
-    setBulkCPModalOpen(false);
-  };
-  const closeBulkCPModal = () => {
     setIsCPBulkSubmit(false);
     setBulkCPModalOpen(false);
   };
@@ -247,14 +251,19 @@ const CapacityPlanTable = () => {
     };
   }
 
-  const [isCPBulkSubmit, setIsCPBulkSubmit] = useState(false);
 
   const handleCreateBulkCP = () => {
-    if (bulkCPModalOpen) {
+    if (bulkData && bulkCPModalOpen) {
       setIsCPBulkSubmit(true);
+      console.log("State Here 22222222222 --> ", bulkData);
+      debugger;
+      dispatch(bulkCreateCapacityPlan(bulkData));
+      debugger;
+      closeAddBulkCPModal();
     }
   };
 
+      
   const formRef = useRef<FormikProps<any> | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -306,7 +315,7 @@ const CapacityPlanTable = () => {
   const handleDelete = (id: string) => {
     console.log("ID --->", id);
     dispatch(deleteCapacityPlan(id));
-    handleModalClose();
+    closeAddBulkCPModal();
   };
 
   const [activeToast, setActiveToast] = useState<string | null>(null);
@@ -348,12 +357,13 @@ const CapacityPlanTable = () => {
   };
 
   const clearToast = () => {
+    dispatch(resetCapacityPlanState);
     setActiveToast(null);
   };
 
   useEffect(() => {
     // Handle Add Capacity Plan
-    if (addCapacityPlanState.state !== StateOptions.IDLE) {
+    if (addCapacityPlanState.state !== StateOptions.INITIAL) {
       showToast(
         addCapacityPlanState.state!,
         addCapacityPlanState.message!,
@@ -364,7 +374,7 @@ const CapacityPlanTable = () => {
     }
 
     // Handle Delete Capacity Plan
-    if (deleteCapacityPlanState.state !== StateOptions.IDLE) {
+    if (deleteCapacityPlanState.state !== StateOptions.INITIAL) {
       showToast(
         deleteCapacityPlanState.state!,
         deleteCapacityPlanState.message!,
@@ -376,7 +386,7 @@ const CapacityPlanTable = () => {
     }
 
     // Handle Update Capacity Plan
-    if (updateCapacityPlanState.state !== StateOptions.IDLE) {
+    if (updateCapacityPlanState.state !== StateOptions.INITIAL) {
       showToast(
         updateCapacityPlanState.state!,
         updateCapacityPlanState.message!,
@@ -386,11 +396,25 @@ const CapacityPlanTable = () => {
       );
       clearToast();
     }
+
+      // Handle Bulk Create of Capacity Plan notification
+      if (bulkImportCapacityPlanState.state !== StateOptions.INITIAL) {
+        debugger;
+        showToast(
+          bulkImportCapacityPlanState.state!,
+          bulkImportCapacityPlanState.message!,
+          "Capacity plan bulk import successful!",
+          bulkImportCapacityPlanState.data?.message ||
+            "Failed to bulk create Capacity plan."
+        );
+        clearToast();
+      }
   }, [
     addCapacityPlanState,
     deleteCapacityPlanState,
     updateCapacityPlanState,
     activeToast,
+    bulkImportCapacityPlanState
   ]);
 
   const openApproveModalHandler = (cpId?: string, selectedRecords?: any) => {
@@ -427,19 +451,20 @@ const CapacityPlanTable = () => {
     }
   };
 
-  const openAddCapacityPlanModal = () => {
+  const openCapacityPlanModal = (type: ModalType, title: string) => {
     setModalProps({
-      type: "addCapacityPlan",
+      type,
       isOpen: true,
       onClose: modalProps.onClose,
       onSubmit: () => handleAddCP(),
-      title: "Add Capacity Plan",
+      title,
       button1Text: "Cancel",
       button2Text: "Save",
       content: (
         <CapacityPlanForm
           setCapacityPlanData={setCapacityPlanData}
           formRef={formRef}
+          // isEditing={type ===  "editCapacityPlan"}
         />
       ),
       buttonTwoDisabled: false,
@@ -522,6 +547,12 @@ const CapacityPlanTable = () => {
   }
 
   console.log("YYEEAARR -->>", year)
+
+  const [bulkData, setBulkData] = useState();
+ useEffect(() => {
+ }, [bulkData])
+
+
   return (
     <div>
       {modalProps?.isOpen && (
@@ -546,13 +577,14 @@ const CapacityPlanTable = () => {
             <CPBulkImport
               cpBulkSubmit={isCPBulkSubmit}
               setIsCPBulkSubmit={setIsCPBulkSubmit}
-              handleBulkImport={handleCreateBulkCP}
+              // handleBulkImport={handleCreateBulkCP}
+              setBulkData={setBulkData}
             />
           }
           button1Text="Cancel"
           button2Text="Upload"
           onClose={closeAddBulkCPModal}
-          onSubmit={closeBulkCPModal}
+          onSubmit={handleCreateBulkCP}
           buttonTwoDisabled={!isCPBulkSubmit}
         />
       )}
@@ -743,21 +775,21 @@ const CapacityPlanTable = () => {
             <Select
               placeholder="Select Year"
               options={yearOptions}
-              value={year}
+              value={year!}
               onChange={handleYearChange}
             />
           </div>
 
-          <div className="flex justify-end gap-4">
+          {/* <div className="flex justify-end gap-4">
             <button
               type="button"
               className="btn btn-primary"
-              onClick={openAddCapacityPlanModal}
+              onClick={openCapacityPlanModal}
             >
               <IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
               Add Capacity Plan
             </button>
-          </div>
+          </div> */}
 
           <div>
             <button
@@ -830,7 +862,7 @@ const CapacityPlanTable = () => {
                 title: "Number of Trainings",
                 render: (record: capacityplanInfo) => (
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {record.training!.length}
+                    {record?.training!.length}
                   </span>
                 )
               },
@@ -839,7 +871,7 @@ const CapacityPlanTable = () => {
                   title: "Organization",
                   render: (record: capacityplanInfo) => (
                     <span className="text-sm text-gray-600 dark:text-gray-400">
-                      {record.organization!.name}
+                      {record?.organization!?.name}
                     </span>
                   )
                 },
@@ -884,6 +916,7 @@ const CapacityPlanTable = () => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
+                            onClick={() => openCapacityPlanModal("viewCapacityPlan", "View Capacity Plan")}
                           >
                             <IconEye className="mr-2" /> <span>View</span>
                           </button>

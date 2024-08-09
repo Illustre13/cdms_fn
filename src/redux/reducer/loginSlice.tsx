@@ -2,14 +2,6 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { handleLogin } from "../action/loginAction";
 import { StateOptions } from "../../util/enum";
 
-// interface LoginData {
-//   state: string;
-//   data: string | null;
-//   status: number | null;
-//   loading: boolean;
-//   error: boolean;
-// }
-
 const initialState: StateResponseData = {
 	state: StateOptions.INITIAL,
 	data: null,
@@ -21,7 +13,11 @@ const initialState: StateResponseData = {
 const loginSlice = createSlice({
 	name: "login",
 	initialState,
-	reducers: {},
+	reducers: {
+		resetLoginState: (state) => {
+			return initialState;
+		  },
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(handleLogin.pending, (state) => {
@@ -49,5 +45,5 @@ const loginSlice = createSlice({
 			});
 	},
 });
-export const loginSliceAction = loginSlice.actions;
+export const { resetLoginState} = loginSlice.actions;
 export default loginSlice.reducer;

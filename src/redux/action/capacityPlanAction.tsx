@@ -83,10 +83,11 @@ export const fetchCPCardsAnalytics = createAsyncThunk(
 
 export const bulkCreateCapacityPlan = createAsyncThunk<
   ResponseData,
-  { trainings: trainingInfo[]; plans: capacityplanInfo }
+  { trainings: trainingInfo[]; plan: capacityplanInfo }
 >("capacityplan/bulk-create", async (capacityplanInfo, { rejectWithValue }) => {
   try {
     const token = "Bearer " + localStorage.getItem("token");
+    debugger;
     const response = await URL.post("/cp/bulk-create", capacityplanInfo, {
       headers: { "Accept-language": "en", Authorization: token },
     });

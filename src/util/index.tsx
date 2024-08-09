@@ -15,6 +15,8 @@ type ModalType =
   | "approve"
   | "reject"
   | "addCapacityPlan"
+  | "viewCapacityPlan"
+  | "editCapacityPlan"
   | "viewTraining"
   | "editTraining"
   | "deleteOrganization"
@@ -227,6 +229,7 @@ interface ICPBulkImport {
   cpBulkSubmit?: boolean;
   setIsCPBulkSubmit?: (value: boolean) => void;
   handleBulkImport?: () => void;
+  setBulkData?: any;
 }
 
 interface ICapacityPlanInfo {
@@ -238,7 +241,7 @@ interface ICapacityPlanInfo {
 interface ICPBulkImportData {
   bulkCPData: {
     trainings: trainingInfo[];
-    plans: capacityplanInfo;
+    plan: capacityplanInfo;
   };
   file: any;
   isAfterFileChanged: boolean;

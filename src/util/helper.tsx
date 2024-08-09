@@ -155,7 +155,7 @@ export const mergeDataWithHeaders = (
     headers.forEach((header, index) => {
       result[header] = row[index];
     });
-    return {training: result};
+    return result;
   });
 };
 

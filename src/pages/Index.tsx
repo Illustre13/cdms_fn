@@ -675,12 +675,12 @@ const userInfoAnalyticsState = useSelector((state: IRootState) => state.analytic
                             <div className="flex items-center py-1.5 relative group hover:bg-cdms_primary/5 rounded-lg">
                               <div
                                 className={`${
-                                  getStatusBadgeColor(request.status).bg
+                                  getStatusBadgeColor(request.status!).bg
                                 } w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5`}
                               ></div>
 
                               <div
-                                className={`bg-${request.status.toLowerCase()} w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5`}
+                                className={`bg-${request.status!.toLowerCase()} w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5`}
                               ></div>
 
                               <div className="flex flex-col p-2 ">
@@ -697,10 +697,10 @@ const userInfoAnalyticsState = useSelector((state: IRootState) => state.analytic
                                   <div className="basis-2/8 -mt-8">
                                     <span
                                       className={`badge ${
-                                        getStatusBadgeColor(request.status)
+                                        getStatusBadgeColor(request.status!)
                                           .badge
                                       } ${
-                                        getStatusBadgeColor(request.status).bg
+                                        getStatusBadgeColor(request.status!).bg
                                       } absolute ltr:right-0 rtl:left-0 text-xs mt-8`}
                                     >
                                       {request.status}
