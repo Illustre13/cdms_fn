@@ -14,6 +14,7 @@ import { useAppDispatch } from "../redux/hooks";
 import { convertTimestamp } from "../util/helper";
 import Modal from "./Components/Modals";
 import { fetchCPBudgetAnalytics } from "../redux/action/capacityPlanAction";
+import { trainingInfoAnalytics } from "../redux/action/trainingAction";
 import { StateOptions } from "../util/enum";
 
 const Index = () => {
@@ -249,9 +250,128 @@ const Index = () => {
     },
   };
 
-  //Trainings
-  const cdmsTrainings: any = {
-    series: [345, 900, 299, 760],
+  const getStatusBadgeColor = (status: string) => {
+    switch (status) {
+      case "PENDING":
+        return {
+          badge: "badge-outline-info",
+          bg: "bg-info-light",
+        };
+
+      case "APPROVED":
+        return {
+          badge: "badge-outline-success",
+          bg: "bg-success-light",
+        };
+      case "REJECTED":
+        return {
+          badge: "badge-outline-danger",
+          bg: "bg-danger-light",
+        };
+
+      case "IN_PROGRESS":
+        return {
+          badge: "badge-outline-warning",
+          bg: "bg-warning-light",
+        };
+      case "ACTIVE":
+        return {
+          badge: "badge-outline-success",
+          bg: "bg-success-light",
+        };
+      default:
+        return {
+          badge: "badge-outline-info",
+          bg: "bg-info-light",
+        };
+    }
+  };
+  const [budgetAnalyticsYear, setBudgetAnalyticsYear] = useState(
+    new Date().getFullYear()
+  );
+  const AnalyticsFilter: any = {
+    budgetAnalyticsYear,
+  };
+
+  const [budgetAnalyticsData, setBudgetAnalyticsData] = useState<any>(null);
+const userInfoAnalyticsState = useSelector((state: IRootState) => state.analytics.fetchUserAnalyticState);
+const trainingInfoAnalyticsState = useSelector((state: IRootState) => state.training.fetchTrainingInfoAnalyticsState);
+
+  useEffect(() => {
+    dispatch(fetchCPBudgetAnalytics(AnalyticsFilter));
+  }, [budgetAnalyticsYear, dispatch]);
+
+  useEffect(() => {
+    dispatch(userInfoAnalytics());
+    dispatch(trainingInfoAnalytics());
+  }, [dispatch]);
+
+  const fetchCPBudgetAnalyticsState = useSelector(
+    (state: IRootState) => state.capacityPlan.fetchBudgetAnalytics
+  );
+
+  console.log(fetchCPBudgetAnalyticsState);
+  console.log("INFO USER -----> ", userInfoAnalyticsState)
+
+  useEffect(() => {
+    const data = fetchCPBudgetAnalyticsState?.data?.data;
+    if (data) {
+      setBudgetAnalyticsData(data);
+    }
+  }, [fetchCPBudgetAnalyticsState]);
+
+  const [year, setYear] = useState<any>(new Date().getFullYear());
+
+  const handleYearChange = (selectedOption: any) => {
+    setYear(selectedOption?.value);
+  };
+
+  console.log(userInfoAnalyticsState?.data?.data);
+  
+    // userDashboardChartOptions
+
+    let userDashboardChart: any;
+ if(userInfoAnalyticsState?.data?.data) {
+  userDashboardChart = {
+    series: Object.values(userInfoAnalyticsState?.data?.data?.percentages),
+    options: {
+        chart: {
+            height: 300,
+            type: 'pie',
+            zoom: {
+                enabled: false,
+            },
+            toolbar: {
+                show: false,
+            },
+        },
+        labels: Object.keys(userInfoAnalyticsState?.data?.data?.percentages),
+        colors: ['#4361ee', '#805dca', '#00ab55', '#e7515a', '#e2a03f'],
+        responsive: [
+            {
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200,
+                    },
+                },
+            },
+        ],
+        stroke: {
+            show: false,
+        },
+        legend: {
+            position: 'bottom',
+        },
+    },
+};
+ }
+
+let trainingDashboardChart: any;
+ const trainingInfoAnalyticsData = trainingInfoAnalyticsState?.data?.data; 
+ if(trainingInfoAnalyticsData) {
+  trainingDashboardChart = {
+    series: Object.values(trainingInfoAnalyticsData.percentages),
     options: {
       chart: {
         type: "donut",
@@ -337,122 +457,9 @@ const Index = () => {
         },
       },
     },
-  };
-
-  const getStatusBadgeColor = (status: string) => {
-    switch (status) {
-      case "PENDING":
-        return {
-          badge: "badge-outline-info",
-          bg: "bg-info-light",
-        };
-
-      case "APPROVED":
-        return {
-          badge: "badge-outline-success",
-          bg: "bg-success-light",
-        };
-      case "REJECTED":
-        return {
-          badge: "badge-outline-danger",
-          bg: "bg-danger-light",
-        };
-
-      case "IN_PROGRESS":
-        return {
-          badge: "badge-outline-warning",
-          bg: "bg-warning-light",
-        };
-      case "ACTIVE":
-        return {
-          badge: "badge-outline-success",
-          bg: "bg-success-light",
-        };
-      default:
-        return {
-          badge: "badge-outline-info",
-          bg: "bg-info-light",
-        };
-    }
-  };
-  const [budgetAnalyticsYear, setBudgetAnalyticsYear] = useState(
-    new Date().getFullYear()
-  );
-  const AnalyticsFilter: any = {
-    budgetAnalyticsYear,
-  };
-
-  const [budgetAnalyticsData, setBudgetAnalyticsData] = useState<any>(null);
-const userInfoAnalyticsState = useSelector((state: IRootState) => state.analytics.fetchUserAnalyticState);
-
-  useEffect(() => {
-    dispatch(fetchCPBudgetAnalytics(AnalyticsFilter));
-  }, [budgetAnalyticsYear, dispatch]);
-
-  useEffect(() => {
-    dispatch(userInfoAnalytics());
-  }, [dispatch]);
-
-  const fetchCPBudgetAnalyticsState = useSelector(
-    (state: IRootState) => state.capacityPlan.fetchBudgetAnalytics
-  );
-
-  console.log(fetchCPBudgetAnalyticsState);
-  console.log("INFO USER -----> ", userInfoAnalyticsState)
-
-  useEffect(() => {
-    const data = fetchCPBudgetAnalyticsState?.data?.data;
-    if (data) {
-      setBudgetAnalyticsData(data);
-    }
-  }, [fetchCPBudgetAnalyticsState]);
-
-  const [year, setYear] = useState<any>(new Date().getFullYear());
-
-  const handleYearChange = (selectedOption: any) => {
-    setYear(selectedOption?.value);
-  };
-
-  console.log(userInfoAnalyticsState?.data?.data);
-  
-    // userDashboardChartOptions
-
-    let userDashboardChart: any;
- if(userInfoAnalyticsState?.data?.data) {
-  userDashboardChart = {
-    series: Object.values(userInfoAnalyticsState?.data?.data?.percentages),
-    options: {
-        chart: {
-            height: 300,
-            type: 'pie',
-            zoom: {
-                enabled: false,
-            },
-            toolbar: {
-                show: false,
-            },
-        },
-        labels: Object.keys(userInfoAnalyticsState?.data?.data?.percentages),
-        colors: ['#4361ee', '#805dca', '#00ab55', '#e7515a', '#e2a03f'],
-        responsive: [
-            {
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200,
-                    },
-                },
-            },
-        ],
-        stroke: {
-            show: false,
-        },
-        legend: {
-            position: 'bottom',
-        },
-    },
 };
  }
+
 
   const cPlanStatistics = {
     series: [
@@ -860,11 +867,11 @@ const userInfoAnalyticsState = useSelector((state: IRootState) => state.analytic
                       </div>
                     ) : (
                       <ReactApexChart
-                        series={cdmsTrainings.series}
+                        series={trainingDashboardChart?.series}
                         options={{
-                          ...cdmsTrainings.options,
+                          ...trainingDashboardChart.options,
                           chart: {
-                            ...cdmsTrainings.options.chart,
+                            ...trainingDashboardChart.options.chart,
                             height: 400,
                           },
                           plotOptions: {

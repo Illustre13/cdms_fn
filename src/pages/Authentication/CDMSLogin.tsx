@@ -74,10 +74,10 @@ const CDMSLogin = () => {
 						<div className="self-center text-4xl font-bold tracking-tighter text-center text-gray-900 leading-[90px]">
 							Sign In
 						</div>
-						<div className="self-center mt-6 text-base leading-8 text-center text-black">
+						{/* <div className="self-center mt-6 text-base leading-8 text-center text-black">
 							Elevate. Empower. Excel.
-						</div>
-						<div className="flex gap-2 mt-12 text-base font-semibold leading-6 text-slate-800 max-md:flex-wrap max-md:mt-10">
+						</div> */}
+						{/* <div className="flex gap-2 mt-12 text-base font-semibold leading-6 text-slate-800 max-md:flex-wrap max-md:mt-10">
 							<div className="flex gap-2 justify-center px-5 py-3 bg-gray-50 rounded-lg border border-gray-300 border-solid shadow-sm">
 								<img
 									loading="lazy"
@@ -94,19 +94,19 @@ const CDMSLogin = () => {
 								/>
 								<div className="my-auto">Sign In with Facebook</div>
 							</div>
-						</div>
+						</div> */}
 						<div className="flex gap-5 items-center mt-4 text-sm leading-6 text-center text-gray-500 max-md:flex-wrap">
-							<img
+							{/* <img
 								loading="lazy"
 								src="https://cdn.builder.io/api/v1/image/assets/TEMP/ab8eaf7298e87ed64588abc8558da7460df50fa7df61ee262f3562128f0af8f0?apiKey=91e50d8dc4334802820abcbb631f5a11&"
 								className="shrink-0 self-stretch my-auto w-48 max-w-full border border-solid aspect-[100] border-zinc-300 stroke-[1px] stroke-zinc-300"
 							/>
-							<div className="self-stretch">or with e-mail</div>
-							<img
+							<div className="self-stretch">or with e-mail</div> */}
+							{/* <img
 								loading="lazy"
 								src="https://cdn.builder.io/api/v1/image/assets/TEMP/7b71eeb1b6bf88bf7513d92cd197ee44f93187b63f34e6bb3a6a41f9f4e8ac55?apiKey=91e50d8dc4334802820abcbb631f5a11&"
 								className="shrink-0 self-stretch my-auto w-48 max-w-full border border-solid aspect-[100] border-zinc-300 stroke-[1px] stroke-zinc-300"
-							/>
+							/> */}
 						</div>
 						<div className="mb-5">
 							<Formik
@@ -216,15 +216,15 @@ const CDMSLogin = () => {
 								<a href="/">Here</a>
 							</span>
 						</div>
-						<div className="self-center mt-44 text-sm leading-7 text-gray-500 max-md:mt-10">
+						<div className="self-center mt-16 text-sm leading-7 text-gray-500 max-md:mt-10">
 							2024 © CDMS
 						</div>
 					</div>
 				</div>
 				<div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-					<div className="flex flex-col grow px-9 py-20 w-full bg-cdms_primary max-md:px-5 max-md:mt-10 max-md:max-w-full">
+					<div className="flex flex-col grow px-9 py-8 w-full bg-cdms_primary max-md:px-5 max-md:mt-10 max-md:max-w-full">
 						<div className="flex z-10 gap-5 justify-between items-start mt-3 ml-14 max-w-full w-[291px] max-md:ml-2.5">
-							<div className="shrink-0 self-end mt-24 border-solid border-[3px] border-white border-opacity-10 h-[84px] w-[94px] max-md:mt-10" />
+							<div className="shrink-0 self-end mt-12 border-solid border-[3px] border-white border-opacity-10 h-[84px] w-[94px] max-md:mt-10" />
 							<img
 								className="w-24 ltr:-ml-1 rtl:-mr-1 inline"
 								src="/assets/images/cdms_logo_002.png"
@@ -234,9 +234,9 @@ const CDMSLogin = () => {
 						<img
 							loading="lazy"
 							src="https://cdn.builder.io/api/v1/image/assets/TEMP/c703752e108fa537734b6c9664ba8009b44ee4c6a7dbf7ea861d9665326f2534?apiKey=91e50d8dc4334802820abcbb631f5a11&"
-							className="self-end max-w-full aspect-[1.56] w-[480px]"
+							className="self-end max-w-full aspect-[1.56] h-[240px] w-[480px]"
 						/>
-						<div className="self-center mt-24 text-2xl font-bold tracking-tight leading-8 text-center text-white max-md:mt-10">
+						<div className="self-center mt-12 text-2xl font-bold tracking-tight leading-8 text-center text-white max-md:mt-10">
 							Capacity Development Management System
 						</div>
 						<div className="mt-6 text-base leading-8 text-center text-white max-md:max-w-full">

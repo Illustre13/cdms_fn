@@ -34,7 +34,7 @@ export const userInfoAnalytics = createAsyncThunk(
   async () => {
     try {
       const token = "Bearer " + localStorage.getItem("token");
-      const response = await URL.get("/user/dashboard/analytics", {
+      const response = await URL.get("/user/info/analytics1", {
         headers: { "Accept-language": "en", Authorization: token },
       });
       return response.data;

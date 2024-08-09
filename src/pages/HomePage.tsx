@@ -73,7 +73,7 @@ const HomePage = () => {
 
 						<div className="flex flex-row justify-center space-x-4">
 							<Link
-								to="/signup"
+								to="/cdms-signin"
 								className="main-logo flex items-center shrink-0"
 							>
 								<button
@@ -126,7 +126,7 @@ const HomePage = () => {
 							engagement, while also supporting environmental sustainability by
 							reducing paper usage and promoting eco-friendly practices.
 						</p>
-						<Link to="/signup">
+						<Link to="/cdms-signup">
 							<button className="bg-gradient-to-r from-cdms_primary to-cdms_secondary w-24 h-8 py-2 px-4 mt-4 rounded">
 								Join Now
 							</button>

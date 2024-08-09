@@ -156,3 +156,18 @@ export const fetchTrainingInfo = createAsyncThunk<ResponseData, ItemID>(
     }
   }
 );
+
+export const trainingInfoAnalytics = createAsyncThunk(
+  "training/info/analytics",
+  async () => {
+    try {
+      const token = "Bearer " + localStorage.getItem("token");
+      const response = await URL.get("/training/info/analytics1", {
+        headers: { "Accept-language": "en", Authorization: token },
+      });
+      return response.data;
+    } catch (error: any) {
+      throw error.response.data.message;
+    }
+  }
+);

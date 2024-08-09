@@ -7,7 +7,8 @@ import {
   bulkCreateTraining,
   updateTraining,
   fetchCPBudgetAnalytics,
-  fetchTrainingInfo
+  fetchTrainingInfo,
+  trainingInfoAnalytics
 } from "../action/trainingAction";
 import { StateOptions } from "../../util/enum";
 
@@ -19,7 +20,8 @@ const initialState: {
   bulkCreateState: StateResponseData;
   updateState: StateResponseData;
   fetchBudgetAnalytics: StateResponseData;
-  fetchOneByIdState: StateResponseData
+  fetchOneByIdState: StateResponseData;
+  fetchTrainingInfoAnalyticsState: StateResponseData;
 } = {
   fetchState: {
     state: StateOptions.INITIAL,
@@ -85,6 +87,16 @@ const initialState: {
     error: false,
     message: "",
   },
+
+  fetchTrainingInfoAnalyticsState: {
+    state: StateOptions.INITIAL,
+    data: null,
+    status: null,
+    loading: false,
+    error: false,
+    message: "",
+  },
+
 };
 
 const trainingSlice = createSlice({
@@ -260,7 +272,24 @@ const trainingSlice = createSlice({
               action.error.message || "Fetching One training failed";
             state.fetchOneByIdState.state = StateOptions.REJECTED;
           })
-
+   // Fetch all trainings dashboard analytics state
+   .addCase(trainingInfoAnalytics.fulfilled, (state, action) => {
+    state.fetchTrainingInfoAnalyticsState.data = action.payload;
+    state.fetchTrainingInfoAnalyticsState.loading = false;
+    state.fetchTrainingInfoAnalyticsState.error = false;
+    state.fetchTrainingInfoAnalyticsState.state = StateOptions.FULFILLED;
+  })
+  .addCase(trainingInfoAnalytics.pending, (state) => {
+    state.fetchTrainingInfoAnalyticsState.loading = true;
+    state.fetchTrainingInfoAnalyticsState.error = false;
+    state.fetchTrainingInfoAnalyticsState.state = StateOptions.PENDING;
+  })
+  .addCase(trainingInfoAnalytics.rejected, (state, action) => {
+    state.fetchTrainingInfoAnalyticsState.error = true;
+    state.fetchTrainingInfoAnalyticsState.loading = false;
+    state.fetchTrainingInfoAnalyticsState.message = action.error.message;
+    state.fetchTrainingInfoAnalyticsState.state = StateOptions.REJECTED;
+  })
       ;
   },
 });

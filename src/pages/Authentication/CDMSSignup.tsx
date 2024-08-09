@@ -102,10 +102,10 @@ export const CDMSSignUp = () => {
   }, [activeTab, signupData]);
 
   return (
-    <div className="justify-center px-12 py-8 bg-white max-md:px-5">
+    <div className="justify-center p-6 bg-white max-md:px-5">
       <div className="flex gap-5 max-md:flex-col max-md:gap-0">
         <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col grow px-10 py-16 w-full bg-cdms_primary max-md:px-5 max-md:mt-10 max-md:max-w-full">
+          <div className="flex flex-col grow p-6 w-full bg-cdms_primary max-md:px-5 max-md:mt-10 max-md:max-w-full">
             <img
               loading="lazy"
               srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/6756065672675fe032811b3afee8889f98576d60054fb7c4d91fcca8083fdcc5?apiKey=91e50d8dc4334802820abcbb631f5a11&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/6756065672675fe032811b3afee8889f98576d60054fb7c4d91fcca8083fdcc5?apiKey=91e50d8dc4334802820abcbb631f5a11&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/6756065672675fe032811b3afee8889f98576d60054fb7c4d91fcca8083fdcc5?apiKey=91e50d8dc4334802820abcbb631f5a11&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/6756065672675fe032811b3afee8889f98576d60054fb7c4d91fcca8083fdcc5?apiKey=91e50d8dc4334802820abcbb631f5a11&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/6756065672675fe032811b3afee8889f98576d60054fb7c4d91fcca8083fdcc5?apiKey=91e50d8dc4334802820abcbb631f5a11&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/6756065672675fe032811b3afee8889f98576d60054fb7c4d91fcca8083fdcc5?apiKey=91e50d8dc4334802820abcbb631f5a11&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/6756065672675fe032811b3afee8889f98576d60054fb7c4d91fcca8083fdcc5?apiKey=91e50d8dc4334802820abcbb631f5a11&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/6756065672675fe032811b3afee8889f98576d60054fb7c4d91fcca8083fdcc5?apiKey=91e50d8dc4334802820abcbb631f5a11&"
@@ -224,7 +224,7 @@ export const CDMSSignUp = () => {
 								</button> */}
               </div>
             </div>
-            <div className="self-center mt-8 text-sm leading-7 text-gray-500 max-md:mt-10">
+            <div className="self-center mt-4 text-sm leading-7 text-gray-500 max-md:mt-8">
               2024 © CDMS
             </div>
           </div>
