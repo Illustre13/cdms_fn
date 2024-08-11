@@ -1,71 +1,93 @@
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
-import IconX from "../../components/Icon/IconX";
-import IconDownload from "../../components/Icon/IconDownload";
-import IconEye from "../../components/Icon/IconEye";
-import IconSend from "../../components/Icon/IconSend";
-import IconSave from "../../components/Icon/IconSave";
+import { ErrorMessage, Field, Formik } from "formik";
+import * as Yup from "yup";
+import {
+  addCapacityPlan,
+  fetchAllCapacityPlan,
+} from "../../redux/action/capacityPlanAction";
+import { useAppDispatch } from "../../redux/hooks";
 import IconArrowBackward from "../../components/Icon/IconArrowBackward";
-import IconPlusCircle from "../../components/Icon/IconPlusCircle";
-import IconPlus from "../../components/Icon/IconPlus";
+import Tippy from "@tippyjs/react";
+import IconEdit from "../../components/Icon/IconEdit";
+import { IRootState } from "../../redux/store";
+import { CapacityPlanLevel, CapacityPlanStatus } from "../../util/enum";
 
 const Add = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(setPageTitle("Add Capacity Plan"));
-  });
+  }, [dispatch]);
 
-  const [form, setForm] = useState({
-    title: "",
-    description: "",
-    status: "",
-    attachment: null,
-    budget: 0,
-    organization: "",
-  });
+  const fetchCapacityPlanState = useSelector(
+    (state: IRootState) => state.capacityPlan.fetchState
+  );
 
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+  const cpData = fetchCapacityPlanState?.data?.data;
+  const rdbCPData = cpData?.capacityPlans[0];
+  console.log(rdbCPData);
+
+  const handleSubmit = (values: any) => {
+    console.log(values);
+    dispatch(addCapacityPlan(values));
   };
 
-  const TrainingPlanType = [
-    { value: "draft", label: "Draft" },
-    { value: "sent", label: "Sent" },
-    { value: "under-review", label: "Under review" },
-    { value: "review", label: " Review" },
-  ];
+  interface cpFilters {
+    level?: any;
+    year?: number;
+  }
 
-  const CapacityPlanStatus = [
-    { value: "draft", label: "Draft" },
-    { value: "sent", label: "Sent" },
-    { value: "under-review", label: "Under review" },
-    { value: "review", label: " Review" },
-  ];
-
-  const TrainingPlanLevel = [
-    { value: "draft", label: "Draft" },
-    { value: "sent", label: "Sent" },
-    { value: "under-review", label: "Under review" },
-    { value: "review", label: " Review" },
-  ];
-
-  // const handleFileChange = (e) => {
-  // 	const file = e.target.files[0];
-  // 	const reader = new FileReader();
-  // 	reader.onload = () => {
-  // 		setForm({ ...form, attachment: Buffer.from(reader.result) });
-  // 	};
-  // 	reader.readAsArrayBuffer(file);
-  // };
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    // Submit form logic
+  const [level, setLevel] = useState<any>(CapacityPlanLevel.NATIONAL);
+  const [year, setYear] = useState<any>(new Date().getFullYear());
+  const cpFilters: cpFilters = {
+    level: level,
+    year: year,
   };
 
+  useEffect(() => {
+    dispatch(fetchAllCapacityPlan(cpFilters));
+  }, [level, year, dispatch]);
+
+  const [isEditingMode, setIsEditingMode] = useState(false);
+
+  const validationSchema = Yup.object({
+    title: Yup.string()
+      .required("Title is required")
+      .min(3, "Title must be at least 3 characters"),
+    description: Yup.string()
+      .required("Description is required")
+      .min(10, "Description must be at least 10 characters"),
+    type: Yup.string()
+      .required("Type is required")
+      .oneOf(["ANNUAL_PLAN", "QUARTELY_PLAN"], "Invalid type"),
+      level: Yup.string()
+      .required("Type is required")
+      .oneOf(["NATIONAL"], "Invalid level"),
+    year: Yup.number()
+      .required("Year is required")
+      .integer("Year must be an integer")
+      .min(1900, "Year must be at least 1900")
+      .max(new Date().getFullYear(), "Year cannot be in the future"),
+    budget: Yup.number()
+      .required("Budget is required")
+      .positive("Budget must be a positive number")
+      .min(0, "Budget must be greater than or equal to 0"),
+    currency: Yup.string()
+      .required("Currency is required")
+      .oneOf(["RWF", "USD", "EUR"], "Invalid currency"),
+  });
+
+  const getInitialFormValues = (rdbCPData: any) => ({
+    title: rdbCPData?.title || "",
+    description: rdbCPData?.description || "",
+    type: rdbCPData?.type || "",
+    level: rdbCPData?.level || "",
+    year: rdbCPData?.year || "",
+    budget: rdbCPData?.totalBudget.toLocaleString() || "",
+    currency: rdbCPData?.currency || "",
+  });
   return (
     <>
       <div className="gap-4">
@@ -77,90 +99,235 @@ const Add = () => {
             </div>
           </Link>
           <span className="flex flex-row gap-2 font-bold text-xl">
-            Submit Capacity Plan
+            RDB Capacity Plan
           </span>
         </div>
       </div>
-      <div className="flex xl:flex-row flex-col gap-4">
+      <div className="panel flex xl:flex-row flex-col gap-4">
         <div className="flex flex-col xl:w-full w-full gap-4">
-          <form className="panel flex-1 ltr:xl:mr-6 rtl:xl:ml-6 p-4">
-            <div className="mb-2">
-              <label htmlFor="fullname">Title</label>
-              <input
-                id="fullname"
-                type="text"
-                placeholder="Enter capacity plan title..."
-                className="form-input"
-              />
-            </div>
+          <div className="flex item-right gap-4 justify-between pr-4">
+            <span></span>
+            <div className="flex flex-row item-right gap-4 justify-right">
+              {/* Submit Info */}
 
-            <div className="mb-2">
-              <label htmlFor="fullname">Description</label>
-              <input
-                id="fullname"
-                type="text"
-                placeholder="Enter capacity plan description..."
-                className="form-input"
-              />
-            </div>
-            {/* 
-						<div className="mb-2">
-							<label htmlFor="fullname">Capacity Plan Type</label>
-							<select className="form-select form-select-lg text-white-dark">
-								<option>Annual Plan</option>
-								<option>Quartely Plan</option>
-								<option>5-Year Plan</option>
-								<option>7-Year Plan</option>
-							</select>
-						</div> */}
-            {/* 
-						<div className="mb-2">
-							<label htmlFor="fullname">Budget</label>
-							<input
-								id="budget"
-								type="number"
-								placeholder="Enter capacity plan budget..."
-								className="form-input"
-							/>
-						</div> */}
+              {isEditingMode && (
+                <div className="sm:col-span-2 mt-4 flex justify-end">
+                  <button
+                    type="submit"
+                    className={`bg-cdms_primary text-white py-2 px-4 -mt-4 rounded-md hover:bg-cdms_secondary focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50`}
+                  >
+                    Save
+                  </button>
+                </div>
+              )}
 
-            <hr className="border-white-light dark:border-[#1b2e4b] my-6" />
-            <div className="mb-2 flex flex-col gap-4 justify-between">
-              <label htmlFor="avatar">Choose Capacity Plan File:</label>
-              <input
-                type="file"
-                id="avatar"
-                name="avatar"
-                accept=".pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx"
-              />
+              <Tippy content="Edit" placement="top">
+                <div onClick={() => setIsEditingMode(!isEditingMode)}>
+                  <IconEdit className="w-8 h-8 cursor-pointer" />
+                </div>
+              </Tippy>
             </div>
-            <hr className="border-white-light dark:border-[#1b2e4b] my-6" />
-            <div className="mb-2 flex flex-row gap-4 justify-between">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="avatar">Choose Training Plan File(s):</label>
-                <input
-                  type="file"
-                  id="avatar"
-                  name="avatar"
-                  accept=".pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx"
-                  multiple
-                />
-              </div>
-            </div>
-            <hr className="border-white-light dark:border-[#1b2e4b] my-6" />
-            <div className="flex justify-end gap-4">
-              <Link to="/cp/overview">
-                <button type="button" className="btn bg-gray-200">
-                  <IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
-                  Cancel
-                </button>
-              </Link>
-              <button type="button" className="btn btn-primary">
-                <IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
-                Submit
-              </button>
-            </div>
-          </form>
+          </div>
+          {cpData && rdbCPData && (
+            <Formik
+              initialValues={getInitialFormValues(rdbCPData)}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              {({ errors, touched, handleSubmit }) => (
+                <Form onSubmit={handleSubmit}>
+                  <div className="p-4">
+                    {/* Title input field */}
+                    <div className="py-2 flex flex-row gap-2">
+                      <label
+                        htmlFor="title"
+                        className="block text-sm font-medium text-gray-700 w-3/12"
+                      >
+                        Title:
+                      </label>
+                      <div
+                        className={
+                          touched.title && errors.title
+                            ? "has-error w-9/12"
+                            : "w-9/12"
+                        }
+                      >
+                        <Field
+                          name="title"
+                          type="text"
+                          id="title"
+                          placeholder="Enter capacity plan title"
+                          className={`flex-1 form-input ${!isEditingMode ? "text-gray-500" : ""}`}
+                          disabled={!isEditingMode}
+                        />
+                        <ErrorMessage
+                          name="title"
+                          component="div"
+                          className="text-align-left text-danger mt-1"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Description input field */}
+                    <div className="py-2 flex flex-row gap-2">
+                      <label
+                        htmlFor="description"
+                        className="block text-sm font-medium text-gray-700 w-3/12"
+                      >
+                        Description:
+                      </label>
+                      <div
+                        className={
+                          touched.description && errors.description
+                            ? "has-error w-9/12"
+                            : "w-9/12"
+                        }
+                      >
+                        <Field
+                          name="description"
+                          as="textarea"
+                          id="description"
+                          placeholder="Enter capacity plan description"
+                          className={`flex-1 h-48 form-input ${!isEditingMode ? "text-gray-500" : ""}`}
+                          disabled={!isEditingMode}
+                        />
+                        <ErrorMessage
+                          name="description"
+                          component="div"
+                          className="text-danger mt-1"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Level select field */}
+                    <div className="py-2 flex flex-row gap-2">
+                      <label
+                        htmlFor="level"
+                        className="block text-sm font-medium text-gray-700 w-3/12"
+                      >
+                        Level:
+                      </label>
+                      <div
+                        className={
+                          touched.level && errors.level
+                            ? "has-error w-9/12"
+                            : "w-9/12"
+                        }
+                      >
+                        <Field
+                          name="type"
+                          as="select"
+                          id="level"
+                          className={`flex-1 form-input ${!isEditingMode ? "text-gray-500" : ""}`}
+                          disabled={!isEditingMode}
+                        >
+                          <option value="NATIONAL">NATIONAL</option>
+                        </Field>
+                        <ErrorMessage
+                          name="type"
+                          component="div"
+                          className="text-danger mt-1"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Year input field */}
+                    <div className="py-2 flex flex-row gap-2">
+                      <label
+                        htmlFor="year"
+                        className="block text-sm font-medium text-gray-700 w-3/12"
+                      >
+                        Year:
+                      </label>
+                      <div
+                        className={
+                          touched.year && errors.year
+                            ? "has-error w-9/12"
+                            : "w-9/12"
+                        }
+                      >
+                        <Field
+                          name="year"
+                          type="number"
+                          id="year"
+                          placeholder="Enter year"
+                          className={`flex-1 form-input ${!isEditingMode ? "text-gray-500" : ""}`}
+                          disabled={!isEditingMode}
+                        />
+                        <ErrorMessage
+                          name="year"
+                          component="div"
+                          className="text-danger mt-1"
+                        />
+                      </div>
+                    </div>
+
+
+                    {/* Budget input field */}
+                    <div className="py-2 flex flex-row gap-2">
+                      <label
+                        htmlFor="budget"
+                        className="block text-sm font-medium text-gray-700 w-3/12"
+                      >
+                        Budget:
+                      </label>
+                          {/* Currency select field */}
+                          <div
+                        className={
+                          touched.currency && errors.currency
+                            ? "has-error w-2/12"
+                            : touched.currency
+                            ? "has-success w-2/12"
+                            : "w-2/12"
+                        }
+                      >
+                        <Field
+                          name="currency"
+                          as="select"
+                          id="currency"
+                          className={`flex-1 form-input ${!isEditingMode ? "text-gray-500" : ""}`}
+                          disabled={!isEditingMode}
+                        >
+                          <option value="" label="Select currency" />
+                          <option value="RWF" label="RWF" />
+                          <option value="USD" label="USD" />
+                          <option value="EUR" label="EUR" />
+                        </Field>
+                        <ErrorMessage
+                          name="currency"
+                          component="div"
+                          className="text-danger mt-1"
+                        />
+                      </div>
+                      <div
+                        className={
+                          touched.budget && errors.budget
+                            ? "has-error w-7/12"
+                            : touched.budget
+                            ? "has-success w-7/12"
+                            : "w-7/12"
+                        }
+                      >
+                        <Field
+                          name="budget"
+                          type="text"
+                          id="budget"
+                          placeholder="Enter budget"
+                          className={`flex-1 form-input ${!isEditingMode ? "text-gray-500" : ""}`}
+                          disabled={!isEditingMode}
+                        />
+                        <ErrorMessage
+                          name="budget"
+                          component="div"
+                          className="text-danger mt-1"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </Form>
+              )}
+            </Formik>
+          )}
         </div>
       </div>
     </>

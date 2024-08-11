@@ -105,11 +105,13 @@ export const CurrencyFormatter: React.FC<CurrencyFormatterProps> = ({
   amount = 0,
   currency = "RWF",
 }) => {
+
+  console.log(amount)
+  const amountInt = Number.isNaN(Number(amount)) ? parseInt(cleanNumberString(amount).toString(), 10) : amount;
   const formattedAmount = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency,
-  }).format(Number(amount));
-
+  }).format(Number(amountInt));
   return <span>{formattedAmount}</span>;
 };
 
@@ -130,7 +132,7 @@ export const arrayToCommaSeparatedString = (array: []) => {
   return cleanArray;
 };
 
-export const cleanNumberString = (numberString: string) =>
+export const cleanNumberString = (numberString: any) =>
   numberString.replace(/,/g, "");
 export const formatData = (data: any) => {
   return (data || []).map((d: any) => {

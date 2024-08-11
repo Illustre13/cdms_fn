@@ -54,3 +54,8 @@ export enum AssessmentStatus {
 	REVIEWED = "REVIEWED",
 }
 
+export enum CapacityPlanLevel {
+	INSTITUTIONAL = "INSTITUTIONAL",
+	ORGANIZATIONAL = "ORGANIZATIONAL",
+	NATIONAL = "NATIONAL"
+}

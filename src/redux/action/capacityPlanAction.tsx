@@ -59,13 +59,13 @@ export const deleteCapacityPlan = createAsyncThunk<ResponseData, string>(
 
 export const fetchCPCardsAnalytics = createAsyncThunk(
   "capacityplan/cardsAnalytics",
-  async (payload: any) => {
+  async (cardAnalyticsYear: any) => {
     try {
       const token = "Bearer " + localStorage.getItem("token");
 
       const params = new URLSearchParams();
-      if (payload?.cardAnalyticsYear)
-        params.append("year", payload.cardAnalyticsYear);
+      if (cardAnalyticsYear)
+        params.append("year", cardAnalyticsYear);
       const response = await URL.get(
         `/cp/cards/analytics?${params.toString()}`,
         {

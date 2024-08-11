@@ -37,9 +37,11 @@ import { CapacityPlanForm } from "../Forms/CapacityPlanForm";
 import { toast, ToastContainer } from "react-toastify";
 import IconFile from "../../components/Icon/IconFile";
 import { resetCapacityPlanState } from "../../redux/reducer/capacityPlanSlice";
+import IconDownload from "../../components/Icon/IconDownload";
+import { GenerateReport } from "../../components/GenerateReport";
 
 interface CPCardAnalyticsResultProps {
-  amount: number;
+  amount: any;
   currency: string;
   percent: number;
 }
@@ -48,7 +50,7 @@ interface CardAnalyticsData {
   requestedBudget: CPCardAnalyticsResultProps;
   allocatedBudget: CPCardAnalyticsResultProps;
   availableBudget: {
-    amount: number;
+    amount: any;
     currency: string;
   };
 }
@@ -148,9 +150,12 @@ const CapacityPlanTable = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchAllCapacityPlan({status, year, industry, searchKey}));
-    dispatch(fetchCPCardsAnalytics(AnalyticsFilter));
-  }, [searchKey, status, industry, year, cardAnalyticsYear, dispatch]);
+    dispatch(fetchCPCardsAnalytics(cardAnalyticsYear));
+  }, [cardAnalyticsYear, dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchAllCapacityPlan({ status, year, industry, searchKey }));
+  }, [searchKey, status, industry, year, dispatch]);
 
   useEffect(() => {
     if (selectedRecords.length > 0) {
@@ -176,8 +181,12 @@ const CapacityPlanTable = () => {
   };
   const handleYearChange = (selectedOption: any) => {
     setYear(selectedOption?.value);
+  };
+
+  const handleAnalyticYearChange = (selectedOption: any) => {
     setCardAnalyticsYear(selectedOption?.value);
   };
+
   let radialBarChart: ReactChartProps | any;
   if (cardAnalyticsData) {
     radialBarChart = (
@@ -251,7 +260,6 @@ const CapacityPlanTable = () => {
     };
   }
 
-
   const handleCreateBulkCP = () => {
     if (bulkData && bulkCPModalOpen) {
       setIsCPBulkSubmit(true);
@@ -263,7 +271,6 @@ const CapacityPlanTable = () => {
     }
   };
 
-      
   const formRef = useRef<FormikProps<any> | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -397,24 +404,24 @@ const CapacityPlanTable = () => {
       clearToast();
     }
 
-      // Handle Bulk Create of Capacity Plan notification
-      if (bulkImportCapacityPlanState.state !== StateOptions.INITIAL) {
-        debugger;
-        showToast(
-          bulkImportCapacityPlanState.state!,
-          bulkImportCapacityPlanState.message!,
-          "Capacity plan bulk import successful!",
-          bulkImportCapacityPlanState.data?.message ||
-            "Failed to bulk create Capacity plan."
-        );
-        clearToast();
-      }
+    // Handle Bulk Create of Capacity Plan notification
+    if (bulkImportCapacityPlanState.state !== StateOptions.INITIAL) {
+      debugger;
+      showToast(
+        bulkImportCapacityPlanState.state!,
+        bulkImportCapacityPlanState.message!,
+        "Capacity plan bulk import successful!",
+        bulkImportCapacityPlanState.data?.message ||
+          "Failed to bulk create Capacity plan."
+      );
+      clearToast();
+    }
   }, [
     addCapacityPlanState,
     deleteCapacityPlanState,
     updateCapacityPlanState,
     activeToast,
-    bulkImportCapacityPlanState
+    bulkImportCapacityPlanState,
   ]);
 
   const openApproveModalHandler = (cpId?: string, selectedRecords?: any) => {
@@ -471,7 +478,7 @@ const CapacityPlanTable = () => {
     });
   };
 
-  const uniqueYears:  any[] = useMemo(() => {
+  const uniqueYears: any[] = useMemo(() => {
     const years = cpData?.capacityPlans.map(
       (plan: capacityplanInfo) => plan.year
     );
@@ -480,15 +487,19 @@ const CapacityPlanTable = () => {
   console.log(uniqueYears);
 
   interface IYears {
-    label: string; 
-    value: number
+    label: string;
+    value: number;
   }
-  const yearOptions: any = uniqueYears.map(
-    (year) => ({
-      label: year.toString(),
-      value: year,
-    })
-  );
+  const yearOptions: any = uniqueYears.map((year) => ({
+    label: year.toString(),
+    value: year,
+  }));
+  console.log(yearOptions)
+
+  const yearOptions2: any = [
+    { value: 2023, label: '2023' },
+    { value: 2024, label: '2024' },
+];
 
   const header = [
     // "No",
@@ -546,13 +557,12 @@ const CapacityPlanTable = () => {
     });
   }
 
-  console.log("YYEEAARR -->>", year)
+  console.log("YYEEAARR -->>", year);
 
   const [bulkData, setBulkData] = useState();
- useEffect(() => {
- }, [bulkData])
+  useEffect(() => {}, [bulkData]);
 
-
+  console.log(cardAnalyticsData?.availableBudget?.amount!);
   return (
     <div>
       {modalProps?.isOpen && (
@@ -617,15 +627,15 @@ const CapacityPlanTable = () => {
             {/* <IconHorizontalDots /> */}
             <div className="dropdown">
               <Dropdown
-                placement={"bottom-start"}
+                placement={"bottom-end"}
                 button={
                   <IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
                 }
               >
-                <ul>
+                <ul className="w-48">
                   <li>
-                    <button type="button" className="w-72">
-                      <Link to="/cp/add">Create Capacity Plan</Link>
+                    <button type="button" className="w-48">
+                      <Link to="/cp/add">RDB Capacity Plan</Link>
                     </button>
                   </li>
                 </ul>
@@ -652,7 +662,7 @@ const CapacityPlanTable = () => {
                   </h5>
                   <p className="text-white-dark">
                     Available budget for capacity development projects in Rwanda
-                    in the year 2024.
+                    in the year {cardAnalyticsYear}.
                   </p>
                 </div>
               </div>
@@ -677,7 +687,7 @@ const CapacityPlanTable = () => {
                   </h5>
                   <p className="text-white-dark">
                     Pending requested budget for capacity development projects
-                    in Rwanda in the year 2024.
+                    in Rwanda in the year {cardAnalyticsYear}.
                   </p>
                 </div>
               </div>
@@ -702,8 +712,37 @@ const CapacityPlanTable = () => {
                   </h5>
                   <p className="text-white-dark">
                     Approved requested budget for capacity development projects
-                    in Rwanda in the year 2024.
+                    in Rwanda in the year {cardAnalyticsYear}.
                   </p>
+                </div>
+              </div>
+            </div>
+
+            {/**
+             *
+             * Card 4
+             */}
+
+            <div className="mb-5 flex items-center justify-center">
+              <div className="max-w-[19rem] w-full bg-[#fff] bg-opacity-10 dark:bg-[#191e3a] dark:shadow-none h-64">
+                <div className="p-4">
+                  <div className="relative z-10 w-48">
+                    <Select
+                    defaultValue={yearOptions2[1]}
+                      placeholder="Select Year"
+                      options={yearOptions2}
+                      onChange={handleAnalyticYearChange}
+                    />
+                  </div>
+                  <span className="text-white">
+                    <GenerateReport
+                      link={`/report/cp/analytics`}
+                      className="bg-cdms_primary hover:opacity-90 focus:ring-transparent focus:outline-none w-48 mt-4 lg:h-[42px] rounded-lg p-1"
+                      buttonText="Generate Report"
+                      params={`?year=${cardAnalyticsYear}`}
+                      icon={IconDownload}
+                    />
+                  </span>
                 </div>
               </div>
             </div>
@@ -766,7 +805,7 @@ const CapacityPlanTable = () => {
             <Select
               placeholder="Select status"
               options={statusOptions}
-              value={status}
+              defaultValue={status}
               onChange={handleStatusChange}
             />
           </div>
@@ -775,7 +814,7 @@ const CapacityPlanTable = () => {
             <Select
               placeholder="Select Year"
               options={yearOptions}
-              value={year!}
+              defaultValue={year}
               onChange={handleYearChange}
             />
           </div>
@@ -857,33 +896,37 @@ const CapacityPlanTable = () => {
                 render: (_, index) => index + 1,
               },
               { accessor: "title", sortable: true },
-             {
-              accessor: "numberOfTrainings",
+              {
+                accessor: "numberOfTrainings",
                 title: "Number of Trainings",
                 render: (record: capacityplanInfo) => (
                   <span className="text-sm text-gray-600 dark:text-gray-400">
                     {record?.training!.length}
                   </span>
-                )
+                ),
               },
               {
                 accessor: "organizationName",
-                  title: "Organization",
-                  render: (record: capacityplanInfo) => (
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
-                      {record?.organization!?.name}
-                    </span>
-                  )
-                },
+                title: "Organization",
+                render: (record: capacityplanInfo) => (
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {record?.organization!?.name}
+                  </span>
+                ),
+              },
               {
                 accessor: "totalBudget",
                 title: "Total Budgets",
                 render: (record: capacityplanInfo) => (
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {record?.training![0]?.currency || record?.currency} { record?.totalBudget?.toLocaleString() || record.training!.reduce(
-                      (total: any, { budget }: any) => total + budget,
-                      0
-                    ).toLocaleString()} 
+                    {record?.training![0]?.currency || record?.currency}{" "}
+                    {record?.totalBudget?.toLocaleString() ||
+                      record
+                        .training!.reduce(
+                          (total: any, { budget }: any) => total + budget,
+                          0
+                        )
+                        .toLocaleString()}
                   </span>
                 ),
               },
@@ -895,9 +938,11 @@ const CapacityPlanTable = () => {
                 accessor: "status",
                 title: "Status",
                 sortable: true,
-                render: (record: capacityplanInfo) => <StatusBadge status={record.status!} />,
+                render: (record: capacityplanInfo) => (
+                  <StatusBadge status={record.status!} />
+                ),
               },
-             
+
               {
                 accessor: "moreAction",
                 title: "Action",
@@ -915,7 +960,12 @@ const CapacityPlanTable = () => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
-                            onClick={() => openCapacityPlanModal("viewCapacityPlan", "View Capacity Plan")}
+                            onClick={() =>
+                              openCapacityPlanModal(
+                                "viewCapacityPlan",
+                                "View Capacity Plan"
+                              )
+                            }
                           >
                             <IconEye className="mr-2" /> <span>View</span>
                           </button>
