@@ -576,7 +576,7 @@ let trainingDashboardChart: any;
              * Section 1
              *
              */}
-            <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
+            <div className="grid sm:grid-cols-2 xl:grid-cols-2 gap-6 mb-6">
               {/**
                *
                * Capacity Plan Stats
@@ -725,58 +725,17 @@ let trainingDashboardChart: any;
 
                 </div> */}
               </div>
-  {/**
-               *
-               * CDMS Users Stats
-               *
-               */}
-              <div className="panel h-full">
-                <div className="flex items-center justify-between dark:text-white-light mb-5">
-                  {userInfoAnalyticsState?.data?.data ? 
-                  <h5 className="font-semibold text-lg">CDMS {userInfoAnalyticsState?.data?.data && userInfoAnalyticsState?.data?.data?.type === "users" ? "Users" : "Employee"}</h5>
-                  :
-                  <h5 className="font-semibold text-lg">CDMS Users</h5>
-                  }
-                  <div className="dropdown">
-                    <Dropdown
-                      placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-                      button={
-                        <IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
-                      }
-                    >
-                      <ul>
-                        <li>
-                          <button type="button">
-                            <Link to="/employees">View All Employees</Link>
-                          </button>
-                        </li>
-                      </ul>
-                    </Dropdown>
-                  </div>
-                </div>
-                <div>
-                  <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
-                    {userInfoAnalyticsState.state != StateOptions.FULFILLED && !userInfoAnalyticsState?.data?.data ? (
-                      <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
-                        <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
-                      </div>
-                    ) : (
-                  
-                      <ReactApexChart series={userDashboardChart?.series} options={userDashboardChart?.options} className="rounded-lg bg-white dark:bg-black overflow-hidden" type="pie" height={400} />
-                    )}
-                  </div>
-                </div>
-              </div>
+
            
             </div>
 
-            <div className="grid xl:grid-cols-3 gap-6 mb-6">
+            <div className="grid xl:grid-cols-2 gap-6 mb-6">
               {/*
                *
                * Capacity Need Assessment
                *
                */}
-              <div className="panel h-full xl:col-span-2">
+              {/* <div className="panel h-full xl:col-span-2">
                 <div className="flex items-center justify-between dark:text-white-light mb-5">
                   <h5 className="font-semibold text-lg">
                     Capacity Need Assessement
@@ -822,9 +781,50 @@ let trainingDashboardChart: any;
                     )}
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-            
+              {/**
+               *
+               * CDMS Users Stats
+               *
+               */}
+              <div className="panel h-full">
+                <div className="flex items-center justify-between dark:text-white-light mb-5">
+                  {userInfoAnalyticsState?.data?.data ? 
+                  <h5 className="font-semibold text-lg">CDMS {userInfoAnalyticsState?.data?.data && userInfoAnalyticsState?.data?.data?.type === "users" ? "Users" : "Employee"}</h5>
+                  :
+                  <h5 className="font-semibold text-lg">CDMS Users</h5>
+                  }
+                  <div className="dropdown">
+                    <Dropdown
+                      placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
+                      button={
+                        <IconHorizontalDots className="w-5 h-5 text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
+                      }
+                    >
+                      <ul>
+                        <li>
+                          <button type="button">
+                            <Link to="/employees">View All Employees</Link>
+                          </button>
+                        </li>
+                      </ul>
+                    </Dropdown>
+                  </div>
+                </div>
+                <div>
+                  <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
+                    {userInfoAnalyticsState.state != StateOptions.FULFILLED && !userInfoAnalyticsState?.data?.data ? (
+                      <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                        <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
+                      </div>
+                    ) : (
+                  
+                      <ReactApexChart series={userDashboardChart?.series} options={userDashboardChart?.options} className="rounded-lg bg-white dark:bg-black overflow-hidden" type="pie" height={400} />
+                    )}
+                  </div>
+                </div>
+              </div>
 
                  {/*
                *

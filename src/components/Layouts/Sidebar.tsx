@@ -95,7 +95,7 @@ const Sidebar = () => {
 					<PerfectScrollbar className="h-[calc(100vh-80px)] relative flex justify-between flex-col">
 						<ul className="relative font-semibold space-y-0.5 p-4 py-0">
 							<li className="nav-item">
-								<NavLink to="/homepage" className="group">
+								<NavLink to="/" className="group">
 									<div className="flex items-center">
 										<IconMenuCalendar className="group-hover:!text-cdms_primary shrink-0" />
 										<span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">

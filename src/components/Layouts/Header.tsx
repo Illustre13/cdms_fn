@@ -176,7 +176,7 @@ console.log("PI --->", userData?.profileImage)
                 </button>
               )}
             </div>
-            <div className="dropdown shrink-0">
+            {/* <div className="dropdown shrink-0">
               <Dropdown
                 offset={[0, 8]}
                 placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
@@ -218,7 +218,7 @@ console.log("PI --->", userData?.profileImage)
                   })}
                 </ul>
               </Dropdown>
-            </div>
+            </div> */}
 
             <div className="dropdown shrink-0 flex">
               <Dropdown
