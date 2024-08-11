@@ -861,7 +861,7 @@ let trainingDashboardChart: any;
                 </div>
                 <div>
                   <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
-                    {loading ? (
+                  {trainingInfoAnalyticsState.state != StateOptions.FULFILLED && !trainingInfoAnalyticsData ? (
                       <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
                         <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
                       </div>

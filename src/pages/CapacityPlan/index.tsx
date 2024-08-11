@@ -880,14 +880,13 @@ const CapacityPlanTable = () => {
                 title: "Total Budgets",
                 render: (record: capacityplanInfo) => (
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {record.training![0].currency} {record.training!.reduce(
+                    {record?.training![0]?.currency || record?.currency} { record?.totalBudget?.toLocaleString() || record.training!.reduce(
                       (total: any, { budget }: any) => total + budget,
                       0
                     ).toLocaleString()} 
                   </span>
                 ),
               },
-              
               {
                 accessor: "year",
                 title: "Target Year",

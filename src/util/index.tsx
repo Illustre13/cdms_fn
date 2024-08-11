@@ -132,6 +132,8 @@ interface capacityplanInfo {
   description: string;
   year: number;
   status?: CapacityPlanStatus;
+  currency?: string;
+  totalBudget?: number;
   attachment?: Buffer
   organization?: organizationInfo;
   training?: trainingInfo[];
