@@ -20,6 +20,7 @@ import IconMenuApps from "../Icon/Menu/IconMenuApps";
 import { fetchUserInfo } from "../../redux/action/UserAction";
 import { useAppDispatch } from "../../redux/hooks";
 import { StateOptions } from "../../util/enum";
+import { capitalize } from "lodash";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -78,12 +79,15 @@ const Header = () => {
     navigate("/cdms-signin");
   };
 
-  const userInfoState = useSelector((state: IRootState) => state.user.fetchUserInfoState);
+  const userInfoState = useSelector(
+    (state: IRootState) => state.user.fetchUserInfoState
+  );
 
-const [userData, setUserData] = useState<any>(null);
-const [loadingUser, setLoadingUser] = useState(true);
+  const [userData, setUserData] = useState<any>(null);
+  const [employeeData, setEmployeeData] = useState<any>(null);
+  const [loadingUser, setLoadingUser] = useState(true);
 
-useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         await dispatch(fetchUserInfo()).unwrap();
@@ -102,9 +106,10 @@ useEffect(() => {
   useEffect(() => {
     if (userInfoState?.state === StateOptions.FULFILLED) {
       setUserData(userInfoState?.data?.data?.user);
+      setEmployeeData(userInfoState?.data?.data?.employee);
     }
   }, [userInfoState]);
-console.log("PI --->", userData?.profileImage)
+  console.log("PI --->", userData?.profileImage);
   return (
     <header
       className={`z-40 ${
@@ -229,7 +234,11 @@ console.log("PI --->", userData?.profileImage)
                   <img
                     className="w-9 h-9 rounded-full object-cover saturate-100 group-hover:saturate-80"
                     // src="/assets/images/profile_avatar.png"
-					src={userData?.profileImage ? userData?.profileImage : "/assets/images/profile_avatar.png"}
+                    src={
+                      userData?.profileImage
+                        ? userData?.profileImage
+                        : "/assets/images/profile_avatar.png"
+                    }
                     alt="userProfile"
                   />
                 }
@@ -240,19 +249,29 @@ console.log("PI --->", userData?.profileImage)
                       <img
                         className="rounded-md w-10 h-10 object-cover"
                         // src="/assets/images/profile_avatar.png"
-                        src={userData?.profileImage ? userData?.profileImage : "/assets/images/profile_avatar.png"}
+                        src={
+                          userData?.profileImage
+                            ? userData?.profileImage
+                            : "/assets/images/profile_avatar.png"
+                        }
                         alt="userProfile"
                       />
                       <div className="ltr:pl-4 rtl:pr-4 truncate">
-                        <h4 className="text-base">{userData ? `${userData?.firstName} ${userData?.lastName}` : "John Doe"}</h4>
+                        <h4 className="text-base">
+                          {userData
+                            ? `${userData?.firstName} ${userData?.lastName}`
+                            : "John Doe"}
+                        </h4>
+                        <h6 className="text-base text-sm">
+                          {employeeData ? capitalize(employeeData?.role?.name) : "Employee"}
+                        </h6>
                         <button
                           type="button"
                           className="text-black/60 hover:text-cdms_primary dark:text-dark-light/60 dark:hover:text-white"
                         >
-                         {/* {userData?.firstName} ? {userData?.firstName} : "johndoe@gmail.com"
-						  */}
-
-						  {userData?.email ? userData?.email : "johndoe@gmail.com"}
+                          {userData?.email
+                            ? userData?.email
+                            : "johndoe@gmail.com"}
                         </button>
                       </div>
                     </div>

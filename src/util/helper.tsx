@@ -185,3 +185,23 @@ export const downloadFile = (fileName: string) => {
   link.download = fileName;
   link.click();
 };
+
+export const getVisibleTabs = (roleName: string) => {
+  const tabs = {
+    homepage: true,
+    dashboard: roleName === 'admin' || roleName === 'manager' || roleName === "approver",
+    organization: roleName === 'admin' || roleName === 'manager',
+    myOrganization : true,
+    allOrganization: roleName === 'admin' || roleName ==='approver',
+    user: true,
+    myProfile : true,
+    userManagement: roleName === 'admin' || roleName ==='manager',
+    // user: roleName === 'admin' || roleName === 'manager' || roleName === 'employee' || roleName === 'approver',
+    employees: roleName === 'admin' || roleName === 'manager' || roleName === "approver",
+    cp: roleName === 'admin' || roleName === 'manager' || roleName === 'approver',
+    // cna: roleName === 'admin' || roleName === 'manager' || roleName === 'approver',
+    cna: false,
+    training: roleName === 'employee',
+  };
+  return tabs;
+};

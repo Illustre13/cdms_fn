@@ -424,14 +424,14 @@ const Training = () => {
               Dashboard
             </Link>
           </li>
-          <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+          {/* <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
             <Link
               to="/cp/overview"
               className="text-cdms_primary hover:underline"
             >
               Capacity Plan
             </Link>
-          </li>
+          </li> */}
           <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
             <Link
               to="/cp/trainings"
