@@ -3,7 +3,7 @@ import { DownloadFile } from "../redux/hooks/downloadFiles";
 interface ButtonProps {
   link: string;
   className: string;
-  buttonText: string;
+  buttonText: any;
   icon: any;
   params: string;
 }

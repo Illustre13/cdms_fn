@@ -19,7 +19,7 @@ const CPTrainings = lazy(() => import("../pages/CapacityPlan/Training"));
 const UserProfile = lazy(() => import("../pages/Users/UserProfile"));
 const UserManagement = lazy(() => import("../pages/Users/UserManagement"));
 const AddCapacityPlan = lazy(() => import("../pages/CapacityPlan/CreateCP"));
-
+const ViewCapacityPlan = lazy(() => import ("../pages/CapacityPlan/ViewCP"));
 const routes = [
 	{
 		path: "/cdms-signin",
@@ -89,6 +89,10 @@ const routes = [
 	{
 		path: "/cp/add",
 		element: <AddCapacityPlan />,
+	},
+	{
+		path: "/cp/view/:cpId",
+		element: <ViewCapacityPlan />,
 	},
 	{
 		path: "/user/profile",

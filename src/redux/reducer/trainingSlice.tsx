@@ -255,7 +255,7 @@ const trainingSlice = createSlice({
 
            .addCase(fetchTrainingInfo.fulfilled, (state, action) => {
             state.fetchOneByIdState.data = action.payload;
-            state.fetchOneByIdState.message = " deleted successfully!";
+            state.fetchOneByIdState.message = " Fetching training by id successfully!";
             state.fetchOneByIdState.loading = false;
             state.fetchOneByIdState.error = false;
             state.fetchOneByIdState.state = StateOptions.FULFILLED;
@@ -269,7 +269,7 @@ const trainingSlice = createSlice({
             state.fetchOneByIdState.error = true;
             state.fetchOneByIdState.loading = false;
             state.fetchOneByIdState.message =
-              action.error.message || "Fetching One training failed";
+              action.error.message || "Fetching training by id failed";
             state.fetchOneByIdState.state = StateOptions.REJECTED;
           })
    // Fetch all trainings dashboard analytics state

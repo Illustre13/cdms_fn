@@ -142,3 +142,18 @@ export const fetchCPBudgetAnalytics = createAsyncThunk(
     }
   }
 );
+
+export const fetchCapacityPlanInfo = createAsyncThunk<ResponseData, string>(
+  "capacityPlsn/getOneById",
+  async (id, { rejectWithValue }) => {
+    try {
+      const token = "Bearer " + localStorage.getItem("token");
+      const response = await URL.get(`/cp/${id}`, {
+        headers: { "Accept-language": "en", Authorization: token },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

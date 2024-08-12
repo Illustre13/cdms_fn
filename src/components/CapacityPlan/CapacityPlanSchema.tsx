@@ -5,29 +5,30 @@ export const loginInitialValues = {
   password: "",
 };
 
-export const capacityPlanInitialValues = {
-  title: "",
-  description: "",
-  type: "",
+export const capacityPlanInitialValues = (capacityPlanData: capacityplanInfo) => ({
+  title: capacityPlanData?.title || "",
+  description: capacityPlanData?.description || "",
   year: new Date().getFullYear(),
-  // status: "",
+  status: capacityPlanData?.status || "",
   attachment: undefined,
-  program: "",
-  subProgram: "",
-  output: "",
-  capacityChallenge: "",
-  level: "",
-  action: "",
-  maleParticipants: "",
-  femaleParticipants: "",
-  responsibleEntity: "",
-  stakeholders: "",
-  budget: 0,
-  currency: "",
-  fundSource: "",
-  organization: null,
-  training: [],
-};
+  program: capacityPlanData?.training![0]?.program || "",
+  subProgram: capacityPlanData?.training![0]?.subProgram || "",
+  output: capacityPlanData?.training![0]?.subProgram || "",
+  capacityChallenge: capacityPlanData?.training![0]?.subProgram || "",
+  level: capacityPlanData?.level || "",
+  action: capacityPlanData?.training![0]?.action || "",
+  maleParticipants: capacityPlanData?.training![0]?.participants.males || "",
+  femaleParticipants: capacityPlanData?.training![0]?.participants?.females || "",
+  responsibleEntity: capacityPlanData?.training![0]?.responsibleEntity || "",
+  stakeholders: capacityPlanData?.training![0]?.stakeholders || "",
+  budget: capacityPlanData?.training?.reduce((total, training) => {
+    return total + (training.budget || 0);
+  }, 0).toFixed(0).toString().toLocaleString() || 0,
+  currency: capacityPlanData?.training![0].currency || "",
+  fundSource: capacityPlanData?.training![0].fundSource || "",
+  organization: capacityPlanData?.organization,
+  training: capacityPlanData?.training,
+});
 export const capacityPlanValidation = Yup.object().shape({
   title: Yup.string().required("Title is required"),
 

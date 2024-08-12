@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
 import { IRootState } from "../../redux/store";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import IconHorizontalDots from "../../components/Icon/IconHorizontalDots";
 import IconSearch from "../../components/Icon/IconSearch";
 import Select from "react-select";
@@ -21,6 +21,7 @@ import {
   deleteCapacityPlan,
   updateCapacityPlan,
   bulkCreateCapacityPlan,
+  fetchCapacityPlanInfo,
 } from "../../redux/action/capacityPlanAction";
 import {
   arrayToCommaSeparatedString,
@@ -35,10 +36,10 @@ import { CPBulkImport } from "../../components/CapacityPlan/bulk_import";
 import { FormikProps } from "formik";
 import { CapacityPlanForm } from "../Forms/CapacityPlanForm";
 import { toast, ToastContainer } from "react-toastify";
-import IconFile from "../../components/Icon/IconFile";
 import { resetCapacityPlanState } from "../../redux/reducer/capacityPlanSlice";
 import IconDownload from "../../components/Icon/IconDownload";
 import { GenerateReport } from "../../components/GenerateReport";
+import ViewCP from "./ViewCP";
 
 interface CPCardAnalyticsResultProps {
   amount: any;
@@ -439,10 +440,6 @@ const CapacityPlanTable = () => {
   };
 
   const openRejectModalHandler = (cpId?: string, selectedRecords?: any) => {
-    if (selectedRecords) {
-      console.log("HEHEHEHEHEHEHEH");
-      console.log(selectedRecords);
-    }
     if (cpId) {
       setModalProps({
         type: "reject",
@@ -458,25 +455,50 @@ const CapacityPlanTable = () => {
     }
   };
 
-  const openCapacityPlanModal = (type: ModalType, title: string) => {
-    setModalProps({
-      type,
-      isOpen: true,
-      onClose: modalProps.onClose,
-      onSubmit: () => handleAddCP(),
-      title,
-      button1Text: "Cancel",
-      button2Text: "Save",
-      content: (
-        <CapacityPlanForm
-          setCapacityPlanData={setCapacityPlanData}
-          formRef={formRef}
-          // isEditing={type ===  "editCapacityPlan"}
-        />
-      ),
-      buttonTwoDisabled: false,
-    });
+  const navigate = useNavigate();
+
+  
+  const handleViewCP = (cpId: string) => {
+    console.log("ID --->", cpId);
+    const data = cpData?.capacityPlans.find((cp: capacityplanInfo) => cp.id === cpId);
+    setCapacityPlanData(
+     data
+    );
+    navigate(`/cp/view/${cpId}`);
   };
+
+// useEffect(() => {
+//   if (capacityPlanData) {
+//     // openCapacityPlanModal("viewCapacityPlan", "View Capacity Plan");
+//     // dispatch(fetchCapacityPlanInfo(capacityPlanData?.id));
+//     <ViewCP capacityPlanInfo={capacityPlanData} />
+//   }
+// }, [capacityPlanData]);
+
+  // const openCapacityPlanModal = (
+  //   type: ModalType,
+  //   title: string,
+  // ) => {
+  //   setModalProps({
+  //     type,
+  //     isOpen: true,
+  //     onClose: modalProps.onClose,
+  //     onSubmit: () => handleAddCP(),
+  //     title,
+  //     button1Text: "Cancel",
+  //     button2Text: "Save",
+  //     content: (
+  //       <CapacityPlanForm
+  //         setCapacityPlanData={setCapacityPlanData}
+  //         formRef={formRef}
+  //         capacityPlanData={capacityPlanData}
+  //         // isEditing={type ===  "editCapacityPlan"}
+  //       />
+  //     ),
+  //     buttonTwoDisabled: false,
+  //     size: "max-w-4xl",
+  //   });
+  // };
 
   const uniqueYears: any[] = useMemo(() => {
     const years = cpData?.capacityPlans.map(
@@ -494,12 +516,12 @@ const CapacityPlanTable = () => {
     label: year.toString(),
     value: year,
   }));
-  console.log(yearOptions)
+  console.log(yearOptions);
 
   const yearOptions2: any = [
-    { value: 2023, label: '2023' },
-    { value: 2024, label: '2024' },
-];
+    { value: 2023, label: "2023" },
+    { value: 2024, label: "2024" },
+  ];
 
   const header = [
     // "No",
@@ -576,6 +598,7 @@ const CapacityPlanTable = () => {
           onSubmit={modalProps.onSubmit}
           onRetry={modalProps.onRetry}
           buttonTwoDisabled={modalProps.buttonTwoDisabled}
+          size={modalProps.size}
         />
       )}
 
@@ -728,7 +751,7 @@ const CapacityPlanTable = () => {
                 <div className="p-4">
                   <div className="relative z-10 w-48">
                     <Select
-                    defaultValue={yearOptions2[1]}
+                      defaultValue={yearOptions2[1]}
                       placeholder="Select Year"
                       options={yearOptions2}
                       onChange={handleAnalyticYearChange}
@@ -847,7 +870,7 @@ const CapacityPlanTable = () => {
               className="btn btn-primary btn-sm m-1"
               onClick={handleDownloadExcel}
             >
-              <IconFile className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
+              <IconDownload className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
               EXCEL
             </button>
           </div>
@@ -960,12 +983,7 @@ const CapacityPlanTable = () => {
                           <button
                             type="button"
                             className="flex items-center space-x-2"
-                            onClick={() =>
-                              openCapacityPlanModal(
-                                "viewCapacityPlan",
-                                "View Capacity Plan"
-                              )
-                            }
+                            onClick={() => handleViewCP(record.id!)}
                           >
                             <IconEye className="mr-2" /> <span>View</span>
                           </button>
