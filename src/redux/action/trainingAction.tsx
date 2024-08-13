@@ -90,8 +90,6 @@ export const bulkCreateTraining = createAsyncThunk<
     const response = await URL.post("/training/bulk-create", trainingInfo, {
       headers: { "Accept-language": "en", Authorization: token },
     });
-
-    console.log(response);
     return response.data;
   } catch (error) {
     return rejectWithValue(error);

@@ -20,7 +20,14 @@ type ModalType =
   | "viewTraining"
   | "editTraining"
   | "deleteOrganization"
-  | "updateOrganization";
+  | "updateOrganization"
+  | "addEmployee"
+  | "viewEmployee"
+  | "updateEmployee"
+  | "deleteEMployee";
+
+  	type EmployeeStatus = "PENDING" | "ACTIVE" | "SUSPENDED";
+
 interface ResponseData {
   data: object;
   error: boolean;
@@ -87,6 +94,10 @@ interface organizationInfo {
   website?: string;
   tinNo?: string;
 }
+
+interface employeeBulkProp {
+  data: userInfo | employeeInfo;
+}
 interface userWorkInfo {
   role: string;
   department: string;
@@ -120,6 +131,11 @@ interface trainingFilters {
   status?: any;
   industry?: any;
   year?: number;
+}
+
+interface EmployeeFilters {
+  searchKey?: string;
+  status?: any;
 }
 
 interface EmployeeTrainingFilters {
@@ -164,6 +180,19 @@ interface trainingInfo {
   fundSource: string;
   capacityPlan?: capacityplanInfo;
   employeeTraining?: IEmployeeTraining[];
+}
+
+interface employeeInfo {
+  id? : string;
+  department: string;
+  position: string;
+  isAdmin?: boolean;
+  isSupervisor?: boolean;
+  status?: EmployeeStatus;
+  organization?: organizationInfo;
+  user?: userInfo;
+  role?: any;
+  employeeTraining?: any[];
 }
 
 interface employeeTrainingAddProp {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { AssessmentStatus, EmployeeTrainingStatus } from "./enum";
+import { AssessmentStatus, EmployeeTrainingStatus, EmployeeStatus } from "./enum";
 import { camelCase } from "lodash";
 
 export class InvalidTokenError extends Error {}
@@ -17,7 +17,7 @@ interface StatusBadgeProps {
   status: allStatus;
 }
 
-type allStatus = CapacityPlanStatus | EmployeeTrainingStatus | AssessmentStatus;
+type allStatus = CapacityPlanStatus | EmployeeTrainingStatus | AssessmentStatus | EmployeeStatus;
 
 interface CurrencyFormatterProps {
   amount: number | string;
@@ -80,8 +80,8 @@ export const convertTimestamp = (timestamp: string) => {
 
 const statusColorMap: Record<allStatus, string> = {
   PENDING: "bg-yellow-500",
-  // ACTIVE: "bg-green-500",
-  // SUSPENDED: "bg-red-500",
+  ACTIVE: "bg-green-500",
+  SUSPENDED: "bg-red-500",
   DRAFT: "bg-gray-500",
   SENT: "bg-blue-500",
   UNDER_REVIEW: "bg-purple-500",
@@ -193,7 +193,8 @@ export const getVisibleTabs = (roleName: string) => {
     allOrganization: roleName === 'admin' || roleName ==='approver',
     user: true,
     myProfile : true,
-    userManagement: roleName === 'admin' || roleName ==='manager',
+    userManagement: false,
+    // userManagement: roleName === 'admin' || roleName ==='manager',
     // user: roleName === 'admin' || roleName === 'manager' || roleName === 'employee' || roleName === 'approver',
     employees: roleName === 'admin' || roleName === 'manager' || roleName === "approver",
     cp: roleName === 'admin' || roleName === 'manager' || roleName === 'approver',

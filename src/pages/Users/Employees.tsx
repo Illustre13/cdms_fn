@@ -1,675 +1,506 @@
-import { DataTable, DataTableSortStatus } from "mantine-datatable";
-import { useEffect, useState } from "react";
-import sortBy from "lodash/sortBy";
+import { DataTable } from "mantine-datatable";
+import { useEffect, useRef, useState } from "react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { setPageTitle } from "../../redux/reducer/themeConfigSlice";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import IconPencil from "../../components/Icon/IconPencil";
-import IconTrashLines from "../../components/Icon/IconTrashLines";
 import IconSearch from "../../components/Icon/IconSearch";
 import Select from "react-select";
 import IconPlus from "../../components/Icon/IconPlus";
 import IconTxtFile from "../../components/Icon/IconTxtFile";
-
-const employees = [
-	{
-		id: "1",
-		firstName: "Caroline",
-		lastName: "Jensen",
-		department: "Engineering",
-		position: "Software Developer",
-		email: "carolinejensen@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "ACTIVE",
-		organization: "MINEDUC",
-	},
-	{
-		id: "2",
-		firstName: "John",
-		lastName: "Doe",
-		department: "Human Resources",
-		position: "HR Manager",
-		email: "johndoe@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "REMA",
-	},
-	{
-		id: "3",
-		firstName: "Jane",
-		lastName: "Smith",
-		department: "Marketing",
-		position: "Marketing Specialist",
-		email: "janesmith@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "PENDING",
-		organization: "RDB",
-	},
-	{
-		id: "4",
-		firstName: "Mark",
-		lastName: "Lee",
-		department: "Finance",
-		position: "Financial Analyst",
-		email: "marklee@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "RRA",
-	},
-	{
-		id: "5",
-		firstName: "Emily",
-		lastName: "Johnson",
-		department: "Research",
-		position: "Research Scientist",
-		email: "emilyjohnson@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "ACTIVE",
-		organization: "RNP",
-	},
-	{
-		id: "6",
-		firstName: "David",
-		lastName: "Brown",
-		department: "Operations",
-		position: "Operations Manager",
-		email: "davidbrown@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "MINEDUC",
-	},
-	{
-		id: "7",
-		firstName: "Sophia",
-		lastName: "Garcia",
-		department: "Customer Support",
-		position: "Customer Support Specialist",
-		email: "sophiagarcia@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "ACTIVE",
-		organization: "REMA",
-	},
-	{
-		id: "8",
-		firstName: "Michael",
-		lastName: "Martinez",
-		department: "IT",
-		position: "IT Specialist",
-		email: "michaelmartinez@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "PENDING",
-		organization: "RDB",
-	},
-	{
-		id: "9",
-		firstName: "Olivia",
-		lastName: "Robinson",
-		department: "Legal",
-		position: "Legal Counsel",
-		email: "oliviarobinson@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "ACTIVE",
-		organization: "RRA",
-	},
-	{
-		id: "10",
-		firstName: "Daniel",
-		lastName: "Walker",
-		department: "Sales",
-		position: "Sales Manager",
-		email: "danielwalker@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "RNP",
-	},
-	{
-		id: "11",
-		firstName: "Isabella",
-		lastName: "Young",
-		department: "Public Relations",
-		position: "PR Specialist",
-		email: "isabellayoung@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "ACTIVE",
-		organization: "MINEDUC",
-	},
-	{
-		id: "12",
-		firstName: "Elijah",
-		lastName: "King",
-		department: "Quality Assurance",
-		position: "QA Analyst",
-		email: "elijahking@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "REMA",
-	},
-	{
-		id: "13",
-		firstName: "Ava",
-		lastName: "Hernandez",
-		department: "Design",
-		position: "Graphic Designer",
-		email: "avahernandez@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "PENDING",
-		organization: "RDB",
-	},
-	{
-		id: "14",
-		firstName: "James",
-		lastName: "Lopez",
-		department: "Production",
-		position: "Production Manager",
-		email: "jameslopez@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "RRA",
-	},
-	{
-		id: "15",
-		firstName: "Mia",
-		lastName: "Scott",
-		department: "Training",
-		position: "Training Specialist",
-		email: "miascott@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "ACTIVE",
-		organization: "RNP",
-	},
-	{
-		id: "16",
-		firstName: "Benjamin",
-		lastName: "Green",
-		department: "Education",
-		position: "Education Coordinator",
-		email: "benjamingreen@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "MINEDUC",
-	},
-	{
-		id: "17",
-		firstName: "Charlotte",
-		lastName: "Adams",
-		department: "Customer Success",
-		position: "Customer Success Manager",
-		email: "charlotteadams@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "PENDING",
-		organization: "REMA",
-	},
-	{
-		id: "18",
-		firstName: "Jacob",
-		lastName: "Campbell",
-		department: "Business Development",
-		position: "Business Development Manager",
-		email: "jacobcampbell@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "RDB",
-	},
-	{
-		id: "19",
-		firstName: "Amelia",
-		lastName: "Perez",
-		department: "Recruitment",
-		position: "Recruitment Specialist",
-		email: "ameliaperez@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "ACTIVE",
-		organization: "RRA",
-	},
-	{
-		id: "20",
-		firstName: "William",
-		lastName: "Bailey",
-		department: "Logistics",
-		position: "Logistics Coordinator",
-		email: "williambailey@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "RNP",
-	},
-	{
-		id: "21",
-		firstName: "Ella",
-		lastName: "Rivera",
-		department: "Healthcare",
-		position: "Healthcare Specialist",
-		email: "ellarivera@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "ACTIVE",
-		organization: "MINEDUC",
-	},
-	{
-		id: "22",
-		firstName: "Alexander",
-		lastName: "Gonzalez",
-		department: "Public Health",
-		position: "Public Health Officer",
-		email: "alexandergonzalez@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "REMA",
-	},
-	{
-		id: "23",
-		firstName: "Sofia",
-		lastName: "Carter",
-		department: "Environmental Services",
-		position: "Environmental Specialist",
-		email: "sofiacarter@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "PENDING",
-		organization: "RDB",
-	},
-	{
-		id: "24",
-		firstName: "Lucas",
-		lastName: "Torres",
-		department: "Security",
-		position: "Security Officer",
-		email: "lucastorres@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Male",
-		userStatus: "ACTIVE",
-		organization: "RRA",
-	},
-	{
-		id: "25",
-		firstName: "Chloe",
-		lastName: "Morales",
-		department: "Hospitality",
-		position: "Hospitality Manager",
-		email: "chloemorales@zidant.com",
-		phoneNumber: "0786857463",
-		gender: "Female",
-		userStatus: "ACTIVE",
-		organization: "RNP",
-	},
-];
+import { useAppDispatch } from "../../redux/hooks";
+import { IRootState } from "../../redux/store";
+import { EmployeeStatus, StateOptions } from "../../util/enum";
+import { toast } from "react-toastify";
+import {
+  bulkCreateEmployee,
+  deleteEmployee,
+  fetchAllEmployee,
+  fetchEmployeeInfo,
+  updateEmployee,
+} from "../../redux/action/employeeAction";
+import Dropdown from "../../components/Dropdown";
+import IconHorizontalDots from "../../components/Icon/IconHorizontalDots";
+import IconEye from "../../components/Icon/IconEye";
+import IconArchive from "../../components/Icon/IconArchive";
+import { downloadExcel } from "react-export-table-to-excel";
+import IconDownload from "../../components/Icon/IconDownload";
+import { StatusBadge } from "../../util/helper";
+import { EmployeeForm } from "./EmployeeForm";
+import { FormikProps } from "formik";
+import Modal from "../Components/Modals";
 
 const Employees = () => {
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(setPageTitle("Multiple Tables"));
-	});
-	const [page, setPage] = useState(1);
-	const PAGE_SIZES = [10, 20, 30, 50, 100];
-	const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-	const [initialRecords, setInitialRecords] = useState(sortBy(employees, "id"));
-	const [recordsData, setRecordsData] = useState(initialRecords);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(setPageTitle("Employees"));
+  });
 
-	const [search, setSearch] = useState("");
-	const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
-		columnAccessor: "firstName",
-		direction: "asc",
-	});
+  const userData = useSelector((state: IRootState) => state.user.fetchUserInfoState);
+  const fetchAllEmpoyeeDataState = useSelector(
+    (state: IRootState) => state.employee.fetchEmployeeState
+  );
 
-	useEffect(() => {
-		setPage(1);
-	}, [pageSize]);
+  const fetchEmployeeInfoState = useSelector(
+    (state: IRootState) => state.employee.fetchEmployeeInfoState
+  );
 
-	useEffect(() => {
-		const from = (page - 1) * pageSize;
-		const to = from + pageSize;
-		setRecordsData([...initialRecords.slice(from, to)]);
-	}, [page, pageSize, initialRecords]);
+  const employeeInfoById = fetchEmployeeInfoState?.data?.data?.employee;
 
-	useEffect(() => {
-		setInitialRecords(() => {
-			return employees.filter((item) => {
-				return (
-					item.firstName.toLowerCase().includes(search.toLowerCase()) ||
-					item.organization.toLowerCase().includes(search.toLowerCase()) ||
-					item.lastName
-						.toString()
-						.toLowerCase()
-						.includes(search.toLowerCase()) ||
-					item.email.toLowerCase().includes(search.toLowerCase()) ||
-					item.gender.toLowerCase().includes(search.toLowerCase()) ||
-					item.userStatus.toLowerCase().includes(search.toLowerCase())
-				);
-			});
-		});
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [search]);
+  const employeesData = fetchAllEmpoyeeDataState?.data?.data;
+  const [page, setPage] = useState(1);
+  const PAGE_SIZES = [10, 20, 30, 50, 100];
+  const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
+  useEffect(() => {
+    setPage(1);
+  }, [pageSize]);
+  const [page2, setPage2] = useState(1);
+  const [pageSize2, setPageSize2] = useState(PAGE_SIZES[0]);
 
-	useEffect(() => {
-		const data = sortBy(initialRecords, sortStatus.columnAccessor);
-		setInitialRecords(sortStatus.direction === "desc" ? data.reverse() : data);
-		setPage(1);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [sortStatus]);
+  useEffect(() => {
+    setPage2(1);
+  }, [pageSize2]);
 
-	const [page2, setPage2] = useState(1);
-	const [pageSize2, setPageSize2] = useState(PAGE_SIZES[0]);
-	const [initialRecords2, setInitialRecords2] = useState(
-		sortBy(employees, "id")
-	);
-	const [recordsData2, setRecordsData2] = useState(initialRecords2);
+  const formatDate = (date: string | number | Date) => {
+    if (date) {
+      const dt = new Date(date);
+      const month =
+        dt.getMonth() + 1 < 10 ? "0" + (dt.getMonth() + 1) : dt.getMonth() + 1;
+      const day = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
+      return day + "/" + month + "/" + dt.getFullYear();
+    }
+    return "";
+  };
 
-	const [search2, setSearch2] = useState("");
-	const [sortStatus2, setSortStatus2] = useState<DataTableSortStatus>({
-		columnAccessor: "firstName",
-		direction: "asc",
-	});
+  const [modalProps, setModalProps] = useState<IModalProps>({
+    isOpen: false,
+    type: "addCapacityPlan",
+    onClose: () => handleModalClose(),
+    onSubmit: () => {},
+  });
 
-	useEffect(() => {
-		setPage2(1);
-	}, [pageSize2]);
+  const [employeeModalType, setEmployeeModalType] = useState<string>("view");
+  const handleSearchChange = (e: any) => setSearchKey(e.target.value);
 
-	useEffect(() => {
-		const from = (page2 - 1) * pageSize2;
-		const to = from + pageSize2;
-		setRecordsData2([...initialRecords2.slice(from, to)]);
-	}, [page2, pageSize2, initialRecords2]);
+  const EmployeeFormRef = useRef<FormikProps<any> | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-	useEffect(() => {
-		setInitialRecords2(() => {
-			return employees.filter((item: any) => {
-				return (
-					item.firstName.toLowerCase().includes(search.toLowerCase()) ||
-					item.organization.toLowerCase().includes(search.toLowerCase()) ||
-					item.lastName
-						.toString()
-						.toLowerCase()
-						.includes(search.toLowerCase()) ||
-					item.email.toLowerCase().includes(search.toLowerCase()) ||
-					item.gender.toLowerCase().includes(search.toLowerCase()) ||
-					item.userStatus.toLowerCase().includes(search.toLowerCase())
-				);
-			});
-		});
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [search2]);
+  const handleModalClose = () => {
+    setModalProps((prev) => ({ ...prev, isOpen: false }));
+  };
+  
+  const handleEditEmployee = (employeeData: employeeInfo) => {
+    if (EmployeeFormRef.current && !isSubmitting) {
+      setIsSubmitting(true);
+      const formValues = EmployeeFormRef?.current.values;
+      // debugger;
+      dispatch(
+        updateEmployee({
+          data: {
+            ...employeeData,
+          },
+          id: employeeData?.id!,
+        })
+      );
+    }
+    setIsSubmitting(false);
+    handleModalClose();
+  };
 
-	useEffect(() => {
-		const data2 = sortBy(initialRecords2, sortStatus2.columnAccessor);
-		setInitialRecords2(
-			sortStatus2.direction === "desc" ? data2.reverse() : data2
-		);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [sortStatus2]);
+  useEffect(() => {
+    if (fetchEmployeeInfoState.state === StateOptions.FULFILLED) {
+        setModalProps({
+          type:
+            employeeModalType === "view" ? "viewEmployee" : "updateEmployee",
+          isOpen: true,
+          onClose: modalProps.onClose,
+          onSubmit: () => handleEditEmployee(employeeInfoById!),
+          title:
+            employeeModalType === "edit"
+              ? "Edit Employee Info"
+              : "View Employee Info",
+          button1Text: "Cancel",
+          button2Text: employeeModalType === "edit" ? "Save" : "Close",
+          buttonTwoDisabled: false,
+          content: (
+            <EmployeeForm
+              employeeFormRef={EmployeeFormRef}
+              userData={userData?.data?.data?.user}
+              employeeData={employeeInfoById}
+              isEditing={employeeModalType === "edit"}
+            />
+          ),
+          hideButton1: employeeModalType === "view" && true,
+          size: "max-w-4xl",
+        });
+		console.log(modalProps)
+    }
+  }, [fetchEmployeeInfoState]);
 
-	const formatDate = (date: string | number | Date) => {
-		if (date) {
-			const dt = new Date(date);
-			const month =
-				dt.getMonth() + 1 < 10 ? "0" + (dt.getMonth() + 1) : dt.getMonth() + 1;
-			const day = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
-			return day + "/" + month + "/" + dt.getFullYear();
-		}
-		return "";
-	};
 
-	const randomColor = () => {
-		const color = [
-			"primary",
-			"secondary",
-			"success",
-			"danger",
-			"warning",
-			"info",
-		];
-		const random = Math.floor(Math.random() * color.length);
-		return color[random];
-	};
+  const handleDelete = (id: string) => {
+    console.log("ID --->", id);
+    dispatch(deleteEmployee(id));
+    handleModalClose();
+  };
+  const [activeToast, setActiveToast] = useState<string | null>(null);
+  const [searchKey, setSearchKey] = useState("");
+  const [status, setStatus] = useState<any>();
+  const empFilters: EmployeeFilters = {
+    searchKey,
+    status: status,
+    // industry: industry,
+  };
 
-	const randomStatus = () => {
-		const status = [
-			"PAID",
-			"APPROVED",
-			"FAILED",
-			"CANCEL",
-			"SUCCESS",
-			"PENDING",
-			"COMPLETE",
-		];
-		const random = Math.floor(Math.random() * status.length);
-		return status[random];
-	};
+  const showToast = (
+    state: string,
+    message: string,
+    successMsg: string,
+    errorMsg: string
+  ) => {
+    if (state === StateOptions.FULFILLED) {
+      if (activeToast !== successMsg) {
+        toast.success(message || successMsg, {
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+        setActiveToast(successMsg);
+      }
+    } else if (state === StateOptions.REJECTED) {
+      if (activeToast !== errorMsg) {
+        toast.error(message || errorMsg, {
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+        setActiveToast(errorMsg);
+      }
+    }
+    dispatch(fetchAllEmployee(empFilters));
+  };
 
-	const [codeArr, setCodeArr] = useState<string[]>([]);
+  useEffect(() => {
+    console.log("Reached her empFilters", empFilters);
+    dispatch(fetchAllEmployee(empFilters));
+  }, [searchKey, status, dispatch]);
 
-	const toggleCode = (name: string) => {
-		if (codeArr.includes(name)) {
-			setCodeArr((value) => value.filter((d) => d !== name));
-		} else {
-			setCodeArr([...codeArr, name]);
-		}
-	};
+  const openEmployeeModal = (employeeId: string) => {
+    dispatch(fetchEmployeeInfo(employeeId!));
+  };
 
-	const options3 = [
-		{ value: "employee", label: "Employee" },
-		{ value: "trainer", label: "Trainer" },
-		{ value: "manager", label: "Manager" },
-	];
+  const statusOptions = [
+    { value: "", label: "All" },
+    { value: EmployeeStatus.ACTIVE, label: "Active" },
+    { value: EmployeeStatus.PENDING, label: "Pending" },
+    { value: EmployeeStatus.SUSPENDED, label: "Suspended" },
+  ];
 
-	const options4 = [
-		{ value: "orange", label: "Orange" },
-		{ value: "white", label: "White" },
-		{ value: "purple", label: "Purple" },
-	];
+  const employeeTableHeader = [
+    "No",
+    "First Name",
+    "Last Name",
+    "Department",
+    "Position",
+    "Email",
+    "Phone Number",
+    "Gender",
+    "Status",
+  ];
 
-	return (
-		<div>
-			{/* Filters */}
-			<div className="flex flex-col items-start overflow-x-auto whitespace-nowrap p-3 text-cdms_primary relative z-10 w-full">
-				<h5 className="font-bold text-gray-700 text-2xl dark:text-white-light">
-					Hello <br /> Mr Bertin NDAHAYO 👋
-				</h5>
+  const filterKeys = [
+    "index",
+    "firstName",
+    "lastName",
+    "department",
+    "position",
+    "email",
+    "phoneNumber",
+    "gender",
+    "status",
+  ];
 
-				<div className="mt-8 flex flex-row md:flex-row items-center justify-end gap-8 relative z-20">
-					<div className="ltr:ml-auto rtl:mr-auto">
-						<input
-							type="text"
-							placeholder="Search an employee"
-							className="form-input w-auto py-2 ltr:pr-11 rtl:pl-11 peer"
-							value={search2}
-							onChange={(e) => setSearch2(e.target.value)}
-						/>
-						<button
-							type="button"
-							className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary"
-						>
-							<IconSearch className="mx-auto" />
-						</button>
-					</div>
+  interface EmployeePlan {
+    [key: string]: any;
+  }
+  const formattedEmployeeData = employeesData?.employees?.map(
+    (item: employeeInfo, index: number) => {
+      const user = item.user;
+      return { index: index + 1, ...user, ...item };
+    }
+  );
+  const filteredEmployee: EmployeePlan[] = formattedEmployeeData?.map(
+    (plan: EmployeePlan) => {
+      const filteredPlan: EmployeePlan = {};
+      filterKeys.forEach((key) => {
+        if (key in plan) {
+          filteredPlan[key] = plan[key];
+        }
+      });
+      return filteredPlan;
+    }
+  );
+  const handleStatusChange = (selectedOption: any) => {
+    console.log("Selected Status:", selectedOption);
+    setStatus(selectedOption?.value);
+  };
+  function handleDownloadExcel() {
+    downloadExcel({
+      fileName: "employee_file",
+      sheet: "employees",
+      tablePayload: {
+        header: employeeTableHeader,
+        body: filteredEmployee,
+      },
+    });
+  }
 
-					{/* Searchable */}
-					<div className="relative z-30 mx-auto max-w-[640px] w-full">
-						<Select
-							placeholder="All types"
-							options={options3}
-							classNamePrefix="custom-select py-3"
-							menuPortalTarget={document.body} // Render the menu in the body
-							menuPosition="absolute"
-							styles={{
-								control: (provided) => ({
-									...provided,
-									zIndex: 30,
-								}),
-								menu: (provided) => ({
-									...provided,
-									zIndex: 40,
-								}),
-								menuPortal: (base) => ({
-									...base,
-									zIndex: 9999, // Ensure it's above other elements
-								}),
-							}}
-						/>
-					</div>
+  const [bulkData, setBulkData] = useState();
+  useEffect(() => {}, [bulkData]);
 
-					{/* Searchable */}
-					<div className="relative z-30 mx-auto max-w-[580px] w-full">
-						<Select
-							placeholder="All status"
-							options={options4}
-							classNamePrefix="custom-select py-3"
-							menuPortalTarget={document.body} // Render the menu in the body
-							menuPosition="absolute"
-							styles={{
-								control: (provided) => ({
-									...provided,
-									zIndex: 30,
-								}),
-								menu: (provided) => ({
-									...provided,
-									zIndex: 40,
-								}),
-								menuPortal: (base) => ({
-									...base,
-									zIndex: 9999, // Ensure it's above other elements
-								}),
-							}}
-						/>
-					</div>
-					<div className="flex justify-end gap-4">
-						<button type="button" className="btn btn-primary">
-							<IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
-							Add New Employee
-						</button>
-					</div>
-					<div>
-						<button
-							type="button"
-							className="btn btn-primary"
-							// onClick={() => editUser()}
-						>
-							<IconTxtFile className="ltr:mr-2 rtl:ml-2" />
-							Bulk Import
-						</button>
-					</div>
-				</div>
-			</div>
+  const [employeeBulkModal, setEmployeeBulkModal] = useState(false);
+  const [isEmployeeBulkSubmit, setIsEmployeeBulkSubmit] = useState(false);
+  const openAddEmployeeBulkModal = () => setEmployeeBulkModal(true);
+  const closeEmployeeBulkModal = () => {
+    setIsEmployeeBulkSubmit(false);
+    setEmployeeBulkModal(false);
+  };
 
-			<div className="panel mt-6">
-				<div className="datatables">
-					<DataTable
-						className="whitespace-nowrap table-hover"
-						records={recordsData2}
-						columns={[
-							{
-								accessor: "id",
-								title: "ID",
-								sortable: true,
-							},
-							{
-								accessor: "firstName",
-								title: "Name",
-								sortable: true,
-								render: ({ firstName, lastName, id }) => (
-									<div className="flex items-center w-max">
-										{/* <img
-											className="w-9 h-9 rounded-full ltr:mr-2 rtl:ml-2 object-cover"
-											src={`/assets/images/profile-${id}.jpeg`}
-											alt=""
-										/> */}
-										<div>{firstName + " " + lastName}</div>
-									</div>
-								),
-							},
-							{
-								accessor: "department",
-								title: "Department",
-								sortable: true,
-							},
-							{
-								accessor: "position",
-								title: "Position",
-								sortable: true,
-							},
-							{
-								accessor: "email",
-								title: "Email",
-								sortable: true,
-							},
-							{
-								accessor: "phoneNumber",
-								title: "Phone No.",
-								sortable: true,
-							},
-							{
-								accessor: "gender",
-								title: "Gender",
-								sortable: true,
-							},
-							{
-								accessor: "userStatus",
-								title: "Status",
-								sortable: true,
-							},
-							{
-								accessor: "organization",
-								title: "Organization",
-								sortable: true,
-							},
-							{
-								accessor: "action",
-								title: "Action",
-								titleClassName: "!text-center",
-								render: () => (
-									<div className="flex items-center w-max mx-auto gap-2">
-										<Tippy content="Edit">
-											<button type="button">
-												<IconPencil />
-											</button>
-										</Tippy>
-										<Tippy content="Delete">
-											<button type="button">
-												<IconTrashLines />
-											</button>
-										</Tippy>
-									</div>
-								),
-							},
-						]}
-						totalRecords={initialRecords2.length}
-						recordsPerPage={pageSize2}
-						page={page2}
-						onPageChange={(p) => setPage2(p)}
-						recordsPerPageOptions={PAGE_SIZES}
-						onRecordsPerPageChange={setPageSize2}
-						sortStatus={sortStatus2}
-						onSortStatusChange={setSortStatus2}
-						minHeight={200}
-						paginationText={({ from, to, totalRecords }) =>
-							`Showing ${from} to ${to} of ${totalRecords} entries`
-						}
-						fontSize="sm"
-					/>
-				</div>
-			</div>
-		</div>
-	);
+  const handleCreateEmployeeBulk = () => {
+    if (bulkData && employeeBulkModal) {
+      setIsEmployeeBulkSubmit(true);
+      console.log("State Here 22222222222 --> ", bulkData);
+      debugger;
+      dispatch(bulkCreateEmployee(bulkData));
+      debugger;
+      closeEmployeeBulkModal();
+    }
+  };
+
+
+  console.log(modalProps?.isOpen)
+  return (
+    <div>
+      {modalProps?.isOpen && (
+        <Modal
+          isOpen={true}
+          title={modalProps.title}
+          content={modalProps.content}
+          button1Text={modalProps.button1Text}
+          button2Text={modalProps.button2Text}
+          onClose={modalProps.onClose}
+          onSubmit={modalProps.onSubmit}
+          onRetry={modalProps.onRetry}
+          buttonTwoDisabled={modalProps.buttonTwoDisabled}
+          size={modalProps.size}
+        />
+      )}
+
+      {/* Filters */}
+      <div className="flex flex-col items-start overflow-x-auto whitespace-nowrap p-3 text-cdms_primary relative z-10 w-full">
+        <div className="mt-8 flex flex-row md:flex-row items-center justify-end gap-8 relative z-20">
+          <div className="ltr:ml-auto rtl:mr-auto">
+            <input
+              type="text"
+              placeholder="Search an employee"
+              className="form-input w-auto py-2 ltr:pr-11 rtl:pl-11 peer"
+              value={searchKey}
+              onChange={handleSearchChange}
+            />
+            <button
+              type="button"
+              className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary"
+            >
+              <IconSearch className="mx-auto" />
+            </button>
+          </div>
+
+          {/* Employee Status */}
+          <div className="relative z-99 mx-auto max-w-[580px] w-full">
+            <Select
+              placeholder="Select Status"
+              options={statusOptions}
+              classNamePrefix="custom-select py-3"
+              menuPortalTarget={document.body}
+              menuPosition="absolute"
+              onChange={handleStatusChange}
+            />
+          </div>
+          <div className="flex justify-end gap-4">
+            <button type="button" className="btn btn-primary">
+              <IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
+              Add New Employee
+            </button>
+          </div>
+          <div>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={openAddEmployeeBulkModal}
+            >
+              <IconTxtFile className="ltr:mr-2 rtl:ml-2" />
+              Bulk Import
+            </button>
+          </div>
+          <div>
+            <button
+              type="button"
+              className="btn btn-primary btn-sm m-1"
+              onClick={handleDownloadExcel}
+            >
+              <IconDownload className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
+              EXCEL
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="panel mt-6">
+        <div className="datatables">
+          <DataTable
+            className="whitespace-nowrap table-hover"
+            records={employeesData?.employees}
+            columns={[
+              {
+                accessor: "index",
+                title: "No",
+                render: (_, index) => index + 1,
+              },
+              {
+                accessor: "firstName",
+                title: "Names",
+                sortable: true,
+                render: (record: employeeInfo) => (
+                  <div className="flex items-center w-max">
+                    <div>
+                      {record.user?.firstName + " " + record.user?.lastName}
+                    </div>
+                  </div>
+                ),
+              },
+              {
+                accessor: "department",
+                title: "Department",
+                sortable: true,
+              },
+              {
+                accessor: "position",
+                title: "Position",
+                sortable: true,
+              },
+              {
+                accessor: "email",
+                title: "Email",
+                sortable: true,
+                render: (record: employeeInfo) => (
+                  <div className="flex items-center w-max">
+                    <div>{record.user?.email}</div>
+                  </div>
+                ),
+              },
+              {
+                accessor: "phoneNumber",
+                title: "Phone No.",
+                sortable: true,
+                render: (record: employeeInfo) => (
+                  <div className="flex items-center w-max">
+                    <div>{record.user?.phoneNumber}</div>
+                  </div>
+                ),
+              },
+              {
+                accessor: "gender",
+                title: "Gender",
+                sortable: true,
+                render: (record: employeeInfo) => (
+                  <div className="flex items-center w-max">
+                    <div>{record.user?.gender}</div>
+                  </div>
+                ),
+              },
+              {
+                accessor: "status",
+                title: "Status",
+                sortable: true,
+                render: ({ status }) => <StatusBadge status={status} />,
+              },
+              {
+                accessor: "moreAction",
+                title: "Actions",
+                render: (record: employeeInfo) => (
+                  <div className="dropdown">
+                    <Dropdown
+                      offset={[0, 5]}
+                      placement={"bottom-end"}
+                      button={
+                        <IconHorizontalDots className="opacity-70 m-auto" />
+                      }
+                    >
+                      <ul>
+                        <li>
+                          <button
+                            type="button"
+                            className="flex items-center space-x-2"
+                            onClick={() => {
+                              openEmployeeModal(record?.id!);
+                              setEmployeeModalType("view");
+                            }}
+                          >
+                            <IconEye className="mr-2" /> <span>View</span>
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="flex items-center space-x-2"
+                            onClick={() => {
+                              openEmployeeModal(record?.id!);
+                              setEmployeeModalType("edit");
+                            }}
+                          >
+                            <IconPencil className="mr-2" /> <span>Edit</span>
+                          </button>
+                        </li>
+
+                        <li>
+                          <button
+                            type="button"
+                            className="flex items-center space-x-2"
+                            onClick={() => handleDelete(record?.id!)}
+                          >
+                            <IconArchive className="mr-2 text-red-500" />{" "}
+                            <span>Delete</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </Dropdown>
+                  </div>
+                ),
+              },
+            ]}
+            totalRecords={[123].length}
+            recordsPerPage={pageSize2}
+            page={page2}
+            onPageChange={(p) => setPage2(p)}
+            recordsPerPageOptions={PAGE_SIZES}
+            onRecordsPerPageChange={setPageSize2}
+            minHeight={200}
+            paginationText={({ from, to, totalRecords }) =>
+              `Showing ${from} to ${to} of ${totalRecords} entries`
+            }
+            fontSize="sm"
+          />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Employees;

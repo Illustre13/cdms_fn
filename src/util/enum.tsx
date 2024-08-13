@@ -28,6 +28,12 @@ export enum TrainingStatus {
 	FINISHED = "FINISHED",
 }
 
+export enum EmployeeStatus {
+	PENDING = "PENDING",
+	ACTIVE = "ACTIVE",
+	SUSPENDED = "SUSPENDED",
+}
+
 export enum TrainingMode {
 	PHYSICAL = "PHYSICAL",
 	VIRTUAL = "VIRTUAL",

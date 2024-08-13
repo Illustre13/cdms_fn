@@ -18,6 +18,7 @@ import IconUser from "../Icon/IconUser";
 import IconBook from "../Icon/IconBook";
 import { getVisibleTabs } from "../../util/helper";
 import IconTrendingUp from "../Icon/IconTrendingUp";
+import IconCashBanknotes from "../Icon/IconCashBanknotes";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -260,7 +261,7 @@ const Sidebar = () => {
                 <li className="nav-item">
                   <NavLink to="/cp/overview" className="group">
                     <div className="flex items-center">
-                      <IconMenuContacts className="group-hover:!text-cdms_primary shrink-0" />
+                      <IconCashBanknotes className="group-hover:!text-cdms_primary shrink-0" />
                       <span className="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
                         {t("Capacity Plan")}
                       </span>

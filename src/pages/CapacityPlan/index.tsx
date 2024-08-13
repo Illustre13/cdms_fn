@@ -457,23 +457,22 @@ const CapacityPlanTable = () => {
 
   const navigate = useNavigate();
 
-  
   const handleViewCP = (cpId: string) => {
     console.log("ID --->", cpId);
-    const data = cpData?.capacityPlans.find((cp: capacityplanInfo) => cp.id === cpId);
-    setCapacityPlanData(
-     data
+    const data = cpData?.capacityPlans.find(
+      (cp: capacityplanInfo) => cp.id === cpId
     );
+    setCapacityPlanData(data);
     navigate(`/cp/view/${cpId}`);
   };
 
-// useEffect(() => {
-//   if (capacityPlanData) {
-//     // openCapacityPlanModal("viewCapacityPlan", "View Capacity Plan");
-//     // dispatch(fetchCapacityPlanInfo(capacityPlanData?.id));
-//     <ViewCP capacityPlanInfo={capacityPlanData} />
-//   }
-// }, [capacityPlanData]);
+  // useEffect(() => {
+  //   if (capacityPlanData) {
+  //     // openCapacityPlanModal("viewCapacityPlan", "View Capacity Plan");
+  //     // dispatch(fetchCapacityPlanInfo(capacityPlanData?.id));
+  //     <ViewCP capacityPlanInfo={capacityPlanData} />
+  //   }
+  // }, [capacityPlanData]);
 
   // const openCapacityPlanModal = (
   //   type: ModalType,
@@ -863,11 +862,12 @@ const CapacityPlanTable = () => {
             </button>
           </div>
 
-          {isRowSelected && (
+          {/**
+           * Optional capacity Plan Approve Button when selecting checkbox
+           */}
+          {/* {isRowSelected && (
             <div className="flex gap-4">
-              {/**
-               * Optional capacity Plan Approve Button when selecting checkbox
-               */}
+           
               <button
                 type="button"
                 className="btn btn-danger gap-2"
@@ -888,7 +888,7 @@ const CapacityPlanTable = () => {
                 </button>
               </div>
             </div>
-          )}
+          )} */}
         </div>
 
         <div className="datatables z-40">

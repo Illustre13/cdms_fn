@@ -142,6 +142,8 @@ const Training = () => {
     handleModalClose();
   };
 
+  const [activeToast, setActiveToast] = useState<string | null>(null);
+
   const showToast = (
     state: string,
     message: string,
@@ -188,8 +190,6 @@ const Training = () => {
     (state: IRootState) => state.training.updateState
   );
 
-  const [activeToast, setActiveToast] = useState<string | null>(null);
-
   useEffect(() => {
     // Handle training
     if (deleteTrainingState.state !== StateOptions.INITIAL) {
@@ -229,7 +229,7 @@ const Training = () => {
       button1Text: "Cancel",
       button2Text: "Approve",
       buttonTwoDisabled: false,
-      content: <p>Are you sure you want to mark this training as finished?</p>
+      content: <p>Are you sure you want to mark this training as finished?</p>,
     });
   };
 
@@ -301,7 +301,7 @@ const Training = () => {
             />
           ),
           hideButton1: trainingModalType === "view" && true,
-          size: "max-w-4xl"
+          size: "max-w-4xl",
         });
       }
     }
@@ -369,7 +369,7 @@ const Training = () => {
     "Type",
     "Responsible Entity",
     "Stake Holders",
-    "Source of Funds"
+    "Source of Funds",
     // "Actions"
   ];
 
@@ -388,7 +388,7 @@ const Training = () => {
     "type",
     "responsibleEntity",
     "stakeholders",
-    "fundSource"
+    "fundSource",
   ];
 
   interface TrainingPlan {
@@ -599,7 +599,7 @@ const Training = () => {
                 sortable: true,
                 title: "Source of Fund",
               },
-              
+
               {
                 accessor: "moreAction",
                 title: "Actions",
