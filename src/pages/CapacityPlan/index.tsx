@@ -526,30 +526,20 @@ const CapacityPlanTable = () => {
   const header = [
     // "No",
     "Title",
-    "Program",
-    "Sub Program",
-    "Budget",
+    "Description",
     "Target Year",
+    "Currency",
+    "Total Budget",
     "Status",
-    "Type",
-    "Action",
-    "Responsible Entity",
-    "Stakeholders",
-    "Source of Fund",
   ];
 
   const filterKeys = [
     "title",
-    "program",
-    "subProgram",
-    "budget",
+    "description",
     "year",
+    "currency",
+    "totalBudget",
     "status",
-    "type",
-    "action",
-    "responsibleEntity",
-    "stakeholders",
-    "fundSource",
   ];
 
   interface CapacityPlan {
@@ -578,8 +568,6 @@ const CapacityPlanTable = () => {
       },
     });
   }
-
-  console.log("YYEEAARR -->>", year);
 
   const [bulkData, setBulkData] = useState();
   useEffect(() => {}, [bulkData]);

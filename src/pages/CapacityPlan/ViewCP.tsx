@@ -433,7 +433,7 @@ const ViewCP = () => {
                         </div>
                       </div>
 
-                      {/* Level select field */}
+                      {/* STatus select field */}
                       <div className="py-2 flex flex-row gap-2">
                         <label
                           htmlFor="status"
@@ -461,7 +461,6 @@ const ViewCP = () => {
                             }`}
                             disabled={!isEditingMode}
                           >
-                            <option value="">Select Status</option>
                             <option value="DRAFT">DRAFT</option>
                             <option value="SENT">SENT</option>
                             <option value="UNDER_REVIEW">UNDER_REVIEW</option>

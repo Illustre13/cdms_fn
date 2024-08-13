@@ -39,8 +39,13 @@ const Index = () => {
     (state: IRootState) =>
       state.themeConfig.theme === "dark" || state.themeConfig.isDarkMode
   );
-  const userInfoState = useSelector((state: IRootState) => state.user.fetchUserInfoState);
-
+  const userInfoState = useSelector(
+    (state: IRootState) => state.user.fetchUserInfoState
+  );
+  const userData = useSelector((state: any) => state.user.fetchUserInfoState);
+  const employeeData = userInfoState?.data?.data?.employee;
+  const role = userData?.data?.data?.employee?.role;
+  console.log(role.name, employeeData?.organization?.displayName);
   useEffect(() => {
     if (userInfoState?.data?.data && loadingUser) {
       dispatch(fetchUserInfo())
@@ -294,8 +299,12 @@ const Index = () => {
   };
 
   const [budgetAnalyticsData, setBudgetAnalyticsData] = useState<any>(null);
-const userInfoAnalyticsState = useSelector((state: IRootState) => state.analytics.fetchUserAnalyticState);
-const trainingInfoAnalyticsState = useSelector((state: IRootState) => state.training.fetchTrainingInfoAnalyticsState);
+  const userInfoAnalyticsState = useSelector(
+    (state: IRootState) => state.analytics.fetchUserAnalyticState
+  );
+  const trainingInfoAnalyticsState = useSelector(
+    (state: IRootState) => state.training.fetchTrainingInfoAnalyticsState
+  );
 
   useEffect(() => {
     dispatch(fetchCPBudgetAnalytics(AnalyticsFilter));
@@ -311,7 +320,7 @@ const trainingInfoAnalyticsState = useSelector((state: IRootState) => state.trai
   );
 
   console.log(fetchCPBudgetAnalyticsState);
-  console.log("INFO USER -----> ", userInfoAnalyticsState)
+  console.log("INFO USER -----> ", userInfoAnalyticsState);
 
   useEffect(() => {
     const data = fetchCPBudgetAnalyticsState?.data?.data;
@@ -327,139 +336,138 @@ const trainingInfoAnalyticsState = useSelector((state: IRootState) => state.trai
   };
 
   console.log(userInfoAnalyticsState?.data?.data);
-  
-    // userDashboardChartOptions
 
-    let userDashboardChart: any;
- if(userInfoAnalyticsState?.data?.data) {
-  userDashboardChart = {
-    series: Object.values(userInfoAnalyticsState?.data?.data?.percentages),
-    options: {
+  // userDashboardChartOptions
+
+  let userDashboardChart: any;
+  if (userInfoAnalyticsState?.data?.data) {
+    userDashboardChart = {
+      series: Object.values(userInfoAnalyticsState?.data?.data?.percentages),
+      options: {
         chart: {
-            height: 300,
-            type: 'pie',
-            zoom: {
-                enabled: false,
-            },
-            toolbar: {
-                show: false,
-            },
+          height: 300,
+          type: "pie",
+          zoom: {
+            enabled: false,
+          },
+          toolbar: {
+            show: false,
+          },
         },
         labels: Object.keys(userInfoAnalyticsState?.data?.data?.percentages),
-        colors: ['#4361ee', '#805dca', '#00ab55', '#e7515a', '#e2a03f'],
+        colors: ["#4361ee", "#805dca", "#00ab55", "#e7515a", "#e2a03f"],
         responsive: [
-            {
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200,
-                    },
-                },
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200,
+              },
             },
+          },
         ],
         stroke: {
-            show: false,
+          show: false,
         },
         legend: {
-            position: 'bottom',
+          position: "bottom",
         },
-    },
-};
- }
+      },
+    };
+  }
 
-let trainingDashboardChart: any;
- const trainingInfoAnalyticsData = trainingInfoAnalyticsState?.data?.data; 
- if(trainingInfoAnalyticsData) {
-  trainingDashboardChart = {
-    series: Object.values(trainingInfoAnalyticsData.percentages),
-    options: {
-      chart: {
-        type: "donut",
-        height: 460,
-        fontFamily: "Nunito, sans-serif",
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        show: true,
-        width: 25,
-        colors: isDark ? "#0e1726" : "#fff",
-      },
-      colors: isDark
-        ? ["#5c1ac3", "#e2a03f", "#e7515a", "#e2a03f"]
-        : ["#e2a03f", "#5c1ac3", "#e7515a", "#e2a03f"],
-      legend: {
-        position: "bottom",
-        horizontalAlign: "center",
-        fontSize: "14px",
-        markers: {
-          width: 10,
-          height: 10,
-          offsetX: -2,
+  let trainingDashboardChart: any;
+  const trainingInfoAnalyticsData = trainingInfoAnalyticsState?.data?.data;
+  if (trainingInfoAnalyticsData) {
+    trainingDashboardChart = {
+      series: Object.values(trainingInfoAnalyticsData.percentages),
+      options: {
+        chart: {
+          type: "donut",
+          height: 460,
+          fontFamily: "Nunito, sans-serif",
         },
-        height: 50,
-        offsetY: 20,
-      },
-      plotOptions: {
-        pie: {
-          donut: {
-            size: "65%",
-            background: "transparent",
-            labels: {
-              show: true,
-              name: {
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          show: true,
+          width: 25,
+          colors: isDark ? "#0e1726" : "#fff",
+        },
+        colors: isDark
+          ? ["#5c1ac3", "#e2a03f", "#e7515a", "#e2a03f"]
+          : ["#e2a03f", "#5c1ac3", "#e7515a", "#e2a03f"],
+        legend: {
+          position: "bottom",
+          horizontalAlign: "center",
+          fontSize: "14px",
+          markers: {
+            width: 10,
+            height: 10,
+            offsetX: -2,
+          },
+          height: 50,
+          offsetY: 20,
+        },
+        plotOptions: {
+          pie: {
+            donut: {
+              size: "65%",
+              background: "transparent",
+              labels: {
                 show: true,
-                fontSize: "29px",
-                offsetY: -10,
-              },
-              value: {
-                show: true,
-                fontSize: "26px",
-                color: isDark ? "#bfc9d4" : undefined,
-                offsetY: 16,
-                formatter: (val: any) => {
-                  return val;
+                name: {
+                  show: true,
+                  fontSize: "29px",
+                  offsetY: -10,
                 },
-              },
-              total: {
-                show: true,
-                label: "Total",
-                color: "#888ea8",
-                fontSize: "29px",
-                formatter: (w: any) => {
-                  return w.globals.seriesTotals.reduce(function (
-                    a: any,
-                    b: any
-                  ) {
-                    return a + b;
+                value: {
+                  show: true,
+                  fontSize: "26px",
+                  color: isDark ? "#bfc9d4" : undefined,
+                  offsetY: 16,
+                  formatter: (val: any) => {
+                    return val;
                   },
-                  0);
+                },
+                total: {
+                  show: true,
+                  label: "Total",
+                  color: "#888ea8",
+                  fontSize: "29px",
+                  formatter: (w: any) => {
+                    return w.globals.seriesTotals.reduce(function (
+                      a: any,
+                      b: any
+                    ) {
+                      return a + b;
+                    },
+                    0);
+                  },
                 },
               },
             },
           },
         },
-      },
-      labels: ["Pending", "Approved", "Rejected", "Finished"],
-      states: {
-        hover: {
-          filter: {
-            type: "none",
-            value: 0.15,
+        labels: ["Pending", "Approved", "Rejected", "Finished"],
+        states: {
+          hover: {
+            filter: {
+              type: "none",
+              value: 0.15,
+            },
+          },
+          active: {
+            filter: {
+              type: "none",
+              value: 0.15,
+            },
           },
         },
-        active: {
-          filter: {
-            type: "none",
-            value: 0.15,
-          },
-        },
       },
-    },
-};
- }
-
+    };
+  }
 
   const cPlanStatistics = {
     series: [
@@ -517,7 +525,7 @@ let trainingDashboardChart: any;
         opposite: isRtl ? true : false,
         labels: {
           offsetX: isRtl ? -10 : 0,
-          formatter: function (value:any) {
+          formatter: function (value: any) {
             return `${value.toLocaleString()}`; // Add currency symbol here
           },
         },
@@ -576,158 +584,157 @@ let trainingDashboardChart: any;
              * Section 1
              *
              */}
-            <div className="grid sm:grid-cols-2 xl:grid-cols-2 gap-6 mb-6">
-              {/**
-               *
-               * Capacity Plan Stats
-               *
-               */}
+           {employeeData && role?.name !== "employee" && (
+             <div className="grid sm:grid-cols-2 xl:grid-cols-2 gap-6 mb-6">
+              
+             {/**
+              *
+              * Capacity Plan Stats
+              *
+              */}
 
-              <div className="panel h-full sm:col-span-2 xl:col-span-1">
-                <div className="flex items-center mb-5">
-                  <h5 className="font-semibold text-lg dark:text-white-light">
-                    Capacity Plan Budget
-                    <span className="block text-white-dark text-sm font-normal">
-                      Requested Vs Allocated Capacity Plan Budget
-                    </span>
-                  </h5>
-                  <div className="dropdown -mt-5">
-                    <div className="flex items-center mb-5">
-                      <Dropdown
-                        offset={[0, 1]}
-                        placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-                        button={
-                          <IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
-                        }
-                      >
-                        <ul>
-                          {budgetAnalyticsData?.years.map((year: number) => (
-                            <li key={year}>
-                              <button type="button">{year}</button>
-                            </li>
-                          ))}
-                        </ul>
-                      </Dropdown>
-                    </div>
-                  </div>
+             <div className="panel h-full sm:col-span-2 xl:col-span-1">
+               <div className="flex items-center mb-5">
+                 <h5 className="font-semibold text-lg dark:text-white-light">
+                   Capacity Plan Budget
+                   <span className="block text-white-dark text-sm font-normal">
+                     Requested Vs Allocated Capacity Plan Budget
+                   </span>
+                 </h5>
+                 <div className="dropdown -mt-5">
+                   <div className="flex items-center mb-5">
+                     <Dropdown
+                       offset={[0, 1]}
+                       placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
+                       button={
+                         <IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
+                       }
+                     >
+                       <ul>
+                         {budgetAnalyticsData?.years.map((year: number) => (
+                           <li key={year}>
+                             <button type="button">{year}</button>
+                           </li>
+                         ))}
+                       </ul>
+                     </Dropdown>
+                   </div>
+                 </div>
 
-                  <div className="ltr:ml-auto rtl:mr-auto relative"></div>
-                </div>
-                <div>
-                  <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
-                    {loading ? (
-                      <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] ">
-                        <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent  rounded-full w-5 h-5 inline-flex"></span>
-                      </div>
-                    ) : (
-                      <ReactApexChart
-                        series={cPlanStatistics.series}
-                        options={cPlanStatistics.options}
-                        className="rounded-lg bg-white dark:bg-black overflow-hidden"
-                        type="bar"
-                        height={300}
-                      />
-                    )}
-                  </div>
-                </div>
-              </div>
+                 <div className="ltr:ml-auto rtl:mr-auto relative"></div>
+               </div>
+               <div>
+                 <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
+                   {loading ? (
+                     <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] ">
+                       <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent  rounded-full w-5 h-5 inline-flex"></span>
+                     </div>
+                   ) : (
+                     <ReactApexChart
+                       series={cPlanStatistics.series}
+                       options={cPlanStatistics.options}
+                       className="rounded-lg bg-white dark:bg-black overflow-hidden"
+                       type="bar"
+                       height={300}
+                     />
+                   )}
+                 </div>
+               </div>
+             </div>
 
-              {/*
-               *
-               * Recent request
-               *
-               */}
+             {/*
+              *
+              * Recent request
+              *
+              */}
 
-{/* <div className="panel h-full sm:col-span-2 xl:col-span-1">
-                <div className="flex items-center mb-5">
-                  <h5 className="font-semibold text-lg dark:text-white-light">
-                    Capacity Plan Budget
-                  </h5>
-                  <div className="dropdown -mt-5"> */}
+             {/* <div className="panel h-full sm:col-span-2 xl:col-span-1">
+               <div className="flex items-center mb-5">
+                 <h5 className="font-semibold text-lg dark:text-white-light">
+                   Capacity Plan Budget
+                 </h5>
+                 <div className="dropdown -mt-5"> */}
 
+             <div className="panel h-full sm:col-span-2 xl:col-span-1">
+               <div className="flex items-center justify-between mb-5">
+                 <h5 className="font-semibold text-lg dark:text-white-light">
+                   Capacity Plan Request
+                   <span className="block text-white-dark text-sm font-normal">
+                     Recent Capacity Plan activities
+                   </span>
+                 </h5>
+                 <div className="dropdown -mt-5">
+                   <Dropdown
+                     offset={[0, 1]}
+                     placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
+                     button={
+                       <IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
+                     }
+                   >
+                     <Link
+                       to="/cp/overview"
+                       className=" font-semibold group hover:text-cdms_primary p-4 flex items-center justify-center group"
+                     >
+                       View All
+                       <IconArrowLeft className="rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition duration-300 ltr:ml-1 rtl:mr-1" />
+                     </Link>
+                   </Dropdown>
+                 </div>
+               </div>
+               <PerfectScrollbar className="relative h-[290px] ltr:pr-3 rtl:pl-3 ltr:-mr-3 rtl:-ml-3 mb-4">
+                 <>
+                   {cpData &&
+                     (cpData?.capacityPlans || []).map(
+                       (request: capacityplanInfo) => {
+                         return (
+                           <div className="flex items-center py-1.5 relative group hover:bg-cdms_primary/5 rounded-lg">
+                             <div
+                               className={`${
+                                 getStatusBadgeColor(request.status!).bg
+                               } w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5`}
+                             ></div>
 
+                             <div
+                               className={`bg-${request.status!.toLowerCase()} w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5`}
+                             ></div>
 
-<div className="panel h-full sm:col-span-2 xl:col-span-1">
-                <div className="flex items-center justify-between mb-5">
-                  <h5 className="font-semibold text-lg dark:text-white-light">
-                    Capacity Plan Request
-                    <span className="block text-white-dark text-sm font-normal">
-                      Recent Capacity Plan activities
-                    </span>
-                  </h5>
-                  <div className="dropdown -mt-5">
-                  <Dropdown
-                    offset={[0, 1]}
-                    placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
-                    button={
-                      <IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
-                    }
-                  >
-                    <Link
-                      to="/cp/overview"
-                      className=" font-semibold group hover:text-cdms_primary p-4 flex items-center justify-center group"
-                    >
-                      View All
-                      <IconArrowLeft className="rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition duration-300 ltr:ml-1 rtl:mr-1" />
-                    </Link>
-                  </Dropdown>
-                </div>
-                </div>
-                <PerfectScrollbar className="relative h-[290px] ltr:pr-3 rtl:pl-3 ltr:-mr-3 rtl:-ml-3 mb-4">
-                  <>
-                    {cpData &&
-                      (cpData?.capacityPlans || []).map(
-                        (request: capacityplanInfo) => {
-                          return (
-                            <div className="flex items-center py-1.5 relative group hover:bg-cdms_primary/5 rounded-lg">
-                              <div
-                                className={`${
-                                  getStatusBadgeColor(request.status!).bg
-                                } w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5`}
-                              ></div>
+                             <div className="flex flex-col p-2 ">
+                               <div className="flex flex-row">
+                                 {request.title}
+                               </div>
 
-                              <div
-                                className={`bg-${request.status!.toLowerCase()} w-1.5 h-1.5 rounded-full ltr:mr-1 rtl:ml-1.5`}
-                              ></div>
+                               <div className="flex flex-row">
+                                 <div className="basis-6/8">
+                                   <div className="flex-2 text-sm text-end text-gray-400">
+                                     {convertTimestamp(request.updatedAt!)}
+                                   </div>
+                                 </div>
+                                 <div className="basis-2/8 -mt-8">
+                                   <span
+                                     className={`badge ${
+                                       getStatusBadgeColor(request.status!)
+                                         .badge
+                                     } ${
+                                       getStatusBadgeColor(request.status!).bg
+                                     } absolute ltr:right-0 rtl:left-0 text-xs mt-8`}
+                                   >
+                                     {request.status}
+                                   </span>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                         );
+                       }
+                     )}
+                 </>
+               </PerfectScrollbar>
+               {/* <div className="border-t border-white-light dark:border-white/10">
 
-                              <div className="flex flex-col p-2 ">
-                                <div className="flex flex-row">
-                                  {request.title}
-                                </div>
-
-                                <div className="flex flex-row">
-                                  <div className="basis-6/8">
-                                    <div className="flex-2 text-sm text-end text-gray-400">
-                                      {convertTimestamp(request.updatedAt!)}
-                                    </div>
-                                  </div>
-                                  <div className="basis-2/8 -mt-8">
-                                    <span
-                                      className={`badge ${
-                                        getStatusBadgeColor(request.status!)
-                                          .badge
-                                      } ${
-                                        getStatusBadgeColor(request.status!).bg
-                                      } absolute ltr:right-0 rtl:left-0 text-xs mt-8`}
-                                    >
-                                      {request.status}
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        }
-                      )}
-                  </>
-                </PerfectScrollbar>
-                {/* <div className="border-t border-white-light dark:border-white/10">
-
-                </div> */}
-              </div>
-
-           
-            </div>
+               </div> */}
+             </div>
+           </div>
+           )}
 
             <div className="grid xl:grid-cols-2 gap-6 mb-6">
               {/*
@@ -788,13 +795,21 @@ let trainingDashboardChart: any;
                * CDMS Users Stats
                *
                */}
-              <div className="panel h-full">
+
+            {employeeData && role !== "employee" && (
+                <div className="panel h-full">
                 <div className="flex items-center justify-between dark:text-white-light mb-5">
-                  {userInfoAnalyticsState?.data?.data ? 
-                  <h5 className="font-semibold text-lg">CDMS {userInfoAnalyticsState?.data?.data && userInfoAnalyticsState?.data?.data?.type === "users" ? "Users" : "Employee"}</h5>
-                  :
-                  <h5 className="font-semibold text-lg">CDMS Users</h5>
-                  }
+                  {userInfoAnalyticsState?.data?.data ? (
+                    <h5 className="font-semibold text-lg">
+                      {employeeData?.organization?.displayName || "CDMSxx"}{" "}
+                      {userInfoAnalyticsState?.data?.data &&
+                      userInfoAnalyticsState?.data?.data?.type === "users"
+                        ? "Users"
+                        : "Employee"}
+                    </h5>
+                  ) : (
+                    <h5 className="font-semibold text-lg">Users</h5>
+                  )}
                   <div className="dropdown">
                     <Dropdown
                       placement={`${isRtl ? "bottom-start" : "bottom-end"}`}
@@ -805,7 +820,7 @@ let trainingDashboardChart: any;
                       <ul>
                         <li>
                           <button type="button">
-                            <Link to="/employees">View All Employees</Link>
+                            <Link to="/employees">Go to Employees</Link>
                           </button>
                         </li>
                       </ul>
@@ -814,25 +829,32 @@ let trainingDashboardChart: any;
                 </div>
                 <div>
                   <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
-                    {userInfoAnalyticsState.state != StateOptions.FULFILLED && !userInfoAnalyticsState?.data?.data ? (
+                    {userInfoAnalyticsState.state != StateOptions.FULFILLED &&
+                    !userInfoAnalyticsState?.data?.data ? (
                       <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
                         <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
                       </div>
                     ) : (
-                  
-                      <ReactApexChart series={userDashboardChart?.series} options={userDashboardChart?.options} className="rounded-lg bg-white dark:bg-black overflow-hidden" type="pie" height={400} />
+                      <ReactApexChart
+                        series={userDashboardChart?.series}
+                        options={userDashboardChart?.options}
+                        className="rounded-lg bg-white dark:bg-black overflow-hidden"
+                        type="pie"
+                        height={400}
+                      />
                     )}
                   </div>
                 </div>
               </div>
+            )}
 
-                 {/*
+              {/*
                *
                * Trainings
                *
                */}
 
-<div className="panel h-full">
+              <div className="panel h-full">
                 <div className="flex items-center justify-between mb-5">
                   <h5 className="font-semibold text-lg dark:text-white-light">
                     Trainings Statistics
@@ -844,24 +866,26 @@ let trainingDashboardChart: any;
                       button={
                         <IconHorizontalDots className="text-black/70 dark:text-white/70 hover:!text-cdms_primary" />
                       }
+
                     >
                       <ul>
                         <li>
-                          <button type="button">2023</button>
+                          <button type="button">Go to Training</button>
                         </li>
-                        <li>
+                        {/* <li>
                           <button type="button">2022</button>
                         </li>
                         <li>
                           <button type="button">2021</button>
-                        </li>
+                        </li> */}
                       </ul>
                     </Dropdown>
                   </div>
                 </div>
                 <div>
                   <div className="bg-white dark:bg-black rounded-lg overflow-hidden">
-                  {trainingInfoAnalyticsState.state != StateOptions.FULFILLED && !trainingInfoAnalyticsData ? (
+                    {trainingInfoAnalyticsState.state !=
+                      StateOptions.FULFILLED && !trainingInfoAnalyticsData ? (
                       <div className="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
                         <span className="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
                       </div>

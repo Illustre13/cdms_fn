@@ -1,4 +1,5 @@
 import { DownloadFile } from "../redux/hooks/downloadFiles";
+import IconDownload from "./Icon/IconDownload";
 
 interface ButtonProps {
   link: string;
@@ -36,13 +37,13 @@ export const GenerateReport = ({
         <span className="flex flex-row items-center justify-center lg:whitespace-normal lg:text-xs xl:text-sm lg:justify-center text-white">
           {downloading ? (
             <div className="flex items-center justify-center">
-              <div className="w-8 h-8 border-4 border-t-4 border-gray-200 rounded-full animate-spin-slow"></div>
+              <div className="">Loading...</div>
             </div>
           ) : (
-            <>
-              <span>{buttonText}</span>
-              <span>{icon}</span>
-            </>
+            <div className="flex gap-2">
+           <IconDownload />
+              <span>{buttonText}</span>   
+            </ div>
           )}
         </span>
       </button>

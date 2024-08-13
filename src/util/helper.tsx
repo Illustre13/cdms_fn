@@ -105,8 +105,6 @@ export const CurrencyFormatter: React.FC<CurrencyFormatterProps> = ({
   amount = 0,
   currency = "RWF",
 }) => {
-
-  console.log(amount)
   const amountInt = Number.isNaN(Number(amount)) ? parseInt(cleanNumberString(amount).toString(), 10) : amount;
   const formattedAmount = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -201,7 +199,8 @@ export const getVisibleTabs = (roleName: string) => {
     cp: roleName === 'admin' || roleName === 'manager' || roleName === 'approver',
     // cna: roleName === 'admin' || roleName === 'manager' || roleName === 'approver',
     cna: false,
-    training: roleName === 'employee',
+    // training: roleName === 'employee',
+    training: true,
   };
   return tabs;
 };

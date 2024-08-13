@@ -189,7 +189,7 @@ const CDMSLogin = () => {
 													</div>
 												</div>
 												<div className="flex-auto mt-3.5 text-lg leading-8 text-center text-cdms_primary">
-													<Link to="/">Forgot Password? </Link>
+													<Link to="/reset-password">Forgot Password? </Link>
 												</div>
 											</div>
 											<button

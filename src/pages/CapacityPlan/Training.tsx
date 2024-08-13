@@ -33,6 +33,7 @@ import Modal from "../Components/Modals";
 import IconPencil from "../../components/Icon/IconPencil";
 import { FormikProps } from "formik";
 import { fetchAllEmployeeTraining } from "../../redux/action/employeeTrainingAction";
+import IconDownload from "../../components/Icon/IconDownload";
 
 const Training = () => {
   const isDark = useSelector(
@@ -352,24 +353,42 @@ const Training = () => {
     setStatus(selectedOption?.value);
   };
 
-  const trainingTableHeade = [
+  const trainingTableHeader = [
     // "No",
     "Title",
     "Status",
     "Mode",
     "Start Date",
     "End Date",
+    "Currency",
     "Budget",
+    "Program",
+    "SubProgram",
+    // "Male Participants",
+    // "Female Participants",
+    "Type",
+    "Responsible Entity",
+    "Stake Holders",
+    "Source of Funds"
     // "Actions"
   ];
 
   const filterKeys = [
-    "title",
+    "action",
     "status",
     "mode",
     "startDate",
     "endDate",
-    "budgetAmount",
+    "currency",
+    "budget",
+    "program",
+    "subProgram",
+    // "maleParticipants",
+    // "femaleParticipants",
+    "type",
+    "responsibleEntity",
+    "stakeholders",
+    "fundSource"
   ];
 
   interface TrainingPlan {
@@ -390,10 +409,10 @@ const Training = () => {
 
   function handleDownloadExcel() {
     downloadExcel({
-      fileName: "table",
-      sheet: "react-export-table-to-excel",
+      fileName: "training_file",
+      sheet: "training",
       tablePayload: {
-        header: trainingTableHeade,
+        header: trainingTableHeader,
         body: filteredTrainings,
       },
     });
@@ -481,7 +500,7 @@ const Training = () => {
               className="btn btn-primary btn-sm m-1"
               onClick={handleDownloadExcel}
             >
-              <IconFile className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
+              <IconDownload className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
               EXCEL
             </button>
           </div>
@@ -498,7 +517,7 @@ const Training = () => {
                 title: "No",
                 render: (_, index) => index + 1,
               },
-              { accessor: "title", sortable: true, title: "Title" },
+              { accessor: "action", sortable: true, title: "Title" },
               {
                 accessor: "status",
                 title: "Status",
