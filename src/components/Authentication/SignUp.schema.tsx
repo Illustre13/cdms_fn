@@ -5,7 +5,6 @@ import {
 } from "date-fns";
 
 export const differenceInYears = (dateLeft: string, dateRight: string) => {
-	console.log(dateLeft, dateRight);
 	return dateFnsDifferenceInYears(parseISO(dateLeft), parseISO(dateRight));
 };
 

@@ -25,10 +25,6 @@ export const EmployeeForm: React.FC<IEmployeeFormProps> = ({
   isEditing = false,
 }) => {
   const handleSave = () => {};
-
-  console.log("++++++++++++++++", userData);
-  console.log("++++++++++++++++", employeeData);
-  console.log("++++++++++++++++", isEditing);
   const [isEditingMode, setIsEditingMode] = useState(false);
   return (
     <>

@@ -77,8 +77,6 @@ const Organization = () => {
     industry: industry,
   };
 
-  console.log(orgFilters);
-
   useEffect(() => {
     dispatch(fetchAllOrganization(orgFilters));
   }, [search, status, industry, dispatch]);
@@ -88,7 +86,6 @@ const Organization = () => {
   }, [pageSize2]);
 
   useEffect(() => {
-    console.log("Reached Here", addOrganizationState);
 
     if (addOrganizationState.state === StateOptions.FULFILLED) {
       const id = toast.loading("Add Organization");
@@ -127,17 +124,14 @@ const Organization = () => {
   const handleSearchChange = (e: any) => setSearch(e.target.value);
 
   const handleStatusChange = (selectedOption: any) => {
-    console.log("Selected Status:", selectedOption);
     setStatus(selectedOption?.value);
   };
 
   const handleIndustryChange = (selectedOption: any) => {
-    console.log("Selected Industry:", selectedOption);
     setIndustry(selectedOption?.value);
   };
 
   const handleDelete = (id: ItemID) => {
-    console.log("ID --->", id);
     dispatch(deleteOrganization(id));
   };
 

@@ -124,7 +124,6 @@ const Training = () => {
   };
 
   const handleRejectCP = (trainingId: string) => {
-    console.log("Rejects, ID --> ", trainingId);
     dispatch(
       updateTraining({
         data: {
@@ -137,7 +136,6 @@ const Training = () => {
   };
 
   const handleDelete = (id: ItemID) => {
-    console.log("ID --->", id);
     dispatch(deleteTraining(id));
     handleModalClose();
   };
@@ -248,7 +246,6 @@ const Training = () => {
     if (TrainingFormRef.current && !isSubmitting) {
       setIsSubmitting(true);
       const formValues = TrainingFormRef?.current.values;
-      // debugger;
       dispatch(
         updateTraining({
           data: {
@@ -257,9 +254,7 @@ const Training = () => {
               males: formValues?.maleParticipants,
               females: formValues?.femaleParticipants,
             },
-            budgetAmount: parseFloat(
-              cleanNumberString(formValues?.budgetAmount)
-            ),
+            budget: parseFloat(cleanNumberString(formValues?.budgetAmount)),
           },
           id: trainingInfo?.id!,
         })
@@ -308,7 +303,6 @@ const Training = () => {
   }, [fetchTrainingByIdState, trainingModalType, fetchEmployeeTrainingState]);
 
   const handleFinishedTraining = (trainingId: string) => {
-    console.log("Training, Id --> ", trainingId);
     dispatch(
       updateTraining({
         data: {
@@ -335,7 +329,6 @@ const Training = () => {
 
   const trainingsData = fetchTrainingState?.data?.data;
 
-  console.log(" trainingsData ---> ", trainingsData);
   const orgFilters: trainingFilters = {
     searchKey,
     status: status,
@@ -349,7 +342,6 @@ const Training = () => {
   const handleSearchChange = (e: any) => setSearchKey(e.target.value);
 
   const handleStatusChange = (selectedOption: any) => {
-    console.log("Selected Status:", selectedOption);
     setStatus(selectedOption?.value);
   };
 

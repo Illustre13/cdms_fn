@@ -16,7 +16,6 @@ export const fetchAllCapacityPlan = createAsyncThunk(
         headers: { "Accept-language": "en", Authorization: token },
       });
 
-      // console.log(response)
       return response.data;
     } catch (error: any) {
       throw error.response.data.message;
@@ -33,7 +32,6 @@ export const addCapacityPlan = createAsyncThunk<ResponseData, capacityplanInfo>(
         headers: { "Accept-language": "en", Authorization: token },
       });
 
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -64,8 +62,7 @@ export const fetchCPCardsAnalytics = createAsyncThunk(
       const token = "Bearer " + localStorage.getItem("token");
 
       const params = new URLSearchParams();
-      if (cardAnalyticsYear)
-        params.append("year", cardAnalyticsYear);
+      if (cardAnalyticsYear) params.append("year", cardAnalyticsYear);
       const response = await URL.get(
         `/cp/cards/analytics?${params.toString()}`,
         {
@@ -73,7 +70,6 @@ export const fetchCPCardsAnalytics = createAsyncThunk(
         }
       );
 
-      console.log(response);
       return response.data;
     } catch (error: any) {
       throw error.response.data.message;
@@ -87,37 +83,33 @@ export const bulkCreateCapacityPlan = createAsyncThunk<
 >("capacityplan/bulk-create", async (capacityplanInfo, { rejectWithValue }) => {
   try {
     const token = "Bearer " + localStorage.getItem("token");
-    debugger;
     const response = await URL.post("/cp/bulk-create", capacityplanInfo, {
       headers: { "Accept-language": "en", Authorization: token },
     });
 
-    console.log(response);
     return response.data;
   } catch (error) {
     return rejectWithValue(error);
-    // throw error.response.data.message;
   }
 });
 
-export const updateCapacityPlan = createAsyncThunk<ResponseData, {data: capacityplanInfo | any, id: string}>(
-  "capacityplan/update",
-  async (updateInfo, { rejectWithValue }) => {
-    try {
-      const token = "Bearer " + localStorage.getItem("token");
-      const { id, data } = updateInfo;
+export const updateCapacityPlan = createAsyncThunk<
+  ResponseData,
+  { data: capacityplanInfo | any; id: string }
+>("capacityplan/update", async (updateInfo, { rejectWithValue }) => {
+  try {
+    const token = "Bearer " + localStorage.getItem("token");
+    const { id, data } = updateInfo;
 
-      const response = await URL.patch(`/cp/${id}`, data, {
-        headers: { "Accept-language": "en", Authorization: token },
-      });
+    const response = await URL.patch(`/cp/${id}`, data, {
+      headers: { "Accept-language": "en", Authorization: token },
+    });
 
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
+    return response.data;
+  } catch (error) {
+    return rejectWithValue(error);
   }
-);
+});
 
 export const fetchCPBudgetAnalytics = createAsyncThunk(
   "capacityplan/budget/analytics",
@@ -135,7 +127,6 @@ export const fetchCPBudgetAnalytics = createAsyncThunk(
         }
       );
 
-      console.log(response);
       return response.data;
     } catch (error: any) {
       throw error.response.data.message;

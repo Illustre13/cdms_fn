@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { AssessmentStatus, EmployeeTrainingStatus, EmployeeStatus } from "./enum";
+import {
+  AssessmentStatus,
+  EmployeeTrainingStatus,
+  EmployeeStatus,
+} from "./enum";
 import { camelCase } from "lodash";
 
 export class InvalidTokenError extends Error {}
@@ -17,7 +21,11 @@ interface StatusBadgeProps {
   status: allStatus;
 }
 
-type allStatus = CapacityPlanStatus | EmployeeTrainingStatus | AssessmentStatus | EmployeeStatus;
+type allStatus =
+  | CapacityPlanStatus
+  | EmployeeTrainingStatus
+  | AssessmentStatus
+  | EmployeeStatus;
 
 interface CurrencyFormatterProps {
   amount: number | string;
@@ -105,7 +113,9 @@ export const CurrencyFormatter: React.FC<CurrencyFormatterProps> = ({
   amount = 0,
   currency = "RWF",
 }) => {
-  const amountInt = Number.isNaN(Number(amount)) ? parseInt(cleanNumberString(amount).toString(), 10) : amount;
+  const amountInt = Number.isNaN(Number(amount))
+    ? parseInt(cleanNumberString(amount).toString(), 10)
+    : amount;
   const formattedAmount = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency,
@@ -187,17 +197,20 @@ export const downloadFile = (fileName: string) => {
 export const getVisibleTabs = (roleName: string) => {
   const tabs = {
     homepage: true,
-    dashboard: roleName === 'admin' || roleName === 'manager' || roleName === "approver",
-    organization: roleName === 'admin' || roleName === 'manager',
-    myOrganization : true,
-    allOrganization: roleName === 'admin' || roleName ==='approver',
+    dashboard:
+      roleName === "admin" || roleName === "manager" || roleName === "approver",
+    organization: roleName === "admin" || roleName === "manager",
+    myOrganization: true,
+    allOrganization: roleName === "admin" || roleName === "approver",
     user: true,
-    myProfile : true,
+    myProfile: true,
     userManagement: false,
     // userManagement: roleName === 'admin' || roleName ==='manager',
     // user: roleName === 'admin' || roleName === 'manager' || roleName === 'employee' || roleName === 'approver',
-    employees: roleName === 'admin' || roleName === 'manager' || roleName === "approver",
-    cp: roleName === 'admin' || roleName === 'manager' || roleName === 'approver',
+    employees:
+      roleName === "admin" || roleName === "manager" || roleName === "approver",
+    cp:
+      roleName === "admin" || roleName === "manager" || roleName === "approver",
     // cna: roleName === 'admin' || roleName === 'manager' || roleName === 'approver',
     cna: false,
     // training: roleName === 'employee',

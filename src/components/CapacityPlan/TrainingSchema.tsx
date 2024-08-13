@@ -15,7 +15,7 @@ export const trainingInitialValues = (data: trainingInfo) => {
     endDate: data?.endDate
       ? new Date(data.endDate).toISOString().split("T")[0]
       : "",
-    budgetAmount: data.budget ?? 0,
+    budgetAmount: data.budget.toLocaleString() ?? 0,
     currency: data.currency ?? "",
     type: data.type ?? "",
     program: data.program ?? "",
@@ -49,9 +49,7 @@ export const trainingValidationSchema = Yup.object().shape({
     .nullable()
     .min(Yup.ref("startDate"), "End date cannot be before start date")
     .required("End date is required"),
-  budgetAmount: Yup.number()
-    .positive("Budget amount must be positive")
-    .required("Budget amount is required"),
+  budgetAmount: Yup.string().required("Budget amount is required"),
   type: Yup.string().required("Type is required"),
   program: Yup.string().required("Program is required"),
   subProgram: Yup.string().required("SubProgram is required"),

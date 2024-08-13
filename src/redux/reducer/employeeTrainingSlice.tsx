@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   addEmployeeTraining,
   fetchAllEmployeeTraining
@@ -45,11 +45,13 @@ const EmployeeTrainingSlice = createSlice({
         state.fetchEmployeeTrainingState.error = false;
         state.fetchEmployeeTrainingState.state = StateOptions.PENDING;
       })
-      .addCase(fetchAllEmployeeTraining.rejected, (state, action) => {
-        state.fetchEmployeeTrainingState.error = true;
-        state.fetchEmployeeTrainingState.loading = false;
-        state.fetchEmployeeTrainingState.message = action.error.message;
-        state.fetchEmployeeTrainingState.state = StateOptions.REJECTED;
+      .addCase(fetchAllEmployeeTraining.rejected, (state, action: PayloadAction<any>) => {
+        state.addEmployeeTrainingState.data = action?.payload?.response?.data?.errors || null;
+        state.addEmployeeTrainingState.error = true;
+        state.addEmployeeTrainingState.loading = false;
+        state.addEmployeeTrainingState.message =
+           action.payload?.response?.data?.message || "Fetching all employee Training failed";
+        state.addEmployeeTrainingState.state = StateOptions.REJECTED;
       })
       // Add employee training
       .addCase(addEmployeeTraining.fulfilled, (state, action) => {
@@ -64,12 +66,12 @@ const EmployeeTrainingSlice = createSlice({
         state.addEmployeeTrainingState.error = false;
         state.addEmployeeTrainingState.state = StateOptions.PENDING;
       })
-      .addCase(addEmployeeTraining.rejected, (state, action) => {
-        const { message } = action.error;
+      .addCase(addEmployeeTraining.rejected, (state, action: PayloadAction<any>) => {
+        state.addEmployeeTrainingState.data = action?.payload?.response?.data?.errors || null;
         state.addEmployeeTrainingState.error = true;
         state.addEmployeeTrainingState.loading = false;
         state.addEmployeeTrainingState.message =
-          action.error.message || "Adding Employee Training failed";
+           action.payload?.response?.data?.message || "Adding Employee Training failed";
         state.addEmployeeTrainingState.state = StateOptions.REJECTED;
       })
       ;

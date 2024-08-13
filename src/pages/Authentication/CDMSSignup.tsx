@@ -22,17 +22,7 @@ export const CDMSSignUp = () => {
     setActiveTab(tab);
   };
 
-  // useEffect(() => {
-  //     const handleTabClick = (tab: string) => {
-  //         	setActiveTab(tab);
-  //         };
-  // }, [handleTabClick]);
   const submitForm = () => {
-    console.log("Submitting Signup Info:");
-    console.log(
-      typeof sessionStorage.getItem("dob"),
-      sessionStorage.getItem("dob")
-    );
     const userInfo: userInfo = {
       firstName: sessionStorage.getItem("firstName") as string,
       middleName: sessionStorage.getItem("middleName") as string,
@@ -74,14 +64,12 @@ export const CDMSSignUp = () => {
       organizationInfo,
       userWorkInfo,
     };
-    console.log(payload);
 
     dispatch(handleSignup(payload));
     setSignupData(false);
   };
 
   useEffect(() => {
-    console.log(signUpState.state);
     if (signUpState.state === StateOptions.FULFILLED) {
       navigate("/reset-password");
     }
@@ -96,7 +84,6 @@ export const CDMSSignUp = () => {
       });
     }
     if (signupData) {
-      console.log("Signup Data");
       submitForm();
     }
   }, [activeTab, signupData]);

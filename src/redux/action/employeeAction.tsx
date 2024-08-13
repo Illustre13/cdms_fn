@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchAllEmployee = createAsyncThunk(
   "employee/fetchAll",
-  async (filters: EmployeeFilters, {rejectWithValue}) => {
+  async (filters: EmployeeFilters, { rejectWithValue }) => {
     try {
       const params = new URLSearchParams();
       if (filters.searchKey) params.append("search", filters.searchKey);
@@ -20,21 +20,21 @@ export const fetchAllEmployee = createAsyncThunk(
 );
 
 export const fetchAllEmployeeByCP = createAsyncThunk(
-    "employee/fetchAllByCp",
-    async (capacityPlanId: string, {rejectWithValue}) => {
-      try {
-        const params = new URLSearchParams();
-        if(capacityPlanId) params.append("capacityPlanId", capacityPlanId);
-        const token = "Bearer " + localStorage.getItem("token");
-        const response = await URL.get(`/employee?${params.toString()}`, {
-          headers: { "Accept-language": "en", Authorization: token },
-        });
-        return response.data;
-      } catch (error) {
-        return rejectWithValue(error);
-      }
+  "employee/fetchAllByCp",
+  async (capacityPlanId: string, { rejectWithValue }) => {
+    try {
+      const params = new URLSearchParams();
+      if (capacityPlanId) params.append("capacityPlanId", capacityPlanId);
+      const token = "Bearer " + localStorage.getItem("token");
+      const response = await URL.get(`/employee?${params.toString()}`, {
+        headers: { "Accept-language": "en", Authorization: token },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
     }
-  );
+  }
+);
 
 export const addEmployee = createAsyncThunk<ResponseData, employeeInfo>(
   "employee/add",
@@ -63,7 +63,6 @@ export const updateEmployee = createAsyncThunk<
       headers: { "Accept-language": "en", Authorization: token },
     });
 
-    console.log(response);
     return response.data;
   } catch (error) {
     return rejectWithValue(error);
@@ -102,7 +101,7 @@ export const fetchEmployeeInfo = createAsyncThunk<ResponseData, string>(
 
 export const bulkCreateEmployee = createAsyncThunk<
   ResponseData,
-  { data: employeeBulkProp; }
+  { data: IEmployeeBulk }
 >("capacityplan/bulk-create", async (data, { rejectWithValue }) => {
   try {
     const token = "Bearer " + localStorage.getItem("token");

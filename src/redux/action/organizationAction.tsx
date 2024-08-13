@@ -12,12 +12,9 @@ export const fetchAllOrganization = createAsyncThunk(
       if (filters.status) params.append("status", filters.status);
       if (filters.industry) params.append("industry", filters.industry);
 
-
       const response = await URL.get(`/organization?${params.toString()}`, {
         headers: { "Accept-language": "en", Authorization: token },
       });
-
-      // console.log(response)
       return response.data;
     } catch (error: any) {
       throw error.response.data.message;
@@ -34,11 +31,9 @@ export const addOrganization = createAsyncThunk<ResponseData, organizationInfo>(
         headers: { "Accept-language": "en", Authorization: token },
       });
 
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
-      // throw error.response.data.message;
     }
   }
 );
@@ -58,17 +53,20 @@ export const deleteOrganization = createAsyncThunk<ResponseData, ItemID>(
   }
 );
 
-export const fetchOrganizationInfo = createAsyncThunk("organization/fetchOrganizationInfo", async () => {
-	try {
-		const token = "Bearer " + localStorage.getItem("token");
-		const response = await URL.get("/organization/info", {
-			headers: { "Accept-language": "en", Authorization: token },
-		});
-		return response.data;
-	} catch (error: any) {
-		throw error.response.data.message;
-	}
-});
+export const fetchOrganizationInfo = createAsyncThunk(
+  "organization/fetchOrganizationInfo",
+  async () => {
+    try {
+      const token = "Bearer " + localStorage.getItem("token");
+      const response = await URL.get("/organization/info", {
+        headers: { "Accept-language": "en", Authorization: token },
+      });
+      return response.data;
+    } catch (error: any) {
+      throw error.response.data.message;
+    }
+  }
+);
 
 export const updateOrganization = createAsyncThunk<
   ResponseData,

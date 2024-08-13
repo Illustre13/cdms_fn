@@ -72,15 +72,6 @@ const Sidebar = () => {
   const userData = useSelector((state: any) => state.user.fetchUserInfoState);
   const role = userData?.data?.data?.employee?.role;
   const visibleTabs = getVisibleTabs(role?.name);
-//   console.log("-----------------------=====================Role >>>>", role); 
-//   console.log(
-//     "-----------------------=====================User Data>>>>",
-//     userData
-//   ); 
-//   console.log(
-//     "-----------------------=====================Visible Tabs >>>>",
-//     visibleTabs
-//   );
 
   return (
     <div className={semidark ? "dark" : ""}>

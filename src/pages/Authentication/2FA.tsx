@@ -68,7 +68,6 @@ export const TwoFactorAuth = () => {
            * Fetch User Info
            */
           dispatch(fetchUserInfo() as any).then((data: any) => {
-            console.log("Reached 101010 ________________");
             if (!data || !data?.payload.success) {
               toast.update(id, {
                 render:

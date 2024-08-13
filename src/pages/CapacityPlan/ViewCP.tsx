@@ -42,7 +42,6 @@ export interface IViewCPProps {
 const ViewCP = () => {
   const { cpId } = useParams<{ cpId: string }>();
 
-  console.log("capacityPlan ID--> ", cpId);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(setPageTitle("Add Capacity Plan"));
@@ -53,15 +52,12 @@ const ViewCP = () => {
   );
 
   const cpData = fetchCapacityPlanState?.data?.data?.capacityPlan;
-  console.log(cpData);
 
   const updateCapacityPlanState = useSelector(
     (state: IRootState) => state.capacityPlan.updateState
   );
 
   const handleSubmit = (values: any) => {
-    console.log(values);
-    debugger;
     dispatch(
       updateCapacityPlan({
         data: {
@@ -139,7 +135,6 @@ const ViewCP = () => {
   const handleSearchChange = (e: any) => setSearchKey(e.target.value);
 
   const handleStatusChange = (selectedOption: any) => {
-    console.log("Selected Status:", selectedOption);
     setStatus(selectedOption?.value);
   };
 
@@ -159,7 +154,7 @@ const ViewCP = () => {
     "Type",
     "Responsible Entity",
     "Stake Holders",
-    "Source of Funds"
+    "Source of Funds",
     // "Actions"
   ];
 
@@ -178,7 +173,7 @@ const ViewCP = () => {
     "type",
     "responsibleEntity",
     "stakeholders",
-    "fundSource"
+    "fundSource",
   ];
 
   const PAGE_SIZES = [10, 20, 30, 50, 100];
@@ -214,7 +209,6 @@ const ViewCP = () => {
   };
 
   const handleFinishedTraining = (trainingId: string) => {
-    console.log("Training, Id --> ", trainingId);
     dispatch(
       updateTraining({
         data: {
@@ -514,11 +508,8 @@ const ViewCP = () => {
                         >
                           Number of Training(s):
                         </label>
-                        <div
-                          className={
-                            "w-9/12" }
-                        >
-                            {cpData?.training?.length}
+                        <div className={"w-9/12"}>
+                          {cpData?.training?.length}
                         </div>
                       </div>
 
@@ -530,15 +521,19 @@ const ViewCP = () => {
                         >
                           Total Budget:
                         </label>
-                        <div
-                          className={
-                            "w-9/12" }
-                        >
-                            {cpData?.currency || cpData?.training[0]?.currency || "RWF"}  {(cpData?.training || []).reduce((total: any, training: { budget: any; }) => total + (training.budget || 0), 0).toLocaleString()}
-                            
+                        <div className={"w-9/12"}>
+                          {cpData?.currency ||
+                            cpData?.training[0]?.currency ||
+                            "RWF"}{" "}
+                          {(cpData?.training || [])
+                            .reduce(
+                              (total: any, training: { budget: any }) =>
+                                total + (training.budget || 0),
+                              0
+                            )
+                            .toLocaleString()}
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </Form>

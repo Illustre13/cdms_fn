@@ -27,10 +27,8 @@ const Add = () => {
 
   const cpData = fetchCapacityPlanState?.data?.data;
   const rdbCPData = cpData?.capacityPlans[0];
-  console.log(rdbCPData);
 
   const handleSubmit = (values: any) => {
-    console.log(values);
     dispatch(addCapacityPlan(values));
   };
 

@@ -19,6 +19,7 @@ import * as Yup from "yup";
 import { MultiSelect } from "@mantine/core";
 import IconPlus from "../../components/Icon/IconPlus";
 import { addEmployeeTraining } from "../../redux/action/employeeTrainingAction";
+import { toast, ToastContainer } from "react-toastify";
 
 export interface ITrainingFormProps {
   trainingData: trainingInfo;
@@ -71,20 +72,77 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
     label: `${employee?.user?.firstName} ${employee?.user?.lastName}`,
   }));
 
-  console.log("fetchAllEmployeeByCPState ---> ", allEmployeeOptions);
   const handleSaveTraining = (values: any) => {
     setTrainingDataInfo(values);
   };
 
+  const addEmployeeTrainingState = useSelector(
+    (state: IRootState) => state.employeeTraining.addEmployeeTrainingState
+  );
+
+  if (addEmployeeTrainingState) {
+  }
+
+  const [activeToast, setActiveToast] = useState<string | null>(null);
+
+  const showToast = (
+    state: string,
+    message: string,
+    successMsg: string,
+    errorMsg: string
+  ) => {
+    if (state === StateOptions.FULFILLED) {
+      if (activeToast !== successMsg) {
+        toast.success(message || successMsg, {
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+        setActiveToast(successMsg);
+      }
+    } else if (state === StateOptions.REJECTED) {
+      if (activeToast !== errorMsg) {
+        toast.error(message || errorMsg, {
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+        setActiveToast(errorMsg);
+      }
+    }
+  };
+
+  const clearToast = () => {
+    setActiveToast(null);
+  };
+
+  useEffect(() => {
+    // Handle training
+    if (addEmployeeTrainingState.state !== StateOptions.INITIAL) {
+      showToast(
+        addEmployeeTrainingState.state!,
+        addEmployeeTrainingState.message!,
+        "Deleted Training successfully!",
+        addEmployeeTrainingState.data?.message || "Failed to delete Training."
+      );
+      clearToast();
+    }
+  }, [addEmployeeTrainingState, activeToast]);
+
   const handleSaveEmployeeTraining = (values: any) => {
-    console.log("values ---> ", values, "trainingId ---> ", trainingData?.id);
     const idx = {
       trainingId: trainingData?.id!,
       employeeIds: values?.employeeNames,
     };
     dispatch(addEmployeeTraining(idx));
   };
-  console.log("employeeTrainingData ---> ", trainingData);
+
   return (
     <>
       <Formik
@@ -450,7 +508,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                           //   trainingData?.participants?.females
                           // }
                         />
-{/* 
+
                         <button
                           type="submit"
                           className="btn btn-primary btn-sm m-1"
@@ -458,7 +516,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
                         >
                           <IconPlus className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
                           Add Participant
-                        </button> */}
+                        </button>
                       </>
                     ) : (
                       <div className="text-left text-gray-500">
@@ -484,6 +542,7 @@ export const TrainingForm: React.FC<ITrainingFormProps> = ({
           )}
         </Formik>
       )}
+      <ToastContainer />
     </>
   );
 };

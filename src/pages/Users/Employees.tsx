@@ -30,6 +30,8 @@ import { StatusBadge } from "../../util/helper";
 import { EmployeeForm } from "./EmployeeForm";
 import { FormikProps } from "formik";
 import Modal from "../Components/Modals";
+import { Link } from "react-router-dom";
+import { EmployeeBulkImport } from "./EmployeeBulkImport";
 
 const Employees = () => {
   const dispatch = useAppDispatch();
@@ -37,7 +39,9 @@ const Employees = () => {
     dispatch(setPageTitle("Employees"));
   });
 
-  const userData = useSelector((state: IRootState) => state.user.fetchUserInfoState);
+  const userData = useSelector(
+    (state: IRootState) => state.user.fetchUserInfoState
+  );
   const fetchAllEmpoyeeDataState = useSelector(
     (state: IRootState) => state.employee.fetchEmployeeState
   );
@@ -89,12 +93,11 @@ const Employees = () => {
   const handleModalClose = () => {
     setModalProps((prev) => ({ ...prev, isOpen: false }));
   };
-  
+
   const handleEditEmployee = (employeeData: employeeInfo) => {
     if (EmployeeFormRef.current && !isSubmitting) {
       setIsSubmitting(true);
       const formValues = EmployeeFormRef?.current.values;
-      // debugger;
       dispatch(
         updateEmployee({
           data: {
@@ -110,37 +113,33 @@ const Employees = () => {
 
   useEffect(() => {
     if (fetchEmployeeInfoState.state === StateOptions.FULFILLED) {
-        setModalProps({
-          type:
-            employeeModalType === "view" ? "viewEmployee" : "updateEmployee",
-          isOpen: true,
-          onClose: modalProps.onClose,
-          onSubmit: () => handleEditEmployee(employeeInfoById!),
-          title:
-            employeeModalType === "edit"
-              ? "Edit Employee Info"
-              : "View Employee Info",
-          button1Text: "Cancel",
-          button2Text: employeeModalType === "edit" ? "Save" : "Close",
-          buttonTwoDisabled: false,
-          content: (
-            <EmployeeForm
-              employeeFormRef={EmployeeFormRef}
-              userData={userData?.data?.data?.user}
-              employeeData={employeeInfoById}
-              isEditing={employeeModalType === "edit"}
-            />
-          ),
-          hideButton1: employeeModalType === "view" && true,
-          size: "max-w-4xl",
-        });
-		console.log(modalProps)
+      setModalProps({
+        type: employeeModalType === "view" ? "viewEmployee" : "updateEmployee",
+        isOpen: true,
+        onClose: modalProps.onClose,
+        onSubmit: () => handleEditEmployee(employeeInfoById!),
+        title:
+          employeeModalType === "edit"
+            ? "Edit Employee Info"
+            : "View Employee Info",
+        button1Text: "Cancel",
+        button2Text: employeeModalType === "edit" ? "Save" : "Close",
+        buttonTwoDisabled: false,
+        content: (
+          <EmployeeForm
+            employeeFormRef={EmployeeFormRef}
+            userData={userData?.data?.data?.user}
+            employeeData={employeeInfoById}
+            isEditing={employeeModalType === "edit"}
+          />
+        ),
+        hideButton1: employeeModalType === "view" && true,
+        size: "max-w-4xl",
+      });
     }
   }, [fetchEmployeeInfoState]);
 
-
   const handleDelete = (id: string) => {
-    console.log("ID --->", id);
     dispatch(deleteEmployee(id));
     handleModalClose();
   };
@@ -188,7 +187,6 @@ const Employees = () => {
   };
 
   useEffect(() => {
-    console.log("Reached her empFilters", empFilters);
     dispatch(fetchAllEmployee(empFilters));
   }, [searchKey, status, dispatch]);
 
@@ -248,7 +246,6 @@ const Employees = () => {
     }
   );
   const handleStatusChange = (selectedOption: any) => {
-    console.log("Selected Status:", selectedOption);
     setStatus(selectedOption?.value);
   };
   function handleDownloadExcel() {
@@ -276,16 +273,11 @@ const Employees = () => {
   const handleCreateEmployeeBulk = () => {
     if (bulkData && employeeBulkModal) {
       setIsEmployeeBulkSubmit(true);
-      console.log("State Here 22222222222 --> ", bulkData);
-      debugger;
       dispatch(bulkCreateEmployee(bulkData));
-      debugger;
       closeEmployeeBulkModal();
     }
   };
 
-
-  console.log(modalProps?.isOpen)
   return (
     <div>
       {modalProps?.isOpen && (
@@ -303,66 +295,102 @@ const Employees = () => {
         />
       )}
 
-      {/* Filters */}
-      <div className="flex flex-col items-start overflow-x-auto whitespace-nowrap p-3 text-cdms_primary relative z-10 w-full">
-        <div className="mt-8 flex flex-row md:flex-row items-center justify-end gap-8 relative z-20">
-          <div className="ltr:ml-auto rtl:mr-auto">
-            <input
-              type="text"
-              placeholder="Search an employee"
-              className="form-input w-auto py-2 ltr:pr-11 rtl:pl-11 peer"
-              value={searchKey}
-              onChange={handleSearchChange}
+      {employeeBulkModal && (
+        <Modal
+          isOpen={employeeBulkModal}
+          title="Employee Bulk Import"
+          content={
+            <EmployeeBulkImport
+              employeeBulkSubmit={isEmployeeBulkSubmit}
+              setIsEmployeeBulkSubmit={setIsEmployeeBulkSubmit}
+              // handleBulkImport={handleCreateBulkCP}
+              setBulkData={setBulkData}
             />
-            <button
-              type="button"
-              className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary"
-            >
-              <IconSearch className="mx-auto" />
-            </button>
-          </div>
+          }
+          button1Text="Cancel"
+          button2Text="Upload"
+          onClose={closeEmployeeBulkModal}
+          onSubmit={handleCreateEmployeeBulk}
+          buttonTwoDisabled={!isEmployeeBulkSubmit}
+        />
+      )}
 
-          {/* Employee Status */}
-          <div className="relative z-99 mx-auto max-w-[580px] w-full">
-            <Select
-              placeholder="Select Status"
-              options={statusOptions}
-              classNamePrefix="custom-select py-3"
-              menuPortalTarget={document.body}
-              menuPosition="absolute"
-              onChange={handleStatusChange}
-            />
-          </div>
-          <div className="flex justify-end gap-4">
+      {/** Bread Crumb */}
+      <div>
+        <ul className="flex space-x-2 rtl:space-x-reverse mb-5">
+          <li>
+            <Link to="/dashboard" className="text-cdms_primary hover:underline">
+              Dashboard
+            </Link>
+          </li>
+          <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+            <Link to="/employees" className="text-cdms_primary hover:underline">
+              Employee
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      <div className="panel mt-6">
+        {/* Filters */}
+        <div className="flex flex-col items-start overflow-x-auto whitespace-nowrap text-cdms_primary relative z-10 w-full">
+          <div className="my-6 flex flex-row md:flex-row items-center justify-end gap-8 relative z-20">
+            <div className="ltr:ml-auto rtl:mr-auto">
+              <input
+                type="text"
+                placeholder="Search an employee"
+                className="form-input w-auto py-2 ltr:pr-11 rtl:pl-11 peer"
+                value={searchKey}
+                onChange={handleSearchChange}
+              />
+              <button
+                type="button"
+                className="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-cdms_primary"
+              >
+                <IconSearch className="mx-auto" />
+              </button>
+            </div>
+
+            {/* Employee Status */}
+            <div className="relative z-99 mx-auto max-w-[580px] w-full">
+              <Select
+                placeholder="Select Status"
+                options={statusOptions}
+                classNamePrefix="custom-select py-3"
+                menuPortalTarget={document.body}
+                menuPosition="absolute"
+                onChange={handleStatusChange}
+              />
+            </div>
+            {/* <div className="flex justify-end gap-4">
             <button type="button" className="btn btn-primary">
               <IconPlus className="w-5 h-5 ltr:mr-1.5 rtl:ml-1.5 shrink-0" />
               Add New Employee
             </button>
-          </div>
-          <div>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={openAddEmployeeBulkModal}
-            >
-              <IconTxtFile className="ltr:mr-2 rtl:ml-2" />
-              Bulk Import
-            </button>
-          </div>
-          <div>
-            <button
-              type="button"
-              className="btn btn-primary btn-sm m-1"
-              onClick={handleDownloadExcel}
-            >
-              <IconDownload className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
-              EXCEL
-            </button>
+          </div> */}
+            <div>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={openAddEmployeeBulkModal}
+              >
+                <IconTxtFile className="ltr:mr-2 rtl:ml-2" />
+                Bulk Import
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                className="btn btn-primary btn-sm m-1"
+                onClick={handleDownloadExcel}
+              >
+                <IconDownload className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
+                EXCEL
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="panel mt-6">
         <div className="datatables">
           <DataTable
             className="whitespace-nowrap table-hover"

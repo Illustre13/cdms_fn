@@ -7,8 +7,6 @@ export const fetchUserInfo = createAsyncThunk("user/info", async () => {
     const response = await URL.get("/user/info", {
       headers: { "Accept-language": "en", Authorization: token },
     });
-    //
-    // debugger;
     return response.data;
   } catch (error: any) {
     throw error.response.data.message;

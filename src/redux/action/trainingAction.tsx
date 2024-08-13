@@ -16,7 +16,6 @@ export const fetchAllTraining = createAsyncThunk(
         headers: { "Accept-language": "en", Authorization: token },
       });
 
-      // console.log(response)
       return response.data;
     } catch (error: any) {
       throw error.response.data.message;
@@ -33,7 +32,6 @@ export const addTraining = createAsyncThunk<ResponseData, trainingInfo>(
         headers: { "Accept-language": "en", Authorization: token },
       });
 
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -73,7 +71,6 @@ export const fetchCPCardsAnalytics = createAsyncThunk(
         }
       );
 
-      console.log(response);
       return response.data;
     } catch (error: any) {
       throw error.response.data.message;
@@ -93,7 +90,6 @@ export const bulkCreateTraining = createAsyncThunk<
     return response.data;
   } catch (error) {
     return rejectWithValue(error);
-    // throw error.response.data.message;
   }
 });
 
@@ -109,7 +105,6 @@ export const updateTraining = createAsyncThunk<
       headers: { "Accept-language": "en", Authorization: token },
     });
 
-    console.log(response);
     return response.data;
   } catch (error) {
     return rejectWithValue(error);
@@ -132,7 +127,6 @@ export const fetchCPBudgetAnalytics = createAsyncThunk(
         }
       );
 
-      console.log(response);
       return response.data;
     } catch (error: any) {
       throw error.response.data.message;

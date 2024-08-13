@@ -95,8 +95,27 @@ interface organizationInfo {
   tinNo?: string;
 }
 
-interface employeeBulkProp {
-  data: userInfo | employeeInfo;
+interface IEmployeeBulk {
+  firstName: string;
+  middleName?: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  gender: string;
+  dob?: string;
+  nationality?: string;
+  profileImage?: string;
+  rssbNo: string;
+  idNumber?: string;
+  address?: string;
+  department: string;
+  position: string;
+  isAdmin?: boolean;
+  isSupervisor?: boolean;
+  status?: EmployeeStatus | string;
+  organization?: organizationInfo;
+  user?: userInfo;
+  role?: any;
 }
 interface userWorkInfo {
   role: string;
@@ -188,7 +207,7 @@ interface employeeInfo {
   position: string;
   isAdmin?: boolean;
   isSupervisor?: boolean;
-  status?: EmployeeStatus;
+  status?: EmployeeStatus | string;
   organization?: organizationInfo;
   user?: userInfo;
   role?: any;
@@ -264,6 +283,15 @@ interface ICPBulkImport {
   setBulkData?: any;
 }
 
+interface IEmployeeBulkImport {
+  handleImport?: any;
+  employeeBulkSubmit?: boolean;
+  setIsEmployeeBulkSubmit?: (value: boolean) => void;
+  handleBulkImport?: () => void;
+  setBulkData?: any;
+}
+
+
 interface ICapacityPlanInfo {
   bulkCPData: {
     info: capacityplanInfo[];
@@ -275,6 +303,13 @@ interface ICPBulkImportData {
     trainings: trainingInfo[];
     plan: capacityplanInfo;
   };
+  file: any;
+  isAfterFileChanged: boolean;
+}
+
+interface IEmployeeBulkImportData {
+  bulkCPData: {
+    data?: IEmployeeBulk };
   file: any;
   isAfterFileChanged: boolean;
 }

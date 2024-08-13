@@ -43,8 +43,6 @@ export const CapacityPlanForm: React.FC<ICapacityPlanFormProps> = ({
     { value: CapacityPlanStatus.UNDER_REVIEW, label: "Under Review" },
   ];
 
-  console.log("DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ---->", capacityPlanData);
-
   return (
     <div className="flex flex-col gap-4">
       <div className="flex  gap-4 relative justify-end">
@@ -68,9 +66,9 @@ export const CapacityPlanForm: React.FC<ICapacityPlanFormProps> = ({
               </button>
             </div>
           )}
-            <div onClick={() => setIsEditingMode(!isEditingMode)}>
-              <IconEdit className="w-8 h-8 cursor-pointer" />
-            </div>
+          <div onClick={() => setIsEditingMode(!isEditingMode)}>
+            <IconEdit className="w-8 h-8 cursor-pointer" />
+          </div>
         </div>
       </div>
       <Formik

@@ -109,7 +109,6 @@ const Header = () => {
       setEmployeeData(userInfoState?.data?.data?.employee);
     }
   }, [userInfoState]);
-  console.log("PI --->", userData?.profileImage);
   return (
     <header
       className={`z-40 ${

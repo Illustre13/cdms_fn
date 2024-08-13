@@ -36,7 +36,6 @@ export const DownloadFile = ({
   const [url, setFileUrl] = useState<string>("");
   const [name, setFileName] = useState<string>("");
   const serverLinkUrl = "http://localhost:4005/api/cdms" + serverLink;
-  console.log(serverLinkUrl)
   const download = async () => {
     try {
       setDownloading(true);

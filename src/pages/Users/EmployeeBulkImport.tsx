@@ -2,30 +2,29 @@ import React, { useState, useCallback, useEffect } from "react";
 import { read, utils } from "xlsx";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../redux/hooks";
-import IconDownload from "../Icon/IconDownload";
 import { useDropzone } from "react-dropzone";
 import {
   downloadFile,
   formatData,
   mergeDataWithHeaders,
 } from "../../util/helper";
-import { bulkCreateCapacityPlan } from "../../redux/action/capacityPlanAction";
 import { IRootState } from "../../redux/store";
-import IconFolderMinus from "../Icon/IconFolderMinus";
 import { useWindowResize } from "../../util/helper";
+import IconDownload from "../../components/Icon/IconDownload";
+import IconFolderMinus from "../../components/Icon/IconFolderMinus";
+import { createEmployeeInfo, createUserInfo } from "./employeeFormSchema";
 
-const initialState: ICPBulkImportData = {
+const initialState: IEmployeeBulkImportData = {
   bulkCPData: {
-    trainings: [],
-    plan: { title: "", description: "", year: new Date().getFullYear() },
+    data: createUserInfo(),
   },
   file: "",
   isAfterFileChanged: false,
 };
 
-export const CPBulkImport: React.FC<ICPBulkImport> = ({
-  cpBulkSubmit,
-  setIsCPBulkSubmit,
+export const EmployeeBulkImport: React.FC<IEmployeeBulkImport> = ({
+  employeeBulkSubmit,
+  setIsEmployeeBulkSubmit,
   handleBulkImport,
   setBulkData,
 }) => {
@@ -33,8 +32,8 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
 
   const screenWidth = useWindowResize();
 
-  const cpBulkCreateState = useSelector(
-    (state: IRootState) => state.capacityPlan.bulkCreateState
+  const employeeBulkCreateState = useSelector(
+    (state: IRootState) => state.employee.bulkCreateEmployeeState
   );
   const [thisState, setThisState] = useState(initialState);
   const [isBulkValid, setIsBulkValid] = useState(false);
@@ -52,25 +51,22 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
           blankrows: false,
         }
       );
-      const capacityPlansInfo: string[] = JSONDATA?.slice(1, -9) as string[];
-      const capacityPlansTitle = JSONDATA[0] as string[];
+      const employeesInfo: IEmployeeBulk[] = JSONDATA?.slice(
+        1
+      ) as IEmployeeBulk[];
       const cpInfoFormatted001 = mergeDataWithHeaders(
-        JSONDATA?.slice(1, -9)[0] as [],
-        capacityPlansInfo.slice(1)
-      ) as trainingInfo[];
+        JSONDATA?.slice(1)[0] as [],
+        employeesInfo.slice(1)
+      ) as any;
       setThisState((prev) => ({
         ...prev,
         isAfterFileChanged: true,
         bulkCPData: {
-          trainings: cpInfoFormatted001,
-          plan: {
-            ...initialState?.bulkCPData?.plan,
-            title: capacityPlansTitle[0],
-          },
+          data: cpInfoFormatted001,
         },
         file,
       }));
-      if (cpInfoFormatted001.length > 0) {
+      if (cpInfoFormatted001) {
         setIsBulkValid(true);
       }
     };
@@ -78,8 +74,8 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
   }, []);
 
   useEffect(() => {
-    if (setIsCPBulkSubmit) {
-      setIsCPBulkSubmit(true);
+    if (setIsEmployeeBulkSubmit) {
+      setIsEmployeeBulkSubmit(true);
     }
   }, [isBulkValid]);
 
@@ -96,7 +92,7 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
   const fileLabel = thisState.file ? thisState.file.name : "";
 
   useEffect(() => {
-    if (isBulkValid && cpBulkSubmit) {
+    if (isBulkValid && employeeBulkSubmit) {
       setBulkData(thisState.bulkCPData);
       setIsBulkValid(false);
     }
@@ -108,7 +104,7 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => downloadFile("capacity_plan_bulk_import_006.xlsx")}
+          onClick={() => downloadFile("employee_bulk_import_009.xlsx")}
         >
           <IconDownload className="ltr:mr-2 rtl:ml-2" />
           Download Template
@@ -158,7 +154,7 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
                     thisState.isAfterFileChanged ? "block" : "hidden"
                   }`}
                 >
-                  {thisState.bulkCPData.trainings.length < 1
+                  {!thisState.bulkCPData.data
                     ? "Your document is empty, click to upload a new document"
                     : ""}
                 </span>

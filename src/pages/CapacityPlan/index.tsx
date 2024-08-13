@@ -195,15 +195,6 @@ const CapacityPlanTable = () => {
       allAmountPercent: number,
       availableAmount?: number
     ) => {
-      console.log(
-        "TYPE OF --> ",
-        typeof [
-          parseFloat(Number(reqAmountPercent).toFixed(2)),
-          parseFloat(Number(allAmountPercent).toFixed(2)),
-        ],
-        parseFloat(Number(reqAmountPercent).toFixed(2)),
-        parseFloat(Number(allAmountPercent).toFixed(2))
-      );
       return {
         series: [
           parseFloat(Number(reqAmountPercent).toFixed(2)),
@@ -264,10 +255,7 @@ const CapacityPlanTable = () => {
   const handleCreateBulkCP = () => {
     if (bulkData && bulkCPModalOpen) {
       setIsCPBulkSubmit(true);
-      console.log("State Here 22222222222 --> ", bulkData);
-      debugger;
       dispatch(bulkCreateCapacityPlan(bulkData));
-      debugger;
       closeAddBulkCPModal();
     }
   };
@@ -295,7 +283,6 @@ const CapacityPlanTable = () => {
   };
 
   const handleApproveCP = (cpId: string) => {
-    console.log("Approves, Id --> ", cpId);
     dispatch(
       updateCapacityPlan({
         data: {
@@ -308,7 +295,6 @@ const CapacityPlanTable = () => {
   };
 
   const handleRejectCP = (cpId: string) => {
-    console.log("Rejects, ID --> ", cpId);
     dispatch(
       updateCapacityPlan({
         data: {
@@ -321,7 +307,6 @@ const CapacityPlanTable = () => {
   };
 
   const handleDelete = (id: string) => {
-    console.log("ID --->", id);
     dispatch(deleteCapacityPlan(id));
     closeAddBulkCPModal();
   };
@@ -407,7 +392,6 @@ const CapacityPlanTable = () => {
 
     // Handle Bulk Create of Capacity Plan notification
     if (bulkImportCapacityPlanState.state !== StateOptions.INITIAL) {
-      debugger;
       showToast(
         bulkImportCapacityPlanState.state!,
         bulkImportCapacityPlanState.message!,
@@ -458,7 +442,6 @@ const CapacityPlanTable = () => {
   const navigate = useNavigate();
 
   const handleViewCP = (cpId: string) => {
-    console.log("ID --->", cpId);
     const data = cpData?.capacityPlans.find(
       (cp: capacityplanInfo) => cp.id === cpId
     );
@@ -466,46 +449,12 @@ const CapacityPlanTable = () => {
     navigate(`/cp/view/${cpId}`);
   };
 
-  // useEffect(() => {
-  //   if (capacityPlanData) {
-  //     // openCapacityPlanModal("viewCapacityPlan", "View Capacity Plan");
-  //     // dispatch(fetchCapacityPlanInfo(capacityPlanData?.id));
-  //     <ViewCP capacityPlanInfo={capacityPlanData} />
-  //   }
-  // }, [capacityPlanData]);
-
-  // const openCapacityPlanModal = (
-  //   type: ModalType,
-  //   title: string,
-  // ) => {
-  //   setModalProps({
-  //     type,
-  //     isOpen: true,
-  //     onClose: modalProps.onClose,
-  //     onSubmit: () => handleAddCP(),
-  //     title,
-  //     button1Text: "Cancel",
-  //     button2Text: "Save",
-  //     content: (
-  //       <CapacityPlanForm
-  //         setCapacityPlanData={setCapacityPlanData}
-  //         formRef={formRef}
-  //         capacityPlanData={capacityPlanData}
-  //         // isEditing={type ===  "editCapacityPlan"}
-  //       />
-  //     ),
-  //     buttonTwoDisabled: false,
-  //     size: "max-w-4xl",
-  //   });
-  // };
-
   const uniqueYears: any[] = useMemo(() => {
     const years = cpData?.capacityPlans.map(
       (plan: capacityplanInfo) => plan.year
     );
-    return Array.from(new Set(years)).sort(); // Sort if needed
+    return Array.from(new Set(years)).sort();
   }, [cpData]);
-  console.log(uniqueYears);
 
   interface IYears {
     label: string;
@@ -515,7 +464,6 @@ const CapacityPlanTable = () => {
     label: year.toString(),
     value: year,
   }));
-  console.log(yearOptions);
 
   const yearOptions2: any = [
     { value: 2023, label: "2023" },
@@ -571,7 +519,6 @@ const CapacityPlanTable = () => {
   const [bulkData, setBulkData] = useState();
   useEffect(() => {}, [bulkData]);
 
-  console.log(cardAnalyticsData?.availableBudget?.amount!);
   return (
     <div>
       {modalProps?.isOpen && (

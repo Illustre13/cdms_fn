@@ -18,16 +18,9 @@ export interface ISignupProps {
 export const PersonalInfoForm: React.FC<ISignupProps> = ({
   handleTabClick,
 }) => {
-  // const isRenderingRef = useRef(false);
-
-  // useEffect(() => {
-  // 	isRenderingRef.current = false; // Reset after rendering
-  // });
 
   const savePersonalForm = (values: any, { setSubmitting }: any) =>
-    // isSubmitting: boolean
     {
-      console.log("Personal Info Form Data ---> ", values);
       sessionStorage.setItem("firstName", values.firstName);
       sessionStorage.setItem("middleName", values.middleName);
       sessionStorage.setItem("lastName", values.lastName);
@@ -40,17 +33,9 @@ export const PersonalInfoForm: React.FC<ISignupProps> = ({
       sessionStorage.setItem("rssbNo", values.rssbNo);
       sessionStorage.setItem("idNumber", values.idNumber);
       sessionStorage.setItem("address", values.address);
-      // sessionStorage.setItem("password", values.password);
-      // sessionStorage.setItem("confirmPassword", values.confirmPassword);
       sessionStorage.setItem("department", values.department);
       sessionStorage.setItem("position", values.position);
       sessionStorage.setItem("role", values.role);
-      // // handleTabClick("organization");
-      // console.log("====>   ", isRenderingRef.current);
-      // if (!isRenderingRef.current) {
-      // 	handleTabClick("organization");
-      // }
-      // console.log("===> ", isSubmitting);
       setSubmitting(false);
       setTimeout(() => {
         handleTabClick("organization");

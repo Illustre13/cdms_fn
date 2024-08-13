@@ -7,7 +7,7 @@ import {
   bulkCreateCapacityPlan,
   updateCapacityPlan,
   fetchCPBudgetAnalytics,
-  fetchCapacityPlanInfo
+  fetchCapacityPlanInfo,
 } from "../action/capacityPlanAction";
 import { StateOptions } from "../../util/enum";
 
@@ -84,17 +84,16 @@ const initialState: {
     loading: false,
     error: false,
     message: "",
-  }
+  },
 };
 
 const capacityplanSlice = createSlice({
   name: "capacityplan",
   initialState,
   reducers: {
-
     resetCapacityPlanState: (state) => {
       return initialState;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -137,7 +136,7 @@ const capacityplanSlice = createSlice({
           action.error.message || "Adding capacity plan failed";
         state.addState.state = StateOptions.REJECTED;
       })
-      
+
       // Delete CapacityPlan
 
       .addCase(deleteCapacityPlan.fulfilled, (state, action) => {
@@ -183,7 +182,8 @@ const capacityplanSlice = createSlice({
       // Bulk create capacity plan
       .addCase(bulkCreateCapacityPlan.fulfilled, (state, action) => {
         state.bulkCreateState.data = action.payload;
-        state.bulkCreateState.message = "Created Capacity Plan in Bulks successfully!";
+        state.bulkCreateState.message =
+          "Created Capacity Plan in Bulks successfully!";
         state.bulkCreateState.loading = false;
         state.bulkCreateState.error = false;
         state.bulkCreateState.state = StateOptions.FULFILLED;
@@ -194,16 +194,13 @@ const capacityplanSlice = createSlice({
         state.bulkCreateState.state = StateOptions.PENDING;
       })
       .addCase(bulkCreateCapacityPlan.rejected, (state, action) => {
-        console.log(action)
-        debugger;
-        
         state.bulkCreateState.error = true;
         state.bulkCreateState.loading = false;
         state.bulkCreateState.message =
           action.error.message || "Capacity plan bulk create failed";
         state.bulkCreateState.state = StateOptions.REJECTED;
       })
-      
+
       // Update capacity plan
       .addCase(updateCapacityPlan.fulfilled, (state, action) => {
         state.updateState.data = action.payload;
@@ -226,10 +223,9 @@ const capacityplanSlice = createSlice({
         state.updateState.state = StateOptions.REJECTED;
       })
 
+      //Fetch Budget Analytics
 
-       //Fetch Budget Analytics
-
-       .addCase(fetchCPBudgetAnalytics.fulfilled, (state, action) => {
+      .addCase(fetchCPBudgetAnalytics.fulfilled, (state, action) => {
         state.fetchBudgetAnalytics.data = action.payload;
         state.fetchBudgetAnalytics.loading = false;
         state.fetchBudgetAnalytics.error = false;
@@ -247,29 +243,28 @@ const capacityplanSlice = createSlice({
         state.fetchBudgetAnalytics.state = StateOptions.REJECTED;
       })
 
-        // Fetch capacityplan by Id
+      // Fetch capacityplan by Id
 
-        .addCase(fetchCapacityPlanInfo.fulfilled, (state, action) => {
-          state.fetchCapacityPlanInfoState.data = action.payload;
-          state.fetchCapacityPlanInfoState.message = " Fetching capacity plan by id successfully!";
-          state.fetchCapacityPlanInfoState.loading = false;
-          state.fetchCapacityPlanInfoState.error = false;
-          state.fetchCapacityPlanInfoState.state = StateOptions.FULFILLED;
-        })
-        .addCase(fetchCapacityPlanInfo.pending, (state) => {
-          state.fetchCapacityPlanInfoState.loading = true;
-          state.fetchCapacityPlanInfoState.error = false;
-          state.fetchCapacityPlanInfoState.state = StateOptions.PENDING;
-        })
-        .addCase(fetchCapacityPlanInfo.rejected, (state, action) => {
-          state.fetchCapacityPlanInfoState.error = true;
-          state.fetchCapacityPlanInfoState.loading = false;
-          state.fetchCapacityPlanInfoState.message =
-            action.error.message || "Fetching capacity plan by idfailed";
-          state.fetchCapacityPlanInfoState.state = StateOptions.REJECTED;
-        })
-
-      ;
+      .addCase(fetchCapacityPlanInfo.fulfilled, (state, action) => {
+        state.fetchCapacityPlanInfoState.data = action.payload;
+        state.fetchCapacityPlanInfoState.message =
+          " Fetching capacity plan by id successfully!";
+        state.fetchCapacityPlanInfoState.loading = false;
+        state.fetchCapacityPlanInfoState.error = false;
+        state.fetchCapacityPlanInfoState.state = StateOptions.FULFILLED;
+      })
+      .addCase(fetchCapacityPlanInfo.pending, (state) => {
+        state.fetchCapacityPlanInfoState.loading = true;
+        state.fetchCapacityPlanInfoState.error = false;
+        state.fetchCapacityPlanInfoState.state = StateOptions.PENDING;
+      })
+      .addCase(fetchCapacityPlanInfo.rejected, (state, action) => {
+        state.fetchCapacityPlanInfoState.error = true;
+        state.fetchCapacityPlanInfoState.loading = false;
+        state.fetchCapacityPlanInfoState.message =
+          action.error.message || "Fetching capacity plan by idfailed";
+        state.fetchCapacityPlanInfoState.state = StateOptions.REJECTED;
+      });
   },
 });
 
