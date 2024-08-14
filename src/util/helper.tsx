@@ -208,7 +208,7 @@ export const getVisibleTabs = (roleName: string) => {
     // userManagement: roleName === 'admin' || roleName ==='manager',
     // user: roleName === 'admin' || roleName === 'manager' || roleName === 'employee' || roleName === 'approver',
     employees:
-      roleName === "admin" || roleName === "manager" || roleName === "approver",
+      roleName === "admin" || roleName === "manager",
     cp:
       roleName === "admin" || roleName === "manager" || roleName === "approver",
     // cna: roleName === 'admin' || roleName === 'manager' || roleName === 'approver',

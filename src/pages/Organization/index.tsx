@@ -10,10 +10,11 @@ import {
   deleteOrganization,
 } from "../../redux/action/organizationAction";
 import { IRootState } from "../../redux/store";
-import { StateOptions } from "../../util/enum";
+import { CDMSRole, StateOptions } from "../../util/enum";
 import { toast, ToastContainer } from "react-toastify";
 import { FormikProps } from "formik";
 import Modal from "../Components/Modals";
+import { toLower } from "lodash";
 
 const MyOrganization = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -26,6 +27,11 @@ const MyOrganization = () => {
   const toggleTabs = (name: string) => {
     setTabs(name);
   };
+
+  const userInfoState = useSelector(
+    (state: IRootState) => state.user.fetchUserInfoState
+  );
+  const employeeInfoData = userInfoState?.data?.data?.employee;
 
   const organizationInfoState = useSelector(
     (state: IRootState) => state.organization.fetchOrganizationInfoState
@@ -106,7 +112,6 @@ const MyOrganization = () => {
     }
   }, [deleteOrganizationState, updateOrganizationState, activeToast]);
 
-
   const handleEditOrganization = (initialData: any) => {
     if (organizationFormRef.current && isEditing) {
       const formValues = organizationFormRef.current.values;
@@ -120,9 +125,8 @@ const MyOrganization = () => {
     }
   };
 
-
-  if(isEditing) {
-	handleEditOrganization(organizationInfoData);
+  if (isEditing) {
+    handleEditOrganization(organizationInfoData);
   }
 
   const [modalProps, setModalProps] = useState<IModalProps>({
@@ -138,25 +142,23 @@ const MyOrganization = () => {
 
   const handleDelete = () => {
     if (organizationInfoData?.id) {
-		setModalProps({
-			type: "deleteOrganization",
-			isOpen: true,
-			onClose: modalProps.onClose,
-			onSubmit: () => dispatch(deleteOrganization(organizationInfoData.id)),
-			title: "Delete Organization",
-			button1Text: "Cancel",
-			button2Text: "Delete",
-			buttonTwoDisabled: false,
-			content: <p>Are you sure you want to delete this organization?</p>,
-		  });
+      setModalProps({
+        type: "deleteOrganization",
+        isOpen: true,
+        onClose: modalProps.onClose,
+        onSubmit: () => dispatch(deleteOrganization(organizationInfoData.id)),
+        title: "Delete Organization",
+        button1Text: "Cancel",
+        button2Text: "Delete",
+        buttonTwoDisabled: false,
+        content: <p>Are you sure you want to delete this organization?</p>,
+      });
     }
-
-
   };
 
   return (
     <div>
-		{modalProps?.isOpen && (
+      {modalProps?.isOpen && (
         <Modal
           isOpen={modalProps.isOpen}
           title={modalProps.title}
@@ -172,7 +174,10 @@ const MyOrganization = () => {
       )}
       <ul className="flex space-x-2 rtl:space-x-reverse">
         <li>
-          <Link to="/my-organization" className="text-cdms_primary hover:underline">
+          <Link
+            to="/my-organization"
+            className="text-cdms_primary hover:underline"
+          >
             Organization
           </Link>
         </li>
@@ -191,44 +196,56 @@ const MyOrganization = () => {
                 <OrganizationForm1
                   organizationInfo={organizationInfoData}
                   organizationFormRef={organizationFormRef}
-				//   setOrganizationData={setOrganizationData}
-				setIsEditing={setIsEditing}
+                  //   setOrganizationData={setOrganizationData}
+                  setIsEditing={setIsEditing}
                 />
               </div>
             ) : (
               <div>Loading...</div>
             )}
           </div>
-          <div className="border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 bg-white dark:bg-black mb-4 flex flex-row gap-5">
-            <div className="switch">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div className="panel space-y-5">
-                  <h5 className="font-semibold text-lg mb-4">
-                    Deactivate Account
-                  </h5>
-                  <p>Organization account will be deactivated automatically!</p>
-                  <label className="w-12 h-6 relative">
-                    <input
-                      type="checkbox"
-                      className="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer"
-                      id="custom_switch_checkbox7"
-                    />
-                    <span className="bg-[#ebedf2] dark:bg-dark block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white-dark dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-cdms_primary before:transition-all before:duration-300"></span>
-                  </label>
-                </div>
-                <div className="panel space-y-5">
-                  <h5 className="font-semibold text-lg mb-4">Delete Account</h5>
-                  <p>
-                    Once you delete the account, there is no going back. Please
-                    be certain.
-                  </p>
-                  <button className="btn btn-danger btn-delete-account" onClick={()=> handleDelete()}>
-                    Delete organization account
-                  </button>
+
+          {employeeInfoData?.role?.name === toLower(CDMSRole.MANAGER) && (
+            <div className="border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 bg-white dark:bg-black mb-4 flex flex-row gap-5">
+              <div className="switch">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 ">
+                  {/* Deactivate Account */}
+                  <div className="panel space-y-5">
+                    <h5 className="font-semibold text-lg mb-4">
+                      Deactivate Account
+                    </h5>
+                    <p>
+                      Organization account will be deactivated automatically!
+                    </p>
+                    <label className="w-12 h-6 relative">
+                      <input
+                        type="checkbox"
+                        className="custom_switch absolute w-full h-full opacity-0 z-10 cursor-pointer peer"
+                        id="custom_switch_checkbox7"
+                      />
+                      <span className="bg-[#ebedf2] dark:bg-dark block h-full rounded-full before:absolute before:left-1 before:bg-white dark:before:bg-white-dark dark:peer-checked:before:bg-white before:bottom-1 before:w-4 before:h-4 before:rounded-full peer-checked:before:left-7 peer-checked:bg-cdms_primary before:transition-all before:duration-300"></span>
+                    </label>
+                  </div>
+                  {/* Delete Account */}
+                  <div className="panel space-y-5">
+                    <h5 className="font-semibold text-lg mb-4">
+                      Delete Account
+                    </h5>
+                    <p>
+                      Once you delete the account, there is no going back.
+                      Please be certain.
+                    </p>
+                    <button
+                      className="btn btn-danger btn-delete-account"
+                      onClick={() => handleDelete()}
+                    >
+                      Delete organization account
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
         <ToastContainer />
       </div>

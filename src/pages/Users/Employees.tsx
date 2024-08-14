@@ -32,6 +32,7 @@ import { FormikProps } from "formik";
 import Modal from "../Components/Modals";
 import { Link } from "react-router-dom";
 import { EmployeeBulkImport } from "./EmployeeBulkImport";
+import { capitalize } from "lodash";
 
 const Employees = () => {
   const dispatch = useAppDispatch();
@@ -46,6 +47,14 @@ const Employees = () => {
     (state: IRootState) => state.employee.fetchEmployeeState
   );
 
+  const employeeBulkImportState = useSelector(
+    (state: IRootState) => state.employee.bulkCreateEmployeeState
+  );
+
+  const updateEmployeeState = useSelector(
+    (state: IRootState) => state.employee.updateEmployeeState
+  );
+  
   const fetchEmployeeInfoState = useSelector(
     (state: IRootState) => state.employee.fetchEmployeeInfoState
   );
@@ -101,7 +110,9 @@ const Employees = () => {
       dispatch(
         updateEmployee({
           data: {
-            ...employeeData,
+            position: formValues?.position,
+            department: formValues?.department,
+            roleName: formValues?.roleName
           },
           id: employeeData?.id!,
         })
@@ -269,6 +280,15 @@ const Employees = () => {
     setIsEmployeeBulkSubmit(false);
     setEmployeeBulkModal(false);
   };
+
+  useEffect(() => {
+    if(employeeBulkImportState.state === StateOptions.FULFILLED) {
+      showToast(employeeBulkImportState.state, "", "Employee Bulk Imported Successfully", "Error Occurred While Importing Employee");
+    }
+    if(updateEmployeeState.state === StateOptions.FULFILLED) {
+      showToast(updateEmployeeState.state, "", "Employee Updated Successfully", "Error Occurred While Updating Employee");
+    }
+  }, [updateEmployeeState, employeeBulkImportState]);
 
   const handleCreateEmployeeBulk = () => {
     if (bulkData && employeeBulkModal) {
@@ -458,6 +478,12 @@ const Employees = () => {
                 title: "Status",
                 sortable: true,
                 render: ({ status }) => <StatusBadge status={status} />,
+              },
+              {
+                accessor: "role",
+                title: "Role",
+                sortable: true,
+                render: (render: employeeInfo) => (capitalize(render.role?.name)),
               },
               {
                 accessor: "moreAction",

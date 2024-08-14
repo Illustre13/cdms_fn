@@ -28,7 +28,7 @@ import {
   CurrencyFormatter,
   StatusBadge,
 } from "../../util/helper";
-import { CapacityPlanStatus, StateOptions } from "../../util/enum";
+import { CapacityPlanLevel, CapacityPlanStatus, StateOptions } from "../../util/enum";
 import IconPlus from "../../components/Icon/IconPlus";
 import IconTxtFile from "../../components/Icon/IconTxtFile";
 import Modal from "../Components/Modals";
@@ -65,9 +65,7 @@ const CapacityPlanTable = () => {
   const [selectedRecords, setSelectedRecords] = useState<any>([]);
   const [isRowSelected, setIsRowSelected] = useState(false);
   const [searchKey, setSearchKey] = useState("");
-  const [cardAnalyticsYear, setCardAnalyticsYear] = useState(
-    new Date().getFullYear()
-  );
+  const [cardAnalyticsYear, setCardAnalyticsYear] = useState(2024);
   const [status, setStatus] = useState<any>();
   const [year, setYear] = useState<number>(2024);
   const [industry, setIndustry] = useState<any>();
@@ -505,6 +503,12 @@ const CapacityPlanTable = () => {
     }
   );
 
+  const formattedCP = (cpData?.capacityPlans || [])
+    .filter((item: capacityplanInfo) => item.level !== CapacityPlanLevel.NATIONAL)
+    .map((item: capacityplanInfo) => {
+      return { ...item };
+    });
+
   function handleDownloadExcel() {
     downloadExcel({
       fileName: "capacity_plan",
@@ -841,7 +845,7 @@ const CapacityPlanTable = () => {
         <div className="datatables z-40">
           <DataTable
             className="whitespace-nowrap table-hover"
-            records={cpData?.capacityPlans}
+            records={formattedCP}
             striped
             columns={[
               //   {
@@ -960,7 +964,7 @@ const CapacityPlanTable = () => {
               },
             ]}
             highlightOnHover
-            totalRecords={cpData?.totalItems}
+            totalRecords={formattedCP.length}
             recordsPerPage={pageSize2}
             page={page2}
             onPageChange={(p) => setPage2(p)}
