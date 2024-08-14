@@ -108,7 +108,7 @@ export const CPBulkImport: React.FC<ICPBulkImport> = ({
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => downloadFile("capacity_plan_bulk_import_006.xlsx")}
+          onClick={() => downloadFile("cp_bulk_import_008.xlsx")}
         >
           <IconDownload className="ltr:mr-2 rtl:ml-2" />
           Download Template

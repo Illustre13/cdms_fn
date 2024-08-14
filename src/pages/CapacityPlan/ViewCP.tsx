@@ -12,7 +12,11 @@ import { useAppDispatch } from "../../redux/hooks";
 import IconArrowBackward from "../../components/Icon/IconArrowBackward";
 import IconEdit from "../../components/Icon/IconEdit";
 import { IRootState } from "../../redux/store";
-import { CapacityPlanLevel, TrainingStatus } from "../../util/enum";
+import {
+  CapacityPlanLevel,
+  CapacityPlanStatus,
+  TrainingStatus,
+} from "../../util/enum";
 import IconThumbUp from "../../components/Icon/IconThumbUp";
 import IconPencil from "../../components/Icon/IconPencil";
 import { Select } from "@mantine/core";
@@ -540,6 +544,45 @@ const ViewCP = () => {
               )}
             </Formik>
           )}
+
+          {cpData &&
+            cpData.status === CapacityPlanStatus.REJECTED &&
+            cpData?.comment && (
+              <>
+                <hr></hr>
+                <span>
+                  <h6 className="text-lg font-bold my-5">Approvers Feedback</h6>
+                </span>
+                {(cpData.comment || []).map((comment: any, index: number) => (
+                  <div
+                    key={comment.id}
+                    className="flex items-start space-x-4 p-4"
+                  >
+                    <span className="text-lg">{index+1}.</span>
+                    <div className="flex-shrink-0">
+                      
+                      <img
+                        src={
+                          comment.user?.profileImage ||
+                          "/path/to/default-profile.png"
+                        }
+                        alt={comment.user?.names || "Profile Image"}
+                        className="w-12 h-12 rounded-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {comment.user?.names || "Unknown User"}
+                      </h3>
+                      <p className="text-gray-600">
+                        {comment.body || "No comment provided"}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+
           <hr></hr>
           <span>
             <h6 className="text-lg font-bold my-5">Training Information</h6>

@@ -40,6 +40,8 @@ import { resetCapacityPlanState } from "../../redux/reducer/capacityPlanSlice";
 import IconDownload from "../../components/Icon/IconDownload";
 import { GenerateReport } from "../../components/GenerateReport";
 import ViewCP from "./ViewCP";
+import CommentForm from "../Forms/CommentForm";
+import { addComment } from "../../redux/action/commentAction";
 
 interface CPCardAnalyticsResultProps {
   amount: any;
@@ -292,7 +294,15 @@ const CapacityPlanTable = () => {
     handleModalClose();
   };
 
-  const handleRejectCP = (cpId: string) => {
+  const handleRejectCP = (cpId: string, comment?: string) => {
+    console.log(cpId);
+    const formValues = commentFormRef?.current?.values;
+    console.log(formValues)
+    const data = {
+      capacityPlanId: cpId,
+      comment: formValues?.comment
+    };
+    dispatch(addComment(data));
     dispatch(
       updateCapacityPlan({
         data: {
@@ -421,6 +431,8 @@ const CapacityPlanTable = () => {
     });
   };
 
+  const commentFormRef = useRef<FormikProps<any> | null>(null);
+
   const openRejectModalHandler = (cpId?: string, selectedRecords?: any) => {
     if (cpId) {
       setModalProps({
@@ -432,7 +444,15 @@ const CapacityPlanTable = () => {
         button1Text: "Cancel",
         button2Text: "Reject",
         buttonTwoDisabled: false,
-        content: <p>Are you sure you want to reject this capacity plan?</p>,
+        content: (
+          <CommentForm
+            cpId={cpId}
+            onSubmit={({ comment, id }) => {
+              handleRejectCP(id, comment);
+            }}
+            commentFormRef={commentFormRef}
+          />
+        ),
       });
     }
   };

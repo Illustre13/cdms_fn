@@ -12,6 +12,7 @@ import trainingSlice from "../reducer/trainingSlice";
 import employeeTrainingSlice from "../reducer/employeeTrainingSlice";
 import resetPasswordSlice from "../reducer/resetPasswordSlice";
 import employeeSlice from "../reducer/employeeSlice";
+import commentSlice from "../reducer/commentSlice";
 
 const rootReducer = combineReducers({
   themeConfig: themeConfigSlice,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   employeeTraining: employeeTrainingSlice,
   reset: resetPasswordSlice,
   employee: employeeSlice,
+  comment: commentSlice,
 });
 
 const store = configureStore({
