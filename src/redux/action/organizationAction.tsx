@@ -43,6 +43,7 @@ export const deleteOrganization = createAsyncThunk<ResponseData, ItemID>(
   async (id, { rejectWithValue }) => {
     try {
       const token = "Bearer " + localStorage.getItem("token");
+      debugger;
       const response = await URL.delete(`/organization/${id}`, {
         headers: { "Accept-language": "en", Authorization: token },
       });

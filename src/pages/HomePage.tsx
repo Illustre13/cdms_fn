@@ -118,7 +118,7 @@ const HomePage = () => {
 
 				<section className="m-4 p-12 text-center bg-cdms_secondary flex flex-row justify-between rounded-br-full rounded-tl-full shadow-md text-white">
 					<div className="basis-2/3 p-16 justify-end">
-						<p className="text-2xl rounded-lg">
+						<p className="text-xl rounded-lg">
 							Implementing a CDMS in Rwanda enhances efficiency through
 							automated workflows, ensures data security and regulatory
 							compliance, and fosters seamless collaboration across departments.

@@ -17,13 +17,13 @@ const Navbar: React.FC = () => {
 						<Link to="/">Home</Link>
 					</li>
 					<li className="inline-block align-middle">
-						<Link to="/features">Features</Link>
+						<a href="#features">Features</a>
 					</li>
 					<li className="inline-block align-middle">
-						<Link to="/about-us">About Us</Link>
+						<a href="#about-us">About Us</a>
 					</li>
 					<li className="inline-block align-middle">
-						<Link to="/contact-us">Contact Us</Link>
+						<a href="#contact-us">Contact Us</a>
 					</li>
 					<li className="inline-block align-middle">
 						<Link to="/cdms-signin">
